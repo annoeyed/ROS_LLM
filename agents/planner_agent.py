@@ -44,11 +44,46 @@ class PlannerAgent(BaseAgent):
             'parameter_server': 'parameter_pattern',
             'diagnostics': 'diagnostics_pattern'
         }
+        
+        # AI 클라이언트 초기화
+        self.ai_client = None
     
     def _initialize(self):
         """Planner Agent 초기화"""
         super()._initialize()
-        self.logger.info("ROS 코드 생성 계획 수립 시스템 초기화 완료")
+        
+        try:
+            # AI 클라이언트 로드
+            self._load_ai_client()
+            self.logger.info("AI 클라이언트 로드 완료")
+            self.logger.info("AI 기반 ROS 코드 생성 계획 수립 시스템 초기화 완료")
+        except Exception as e:
+            self.logger.error(f"AI 클라이언트 로드 실패: {e}")
+            self.status = 'error'
+    
+    def _load_ai_client(self):
+        """AI 클라이언트 로드"""
+        try:
+            from rag_utils.ai_client import AIClientFactory
+            
+            # 환경변수에서 AI 클라이언트 타입 확인
+            ai_client_type = os.getenv('AI_CLIENT_TYPE', 'mock')
+            
+            # AI 클라이언트 생성
+            self.ai_client = AIClientFactory.create_client(ai_client_type)
+            
+            self.logger.info(f"AI 클라이언트 로드 완료: {ai_client_type}")
+            
+        except Exception as e:
+            self.logger.error(f"AI 클라이언트 로드 중 오류: {e}")
+            # AI 클라이언트 로드 실패 시 Mock 클라이언트 사용
+            try:
+                from rag_utils.ai_client import MockAIClient
+                self.ai_client = MockAIClient()
+                self.logger.info("Mock AI 클라이언트로 대체")
+            except Exception as mock_e:
+                self.logger.error(f"Mock AI 클라이언트 로드도 실패: {mock_e}")
+                self.ai_client = None
     
     def process_message(self, message: AgentMessage) -> AgentMessage:
         """메시지 처리 - 사용자 요청 분석 및 계획 수립"""
@@ -302,16 +337,123 @@ class PlannerAgent(BaseAgent):
         # 아키텍처 생성 로직 구현
         return {'architecture': 'generated'}
     
+    def _ai_analyze_user_request(self, user_request: str) -> Dict[str, Any]:
+        """AI 기반 사용자 요청 분석"""
+        if not self.ai_client:
+            return self._analyze_user_request(user_request)
+        
+        try:
+            # AI 프롬프트 구성
+            ai_prompt = f"""
+            다음 ROS 2 개발 요청을 분석하세요:
+            
+            요청: {user_request}
+            
+            다음 형식으로 JSON 응답을 제공하세요:
+            {{
+                "ros_components": ["필요한 ROS 컴포넌트 목록"],
+                "security_requirements": ["보안 요구사항 목록"],
+                "complexity_level": "basic/medium/advanced",
+                "estimated_effort": "low/medium/high",
+                "technical_details": {{
+                    "communication_patterns": ["통신 패턴"],
+                    "data_flows": ["데이터 흐름"],
+                    "security_considerations": ["보안 고려사항"]
+                }}
+            }}
+            """
+            
+            # AI 분석 수행
+            ai_response = self.ai_client.analyze_content(user_request, "planning")
+            
+            if isinstance(ai_response, dict) and 'ros_components' in ai_response:
+                # AI 응답 파싱 성공
+                return ai_response
+            else:
+                # AI 응답 파싱 실패 시 기본 분석 사용
+                return self._analyze_user_request(user_request)
+                
+        except Exception as e:
+            self.logger.error(f"AI 기반 요청 분석 실패: {e}")
+            return self._analyze_user_request(user_request)
+    
+    def _ai_create_code_generation_plan(self, analysis: Dict[str, Any], user_request: str) -> Dict[str, Any]:
+        """AI 기반 코드 생성 계획 수립"""
+        if not self.ai_client:
+            return self._create_code_generation_plan(analysis)
+        
+        try:
+            # AI 프롬프트 구성
+            ai_prompt = f"""
+            다음 분석 결과를 바탕으로 ROS 2 코드 생성 계획을 수립하세요:
+            
+            분석 결과: {analysis}
+            원본 요청: {user_request}
+            
+            다음 형식으로 JSON 응답을 제공하세요:
+            {{
+                "required_agents": ["필요한 Agent 목록"],
+                "estimated_time": "예상 소요 시간",
+                "phases": [
+                    {{
+                        "phase": 1,
+                        "name": "단계명",
+                        "duration": "소요시간",
+                        "description": "상세 설명"
+                    }}
+                ],
+                "security_checks": ["보안 검사 항목"],
+                "testing_approach": ["테스트 접근법"],
+                "risk_assessment": "위험도 평가",
+                "mitigation_strategies": ["위험 완화 전략"]
+            }}
+            """
+            
+            # AI 계획 수립 수행
+            ai_response = self.ai_client.analyze_content(ai_prompt, "planning")
+            
+            if isinstance(ai_response, dict) and 'required_agents' in ai_response:
+                # AI 응답 파싱 성공
+                return ai_response
+            else:
+                # AI 응답 파싱 실패 시 기본 계획 사용
+                return self._create_code_generation_plan(analysis)
+                
+        except Exception as e:
+            self.logger.error(f"AI 기반 계획 수립 실패: {e}")
+            return self._create_code_generation_plan(analysis)
+    
     def plan_ros_code_generation(self, user_request: str) -> Dict[str, Any]:
-        """ROS 코드 생성 계획 수립 (외부 호출용)"""
-        # 요청 분석
-        analysis = self._analyze_user_request(user_request)
-        
-        # 계획 수립
-        plan = self._create_code_generation_plan(analysis)
-        
-        return {
-            'analysis': analysis,
-            'plan': plan,
-            'status': 'success'
-        }
+        """AI 기반 ROS 코드 생성 계획 수립 (외부 호출용)"""
+        try:
+            # AI 기반 요청 분석
+            analysis = self._ai_analyze_user_request(user_request)
+            
+            # AI 기반 계획 수립
+            plan = self._ai_create_code_generation_plan(analysis, user_request)
+            
+            return {
+                'analysis': analysis,
+                'plan': plan,
+                'status': 'success',
+                'ai_enhanced': self.ai_client is not None
+            }
+            
+        except Exception as e:
+            self.logger.error(f"AI 기반 계획 수립 실패: {e}")
+            # AI 실패 시 기본 분석 사용
+            try:
+                analysis = self._analyze_user_request(user_request)
+                plan = self._create_code_generation_plan(analysis)
+                return {
+                    'analysis': analysis,
+                    'plan': plan,
+                    'status': 'success',
+                    'ai_enhanced': False,
+                    'fallback': True
+                }
+            except Exception as fallback_e:
+                return {
+                    'error': f'계획 수립 실패: {str(e)} (fallback도 실패: {str(fallback_e)})',
+                    'status': 'error'
+                }
