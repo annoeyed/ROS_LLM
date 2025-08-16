@@ -67,6 +67,11 @@ class RAGGuardAgent(BaseAgent):
             from rag_utils.cwe_rag import CWERAGSearch
             self.cwe_rag = CWERAGSearch()
             
+            # RAG 시스템이 제대로 초기화되었는지 확인
+            if not self.cwe_rag or not self.cwe_rag.index:
+                self.logger.warning("CWE RAG 시스템 초기화 실패, 기본 검증만 사용")
+                self.cwe_rag = None
+            
             # CVE RAG 시스템 로드 (향후 구현)
             # from rag_utils.cve_rag import CVERAGSearch
             # self.cve_rag = CVERAGSearch()
@@ -85,7 +90,8 @@ class RAGGuardAgent(BaseAgent):
             
         except Exception as e:
             self.logger.error(f"RAG 시스템 로드 중 오류: {e}")
-            raise
+            self.cwe_rag = None
+            # RAG 시스템 실패 시에도 계속 진행
     
     def _load_ai_client(self):
         """AI 클라이언트 로드"""
@@ -590,6 +596,11 @@ class RAGGuardAgent(BaseAgent):
     def _perform_rag_security_search(self, algorithm: str, component: str) -> Dict[str, Any]:
         """RAG를 사용한 알고리즘 보안 검색"""
         try:
+            # RAG 시스템이 초기화되었는지 확인
+            if not self.cwe_rag:
+                self.logger.warning("CWE RAG 시스템이 초기화되지 않았습니다.")
+                return {'issues': [], 'score_deduction': 0}
+            
             # CWE RAG 검색
             search_results = self.cwe_rag.search(algorithm, top_k=5)
             

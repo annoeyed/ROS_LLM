@@ -1,7 +1,37 @@
+# Core dependencies
 pydantic>=2.6.0,<3
 numpy>=1.24.0,<2
 requests>=2.31.0
 python-dotenv>=1.0.0
 lxml>=4.9.0
-# faiss는 선택적이며, 미설치 시 numpy 코사인 검색으로 대체됩니다.
 
+# AI/ML dependencies
+openai>=1.0.0
+langchain>=0.1.0
+langchain-openai>=0.1.0
+
+# Vector database and embeddings
+faiss-cpu>=1.7.0
+sentence-transformers>=2.2.0
+
+# Data processing
+pandas>=2.0.0
+beautifulsoup4>=4.12.0
+
+# Web scraping and API
+selenium>=4.15.0
+webdriver-manager>=4.0.0
+
+# Utilities
+tqdm>=4.65.0
+colorama>=0.4.6
+click>=8.1.0
+
+# Development and testing
+pytest>=7.4.0
+black>=23.0.0
+flake8>=6.0.0
+
+# Note: faiss는 선택적이며, 미설치 시 numpy 코사인 검색으로 대체됩니다.
+
+, 

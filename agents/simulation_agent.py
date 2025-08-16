@@ -224,6 +224,36 @@ class SimulationAgent(BaseAgent):
             }
         )
     
+    def run_comprehensive_tests(self, parameters: Dict[str, Any]) -> Dict[str, Any]:
+        """종합 테스트 실행 (워크플로우용)"""
+        try:
+            code_snippet = parameters.get('code_snippet', '')
+            test_type = parameters.get('test_type', 'comprehensive')
+            test_parameters = parameters.get('test_parameters', {})
+            
+            if not code_snippet:
+                return {'error': '코드 스니펫이 필요합니다.'}
+            
+            # 종합 테스트 실행
+            if test_type == 'comprehensive':
+                test_result = self._run_comprehensive_tests({
+                    'code_snippet': code_snippet,
+                    'test_parameters': test_parameters
+                })
+            else:
+                test_result = self._run_basic_tests(code_snippet, test_parameters)
+            
+            return {
+                'test_type': test_type,
+                'test_result': test_result,
+                'ai_enhanced': test_result.get('ai_enhanced', False),
+                'status': 'completed'
+            }
+            
+        except Exception as e:
+            self.logger.error(f"종합 테스트 실행 실패: {e}")
+            return {'error': f'테스트 실행 실패: {str(e)}'}
+    
     def _simulate_ros_code(self, parameters: Dict[str, Any]) -> Dict[str, Any]:
         """AI 기반 ROS 코드 시뮬레이션"""
         code_snippet = parameters.get('code_snippet', '')
