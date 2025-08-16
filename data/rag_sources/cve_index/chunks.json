@@ -1,0 +1,2436 @@
+[
+  {
+    "chunk_id": "chunk_f63fa0511ee5",
+    "doc_id": "cve_CVE-2004-2390",
+    "title": "CVE-2004-2390",
+    "text": "CVE ID: CVE-2004-2390 | Severity: Unknown | Description: The roster import functionality in Jabber Gadu-Gadu Transport (a.k.a. jabber-gg-transport) 2.0.x before 2.0.8, when using libgadu 1.0 and later, allows attackers to cause a denial of service via unknown vectors. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_dabd7bb3f32f",
+    "doc_id": "cve_CVE-2005-3273",
+    "title": "CVE-2005-3273",
+    "text": "CVE ID: CVE-2005-3273 | Severity: Unknown | Description: The rose_rt_ioctl function in rose_route.c for Radionet Open Source Environment (ROSE) in Linux 2.6 kernels before 2.6.12, and 2.4 before 2.4.29, does not properly verify the ndigis argument for a new route, which allows attackers to trigger array out-of-bounds errors with a large number of digipeats. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_4fa07d9f2ff8",
+    "doc_id": "cve_CVE-2006-1645",
+    "title": "CVE-2006-1645",
+    "text": "CVE ID: CVE-2006-1645 | Severity: Unknown | Description: Cross-site scripting (XSS) vulnerability in Anton Vlasov and Rostislav Gaitkuloff ReloadCMS 1.2.5 and earlier allows remote attackers to inject arbitrary web script or HTML and gain leverage to execute arbitrary PHP code via the User-Agent HTTP header, which is displayed by admin/modules/general/statistic.php in the administration panel. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_65e766df5877",
+    "doc_id": "cve_CVE-2006-3116",
+    "title": "CVE-2006-3116",
+    "text": "CVE ID: CVE-2006-3116 | Severity: Unknown | Description: Multiple PHP remote file inclusion vulnerabilities in phpRaid 3.0.4 and 3.0.5 allow remote attackers to execute arbitrary code via a URL in the phpraid_dir parameter to (1) configuration.php, (3) guilds.php, (4) index.php, (5) locations.php, (6) login.php, (7) lua_output.php, (8) permissions.php, (9) profile.php, (10) raids.php, (11) register.php, (12) roster.php, and (13) view.php. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_168941fa3a88",
+    "doc_id": "cve_CVE-2006-3997",
+    "title": "CVE-2006-3997",
+    "text": "CVE ID: CVE-2006-3997 | Severity: Unknown | Description: PHP remote file inclusion vulnerability in hsList.php in WoWRoster (aka World of Warcraft Roster) 1.5.x and earlier allows remote attackers to execute arbitrary PHP code via a URL in the subdir parameter. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_95bff9cc6606",
+    "doc_id": "cve_CVE-2006-3998",
+    "title": "CVE-2006-3998",
+    "text": "CVE ID: CVE-2006-3998 | Severity: Unknown | Description: PHP remote file inclusion vulnerability in conf.php in WoWRoster (aka World of Warcraft Roster) 1.5.1 and earlier allows remote attackers to execute arbitrary PHP code via a URL in the subdir parameter. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_19ec28c0f364",
+    "doc_id": "cve_CVE-2006-6850",
+    "title": "CVE-2006-6850",
+    "text": "CVE ID: CVE-2006-6850 | Severity: Unknown | Description: PHP remote file inclusion vulnerability in include.php in the Roster Module (character_roster) in Shadowed Portal 5.7 allows remote attackers to execute arbitrary PHP code via a URL in the mod_root parameter. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_09a9a3af9465",
+    "doc_id": "cve_CVE-2007-1636",
+    "title": "CVE-2007-1636",
+    "text": "CVE ID: CVE-2007-1636 | Severity: Unknown | Description: Directory traversal vulnerability in index.php in RoseOnlineCMS 3 B1 allows remote attackers to include arbitrary files via a .. (dot dot) sequence in the op parameter, as demonstrated by injecting PHP code into Apache log files via the URL and User-Agent HTTP header. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_d49fafbf81b2",
+    "doc_id": "cve_CVE-2007-6478",
+    "title": "CVE-2007-6478",
+    "text": "CVE ID: CVE-2007-6478 | Severity: Unknown | Description: Stack-based buffer overflow in Rosoft Media Player 4.1.7, 4.1.8, and possibly earlier versions allows remote attackers to execute arbitrary code or cause a denial of service (application crash) via a long string in a .M3U file. NOTE: some of these details are obtained from third party information. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_6f8b4da3aaf1",
+    "doc_id": "cve_CVE-2009-0440",
+    "title": "CVE-2009-0440",
+    "text": "CVE ID: CVE-2009-0440 | Severity: Unknown | Description: IBM WebSphere Partner Gateway (WPG) 6.0.0 through 6.0.0.7 does not properly handle failures of signature verification, which might allow remote authenticated users to submit a crafted RosettaNet (aka RNIF) document to a backend application, related to (1) \"altered service content\" and (2) \"digital signature foot-print.\" | Keywords: ros, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_686b4b005dca",
+    "doc_id": "cve_CVE-2009-1265",
+    "title": "CVE-2009-1265",
+    "text": "CVE ID: CVE-2009-1265 | Severity: Unknown | Description: Integer overflow in rose_sendmsg (sys/net/af_rose.c) in the Linux kernel 2.6.24.4, and other versions before 2.6.30-rc1, might allow remote attackers to obtain sensitive information via a large length value, which causes \"garbage\" memory to be sent. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_ed510d25fe78",
+    "doc_id": "cve_CVE-2009-3002",
+    "title": "CVE-2009-3002",
+    "text": "CVE ID: CVE-2009-3002 | Severity: Unknown | Description: The Linux kernel before 2.6.31-rc7 does not initialize certain data structures within getname functions, which allows local users to read the contents of some kernel memory locations by calling getsockname on (1) an AF_APPLETALK socket, related to the atalk_getname function in net/appletalk/ddp.c; (2) an AF_IRDA socket, related to the irda_getname function in net/irda/af_irda.c; (3) an AF_ECONET socket, related to the econet_getname function in net/econet/af_econet.c; (4) an AF_NETROM socket, related to the nr_getname function in net/netrom/af_netrom.c; (5) an AF_ROSE socket, related to the rose_getname function in net/rose/af_rose.c; or (6) a raw CAN socket, related to the raw_getname function in net/can/raw.c. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_964e250534fc",
+    "doc_id": "cve_CVE-2009-4581",
+    "title": "CVE-2009-4581",
+    "text": "CVE ID: CVE-2009-4581 | Severity: CRITICAL | Description: Directory traversal vulnerability in modules/admincp.php in RoseOnlineCMS 3 B1 and earlier, when magic_quotes_gpc is disabled, allows remote attackers to include and execute arbitrary local files via directory traversal sequences in the admin parameter. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_0973f8ceb76e",
+    "doc_id": "cve_CVE-2010-1046",
+    "title": "CVE-2010-1046",
+    "text": "CVE ID: CVE-2010-1046 | Severity: Unknown | Description: Multiple SQL injection vulnerabilities in index.php in Rostermain 1.1 and earlier allow remote attackers to execute arbitrary SQL commands via the (1) userid (username) and (2) password parameters. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_580ec2a41106",
+    "doc_id": "cve_CVE-2010-2329",
+    "title": "CVE-2010-2329",
+    "text": "CVE ID: CVE-2010-2329 | Severity: Unknown | Description: Buffer overflow in Rosoft Audio Converter 4.4.4 allows remote attackers to execute arbitrary code via a long playlist entry in a .m3u file. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_29a681e61b62",
+    "doc_id": "cve_CVE-2010-3310",
+    "title": "CVE-2010-3310",
+    "text": "CVE ID: CVE-2010-3310 | Severity: Unknown | Description: Multiple integer signedness errors in net/rose/af_rose.c in the Linux kernel before 2.6.36-rc5-next-20100923 allow local users to cause a denial of service (heap memory corruption) or possibly have unspecified other impact via a rose_getname function call, related to the rose_bind and rose_connect functions. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_8f63469afda0",
+    "doc_id": "cve_CVE-2011-1493",
+    "title": "CVE-2011-1493",
+    "text": "CVE ID: CVE-2011-1493 | Severity: Unknown | Description: Array index error in the rose_parse_national function in net/rose/rose_subr.c in the Linux kernel before 2.6.39 allows remote attackers to cause a denial of service (heap memory corruption) or possibly have unspecified other impact by composing FAC_NATIONAL_DIGIS data that specifies a large number of digipeaters, and then sending this data to a ROSE socket. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_69f1e535aec3",
+    "doc_id": "cve_CVE-2011-4913",
+    "title": "CVE-2011-4913",
+    "text": "CVE ID: CVE-2011-4913 | Severity: Unknown | Description: The rose_parse_ccitt function in net/rose/rose_subr.c in the Linux kernel before 2.6.39 does not validate the FAC_CCITT_DEST_NSAP and FAC_CCITT_SRC_NSAP fields, which allows remote attackers to (1) cause a denial of service (integer underflow, heap memory corruption, and panic) via a small length value in data sent to a ROSE socket, or (2) conduct stack-based buffer overflow attacks via a large length value in data sent to a ROSE socket. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_a7957211150a",
+    "doc_id": "cve_CVE-2011-4914",
+    "title": "CVE-2011-4914",
+    "text": "CVE ID: CVE-2011-4914 | Severity: Unknown | Description: The ROSE protocol implementation in the Linux kernel before 2.6.39 does not verify that certain data-length values are consistent with the amount of data sent, which might allow remote attackers to obtain sensitive information from kernel memory or cause a denial of service (out-of-bounds read) via crafted data to a ROSE socket. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_abf186bfb220",
+    "doc_id": "cve_CVE-2012-4698",
+    "title": "CVE-2012-4698",
+    "text": "CVE ID: CVE-2012-4698 | Severity: Unknown | Description: Siemens RuggedCom Rugged Operating System (ROS) before 3.12, ROX I OS through 1.14.5, ROX II OS through 2.3.0, and RuggedMax OS through 4.2.1.4621.22 use hardcoded private keys for SSL and SSH communication, which makes it easier for man-in-the-middle attackers to spoof servers and decrypt network traffic by leveraging the availability of these keys within ROS files at all customer installations. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_1fbe9754e987",
+    "doc_id": "cve_CVE-2013-3234",
+    "title": "CVE-2013-3234",
+    "text": "CVE ID: CVE-2013-3234 | Severity: Unknown | Description: The rose_recvmsg function in net/rose/af_rose.c in the Linux kernel before 3.9-rc7 does not initialize a certain data structure, which allows local users to obtain sensitive information from kernel stack memory via a crafted recvmsg or recvfrom system call. | Keywords: ros, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_4538fb1e12bc",
+    "doc_id": "cve_CVE-2013-6925",
+    "title": "CVE-2013-6925",
+    "text": "CVE ID: CVE-2013-6925 | Severity: Unknown | Description: The integrated HTTPS server in Siemens RuggedCom ROS before 3.12.2 allows remote attackers to hijack web sessions by predicting a session id value. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_1bf020eb980a",
+    "doc_id": "cve_CVE-2013-6926",
+    "title": "CVE-2013-6926",
+    "text": "CVE ID: CVE-2013-6926 | Severity: Unknown | Description: The integrated HTTPS server in Siemens RuggedCom ROS before 3.12.2 allows remote authenticated users to bypass intended restrictions on administrative actions by leveraging access to a (1) guest or (2) operator account. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_94ca48abfb6f",
+    "doc_id": "cve_CVE-2014-1966",
+    "title": "CVE-2014-1966",
+    "text": "CVE ID: CVE-2014-1966 | Severity: Unknown | Description: The SNMP implementation in Siemens RuggedCom ROS before 3.11, ROS 3.11 for RS950G, ROS 3.12 before 3.12.4, and ROS 4.0 for RSG2488 allows remote attackers to cause a denial of service (device outage) via crafted packets. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_162431e741df",
+    "doc_id": "cve_CVE-2014-2590",
+    "title": "CVE-2014-2590",
+    "text": "CVE ID: CVE-2014-2590 | Severity: Unknown | Description: The web management interface in Siemens RuggedCom ROS before 3.11, ROS 3.11 before 3.11.5 for RS950G, ROS 3.12, and ROS 4.0 for RSG2488 allows remote attackers to cause a denial of service (interface outage) via crafted HTTP packets. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_984d10477b74",
+    "doc_id": "cve_CVE-2014-0364",
+    "title": "CVE-2014-0364",
+    "text": "CVE ID: CVE-2014-0364 | Severity: Unknown | Description: The ParseRoster component in the Ignite Realtime Smack XMPP API before 4.0.0-rc1 does not verify the from attribute of a roster-query IQ stanza, which allows remote attackers to spoof IQ responses via a crafted attribute. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_6e3d528705f5",
+    "doc_id": "cve_CVE-2015-5537",
+    "title": "CVE-2015-5537",
+    "text": "CVE ID: CVE-2015-5537 | Severity: Unknown | Description: The SSL layer of the HTTPS service in Siemens RuggedCom ROS before 4.2.0 and ROX II does not properly implement CBC padding, which makes it easier for man-in-the-middle attackers to obtain cleartext data via a padding-oracle attack, a different vulnerability than CVE-2014-3566. | Keywords: ros, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_b2c973ebd1ea",
+    "doc_id": "cve_CVE-2015-6675",
+    "title": "CVE-2015-6675",
+    "text": "CVE ID: CVE-2015-6675 | Severity: Unknown | Description: Siemens RUGGEDCOM ROS 3.8.0 through 4.1.x permanently enables the IP forwarding feature, which allows remote attackers to bypass a VLAN isolation protection mechanism via IP traffic. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_58e944ed482a",
+    "doc_id": "cve_CVE-2015-7836",
+    "title": "CVE-2015-7836",
+    "text": "CVE ID: CVE-2015-7836 | Severity: Unknown | Description: Siemens RUGGEDCOM ROS before 4.2.1 allows remote attackers to obtain sensitive information by sniffing the network for VLAN data within the padding section of an Ethernet frame. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_6c38e65ca03b",
+    "doc_id": "cve_CVE-2015-8688",
+    "title": "CVE-2015-8688",
+    "text": "CVE ID: CVE-2015-8688 | Severity: Unknown | Description: Gajim before 0.16.5 allows remote attackers to modify the roster and intercept messages via a crafted roster-push IQ stanza. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_fce51791374a",
+    "doc_id": "cve_CVE-2016-1844",
+    "title": "CVE-2016-1844",
+    "text": "CVE ID: CVE-2016-1844 | Severity: Unknown | Description: The Messages component in Apple OS X before 10.11.5 mishandles roster changes, which allows remote attackers to modify contact lists via unspecified vectors. | Keywords: ros, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_c5e69bfc981d",
+    "doc_id": "cve_CVE-2017-9347",
+    "title": "CVE-2017-9347",
+    "text": "CVE ID: CVE-2017-9347 | Severity: Unknown | Description: In Wireshark 2.2.0 to 2.2.6, the ROS dissector could crash with a NULL pointer dereference. This was addressed in epan/dissectors/asn1/ros/packet-ros-template.c by validating an OID. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_6d2ba4af33cf",
+    "doc_id": "cve_CVE-2015-7980",
+    "title": "CVE-2015-7980",
+    "text": "CVE ID: CVE-2015-7980 | Severity: Unknown | Description: Cross-site scripting (XSS) vulnerability in the Compass Rose module 6.x-1.x before 6.x-1.1 for Drupal allows remote attackers to inject arbitrary web script or HTML via unspecified vectors, related to \"embedding a JavaScript library from an external source that was not reliable.\" | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_eeddef684cf5",
+    "doc_id": "cve_CVE-2017-12736",
+    "title": "CVE-2017-12736",
+    "text": "CVE ID: CVE-2017-12736 | Severity: Unknown | Description: A vulnerability has been identified in RUGGEDCOM ROS for RSL910 devices (All versions < ROS V5.0.1), RUGGEDCOM ROS for all other devices (All versions < ROS V4.3.4), SCALANCE XB-200/XC-200/XP-200/XR300-WG (All versions between V3.0 (including) and V3.0.2 (excluding)), SCALANCE XR-500/XM-400 (All versions between V6.1 (including) and V6.1.1 (excluding)). After initial configuration, the Ruggedcom Discovery Protocol (RCDP) is still able to writeto the device under certain conditions, potentially allowing users located in the adjacentnetwork of the targeted device to perform unauthorized administrative actions. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_6ccf8668ff90",
+    "doc_id": "cve_CVE-2016-10681",
+    "title": "CVE-2016-10681",
+    "text": "CVE ID: CVE-2016-10681 | Severity: Unknown | Description: roslib-socketio - The standard ROS Javascript Library fork for add support to socket.io roslib-socketio downloads binary resources over HTTP, which leaves it vulnerable to MITM attacks. It may be possible to cause remote code execution (RCE) by swapping out the requested resources with an attacker controlled copy if the attacker is on the network or positioned in between the user and the remote server. | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_bb2e50472a54",
+    "doc_id": "cve_CVE-2018-6210",
+    "title": "CVE-2018-6210",
+    "text": "CVE ID: CVE-2018-6210 | Severity: CRITICAL | Description: D-Link DIR-620 devices, with a certain Rostelekom variant of firmware 1.0.37, have a hardcoded rostel account, which makes it easier for remote attackers to obtain access via a TELNET session. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_ac4f49b54e45",
+    "doc_id": "cve_CVE-2019-16236",
+    "title": "CVE-2019-16236",
+    "text": "CVE ID: CVE-2019-16236 | Severity: HIGH | Description: Dino before 2019-09-10 does not check roster push authorization in module/roster/module.vala. | CVSS Score: 7.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_6cae89e4faf4",
+    "doc_id": "cve_CVE-2019-13566",
+    "title": "CVE-2019-13566",
+    "text": "CVE ID: CVE-2019-13566 | Severity: CRITICAL | Description: An issue was discovered in the ROS communications-related packages (aka ros_comm or ros-melodic-ros-comm) through 1.14.3. A buffer overflow allows attackers to cause a denial of service and possibly execute arbitrary code via an IP address with a long hostname. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_6380f873ec65",
+    "doc_id": "cve_CVE-2019-19625",
+    "title": "CVE-2019-19625",
+    "text": "CVE ID: CVE-2019-19625 | Severity: MEDIUM | Description: SROS 2 0.8.1 (which provides the tools that generate and distribute keys for Robot Operating System 2 and uses the underlying security plugins of DDS from ROS 2) leaks node information due to a leaky default configuration as indicated in the policy/defaults/dds/governance.xml document. | CVSS Score: 5.3 | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_bd4939315202",
+    "doc_id": "cve_CVE-2019-19627",
+    "title": "CVE-2019-19627",
+    "text": "CVE ID: CVE-2019-19627 | Severity: MEDIUM | Description: SROS 2 0.8.1 (after CVE-2019-19625 is mitigated) leaks ROS 2 node-related information regardless of the rtps_protection_kind configuration. (SROS2 provides the tools to generate and distribute keys for Robot Operating System 2 and uses the underlying security plugins of DDS from ROS 2.) | CVSS Score: 5.3 | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_4fc9b7d2ea0f",
+    "doc_id": "cve_CVE-2019-13445",
+    "title": "CVE-2019-13445",
+    "text": "CVE ID: CVE-2019-13445 | Severity: CRITICAL | Description: An issue was discovered in the ROS communications-related packages (aka ros_comm or ros-melodic-ros-comm) through 1.14.3. parseOptions() in tools/rosbag/src/record.cpp has an integer overflow when a crafted split option can be entered on the command line. | CVSS Score: 9.8 | Keywords: ros, rosbag | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "rosbag"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_1edd1f49f7d5",
+    "doc_id": "cve_CVE-2019-13465",
+    "title": "CVE-2019-13465",
+    "text": "CVE ID: CVE-2019-13465 | Severity: HIGH | Description: An issue was discovered in the ROS communications-related packages (aka ros_comm or ros-melodic-ros-comm) through 1.14.3. ROS_ASSERT_MSG only works when ROS_ASSERT_ENABLED is defined. This leads to a problem in the remove() function in clients/roscpp/src/libros/spinner.cpp. When ROS_ASSERT_ENABLED is not defined, the iterator loop will run out of the scope of the array, and cause denial of service for other components (that depend on the communication-related functions of this package). NOTE: The reporter of this issue now believes it was a false alarm. | CVSS Score: 8.6 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_198abb5923bb",
+    "doc_id": "cve_CVE-2016-9928",
+    "title": "CVE-2016-9928",
+    "text": "CVE ID: CVE-2016-9928 | Severity: HIGH | Description: MCabber before 1.0.4 is vulnerable to roster push attacks, which allows remote attackers to intercept communications, or add themselves as an entity on a 3rd party's roster as another user, which will also garner associated privileges, via crafted XMPP packets. | CVSS Score: 7.4 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_c1cd54b241db",
+    "doc_id": "cve_CVE-2020-10271",
+    "title": "CVE-2020-10271",
+    "text": "CVE ID: CVE-2020-10271 | Severity: CRITICAL | Description: MiR100, MiR200 and other MiR robots use the Robot Operating System (ROS) default packages exposing the computational graph to all network interfaces, wireless and wired. This is the result of a bad set up and can be mitigated by appropriately configuring ROS and/or applying custom patches as appropriate. Currently, the ROS computational graph can be accessed fully from the wired exposed ports. In combination with other flaws such as CVE-2020-10269, the computation graph can also be fetched and interacted from wireless networks. This allows a malicious operator to take control of the ROS logic and correspondingly, the complete robot given that MiR's operations are centered around the framework (ROS). | CVSS Score: 9.8 | Keywords: ros, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_4f6817e5b664",
+    "doc_id": "cve_CVE-2020-15721",
+    "title": "CVE-2020-15721",
+    "text": "CVE ID: CVE-2020-15721 | Severity: MEDIUM | Description: RosarioSIS through 6.8-beta allows modules/Custom/NotifyParents.php XSS because of the href attributes for AddStudents.php and User.php. | CVSS Score: 6.1 | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_287c5cbfc310",
+    "doc_id": "cve_CVE-2020-15716",
+    "title": "CVE-2020-15716",
+    "text": "CVE ID: CVE-2020-15716 | Severity: MEDIUM | Description: RosarioSIS 6.7.2 is vulnerable to XSS, caused by improper validation of user-supplied input by the Preferences.php script. A remote attacker could exploit this vulnerability using the tab parameter in a crafted URL. | CVSS Score: 6.1 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_1f763d401014",
+    "doc_id": "cve_CVE-2020-15717",
+    "title": "CVE-2020-15717",
+    "text": "CVE ID: CVE-2020-15717 | Severity: MEDIUM | Description: RosarioSIS 6.7.2 is vulnerable to XSS, caused by improper validation of user-supplied input by the Search.inc.php script. A remote attacker could exploit this vulnerability using the advanced parameter in a crafted URL. | CVSS Score: 6.1 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_557d049807e5",
+    "doc_id": "cve_CVE-2020-15718",
+    "title": "CVE-2020-15718",
+    "text": "CVE ID: CVE-2020-15718 | Severity: MEDIUM | Description: RosarioSIS 6.7.2 is vulnerable to XSS, caused by improper validation of user-supplied input by the PrintSchedules.php script. A remote attacker could exploit this vulnerability using the include_inactive parameter in a crafted URL. | CVSS Score: 6.1 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_ec33449cbeeb",
+    "doc_id": "cve_CVE-2020-13278",
+    "title": "CVE-2020-13278",
+    "text": "CVE ID: CVE-2020-13278 | Severity: MEDIUM | Description: Reflected Cross-Site Scripting vulnerability in Modules.php in RosarioSIS Student Information System < 6.5.1 allows remote attackers to execute arbitrary web script via embedding javascript or HTML tags in a GET request. | CVSS Score: 6.1 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_f010282b8e65",
+    "doc_id": "cve_CVE-2020-10289",
+    "title": "CVE-2020-10289",
+    "text": "CVE ID: CVE-2020-10289 | Severity: HIGH | Description: Use of unsafe yaml load. Allows instantiation of arbitrary objects. The flaw itself is caused by an unsafe parsing of YAML values which happens whenever an action message is processed to be sent, and allows for the creation of Python objects. Through this flaw in the ROS core package of actionlib, an attacker with local or remote access can make the ROS Master, execute arbitrary code in Python form. Consider yaml.safe_load() instead. Located first in actionlib/tools/library.py:132. See links for more info on the bug. | CVSS Score: 8.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_9aa35bd71635",
+    "doc_id": "cve_CVE-2020-16124",
+    "title": "CVE-2020-16124",
+    "text": "CVE ID: CVE-2020-16124 | Severity: HIGH | Description: Integer Overflow or Wraparound vulnerability in the XML RPC library of OpenRobotics ros_comm communications packages allows unauthenticated network traffic to cause unexpected behavior. This issue affects: OpenRobotics ros_comm communications packages Noetic and prior versions. Fixed in https://github.com/ros/ros_comm/pull/2065. | CVSS Score: 7.3 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_7d7ba4e6d879",
+    "doc_id": "cve_CVE-2020-3441",
+    "title": "CVE-2020-3441",
+    "text": "CVE ID: CVE-2020-3441 | Severity: MEDIUM | Description: A vulnerability in Cisco Webex Meetings and Cisco Webex Meetings Server could allow an unauthenticated, remote attacker to view sensitive information from the meeting room lobby. This vulnerability is due to insufficient protection of sensitive participant information. An attacker could exploit this vulnerability by browsing the Webex roster. A successful exploit could allow the attacker to gather information about other Webex participants, such as email address and IP address, while waiting in the lobby. | CVSS Score: 5.3 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_e8add3fc34fa",
+    "doc_id": "cve_CVE-2020-27254",
+    "title": "CVE-2020-27254",
+    "text": "CVE ID: CVE-2020-27254 | Severity: HIGH | Description: Emerson Rosemount X-STREAM Gas AnalyzerX-STREAM enhanced XEGP, XEGK, XEFD, XEXF – all revisions, The affected products are vulnerable to improper authentication for accessing log and backup data, which could allow an attacker with a specially crafted URL to obtain access to sensitive information. | CVSS Score: 7.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_adb90f5f2a26",
+    "doc_id": "cve_CVE-2020-27539",
+    "title": "CVE-2020-27539",
+    "text": "CVE ID: CVE-2020-27539 | Severity: CRITICAL | Description: Heap overflow with full parsing of HTTP respose in Rostelecom CS-C2SHW 5.0.082.1. AgentUpdater service has a self-written HTTP parser and builder. HTTP parser has a heap buffer overflow (OOB write). In default configuration camera parses responses only from HTTPS URLs from config file, so vulnerable code is unreachable and one more bug required to reach it. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_3587ab5eb7b8",
+    "doc_id": "cve_CVE-2020-27540",
+    "title": "CVE-2020-27540",
+    "text": "CVE ID: CVE-2020-27540 | Severity: CRITICAL | Description: Bash injection vulnerability and bypass of signature verification in Rostelecom CS-C2SHW 5.0.082.1. The camera reads firmware update configuration from SD card file vc\\version.json. fw-sign parameter and from this configuration is directly inserted into a bash command. Firmware update is run automatically if there is special file on the inserted SD card. | CVSS Score: 9.8 | Keywords: ros, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_9990c7f93453",
+    "doc_id": "cve_CVE-2020-27541",
+    "title": "CVE-2020-27541",
+    "text": "CVE ID: CVE-2020-27541 | Severity: HIGH | Description: Denial of Service vulnerability in Rostelecom CS-C2SHW 5.0.082.1. AgentGreen service has a bug in parsing broadcast discovery UDP packet. Sending a packet of too small size will lead to an attempt of allocating buffer of negative size. As the result service AgentGreen will be terminated and started again later. | CVSS Score: 7.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_314ad206904e",
+    "doc_id": "cve_CVE-2020-27542",
+    "title": "CVE-2020-27542",
+    "text": "CVE ID: CVE-2020-27542 | Severity: MEDIUM | Description: Rostelecom CS-C2SHW 5.0.082.1 is affected by: Bash command injection. The camera reads configuration from QR code (including network settings). The static IP configuration from QR code is copied to the file /config/ip-static and after reboot data from this file is inserted into bash command (without any escaping). So bash injection is possible. Camera doesn't parse QR codes if it's already successfully configured. Camera is always rebooted after successful configuration via QR code. | CVSS Score: 6.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_12893c09c362",
+    "doc_id": "cve_CVE-2021-27457",
+    "title": "CVE-2021-27457",
+    "text": "CVE ID: CVE-2021-27457 | Severity: HIGH | Description: A vulnerability has been found in multiple revisions of Emerson Rosemount X-STREAM Gas Analyzer. The affected products utilize a weak encryption algorithm for storage of sensitive data, which may allow an attacker to more easily obtain credentials used for access. | CVSS Score: 7.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_c4eeb4e0dfcd",
+    "doc_id": "cve_CVE-2021-27459",
+    "title": "CVE-2021-27459",
+    "text": "CVE ID: CVE-2021-27459 | Severity: CRITICAL | Description: A vulnerability has been found in multiple revisions of Emerson Rosemount X-STREAM Gas Analyzer. The webserver of the affected products allows unvalidated files to be uploaded, which an attacker could utilize to execute arbitrary code. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_31264ad037b5",
+    "doc_id": "cve_CVE-2021-27461",
+    "title": "CVE-2021-27461",
+    "text": "CVE ID: CVE-2021-27461 | Severity: HIGH | Description: A vulnerability has been found in multiple revisions of Emerson Rosemount X-STREAM Gas Analyzer. The affected webserver applications allow access to stored data that can be obtained by using specially crafted URLs. | CVSS Score: 7.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_f4dac97d6854",
+    "doc_id": "cve_CVE-2021-27463",
+    "title": "CVE-2021-27463",
+    "text": "CVE ID: CVE-2021-27463 | Severity: MEDIUM | Description: A vulnerability has been found in multiple revisions of Emerson Rosemount X-STREAM Gas Analyzer. The affected applications utilize persistent cookies where the session cookie attribute is not properly invalidated, allowing an attacker to intercept the cookies and gain access to sensitive information. | CVSS Score: 5.3 | Keywords: ros, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_0573b429dd50",
+    "doc_id": "cve_CVE-2021-27465",
+    "title": "CVE-2021-27465",
+    "text": "CVE ID: CVE-2021-27465 | Severity: MEDIUM | Description: A vulnerability has been found in multiple revisions of Emerson Rosemount X-STREAM Gas Analyzer. The affected applications do not validate webpage input, which could allow an attacker to inject arbitrary HTML code into a webpage. This would allow an attacker to modify the page and display incorrect or undesirable data. | CVSS Score: 6.1 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_7f7a62676fd4",
+    "doc_id": "cve_CVE-2021-27467",
+    "title": "CVE-2021-27467",
+    "text": "CVE ID: CVE-2021-27467 | Severity: MEDIUM | Description: A vulnerability has been found in multiple revisions of Emerson Rosemount X-STREAM Gas Analyzer. The affected product’s web interface allows an attacker to route click or keystroke to another page provided by the attacker to gain unauthorized access to sensitive information. | CVSS Score: 6.1 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_fdbd21efb66d",
+    "doc_id": "cve_CVE-2021-37146",
+    "title": "CVE-2021-37146",
+    "text": "CVE ID: CVE-2021-37146 | Severity: HIGH | Description: An infinite loop in Open Robotics ros_comm XMLRPC server in ROS Melodic through 1.4.11 and ROS Noetic through1.15.11 allows remote attackers to cause a Denial of Service in ros_comm via a crafted XMLRPC call. | CVSS Score: 7.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_d4671a2e2b5a",
+    "doc_id": "cve_CVE-2021-26795",
+    "title": "CVE-2021-26795",
+    "text": "CVE ID: CVE-2021-26795 | Severity: HIGH | Description: A SQL Injection vulnerability in /appliance/shiftmgn.php in TalariaX sendQuick Alert Plus Server Admin 4.3 before 8HF11 allows attackers to obtain sensitive information via a Roster Time to Roster Management. | CVSS Score: 8.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_adfec2232719",
+    "doc_id": "cve_CVE-2021-44427",
+    "title": "CVE-2021-44427",
+    "text": "CVE ID: CVE-2021-44427 | Severity: CRITICAL | Description: An unauthenticated SQL Injection vulnerability in Rosario Student Information System (aka rosariosis) before 8.1.1 allows remote attackers to execute PostgreSQL statements (e.g., SELECT, INSERT, UPDATE, and DELETE) through /Side.php via the syear parameter. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_f17b35dd97f4",
+    "doc_id": "cve_CVE-2021-45416",
+    "title": "CVE-2021-45416",
+    "text": "CVE ID: CVE-2021-45416 | Severity: MEDIUM | Description: Reflected Cross-site scripting (XSS) vulnerability in RosarioSIS 8.2.1 allows attackers to inject arbitrary HTML via the search_term parameter in the modules/Scheduling/Courses.php script. | CVSS Score: 6.1 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_82007d9dbc08",
+    "doc_id": "cve_CVE-2021-44565",
+    "title": "CVE-2021-44565",
+    "text": "CVE ID: CVE-2021-44565 | Severity: MEDIUM | Description: A Cross Site Scripting (XSS) vulnerability exists in RosarioSIS before 7.6.1 via the xss_clean function in classes/Security.php, which allows remote malicious users to inject arbitrary JavaScript or HTML. An example of affected components are all Markdown input fields. | CVSS Score: 5.4 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_2326794ea6a8",
+    "doc_id": "cve_CVE-2021-44566",
+    "title": "CVE-2021-44566",
+    "text": "CVE ID: CVE-2021-44566 | Severity: MEDIUM | Description: A Cross Site Scripting (XSS) vulnerability exists in RosarioSIS before 4.3 via the SanitizeMarkDown function in ProgramFunctions/MarkDownHTML.fnc.php. | CVSS Score: 5.4 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_c456f43f38ca",
+    "doc_id": "cve_CVE-2021-44567",
+    "title": "CVE-2021-44567",
+    "text": "CVE ID: CVE-2021-44567 | Severity: CRITICAL | Description: An unauthenticated SQL Injection vulnerability exists in RosarioSIS before 7.6.1 via the votes parameter in ProgramFunctions/PortalPollsNotes.fnc.php. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_241198538e19",
+    "doc_id": "cve_CVE-2022-2961",
+    "title": "CVE-2022-2961",
+    "text": "CVE ID: CVE-2022-2961 | Severity: HIGH | Description: A use-after-free flaw was found in the Linux kernel’s PLP Rose functionality in the way a user triggers a race condition by calling bind while simultaneously triggering the rose_bind() function. This flaw allows a local user to crash or potentially escalate their privileges on the system. | CVSS Score: 7.0 | Keywords: ros, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_4c7c120596bb",
+    "doc_id": "cve_CVE-2022-1247",
+    "title": "CVE-2022-1247",
+    "text": "CVE ID: CVE-2022-1247 | Severity: HIGH | Description: An issue found in linux-kernel that leads to a race condition in rose_connect(). The rose driver uses rose_neigh->use to represent how many objects are using the rose_neigh. When a user wants to delete a rose_route via rose_ioctl(), the rose driver calls rose_del_node() and removes neighbours only if their “count” and “use” are zero. | CVSS Score: 7.0 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_23040a0feb5a",
+    "doc_id": "cve_CVE-2022-48198",
+    "title": "CVE-2022-48198",
+    "text": "CVE ID: CVE-2022-48198 | Severity: CRITICAL | Description: The ntpd_driver component before 1.3.0 and 2.x before 2.2.0 for Robot Operating System (ROS) allows attackers, who control the source code of a different node in the same ROS application, to change a robot's behavior. This occurs because a topic name depends on the attacker-controlled time_ref_topic parameter. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_f3b905b627ca",
+    "doc_id": "cve_CVE-2022-23506",
+    "title": "CVE-2022-23506",
+    "text": "CVE ID: CVE-2022-23506 | Severity: MEDIUM | Description: Spinnaker is an open source, multi-cloud continuous delivery platform for releasing software changes, and Spinnaker's Rosco microservice produces machine images. Rosco prior to versions 1.29.2, 1.28.4, and 1.27.3 does not property mask secrets generated via packer builds.  This can lead to exposure of sensitive AWS credentials in packer log files. Versions 1.29.2, 1.28.4, and 1.27.3 of Rosco contain fixes for this issue.\n\nA workaround is available. It's recommended to use short lived credentials via role assumption and IAM profiles. Additionally, credentials can be set in `/home/spinnaker/.aws/credentials` and `/home/spinnaker/.aws/config` as a volume mount for Rosco pods vs. setting credentials in roscos bake config properties. Last even with those it's recommend to use IAM Roles vs. long lived credentials. This drastically mitigates the risk of credentials exposure. If users have used static credentials, it's recommended to purge any bake logs for AWS, evaluate whether AWS_ACCESS_KEY, SECRET_KEY and/or other sensitive data has been introduced in log files and bake job logs. Then, rotate these credentials and evaluate potential improper use of those credentials. | CVSS Score: 4.3 | Keywords: ros, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_168ab949a56f",
+    "doc_id": "cve_CVE-2022-48217",
+    "title": "CVE-2022-48217",
+    "text": "CVE ID: CVE-2022-48217 | Severity: HIGH | Description: The tf_remapper_node component 1.1.1 for Robot Operating System (ROS) allows attackers, who control the source code of a different node in the same ROS application, to change a robot's behavior. This occurs because a topic name depends on the attacker-controlled old_tf_topic_name and/or new_tf_topic_name parameter. NOTE: the vendor's position is \"it is the responsibility of the programmer to make sure that only known and required parameters are set and unexpected parameters are not.\" | CVSS Score: 8.1 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_b12283c1af15",
+    "doc_id": "cve_CVE-2022-48326",
+    "title": "CVE-2022-48326",
+    "text": "CVE ID: CVE-2022-48326 | Severity: MEDIUM | Description: Multiple Cross Site Scripting (XSS) vulnerabilities in Mapos 4.39.0 allow attackers to execute arbitrary code. Affects the following parameters: (1) nome, (2) aCliente, (3) eCliente, (4) dCliente, (5) vCliente, (6) aProduto, (7) eProduto, (8) dProduto, (9) vProduto, (10) aServico, (11) eServico, (12) dServico, (13) vServico, (14) aOs, (15) eOs, (16) dOs, (17) vOs, (18) aVenda, (19) eVenda, (20) dVenda, (21) vVenda, (22) aGarantia, (23) eGarantia, (24) dGarantia, (25) vGarantia, (26) aArquivo, (27) eArquivo, (28) dArquivo, (29) vArquivo, (30) aPagamento, (31) ePagamento, (32) dPagamento, (33) vPagamento, (34) aLancamento, (35) eLancamento, (36) dLancamento, (37) vLancamento, (38) cUsuario, (39) cEmitente, (40) cPermissao, (41) cBackup, (42) cAuditoria, (43) cEmail, (44) cSistema, (45) rCliente, (46) rProduto, (47) rServico, (48) rOs, (49) rVenda, (50) rFinanceiro, (51) aCobranca, (52) eCobranca, (53) dCobranca, (54) vCobranca, (55) situacao, (56) idPermissao, (57) id in file application/controllers/Permissoes.php; (58) precoCompra, (59) precoVenda, (60) descricao, (61) unidade, (62) estoque, (63) estoqueMinimo, (64) idProdutos, (65) id, (66) estoqueAtual in file application/controllers/Produtos.php. | CVSS Score: 6.1 | Keywords: ros, rcl, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "rcl",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_71baf0c3ea03",
+    "doc_id": "cve_CVE-2023-29918",
+    "title": "CVE-2023-29918",
+    "text": "CVE ID: CVE-2023-29918 | Severity: MEDIUM | Description: RosarioSIS 10.8.4 is vulnerable to CSV injection via the Periods Module. | CVSS Score: 5.4 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_3a4628aebcc8",
+    "doc_id": "cve_CVE-2023-30394",
+    "title": "CVE-2023-30394",
+    "text": "CVE ID: CVE-2023-30394 | Severity: MEDIUM | Description: The MoveIt framework 1.1.11 for ROS allows cross-site scripting (XSS) via the API authentication function. NOTE: this issue is disputed by the original reporter because it has \"no impact.\" | CVSS Score: 6.1 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_773679c2e602",
+    "doc_id": "cve_CVE-2023-30876",
+    "title": "CVE-2023-30876",
+    "text": "CVE ID: CVE-2023-30876 | Severity: MEDIUM | Description: Auth. (admin+) Stored Cross-Site Scripting (XSS) vulnerability in Dave Ross Dave's WordPress Live Search plugin <= 4.8.1 versions. | CVSS Score: 5.9 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_59f853a97a10",
+    "doc_id": "cve_CVE-2023-40560",
+    "title": "CVE-2023-40560",
+    "text": "CVE ID: CVE-2023-40560 | Severity: MEDIUM | Description: Auth. (admin+) Stored Cross-Site Scripting (XSS) vulnerability in Greg Ross Schedule Posts Calendar plugin <= 5.2 versions. | CVSS Score: 5.9 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_b771ac8a05fc",
+    "doc_id": "cve_CVE-2023-40556",
+    "title": "CVE-2023-40556",
+    "text": "CVE ID: CVE-2023-40556 | Severity: MEDIUM | Description: Cross-Site Request Forgery (CSRF) vulnerability in Greg Ross Schedule Posts Calendar plugin <= 5.2 versions. | CVSS Score: 4.3 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_1c21dc954733",
+    "doc_id": "cve_CVE-2023-51782",
+    "title": "CVE-2023-51782",
+    "text": "CVE ID: CVE-2023-51782 | Severity: HIGH | Description: An issue was discovered in the Linux kernel before 6.6.8. rose_ioctl in net/rose/af_rose.c has a use-after-free because of a rose_accept race condition. | CVSS Score: 7.0 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_09994576e949",
+    "doc_id": "cve_CVE-2023-43609",
+    "title": "CVE-2023-43609",
+    "text": "CVE ID: CVE-2023-43609 | Severity: MEDIUM | Description: In Emerson Rosemount GC370XA, GC700XA, and GC1500XA products, an unauthenticated user with network access could obtain access to sensitive information or cause a denial-of-service condition. | CVSS Score: 6.9 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_31b92027b2a0",
+    "doc_id": "cve_CVE-2023-46687",
+    "title": "CVE-2023-46687",
+    "text": "CVE ID: CVE-2023-46687 | Severity: CRITICAL | Description: \n\n\nIn Emerson Rosemount GC370XA, GC700XA, and GC1500XA products, an unauthenticated user with network access could execute arbitrary commands in root context from a remote computer.\n\n\n\n | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_68d8773d863a",
+    "doc_id": "cve_CVE-2023-49716",
+    "title": "CVE-2023-49716",
+    "text": "CVE ID: CVE-2023-49716 | Severity: MEDIUM | Description: \nIn Emerson Rosemount GC370XA, GC700XA, and GC1500XA products, an authenticated user with network access could run arbitrary commands from a remote computer.\n\n | CVSS Score: 6.9 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_68add9dbf19b",
+    "doc_id": "cve_CVE-2023-51761",
+    "title": "CVE-2023-51761",
+    "text": "CVE ID: CVE-2023-51761 | Severity: HIGH | Description: In Emerson Rosemount GC370XA, GC700XA, and GC1500XA products, an unauthenticated user with network access could bypass authentication and acquire admin capabilities. | CVSS Score: 8.3 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_1556e848baff",
+    "doc_id": "cve_CVE-2024-3138",
+    "title": "CVE-2024-3138",
+    "text": "CVE ID: CVE-2024-3138 | Severity: LOW | Description: ** DISPUTED ** A vulnerability was found in francoisjacquet RosarioSIS 11.5.1. It has been rated as problematic. This issue affects some unknown processing of the component Add Portal Note. The manipulation leads to cross site scripting. The attack may be initiated remotely. The exploit has been disclosed to the public and may be used. The real existence of this vulnerability is still doubted at the moment. The associated identifier of this vulnerability is VDB-258911. NOTE: The vendor explains that the PDF is opened by the browser app in a sandbox, so no data from the website should be accessible. | CVSS Score: 3.5 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_2c8fc857985a",
+    "doc_id": "cve_CVE-2024-32591",
+    "title": "CVE-2024-32591",
+    "text": "CVE ID: CVE-2024-32591 | Severity: MEDIUM | Description: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Daniele De Rosa Backend Designer allows Stored XSS.This issue affects Backend Designer: from n/a through 1.3.\n\n | CVSS Score: 5.9 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_599a05ec2255",
+    "doc_id": "cve_CVE-2023-52881",
+    "title": "CVE-2023-52881",
+    "text": "CVE ID: CVE-2023-52881 | Severity: Unknown | Description: In the Linux kernel, the following vulnerability has been resolved:\n\ntcp: do not accept ACK of bytes we never sent\n\nThis patch is based on a detailed report and ideas from Yepeng Pan\nand Christian Rossow.\n\nACK seq validation is currently following RFC 5961 5.2 guidelines:\n\n   The ACK value is considered acceptable only if\n   it is in the range of ((SND.UNA - MAX.SND.WND) <= SEG.ACK <=\n   SND.NXT).  All incoming segments whose ACK value doesn't satisfy the\n   above condition MUST be discarded and an ACK sent back.  It needs to\n   be noted that RFC 793 on page 72 (fifth check) says: \"If the ACK is a\n   duplicate (SEG.ACK < SND.UNA), it can be ignored.  If the ACK\n   acknowledges something not yet sent (SEG.ACK > SND.NXT) then send an\n   ACK, drop the segment, and return\".  The \"ignored\" above implies that\n   the processing of the incoming data segment continues, which means\n   the ACK value is treated as acceptable.  This mitigation makes the\n   ACK check more stringent since any ACK < SND.UNA wouldn't be\n   accepted, instead only ACKs that are in the range ((SND.UNA -\n   MAX.SND.WND) <= SEG.ACK <= SND.NXT) get through.\n\nThis can be refined for new (and possibly spoofed) flows,\nby not accepting ACK for bytes that were never sent.\n\nThis greatly improves TCP security at a little cost.\n\nI added a Fixes: tag to make sure this patch will reach stable trees,\neven if the 'blamed' patch was adhering to the RFC.\n\ntp->bytes_acked was added in linux-4.2\n\nFollowing packetdrill test (courtesy of Yepeng Pan) shows\nthe issue at hand:\n\n0 socket(..., SOCK_STREAM, IPPROTO_TCP) = 3\n+0 setsockopt(3, SOL_SOCKET, SO_REUSEADDR, [1], 4) = 0\n+0 bind(3, ..., ...) = 0\n+0 listen(3, 1024) = 0\n\n// ---------------- Handshake ------------------- //\n\n// when window scale is set to 14 the window size can be extended to\n// 65535 * (2^14) = 1073725440. Linux would accept an ACK packet\n// with ack number in (Server_ISN+1-1073725440. Server_ISN+1)\n// ,though this ack number acknowledges some data never\n// sent by the server.\n\n+0 < S 0:0(0) win 65535 <mss 1400,nop,wscale 14>\n+0 > S. 0:0(0) ack 1 <...>\n+0 < . 1:1(0) ack 1 win 65535\n+0 accept(3, ..., ...) = 4\n\n// For the established connection, we send an ACK packet,\n// the ack packet uses ack number 1 - 1073725300 + 2^32,\n// where 2^32 is used to wrap around.\n// Note: we used 1073725300 instead of 1073725440 to avoid possible\n// edge cases.\n// 1 - 1073725300 + 2^32 = 3221241997\n\n// Oops, old kernels happily accept this packet.\n+0 < . 1:1001(1000) ack 3221241997 win 65535\n\n// After the kernel fix the following will be replaced by a challenge ACK,\n// and prior malicious frame would be dropped.\n+0 > . 1:1(0) ack 1001 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_a01a53f60490",
+    "doc_id": "cve_CVE-2024-36944",
+    "title": "CVE-2024-36944",
+    "text": "CVE ID: CVE-2024-36944 | Severity: MEDIUM | Description: In the Linux kernel, the following vulnerability has been resolved:\n\nReapply \"drm/qxl: simplify qxl_fence_wait\"\n\nThis reverts commit 07ed11afb68d94eadd4ffc082b97c2331307c5ea.\n\nStephen Rostedt reports:\n \"I went to run my tests on my VMs and the tests hung on boot up.\n  Unfortunately, the most I ever got out was:\n\n  [   93.607888] Testing event system initcall: OK\n  [   93.667730] Running tests on all trace events:\n  [   93.669757] Testing all events: OK\n  [   95.631064] ------------[ cut here ]------------\n  Timed out after 60 seconds\"\n\nand further debugging points to a possible circular locking dependency\nbetween the console_owner locking and the worker pool locking.\n\nReverting the commit allows Steve's VM to boot to completion again.\n\n[ This may obviously result in the \"[TTM] Buffer eviction failed\"\n  messages again, which was the reason for that original revert. But at\n  this point this seems preferable to a non-booting system... ] | CVSS Score: 5.5 | Keywords: ros, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_03b017a1c5fe",
+    "doc_id": "cve_CVE-2024-33850",
+    "title": "CVE-2024-33850",
+    "text": "CVE ID: CVE-2024-33850 | Severity: MEDIUM | Description: Pexip Infinity before 34.1 has Improper Access Control for persons in a waiting room. They can see the conference roster list, and perform certain actions that should not be allowed before they are admitted to the meeting. | CVSS Score: 4.3 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_195e4d55c878",
+    "doc_id": "cve_CVE-2024-23142",
+    "title": "CVE-2024-23142",
+    "text": "CVE ID: CVE-2024-23142 | Severity: HIGH | Description: A maliciously crafted CATPART, STP, and MODEL file, when parsed in atf_dwg_consumer.dll, rose_x64_vc15.dll and libodxdll through Autodesk applications, can cause a use-after-free vulnerability. This vulnerability, along with other vulnerabilities, can lead to code execution in the current process. | CVSS Score: 7.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_f02b77ce3993",
+    "doc_id": "cve_CVE-2024-45451",
+    "title": "CVE-2024-45451",
+    "text": "CVE ID: CVE-2024-45451 | Severity: MEDIUM | Description: Improper Neutralization of Input During Web Page Generation (XSS or 'Cross-site Scripting') vulnerability in CryoutCreations Roseta allows Stored XSS.This issue affects Roseta: from n/a through 1.3.0. | CVSS Score: 6.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_1c583fe28a9b",
+    "doc_id": "cve_CVE-2024-50556",
+    "title": "CVE-2024-50556",
+    "text": "CVE ID: CVE-2024-50556 | Severity: MEDIUM | Description: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in MD. Mamunur Roshid WM Zoom allows DOM-Based XSS.This issue affects WM Zoom: from n/a through 1.0. | CVSS Score: 6.5 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_8bf0830e369d",
+    "doc_id": "cve_CVE-2024-51850",
+    "title": "CVE-2024-51850",
+    "text": "CVE ID: CVE-2024-51850 | Severity: MEDIUM | Description: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in bchristopeit WoW Guild Armory Roster allows Stored XSS.This issue affects WoW Guild Armory Roster: from n/a through 0.5.5. | CVSS Score: 6.5 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_936577dcd1e8",
+    "doc_id": "cve_CVE-2024-52439",
+    "title": "CVE-2024-52439",
+    "text": "CVE ID: CVE-2024-52439 | Severity: CRITICAL | Description: Deserialization of Untrusted Data vulnerability in Mark O’Donnell Team Rosters allows Object Injection.This issue affects Team Rosters: from n/a through 4.6. | CVSS Score: 9.8 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_80f25e0b5a11",
+    "doc_id": "cve_CVE-2024-53260",
+    "title": "CVE-2024-53260",
+    "text": "CVE ID: CVE-2024-53260 | Severity: MEDIUM | Description: Autolab is a course management service that enables auto-graded programming assignments. A user can modify their first and or last name to include a valid excel / spreadsheet formula. When an instructor downloads their course's roster and opens, this name will then be evaluated as a formula. This could lead to leakage of information of students in the course roster by sending the data to a remote endpoint. This issue has been patched in the source code repository and the fix is expected to be released in the next version. Users are advised to manually patch their systems or to wait for the next release. There are no known workarounds for this vulnerability. | CVSS Score: 6.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_8168757c33ee",
+    "doc_id": "cve_CVE-2024-30961",
+    "title": "CVE-2024-30961",
+    "text": "CVE ID: CVE-2024-30961 | Severity: HIGH | Description: Insecure Permissions vulnerability in Open Robotics Robotic Operating System 2 (ROS2) navigation2- ROS2-humble and navigation 2-humble allows a local attacker to execute arbitrary code via the error-thrown mechanism in nav2_bt_navigator. | CVSS Score: 7.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_ecb678f89627",
+    "doc_id": "cve_CVE-2024-30962",
+    "title": "CVE-2024-30962",
+    "text": "CVE ID: CVE-2024-30962 | Severity: HIGH | Description: Buffer Overflow vulnerability in Open Robotics Robotic Operating System 2 (ROS2) navigation2- ROS2-humble and navigation 2-humble allows a local attacker to execute arbitrary code via the nav2_amcl process | CVSS Score: 7.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_d7929ebba1b2",
+    "doc_id": "cve_CVE-2024-30963",
+    "title": "CVE-2024-30963",
+    "text": "CVE ID: CVE-2024-30963 | Severity: HIGH | Description: Buffer Overflow vulnerability in Open Robotics Robotic Operating System 2 (ROS2) navigation2- ROS2-humble and navigation 2-humble allows a local attacker to execute arbitrary code via a crafted script. | CVSS Score: 7.8 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_6eaab60c30d0",
+    "doc_id": "cve_CVE-2024-30964",
+    "title": "CVE-2024-30964",
+    "text": "CVE ID: CVE-2024-30964 | Severity: HIGH | Description: Insecure Permissions vulnerability in Open Robotics Robotic Operating System 2 (ROS2) navigation2- ROS2-humble and navigation 2-humble allows a local attacker to execute arbitrary code via the initial_pose_sub thread created by nav2_bt_navigator | CVSS Score: 7.8 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_143d44601ad7",
+    "doc_id": "cve_CVE-2024-37860",
+    "title": "CVE-2024-37860",
+    "text": "CVE ID: CVE-2024-37860 | Severity: HIGH | Description: Buffer Overflow vulnerability in Open Robotic Operating System 2 ROS2 navigation2- ROS2-humble&& navigation2-humble allows a local attacker to execute arbitrary code via a crafted .yaml file to the nav2_amcl process | CVSS Score: 7.3 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_794cff30b999",
+    "doc_id": "cve_CVE-2024-37862",
+    "title": "CVE-2024-37862",
+    "text": "CVE ID: CVE-2024-37862 | Severity: HIGH | Description: Buffer Overflow vulnerability in Open Robotic Robotic Operating System 2 ROS2 navigation2- ROS2-humble&& navigation2-humble allows a local attacker to execute arbitrary code via a crafted .yaml file to the nav2_planner process. | CVSS Score: 7.3 | Keywords: ros, ament",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_41c9bc3119fb",
+    "doc_id": "cve_CVE-2024-41644",
+    "title": "CVE-2024-41644",
+    "text": "CVE ID: CVE-2024-41644 | Severity: CRITICAL | Description: Insecure Permissions vulnerability in Open Robotics Robotic Operating System 2 ROS2 navigation2 v.humble allows an attacker to execute arbitrary code via the dyn_param_handler_ component. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_028fd900aaca",
+    "doc_id": "cve_CVE-2024-41645",
+    "title": "CVE-2024-41645",
+    "text": "CVE ID: CVE-2024-41645 | Severity: CRITICAL | Description: Insecure Permissions vulnerability in Open Robotics Robotic Operating System 2 ROS2 navigation2 v.humble allows an attacker to execute arbitrary code via a crafted script to the nav2__amcl. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_953e5b5a3892",
+    "doc_id": "cve_CVE-2024-41646",
+    "title": "CVE-2024-41646",
+    "text": "CVE ID: CVE-2024-41646 | Severity: CRITICAL | Description: Insecure Permissions vulnerability in Open Robotics Robotic Operating System 2 ROS2 navigation2 v.humble allows an attacker to execute arbitrary code via a crafted script to the nav2_dwb_controller. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_5e29e85b7021",
+    "doc_id": "cve_CVE-2024-41647",
+    "title": "CVE-2024-41647",
+    "text": "CVE ID: CVE-2024-41647 | Severity: CRITICAL | Description: Insecure Permissions vulnerability in Open Robotics Robotic Operating System 2 ROS2 navigation2 v.humble allows an attacker to execute arbitrary code via a crafted script to the nav2_mppi_controller. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_0d52ac7e96d4",
+    "doc_id": "cve_CVE-2024-41648",
+    "title": "CVE-2024-41648",
+    "text": "CVE ID: CVE-2024-41648 | Severity: CRITICAL | Description: Insecure Permissions vulnerability in Open Robotics Robotic Operating System 2 ROS2 navigation2 v.humble allows an attacker to execute arbitrary code via a crafted script to the nav2_regulated_pure_pursuit_controller. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_0efd6de60229",
+    "doc_id": "cve_CVE-2024-41649",
+    "title": "CVE-2024-41649",
+    "text": "CVE ID: CVE-2024-41649 | Severity: CRITICAL | Description: Insecure Permissions vulnerability in Open Robotics Robotic Operating System 2 ROS2 navigation2 v.humble allows an attacker to execute arbitrary code via a crafted script to the executor_thread_. | CVSS Score: 9.8 | Keywords: ros, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_3177cd205ca0",
+    "doc_id": "cve_CVE-2024-41650",
+    "title": "CVE-2024-41650",
+    "text": "CVE ID: CVE-2024-41650 | Severity: CRITICAL | Description: Insecure Permissions vulnerability in Open Robotics Robotic Operating System 2 ROS2 navigation2 v.humble allows an attacker to execute arbitrary code via a crafted script to the nav2_costmap_2d. | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_41a0902cd194",
+    "doc_id": "cve_CVE-2024-44852",
+    "title": "CVE-2024-44852",
+    "text": "CVE ID: CVE-2024-44852 | Severity: CRITICAL | Description: Open Robotics Robotic Operating System 2 ROS2 navigation2 v.humble was discovered to contain a segmentation violation via the component theta_star::ThetaStar::isUnsafeToPlan(). | CVSS Score: 9.8 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_4b0e148d9fe3",
+    "doc_id": "cve_CVE-2024-44853",
+    "title": "CVE-2024-44853",
+    "text": "CVE ID: CVE-2024-44853 | Severity: HIGH | Description: Open Robotics Robotic Operating System 2 ROS2 navigation2 v.humble was discovered to contain a NULL pointer dereference via the component computeControl(). | CVSS Score: 7.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_d23c12a3a2a7",
+    "doc_id": "cve_CVE-2024-44854",
+    "title": "CVE-2024-44854",
+    "text": "CVE ID: CVE-2024-44854 | Severity: HIGH | Description: Open Robotics Robotic Operating System 2 ROS2 navigation2 v.humble was discovered to contain a NULL pointer dereference via the component smoothPlan(). | CVSS Score: 7.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_41c57f19b003",
+    "doc_id": "cve_CVE-2024-44855",
+    "title": "CVE-2024-44855",
+    "text": "CVE ID: CVE-2024-44855 | Severity: HIGH | Description: Open Robotics Robotic Operating System 2 ROS2 navigation2 v.humble was discovered to contain a NULL pointer dereference via the component nav2_navfn_planner(). | CVSS Score: 7.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_f91dbec2ccdb",
+    "doc_id": "cve_CVE-2024-44856",
+    "title": "CVE-2024-44856",
+    "text": "CVE ID: CVE-2024-44856 | Severity: HIGH | Description: Open Robotics Robotic Operating System 2 ROS2 navigation2 v.humble was discovered to contain a NULL pointer dereference via the component nav2_smac_planner(). | CVSS Score: 7.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_8e07e1a71083",
+    "doc_id": "cve_CVE-2023-24010",
+    "title": "CVE-2023-24010",
+    "text": "CVE ID: CVE-2023-24010 | Severity: HIGH | Description: An attacker can arbitrarily craft malicious DDS Participants (or ROS 2 Nodes) with valid certificates to compromise and get full control of the attacked secure DDS databus system by exploiting vulnerable attributes in the configuration of PKCS#7 certificate’s validation. This is caused by a non-compliant implementation of permission document verification used by some DDS vendors. Specifically, an improper use of the OpenSSL PKCS7_verify function used to validate S/MIME signatures. | CVSS Score: 8.2 | Keywords: ros, dds",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_cffcfb3ca58d",
+    "doc_id": "cve_CVE-2023-24011",
+    "title": "CVE-2023-24011",
+    "text": "CVE ID: CVE-2023-24011 | Severity: HIGH | Description: An attacker can arbitrarily craft malicious DDS Participants (or ROS 2 Nodes) with valid certificates to compromise and get full control of the attacked secure DDS databus system by exploiting vulnerable attributes in the configuration of PKCS#7 certificate’s validation. This is caused by a non-compliant implementation of permission document verification used by some DDS vendors. Specifically, an improper use of the OpenSSL PKCS7_verify function used to validate S/MIME signatures. | CVSS Score: 8.2 | Keywords: ros, dds",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_db34d6352c9e",
+    "doc_id": "cve_CVE-2023-24012",
+    "title": "CVE-2023-24012",
+    "text": "CVE ID: CVE-2023-24012 | Severity: HIGH | Description: An attacker can arbitrarily craft malicious DDS Participants (or ROS 2 Nodes) with valid certificates to compromise and get full control of the attacked secure DDS databus system by exploiting vulnerable attributes in the configuration of PKCS#7 certificate’s validation. This is caused by a non-compliant implementation of permission document verification used by some DDS vendors. Specifically, an improper use of the OpenSSL PKCS7_verify function used to validate S/MIME signatures. | CVSS Score: 8.2 | Keywords: ros, dds",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_0c4c0cb02c25",
+    "doc_id": "cve_CVE-2024-12320",
+    "title": "CVE-2024-12320",
+    "text": "CVE ID: CVE-2024-12320 | Severity: MEDIUM | Description: The Team Rosters plugin for WordPress is vulnerable to Reflected Cross-Site Scripting via the ‘tab’ parameter in all versions up to, and including, 4.7 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that execute if they can successfully trick a user into performing an action such as clicking on a link. | CVSS Score: 6.1 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_1f98dc9bc55c",
+    "doc_id": "cve_CVE-2025-26538",
+    "title": "CVE-2025-26538",
+    "text": "CVE ID: CVE-2025-26538 | Severity: MEDIUM | Description: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Dan Rossiter Prezi Embedder allows Stored XSS. This issue affects Prezi Embedder: from n/a through 2.1. | CVSS Score: 6.5 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_6ab96551120e",
+    "doc_id": "cve_CVE-2025-21711",
+    "title": "CVE-2025-21711",
+    "text": "CVE ID: CVE-2025-21711 | Severity: MEDIUM | Description: In the Linux kernel, the following vulnerability has been resolved:\n\nnet/rose: prevent integer overflows in rose_setsockopt()\n\nIn case of possible unpredictably large arguments passed to\nrose_setsockopt() and multiplied by extra values on top of that,\ninteger overflows may occur.\n\nDo the safest minimum and fix these issues by checking the\ncontents of 'opt' and returning -EINVAL if they are too large. Also,\nswitch to unsigned int and remove useless check for negative 'opt'\nin ROSE_IDLE case. | CVSS Score: 5.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_6c5e1755734b",
+    "doc_id": "cve_CVE-2025-21718",
+    "title": "CVE-2025-21718",
+    "text": "CVE ID: CVE-2025-21718 | Severity: HIGH | Description: In the Linux kernel, the following vulnerability has been resolved:\n\nnet: rose: fix timer races against user threads\n\nRose timers only acquire the socket spinlock, without\nchecking if the socket is owned by one user thread.\n\nAdd a check and rearm the timers if needed.\n\nBUG: KASAN: slab-use-after-free in rose_timer_expiry+0x31d/0x360 net/rose/rose_timer.c:174\nRead of size 2 at addr ffff88802f09b82a by task swapper/0/0\n\nCPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 6.13.0-rc5-syzkaller-00172-gd1bf27c4e176 #0\nHardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/13/2024\nCall Trace:\n <IRQ>\n  __dump_stack lib/dump_stack.c:94 [inline]\n  dump_stack_lvl+0x241/0x360 lib/dump_stack.c:120\n  print_address_description mm/kasan/report.c:378 [inline]\n  print_report+0x169/0x550 mm/kasan/report.c:489\n  kasan_report+0x143/0x180 mm/kasan/report.c:602\n  rose_timer_expiry+0x31d/0x360 net/rose/rose_timer.c:174\n  call_timer_fn+0x187/0x650 kernel/time/timer.c:1793\n  expire_timers kernel/time/timer.c:1844 [inline]\n  __run_timers kernel/time/timer.c:2418 [inline]\n  __run_timer_base+0x66a/0x8e0 kernel/time/timer.c:2430\n  run_timer_base kernel/time/timer.c:2439 [inline]\n  run_timer_softirq+0xb7/0x170 kernel/time/timer.c:2449\n  handle_softirqs+0x2d4/0x9b0 kernel/softirq.c:561\n  __do_softirq kernel/softirq.c:595 [inline]\n  invoke_softirq kernel/softirq.c:435 [inline]\n  __irq_exit_rcu+0xf7/0x220 kernel/softirq.c:662\n  irq_exit_rcu+0x9/0x30 kernel/softirq.c:678\n  instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1049 [inline]\n  sysvec_apic_timer_interrupt+0xa6/0xc0 arch/x86/kernel/apic/apic.c:1049\n </IRQ> | CVSS Score: 7.0 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_04833028a7ff",
+    "doc_id": "cve_CVE-2025-21749",
+    "title": "CVE-2025-21749",
+    "text": "CVE ID: CVE-2025-21749 | Severity: MEDIUM | Description: In the Linux kernel, the following vulnerability has been resolved:\n\nnet: rose: lock the socket in rose_bind()\n\nsyzbot reported a soft lockup in rose_loopback_timer(),\nwith a repro calling bind() from multiple threads.\n\nrose_bind() must lock the socket to avoid this issue. | CVSS Score: 5.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_6133e28c8ad3",
+    "doc_id": "cve_CVE-2025-30803",
+    "title": "CVE-2025-30803",
+    "text": "CVE ID: CVE-2025-30803 | Severity: MEDIUM | Description: Missing Authorization vulnerability in Greg Ross Just Writing Statistics allows Exploiting Incorrectly Configured Access Control Security Levels. This issue affects Just Writing Statistics: from n/a through 5.3. | CVSS Score: 4.3 | Keywords: ros, ament",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_a695f9fe728c",
+    "doc_id": "cve_CVE-2024-39780",
+    "title": "CVE-2024-39780",
+    "text": "CVE ID: CVE-2024-39780 | Severity: HIGH | Description: A YAML deserialization vulnerability was found in the Robot Operating System (ROS) 'dynparam', a command-line tool for getting, setting, and deleting parameters of a dynamically configurable node, affecting ROS distributions Noetic and earlier. The issue is caused by the use of the yaml.load() function in the 'set' and 'get' verbs, and allows for the creation of arbitrary Python objects. Through this flaw, a local or remote user can craft and execute arbitrary Python code. | CVSS Score: 7.8 | Keywords: ros, ament",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_6703526421d4",
+    "doc_id": "cve_CVE-2025-31905",
+    "title": "CVE-2025-31905",
+    "text": "CVE ID: CVE-2025-31905 | Severity: HIGH | Description: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in NotFound Team Rosters allows Reflected XSS. This issue affects Team Rosters: from n/a through 4.7. | CVSS Score: 7.1 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_73e12d13bcb4",
+    "doc_id": "cve_CVE-2025-29621",
+    "title": "CVE-2025-29621",
+    "text": "CVE ID: CVE-2025-29621 | Severity: HIGH | Description: Francois Jacquet RosarioSIS v12.0.0 was discovered to contain a content spoofing vulnerability in the Theme configuration under the My Preferences module. This vulnerability allows attackers to manipulate application settings. | CVSS Score: 7.3 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_79a13a05540e",
+    "doc_id": "cve_CVE-2022-49916",
+    "title": "CVE-2022-49916",
+    "text": "CVE ID: CVE-2022-49916 | Severity: MEDIUM | Description: In the Linux kernel, the following vulnerability has been resolved:\n\nrose: Fix NULL pointer dereference in rose_send_frame()\n\nThe syzkaller reported an issue:\n\nKASAN: null-ptr-deref in range [0x0000000000000380-0x0000000000000387]\nCPU: 0 PID: 4069 Comm: kworker/0:15 Not tainted 6.0.0-syzkaller-02734-g0326074ff465 #0\nHardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/22/2022\nWorkqueue: rcu_gp srcu_invoke_callbacks\nRIP: 0010:rose_send_frame+0x1dd/0x2f0 net/rose/rose_link.c:101\nCall Trace:\n <IRQ>\n rose_transmit_clear_request+0x1d5/0x290 net/rose/rose_link.c:255\n rose_rx_call_request+0x4c0/0x1bc0 net/rose/af_rose.c:1009\n rose_loopback_timer+0x19e/0x590 net/rose/rose_loopback.c:111\n call_timer_fn+0x1a0/0x6b0 kernel/time/timer.c:1474\n expire_timers kernel/time/timer.c:1519 [inline]\n __run_timers.part.0+0x674/0xa80 kernel/time/timer.c:1790\n __run_timers kernel/time/timer.c:1768 [inline]\n run_timer_softirq+0xb3/0x1d0 kernel/time/timer.c:1803\n __do_softirq+0x1d0/0x9c8 kernel/softirq.c:571\n [...]\n </IRQ>\n\nIt triggers NULL pointer dereference when 'neigh->dev->dev_addr' is\ncalled in the rose_send_frame(). It's the first occurrence of the\n`neigh` is in rose_loopback_timer() as `rose_loopback_neigh', and\nthe 'dev' in 'rose_loopback_neigh' is initialized sa nullptr.\n\nIt had been fixed by commit 3b3fd068c56e3fbea30090859216a368398e39bf\n(\"rose: Fix Null pointer dereference in rose_send_frame()\") ever.\nBut it's introduced by commit 3c53cd65dece47dd1f9d3a809f32e59d1d87b2b8\n(\"rose: check NULL rose_loopback_neigh->loopback\") again.\n\nWe fix it by add NULL check in rose_transmit_clear_request(). When\nthe 'dev' in 'neigh' is NULL, we don't reply the request and just\nclear it.\n\nsyzkaller don't provide repro, and I provide a syz repro like:\nr0 = syz_init_net_socket$bt_sco(0x1f, 0x5, 0x2)\nioctl$sock_inet_SIOCSIFFLAGS(r0, 0x8914, &(0x7f0000000180)={'rose0\\x00', 0x201})\nr1 = syz_init_net_socket$rose(0xb, 0x5, 0x0)\nbind$rose(r1, &(0x7f00000000c0)=@full={0xb, @dev, @null, 0x0, [@null, @null, @netrom, @netrom, @default, @null]}, 0x40)\nconnect$rose(r1, &(0x7f0000000240)=@short={0xb, @dev={0xbb, 0xbb, 0xbb, 0x1, 0x0}, @remote={0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0xcc, 0x1}, 0x1, @netrom={0xbb, 0xbb, 0xbb, 0xbb, 0xbb, 0x0, 0x0}}, 0x1c) | CVSS Score: 5.5 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_29446543b24f",
+    "doc_id": "cve_CVE-2025-5303",
+    "title": "CVE-2025-5303",
+    "text": "CVE ID: CVE-2025-5303 | Severity: HIGH | Description: The LTL Freight Quotes – Freightview Edition, LTL Freight Quotes – Daylight Edition and LTL Freight Quotes – Day & Ross Edition plugins for WordPress are vulnerable to Stored Cross-Site Scripting via the expiry_date parameter in all versions up to, and including, 1.0.11, 2.2.6 and 2.1.10 respectively, due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. | CVSS Score: 7.2 | Keywords: ros, ament",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_7d096b74e579",
+    "doc_id": "cve_CVE-2022-50163",
+    "title": "CVE-2022-50163",
+    "text": "CVE ID: CVE-2022-50163 | Severity: Unknown | Description: In the Linux kernel, the following vulnerability has been resolved:\n\nax25: fix incorrect dev_tracker usage\n\nWhile investigating a separate rose issue [1], and enabling\nCONFIG_NET_DEV_REFCNT_TRACKER=y, Bernard reported an orthogonal ax25 issue [2]\n\nAn ax25_dev can be used by one (or many) struct ax25_cb.\nWe thus need different dev_tracker, one per struct ax25_cb.\n\nAfter this patch is applied, we are able to focus on rose.\n\n[1] https://lore.kernel.org/netdev/fb7544a1-f42e-9254-18cc-c9b071f4ca70@free.fr/\n\n[2]\n[  205.798723] reference already released.\n[  205.798732] allocated in:\n[  205.798734]  ax25_bind+0x1a2/0x230 [ax25]\n[  205.798747]  __sys_bind+0xea/0x110\n[  205.798753]  __x64_sys_bind+0x18/0x20\n[  205.798758]  do_syscall_64+0x5c/0x80\n[  205.798763]  entry_SYSCALL_64_after_hwframe+0x44/0xae\n[  205.798768] freed in:\n[  205.798770]  ax25_release+0x115/0x370 [ax25]\n[  205.798778]  __sock_release+0x42/0xb0\n[  205.798782]  sock_close+0x15/0x20\n[  205.798785]  __fput+0x9f/0x260\n[  205.798789]  ____fput+0xe/0x10\n[  205.798792]  task_work_run+0x64/0xa0\n[  205.798798]  exit_to_user_mode_prepare+0x18b/0x190\n[  205.798804]  syscall_exit_to_user_mode+0x26/0x40\n[  205.798808]  do_syscall_64+0x69/0x80\n[  205.798812]  entry_SYSCALL_64_after_hwframe+0x44/0xae\n[  205.798827] ------------[ cut here ]------------\n[  205.798829] WARNING: CPU: 2 PID: 2605 at lib/ref_tracker.c:136 ref_tracker_free.cold+0x60/0x81\n[  205.798837] Modules linked in: rose netrom mkiss ax25 rfcomm cmac algif_hash algif_skcipher af_alg bnep snd_hda_codec_hdmi nls_iso8859_1 i915 rtw88_8821ce rtw88_8821c x86_pkg_temp_thermal rtw88_pci intel_powerclamp rtw88_core snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio coretemp snd_hda_intel kvm_intel snd_intel_dspcfg mac80211 snd_hda_codec kvm i2c_algo_bit drm_buddy drm_dp_helper btusb drm_kms_helper snd_hwdep btrtl snd_hda_core btbcm joydev crct10dif_pclmul btintel crc32_pclmul ghash_clmulni_intel mei_hdcp btmtk intel_rapl_msr aesni_intel bluetooth input_leds snd_pcm crypto_simd syscopyarea processor_thermal_device_pci_legacy sysfillrect cryptd intel_soc_dts_iosf snd_seq sysimgblt ecdh_generic fb_sys_fops rapl libarc4 processor_thermal_device intel_cstate processor_thermal_rfim cec snd_timer ecc snd_seq_device cfg80211 processor_thermal_mbox mei_me processor_thermal_rapl mei rc_core at24 snd intel_pch_thermal intel_rapl_common ttm soundcore int340x_thermal_zone video\n[  205.798948]  mac_hid acpi_pad sch_fq_codel ipmi_devintf ipmi_msghandler drm msr parport_pc ppdev lp parport ramoops pstore_blk reed_solomon pstore_zone efi_pstore ip_tables x_tables autofs4 hid_generic usbhid hid i2c_i801 i2c_smbus r8169 xhci_pci ahci libahci realtek lpc_ich xhci_pci_renesas [last unloaded: ax25]\n[  205.798992] CPU: 2 PID: 2605 Comm: ax25ipd Not tainted 5.18.11-F6BVP #3\n[  205.798996] Hardware name: To be filled by O.E.M. To be filled by O.E.M./CK3, BIOS 5.011 09/16/2020\n[  205.798999] RIP: 0010:ref_tracker_free.cold+0x60/0x81\n[  205.799005] Code: e8 d2 01 9b ff 83 7b 18 00 74 14 48 c7 c7 2f d7 ff 98 e8 10 6e fc ff 8b 7b 18 e8 b8 01 9b ff 4c 89 ee 4c 89 e7 e8 5d fd 07 00 <0f> 0b b8 ea ff ff ff e9 30 05 9b ff 41 0f b6 f7 48 c7 c7 a0 fa 4e\n[  205.799008] RSP: 0018:ffffaf5281073958 EFLAGS: 00010286\n[  205.799011] RAX: 0000000080000000 RBX: ffff9a0bd687ebe0 RCX: 0000000000000000\n[  205.799014] RDX: 0000000000000001 RSI: 0000000000000282 RDI: 00000000ffffffff\n[  205.799016] RBP: ffffaf5281073a10 R08: 0000000000000003 R09: fffffffffffd5618\n[  205.799019] R10: 0000000000ffff10 R11: 000000000000000f R12: ffff9a0bc53384d0\n[  205.799022] R13: 0000000000000282 R14: 00000000ae000001 R15: 0000000000000001\n[  205.799024] FS:  0000000000000000(0000) GS:ffff9a0d0f300000(0000) knlGS:0000000000000000\n[  205.799028] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033\n[  205.799031] CR2: 00007ff6b8311554 CR3: 000000001ac10004 CR4: 00000000001706e0\n[  205.799033] Call Trace:\n[  205.799035]  <TASK>\n[  205.799038]  ? ax25_dev_device_down+0xd9/\n---truncated--- | Keywords: ros, rcl",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "rcl"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_1fd7b6ce1f5f",
+    "doc_id": "cve_CVE-2025-7210",
+    "title": "CVE-2025-7210",
+    "text": "CVE ID: CVE-2025-7210 | Severity: MEDIUM | Description: A vulnerability was found in code-projects/Fabian Ros Library Management System 2.0 and classified as critical. Affected by this issue is some unknown functionality of the file admin/profile_update.php. The manipulation of the argument photo leads to unrestricted upload. The attack may be launched remotely. The exploit has been disclosed to the public and may be used. | CVSS Score: 6.3 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_b3880d374c21",
+    "doc_id": "cve_CVE-2024-39289",
+    "title": "CVE-2024-39289",
+    "text": "CVE ID: CVE-2024-39289 | Severity: HIGH | Description: A code execution vulnerability has been discovered in the Robot Operating System (ROS) 'rosparam' tool, affecting ROS distributions Noetic Ninjemys and earlier. The vulnerability stems from the use of the eval() function to process unsanitized, user-supplied parameter values via special converters for angle representations in radians. This flaw allowed attackers to craft and execute arbitrary Python code. | CVSS Score: 7.8 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_5f5990e5050c",
+    "doc_id": "cve_CVE-2024-39835",
+    "title": "CVE-2024-39835",
+    "text": "CVE ID: CVE-2024-39835 | Severity: HIGH | Description: A code injection vulnerability has been identified in the Robot Operating System (ROS) 'roslaunch' command-line tool, affecting ROS distributions Noetic Ninjemys and earlier. The vulnerability arises from the use of the eval() method to process user-supplied, unsanitized parameter values within the substitution args mechanism, which roslaunch evaluates before launching a node. This flaw allows attackers to craft and execute arbitrary Python code. | CVSS Score: 7.8 | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_3efdf3b82503",
+    "doc_id": "cve_CVE-2024-41148",
+    "title": "CVE-2024-41148",
+    "text": "CVE ID: CVE-2024-41148 | Severity: HIGH | Description: A code injection vulnerability has been discovered in the Robot Operating System (ROS) 'rostopic' command-line tool, affecting ROS distributions Noetic Ninjemys and earlier. The vulnerability lies in the 'hz' verb, which reports the publishing rate of a topic and accepts a user-provided Python expression via the --filter option. This input is passed directly to the eval() function without sanitization, allowing a local user to craft and execute arbitrary code. | CVSS Score: 7.8 | Keywords: ros, ament, rostopic",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament",
+        "rostopic"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_d4aa0a408674",
+    "doc_id": "cve_CVE-2024-41921",
+    "title": "CVE-2024-41921",
+    "text": "CVE ID: CVE-2024-41921 | Severity: HIGH | Description: A code injection vulnerability has been discovered in the Robot Operating System (ROS) 'rostopic' command-line tool, affecting ROS distributions Noetic Ninjemys and earlier. The vulnerability lies in the 'echo' verb, which allows a user to introspect a ROS topic and accepts a user-provided Python expression via the --filter option. This input is passed directly to the eval() function without sanitization, allowing a local user to craft and execute arbitrary code. | CVSS Score: 7.8 | Keywords: ros, ament, rostopic",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "ament",
+        "rostopic"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_df494b5c60fd",
+    "doc_id": "cve_CVE-2025-3753",
+    "title": "CVE-2025-3753",
+    "text": "CVE ID: CVE-2025-3753 | Severity: HIGH | Description: A code execution vulnerability has been identified in the Robot Operating System (ROS) 'rosbag' tool, affecting ROS distributions Noetic Ninjemys and earlier. The vulnerability arises from the use of the eval() function to process unsanitized, user-supplied input in the 'rosbag filter' command. This flaw enables attackers to craft and execute arbitrary Python code. | CVSS Score: 7.8 | Keywords: ros, rosbag",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "rosbag"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_c0bd006f742a",
+    "doc_id": "cve_CVE-2025-38377",
+    "title": "CVE-2025-38377",
+    "text": "CVE ID: CVE-2025-38377 | Severity: Unknown | Description: In the Linux kernel, the following vulnerability has been resolved:\n\nrose: fix dangling neighbour pointers in rose_rt_device_down()\n\nThere are two bugs in rose_rt_device_down() that can cause\nuse-after-free:\n\n1. The loop bound `t->count` is modified within the loop, which can\n   cause the loop to terminate early and miss some entries.\n\n2. When removing an entry from the neighbour array, the subsequent entries\n   are moved up to fill the gap, but the loop index `i` is still\n   incremented, causing the next entry to be skipped.\n\nFor example, if a node has three neighbours (A, A, B) with count=3 and A\nis being removed, the second A is not checked.\n\n    i=0: (A, A, B) -> (A, B) with count=2\n          ^ checked\n    i=1: (A, B)    -> (A, B) with count=2\n             ^ checked (B, not A!)\n    i=2: (doesn't occur because i < count is false)\n\nThis leaves the second A in the array with count=2, but the rose_neigh\nstructure has been freed. Code that accesses these entries assumes that\nthe first `count` entries are valid pointers, causing a use-after-free\nwhen it accesses the dangling pointer.\n\nFix both issues by iterating over the array in reverse order with a fixed\nloop bound. This ensures that all entries are examined and that the removal\nof an entry doesn't affect subsequent iterations. | Keywords: ros",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_f7de94feb4c3",
+    "doc_id": "cve_CVE-2023-53157",
+    "title": "CVE-2023-53157",
+    "text": "CVE ID: CVE-2023-53157 | Severity: MEDIUM | Description: The rosenpass crate before 0.2.1 for Rust allows remote attackers to cause a denial of service (panic) via a one-byte UDP packet. | CVSS Score: 5.3 | Keywords: ros | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_94846f6fa42e",
+    "doc_id": "cve_CVE-2003-0539",
+    "title": "CVE-2003-0539",
+    "text": "CVE ID: CVE-2003-0539 | Severity: Unknown | Description: skk (Simple Kana to Kanji conversion program) 12.1 and earlier, and the ddskk package which is based on skk, creates temporary files insecurely, which allows local users to overwrite arbitrary files. | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_a19e9c93043e",
+    "doc_id": "cve_CVE-2005-2127",
+    "title": "CVE-2005-2127",
+    "text": "CVE ID: CVE-2005-2127 | Severity: Unknown | Description: Microsoft Internet Explorer 5.01, 5.5, and 6 allows remote attackers to cause a denial of service (application crash) and possibly execute arbitrary code via a web page with embedded CLSIDs that reference certain COM objects that are not intended for use within Internet Explorer, as originally demonstrated using the (1) DDS Library Shape Control (Msdds.dll) COM object, and other objects including (2) Blnmgrps.dll, (3) Ciodm.dll, (4) Comsvcs.dll, (5) Danim.dll, (6) Htmlmarq.ocx, (7) Mdt2dd.dll (as demonstrated using a heap corruption attack with uninitialized memory), (8) Mdt2qd.dll, (9) Mpg4ds32.ax, (10) Msadds32.ax, (11) Msb1esen.dll, (12) Msb1fren.dll, (13) Msb1geen.dll, (14) Msdtctm.dll, (15) Mshtml.dll, (16) Msoeacct.dll, (17) Msosvfbr.dll, (18) Mswcrun.dll, (19) Netshell.dll, (20) Ole2disp.dll, (21) Outllib.dll, (22) Psisdecd.dll, (23) Qdvd.dll, (24) Repodbc.dll, (25) Shdocvw.dll, (26) Shell32.dll, (27) Soa.dll, (28) Srchui.dll, (29) Stobject.dll, (30) Vdt70.dll, (31) Vmhelper.dll, and (32) Wbemads.dll, aka a variant of the \"COM Object Instantiation Memory Corruption vulnerability.\" | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_d39fe3ff2929",
+    "doc_id": "cve_CVE-2007-5567",
+    "title": "CVE-2007-5567",
+    "text": "CVE ID: CVE-2007-5567 | Severity: Unknown | Description: PHP remote file inclusion vulnerability in _lib/fckeditor/upload_config.php in Galmeta Post 0.11 allows remote attackers to execute arbitrary PHP code via a URL in the DDS parameter. | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_88074a9ce1e5",
+    "doc_id": "cve_CVE-2013-4722",
+    "title": "CVE-2013-4722",
+    "text": "CVE ID: CVE-2013-4722 | Severity: Unknown | Description: Multiple cross-site scripting (XSS) vulnerabilities in Admin/login/default.asp in DDSN Interactive cm3 Acora CMS 6.0.6/1a, 6.0.2/1a, 5.5.7/12b, 5.5.0/1b-p1, and possibly other versions allow remote attackers to inject arbitrary web script or HTML via the (1) username, (2) url, (3) qstr parameter. | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_b589de6d89fe",
+    "doc_id": "cve_CVE-2013-4723",
+    "title": "CVE-2013-4723",
+    "text": "CVE ID: CVE-2013-4723 | Severity: Unknown | Description: Open redirect vulnerability in DDSN Interactive cm3 Acora CMS 6.0.6/1a, 6.0.2/1a, 5.5.7/12b, 5.5.0/1b-p1, and possibly other versions allows remote attackers to redirect users to arbitrary web sites and conduct phishing attacks via a URL in the l parameter to track.aspx. | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_3cef1f706b93",
+    "doc_id": "cve_CVE-2013-4726",
+    "title": "CVE-2013-4726",
+    "text": "CVE ID: CVE-2013-4726 | Severity: Unknown | Description: Cross-site request forgery (CSRF) vulnerability in DDSN Interactive cm3 Acora CMS 6.0.6/1a, 6.0.2/1a, 5.5.7/12b, 5.5.0/1b-p1, and possibly other versions, allows remote attackers to hijack the authentication of unspecified victims via unknown vectors. | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_1b6466fad619",
+    "doc_id": "cve_CVE-2013-4724",
+    "title": "CVE-2013-4724",
+    "text": "CVE ID: CVE-2013-4724 | Severity: Unknown | Description: DDSN Interactive cm3 Acora CMS 6.0.6/1a, 6.0.2/1a, 5.5.7/12b, 5.5.0/1b-p1, and possibly other versions, does not include the HTTPOnly flag in a Set-Cookie header for an unspecified cookie, which makes it easier for remote attackers to obtain potentially sensitive information via script access to this cookie. | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_cd18a1e34586",
+    "doc_id": "cve_CVE-2013-4725",
+    "title": "CVE-2013-4725",
+    "text": "CVE ID: CVE-2013-4725 | Severity: Unknown | Description: DDSN Interactive cm3 Acora CMS 6.0.6/1a, 6.0.2/1a, 5.5.7/12b, 5.5.0/1b-p1, and possibly other versions, does not set the secure flag for an unspecified cookie in an https session, which makes it easier for remote attackers to capture this cookie by intercepting its transmission within an http session. | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_7519b6dc962e",
+    "doc_id": "cve_CVE-2013-4727",
+    "title": "CVE-2013-4727",
+    "text": "CVE ID: CVE-2013-4727 | Severity: Unknown | Description: DDSN Interactive cm3 Acora CMS 6.0.6/1a, 6.0.2/1a, 5.5.7/12b, 5.5.0/1b-p1, and possibly other versions, allows remote attackers to obtain sensitive information via a request to Admin/top.aspx. | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_da4959c49beb",
+    "doc_id": "cve_CVE-2013-4728",
+    "title": "CVE-2013-4728",
+    "text": "CVE ID: CVE-2013-4728 | Severity: Unknown | Description: DDSN Interactive cm3 Acora CMS 6.0.6/1a, 6.0.2/1a, 5.5.7/12b, 5.5.0/1b-p1, and possibly other versions, allows remote attackers to obtain sensitive information via a .. (dot dot) in the \"l\" parameter, which reveals the installation path in an error message. | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_7d27e640406c",
+    "doc_id": "cve_CVE-2016-5687",
+    "title": "CVE-2016-5687",
+    "text": "CVE ID: CVE-2016-5687 | Severity: Unknown | Description: The VerticalFilter function in the DDS coder in ImageMagick before 6.9.4-3 and 7.x before 7.0.1-4 allows remote attackers to have unspecified impact via a crafted DDS file, which triggers an out-of-bounds read. | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_1cfd675a8ee9",
+    "doc_id": "cve_CVE-2014-9907",
+    "title": "CVE-2014-9907",
+    "text": "CVE ID: CVE-2014-9907 | Severity: MEDIUM | Description: coders/dds.c in ImageMagick allows remote attackers to cause a denial of service via a crafted DDS file. | CVSS Score: 6.5 | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_8f831d49b0b8",
+    "doc_id": "cve_CVE-2015-8959",
+    "title": "CVE-2015-8959",
+    "text": "CVE ID: CVE-2015-8959 | Severity: MEDIUM | Description: coders/dds.c in ImageMagick before 6.9.0-4 Beta allows remote attackers to cause a denial of service (CPU consumption) via a crafted DDS file. | CVSS Score: 6.5 | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_b0ea11d10b6a",
+    "doc_id": "cve_CVE-2019-15135",
+    "title": "CVE-2019-15135",
+    "text": "CVE ID: CVE-2019-15135 | Severity: Unknown | Description: The handshake protocol in Object Management Group (OMG) DDS Security 1.1 sends cleartext information about all of the capabilities of a participant (including capabilities inapplicable to the current session), which makes it easier for attackers to discover potentially sensitive reachability information on a Data Distribution Service (DDS) network. | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_a21d55f40e89",
+    "doc_id": "cve_CVE-2020-18734",
+    "title": "CVE-2020-18734",
+    "text": "CVE ID: CVE-2020-18734 | Severity: HIGH | Description: A stack buffer overflow in /ddsi/q_bitset.h of Eclipse IOT Cyclone DDS Project v0.1.0 causes the DDS subscriber server to crash. | CVSS Score: 7.5 | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_bcc31c66708d",
+    "doc_id": "cve_CVE-2020-18735",
+    "title": "CVE-2020-18735",
+    "text": "CVE ID: CVE-2020-18735 | Severity: HIGH | Description: A heap buffer overflow in /src/dds_stream.c of Eclipse IOT Cyclone DDS Project v0.1.0 causes the DDS subscriber server to crash. | CVSS Score: 7.5 | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_ffefd8bb1583",
+    "doc_id": "cve_CVE-2022-0544",
+    "title": "CVE-2022-0544",
+    "text": "CVE ID: CVE-2022-0544 | Severity: MEDIUM | Description: An integer underflow in the DDS loader of Blender leads to an out-of-bounds read, possibly allowing an attacker to read sensitive data using a crafted DDS image file. This flaw affects Blender versions prior to 2.83.19, 2.93.8 and 3.1. | CVSS Score: 5.5 | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_721cf6b45b3f",
+    "doc_id": "cve_CVE-2021-38425",
+    "title": "CVE-2021-38425",
+    "text": "CVE ID: CVE-2021-38425 | Severity: HIGH | Description: eProsima Fast DDS versions prior to 2.4.0 (#2269) are susceptible to exploitation when an attacker sends a specially crafted packet to flood a target device with unwanted traffic, which may result in a denial-of-service condition and information exposure. | CVSS Score: 7.5 | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_b3d50db11bb9",
+    "doc_id": "cve_CVE-2021-38427",
+    "title": "CVE-2021-38427",
+    "text": "CVE ID: CVE-2021-38427 | Severity: MEDIUM | Description: RTI Connext DDS Professional and Connext DDS Secure Versions 4.2.x to 6.1.0 are vulnerable to a stack-based buffer overflow, which may allow a local attacker to execute arbitrary code. | CVSS Score: 6.6 | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_4b7d277339ed",
+    "doc_id": "cve_CVE-2021-38433",
+    "title": "CVE-2021-38433",
+    "text": "CVE ID: CVE-2021-38433 | Severity: MEDIUM | Description: RTI Connext DDS Professional and Connext DDS Secure Versions 4.2x to 6.1.0 vulnerable to a stack-based buffer overflow, which may allow a local attacker to execute arbitrary code. | CVSS Score: 6.6 | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_90e82c2200ab",
+    "doc_id": "cve_CVE-2021-38435",
+    "title": "CVE-2021-38435",
+    "text": "CVE ID: CVE-2021-38435 | Severity: MEDIUM | Description: RTI Connext DDS Professional and Connext DDS Secure Versions 4.2x to 6.1.0 not correctly calculate the size when allocating the buffer, which may result in a buffer overflow. | CVSS Score: 6.6 | Keywords: dds, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_e21623dcbb9d",
+    "doc_id": "cve_CVE-2021-43547",
+    "title": "CVE-2021-43547",
+    "text": "CVE ID: CVE-2021-43547 | Severity: HIGH | Description: TwinOaks Computing CoreDX DDS versions prior to 5.9.1 are susceptible to exploitation when an attacker sends a specially crafted packet to flood target devices with unwanted traffic. This may result in a denial-of-service condition and information exposure. | CVSS Score: 7.5 | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_f645f5fe224b",
+    "doc_id": "cve_CVE-2022-41838",
+    "title": "CVE-2022-41838",
+    "text": "CVE ID: CVE-2022-41838 | Severity: CRITICAL | Description: A code execution vulnerability exists in the DDS scanline parsing functionality of OpenImageIO Project OpenImageIO v2.4.4.2. A specially-crafted .dds can lead to a heap buffer overflow. An attacker can provide a malicious file to trigger this vulnerability. | CVSS Score: 9.8 | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_c3a9ab3e1ba4",
+    "doc_id": "cve_CVE-2022-41999",
+    "title": "CVE-2022-41999",
+    "text": "CVE ID: CVE-2022-41999 | Severity: HIGH | Description: A denial of service vulnerability exists in the DDS native tile reading functionality of OpenImageIO Project OpenImageIO v2.3.19.0 and v2.4.4.2. A specially-crafted .dds can lead to denial of service. An attacker can provide a malicious file to trigger this vulnerability. | CVSS Score: 7.5 | Keywords: dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_799d31fc1f91",
+    "doc_id": "cve_CVE-2023-39534",
+    "title": "CVE-2023-39534",
+    "text": "CVE ID: CVE-2023-39534 | Severity: HIGH | Description: eprosima Fast DDS is a C++ implementation of the Data Distribution Service standard of the Object Management Group. Prior to versions 2.10.0, 2.9.2, and 2.6.5, a malformed GAP submessage can trigger assertion failure, crashing FastDDS. Version 2.10.0, 2.9.2, and 2.6.5 contain a patch for this issue. | CVSS Score: 7.5 | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_dcbdde8f194d",
+    "doc_id": "cve_CVE-2023-39945",
+    "title": "CVE-2023-39945",
+    "text": "CVE ID: CVE-2023-39945 | Severity: HIGH | Description: eprosima Fast DDS is a C++ implementation of the Data Distribution Service standard of the Object Management Group. Prior to versions 2.11.0, 2.10.2, 2.9.2, and 2.6.5, a data submessage sent to PDP port raises unhandled `BadParamException` in fastcdr, which in turn crashes fastdds. Versions 2.11.0, 2.10.2, 2.9.2, and 2.6.5 contain a patch for this issue. | CVSS Score: 8.2 | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_6bedbbcfc65a",
+    "doc_id": "cve_CVE-2023-39946",
+    "title": "CVE-2023-39946",
+    "text": "CVE ID: CVE-2023-39946 | Severity: HIGH | Description: eprosima Fast DDS is a C++ implementation of the Data Distribution Service standard of the Object Management Group. Prior to versions 2.11.1, 2.10.2, 2.9.2, and 2.6.6, heap can be overflowed by providing a PID_PROPERTY_LIST parameter that contains a CDR string with length larger than the size of actual content. In `eprosima::fastdds::dds::ParameterPropertyList_t::push_back_helper`, `memcpy` is called to first copy the octet'ized length and then to copy the data into `properties_.data`. At the second memcpy, both `data` and `size` can be controlled by anyone that sends the CDR string to the discovery multicast port. This can remotely crash any Fast-DDS process. Versions 2.11.1, 2.10.2, 2.9.2, and 2.6.6 contain a patch for this issue. | CVSS Score: 8.2 | Keywords: ros, dds, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_1fdc8d208b91",
+    "doc_id": "cve_CVE-2023-39947",
+    "title": "CVE-2023-39947",
+    "text": "CVE ID: CVE-2023-39947 | Severity: HIGH | Description: eprosima Fast DDS is a C++ implementation of the Data Distribution Service standard of the Object Management Group. Prior to versions 2.11.1, 2.10.2, 2.9.2, and 2.6.6, even after the fix at commit 3492270, malformed `PID_PROPERTY_LIST` parameters cause heap overflow at a different program counter. This can remotely crash any Fast-DDS process. Versions 2.11.1, 2.10.2, 2.9.2, and 2.6.6 contain a patch for this issue. | CVSS Score: 8.2 | Keywords: ros, dds, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_c42dc7b24053",
+    "doc_id": "cve_CVE-2023-39948",
+    "title": "CVE-2023-39948",
+    "text": "CVE ID: CVE-2023-39948 | Severity: HIGH | Description: eprosima Fast DDS is a C++ implementation of the Data Distribution Service standard of the Object Management Group. Prior to versions 2.10.0 and 2.6.5, the `BadParamException` thrown by Fast CDR is not caught in Fast DDS. This can remotely crash any Fast DDS process. Versions 2.10.0 and 2.6.5 contain a patch for this issue. | CVSS Score: 7.5 | Keywords: ros, dds, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_da8a6a5795fa",
+    "doc_id": "cve_CVE-2023-39949",
+    "title": "CVE-2023-39949",
+    "text": "CVE ID: CVE-2023-39949 | Severity: HIGH | Description: eprosima Fast DDS is a C++ implementation of the Data Distribution Service standard of the Object Management Group. Prior to versions 2.9.1 and 2.6.5, improper validation of sequence numbers may lead to remotely reachable assertion failure. This can remotely crash any Fast-DDS process. Versions 2.9.1 and 2.6.5 contain a patch for this issue. | CVSS Score: 7.5 | Keywords: ros, dds, ament | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_01f4aa84963b",
+    "doc_id": "cve_CVE-2023-42459",
+    "title": "CVE-2023-42459",
+    "text": "CVE ID: CVE-2023-42459 | Severity: HIGH | Description: Fast DDS is a C++ implementation of the DDS (Data Distribution Service) standard of the OMG (Object Management Group). In affected versions specific DATA submessages can be sent to a discovery locator which may trigger a free error. This can remotely crash any Fast-DDS process. The call to free() could potentially leave the pointer in the attackers control which could lead to a double free. This issue has been addressed in versions 2.12.0, 2.11.3, 2.10.3, and 2.6.7. Users are advised to upgrade. There are no known workarounds for this vulnerability. | CVSS Score: 8.6 | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_b359b4020da3",
+    "doc_id": "cve_CVE-2023-50257",
+    "title": "CVE-2023-50257",
+    "text": "CVE ID: CVE-2023-50257 | Severity: CRITICAL | Description: eProsima Fast DDS (formerly Fast RTPS) is a C++ implementation of the Data Distribution Service standard of the Object Management Group. Even with the application of SROS2, due to the issue where the data (`p[UD]`) and `guid` values used to disconnect between nodes are not encrypted, a vulnerability has been discovered where a malicious attacker can forcibly disconnect a Subscriber and can deny a Subscriber attempting to connect. Afterwards, if the attacker sends the packet for disconnecting, which is data (`p[UD]`), to the Global Data Space (`239.255.0.1:7400`) using the said Publisher ID, all the Subscribers (Listeners) connected to the Publisher (Talker) will not receive any data and their connection will be disconnected. Moreover, if this disconnection packet is sent continuously, the Subscribers (Listeners) trying to connect will not be able to do so. Since the initial commit of the `SecurityManager.cpp` code (`init`, `on_process_handshake`) on Nov 8, 2016, the Disconnect Vulnerability in RTPS Packets Used by SROS2 has been present prior to versions 2.13.0, 2.12.2, 2.11.3, 2.10.3, and 2.6.7. | CVSS Score: 9.6 | Keywords: ros, dds, ament",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds",
+        "ament"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_d08ad89834a5",
+    "doc_id": "cve_CVE-2023-50716",
+    "title": "CVE-2023-50716",
+    "text": "CVE ID: CVE-2023-50716 | Severity: CRITICAL | Description: eProsima Fast DDS (formerly Fast RTPS) is a C++ implementation of the Data Distribution Service standard of the Object Management Group. Prior to versions 2.13.0, 2.12.2, 2.11.3, 2.10.3, and 2.6.7, an invalid DATA_FRAG Submessage causes a bad-free error, and the Fast-DDS process can be remotely terminated. If an invalid Data_Frag packet is sent, the `Inline_qos, SerializedPayload` member of object `ch` will attempt to release memory without initialization, resulting in a 'bad-free' error. Versions 2.13.0, 2.12.2, 2.11.3, 2.10.2, and 2.6.7 fix this issue. | CVSS Score: 9.6 | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_07d05190e506",
+    "doc_id": "cve_CVE-2024-28231",
+    "title": "CVE-2024-28231",
+    "text": "CVE ID: CVE-2024-28231 | Severity: CRITICAL | Description: eprosima Fast DDS is a C++ implementation of the Data Distribution Service standard of the Object Management Group. Prior to versions 2.14.0, 2.13.4, 2.12.3, 2.10.4, and 2.6.8, manipulated DATA Submessage can cause a heap overflow error in the Fast-DDS process, causing the process to be terminated remotely. Additionally, the payload_size in the DATA Submessage packet is declared as uint32_t. When a negative number, such as -1, is input into this variable, it results in an Integer Overflow (for example, -1 gets converted to 0xFFFFFFFF). This eventually leads to a heap-buffer-overflow, causing the program to terminate. Versions 2.14.0, 2.13.4, 2.12.3, 2.10.4, and 2.6.8 contain a fix for this issue. | CVSS Score: 9.6 | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_27ae3704fc96",
+    "doc_id": "cve_CVE-2023-44441",
+    "title": "CVE-2023-44441",
+    "text": "CVE ID: CVE-2023-44441 | Severity: Unknown | Description: GIMP DDS File Parsing Heap-based Buffer Overflow Remote Code Execution Vulnerability. This vulnerability allows remote attackers to execute arbitrary code on affected installations of GIMP. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file.\n\nThe specific flaw exists within the parsing of DDS files. The issue results from the lack of proper validation of the length of user-supplied data prior to copying it to a heap-based buffer. An attacker can leverage this vulnerability to execute code in the context of the current process.\n. Was ZDI-CAN-22093. | Keywords: dds",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_dc3abd5c699a",
+    "doc_id": "cve_CVE-2024-30258",
+    "title": "CVE-2024-30258",
+    "text": "CVE ID: CVE-2024-30258 | Severity: HIGH | Description: FastDDS is a C++ implementation of the DDS (Data Distribution Service) standard of the OMG (Object Management Group). Prior to versions 2.14.1, 2.13.5, 2.10.4, and 2.6.8, when a publisher serves a malformed `RTPS` packet, the subscriber crashes when creating `pthread`. This can remotely crash any Fast-DDS process, potentially leading to a DOS attack. Versions 2.14.1, 2.13.5, 2.10.4, and 2.6.8 contain a patch for the issue.\n | CVSS Score: 8.2 | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_12efeebdab2f",
+    "doc_id": "cve_CVE-2024-30259",
+    "title": "CVE-2024-30259",
+    "text": "CVE ID: CVE-2024-30259 | Severity: HIGH | Description: FastDDS is a C++ implementation of the DDS (Data Distribution Service) standard of the OMG (Object Management Group). Prior to versions 2.14.1, 2.13.5, 2.10.4, and 2.6.8, when a publisher serves malformed `RTPS` packet, heap buffer overflow occurs on the subscriber. This can remotely crash any Fast-DDS process, potentially leading to a DOS attack. Versions 2.14.1, 2.13.5, 2.10.4, and 2.6.8 contain a patch for the issue.\n | CVSS Score: 8.2 | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_1b1a86e0a806",
+    "doc_id": "cve_CVE-2025-22964",
+    "title": "CVE-2025-22964",
+    "text": "CVE ID: CVE-2025-22964 | Severity: HIGH | Description: DDSN Interactive cm3 Acora CMS version 10.1.1 has an unauthenticated time-based blind SQL Injection vulnerability caused by insufficient input sanitization and validation in the \"table\" parameter. This flaw allows attackers to inject malicious SQL queries by directly incorporating user-supplied input into database queries without proper escaping or validation. Exploiting this issue enables unauthorized access, manipulation of data, or exposure of sensitive information, posing significant risks to the integrity and confidentiality of the application. | CVSS Score: 8.1 | Keywords: dds",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_9dbd245fe4e9",
+    "doc_id": "cve_CVE-2025-24807",
+    "title": "CVE-2025-24807",
+    "text": "CVE ID: CVE-2025-24807 | Severity: HIGH | Description: eprosima Fast DDS is a C++ implementation of the DDS (Data Distribution Service) standard of the OMG (Object Management Group). Prior to versions 2.6.10, 2.10.7, 2.14.5, 3.0.2, 3.1.2, and 3.2.0, per design, PermissionsCA is not full chain validated, nor is the expiration date validated. Access control plugin validates only the S/MIME signature which causes an expired PermissionsCA to be taken as valid. Even though this issue is responsible for allowing `governance/permissions` from an expired PermissionsCA and having the system crash when PermissionsCA is not self-signed and contains the full-chain, the impact is low. Versions 2.6.10, 2.10.7, 2.14.5, 3.0.2, 3.1.2, and 3.2.0 contain a fix for the issue. | CVSS Score: 7.1 | Keywords: ros, dds | Affected Products: *",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "ros",
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_0c467eef905f",
+    "doc_id": "cve_CVE-2025-25968",
+    "title": "CVE-2025-25968",
+    "text": "CVE ID: CVE-2025-25968 | Severity: MEDIUM | Description: DDSN Interactive cm3 Acora CMS version 10.1.1 contains an improper access control vulnerability. An editor-privileged user can access sensitive information, such as system administrator credentials, by force browsing the endpoint and exploiting the 'file' parameter. By referencing specific files (e.g., cm3.xml), attackers can bypass access controls, leading to account takeover and potential privilege escalation. | CVSS Score: 6.0 | Keywords: dds",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_476939cbf381",
+    "doc_id": "cve_CVE-2025-48379",
+    "title": "CVE-2025-48379",
+    "text": "CVE ID: CVE-2025-48379 | Severity: HIGH | Description: Pillow is a Python imaging library. In versions 11.2.0 to before 11.3.0, there is a heap buffer overflow when writing a sufficiently large (>64k encoded with default settings) image in the DDS format due to writing into a buffer without checking for available space. This only affects users who save untrusted data as a compressed DDS image. This issue has been patched in version 11.3.0. | CVSS Score: 7.1 | Keywords: dds",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_5299dc2df860",
+    "doc_id": "cve_CVE-2025-30096",
+    "title": "CVE-2025-30096",
+    "text": "CVE ID: CVE-2025-30096 | Severity: MEDIUM | Description: Dell PowerProtect Data Domain with Data Domain Operating System (DD OS) of Feature Release versions 7.7.1.0 through 8.1.0.10, LTS2024 release Versions 7.13.1.0 through 7.13.1.25, LTS 2023 release versions 7.10.1.0 through 7.10.1.50, contain an Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') vulnerability in the DDSH CLI. A high privileged attacker with local access could potentially exploit this vulnerability to execute arbitrary commands with root privileges. | CVSS Score: 6.7 | Keywords: dds",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_793fc651221f",
+    "doc_id": "cve_CVE-2025-30097",
+    "title": "CVE-2025-30097",
+    "text": "CVE ID: CVE-2025-30097 | Severity: MEDIUM | Description: Dell PowerProtect Data Domain with Data Domain Operating System (DD OS) of Feature Release versions 7.7.1.0 through 8.1.0.10, LTS2024 release Versions 7.13.1.0 through 7.13.1.25, LTS 2023 release versions 7.10.1.0 through 7.10.1.50, contain an Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') vulnerability in the DDSH CLI. A high privileged attacker with local access could potentially exploit this vulnerability to execute arbitrary commands with root privileges | CVSS Score: 6.7 | Keywords: dds",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_2a6d16d08183",
+    "doc_id": "cve_CVE-2025-30098",
+    "title": "CVE-2025-30098",
+    "text": "CVE ID: CVE-2025-30098 | Severity: MEDIUM | Description: Dell PowerProtect Data Domain with Data Domain Operating System (DD OS) of Feature Release versions 7.7.1.0 through 8.1.0.10, LTS2024 release Versions 7.13.1.0 through 7.13.1.25, LTS 2023 release versions 7.10.1.0 through 7.10.1.50, contain an Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') vulnerability in the DDSH CLI. A high privileged attacker with local access could potentially exploit this vulnerability to execute arbitrary commands with root privileges. | CVSS Score: 6.7 | Keywords: dds",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  },
+  {
+    "chunk_id": "chunk_37860c68ebfd",
+    "doc_id": "cve_CVE-2025-30099",
+    "title": "CVE-2025-30099",
+    "text": "CVE ID: CVE-2025-30099 | Severity: HIGH | Description: Dell PowerProtect Data Domain with Data Domain Operating System (DD OS) of Feature Release versions 7.7.1.0 through 8.1.0.10, LTS2024 release Versions 7.13.1.0 through 7.13.1.25, LTS 2023 release versions 7.10.1.0 through 7.10.1.50, contain an Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') vulnerability in the DDSH CLI. A low privileged attacker with local access could potentially exploit this vulnerability to execute arbitrary commands with root privileges. | CVSS Score: 7.8 | Keywords: dds",
+    "metadata": {
+      "section": "CVE",
+      "rule_type": "vulnerability",
+      "keywords": [
+        "dds"
+      ]
+    }
+  }
+]

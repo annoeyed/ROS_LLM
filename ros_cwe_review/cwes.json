@@ -1,0 +1,1426 @@
+[
+  {
+    "cwe_id": "1051",
+    "name": "Initialization with Hard-Coded Network Resource Configuration Data",
+    "description": "The product initializes data using hard-coded values that act as network resource identifiers.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382428",
+    "last_modified": "2025-08-16T11:07:05.382580",
+    "raw_data": {
+      "cweId": "1051",
+      "name": "Initialization with Hard-Coded Network Resource Configuration Data",
+      "description": "The product initializes data using hard-coded values that act as network resource identifiers.",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "1066",
+    "name": "Missing Serialization Control Element",
+    "description": "The product contains a serializable data element that does not\n\t\t\t\t\thave an associated serialization method.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382599",
+    "last_modified": "2025-08-16T11:07:05.382603",
+    "raw_data": {
+      "cweId": "1066",
+      "name": "Missing Serialization Control Element",
+      "description": "The product contains a serializable data element that does not\n\t\t\t\t\thave an associated serialization method.",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "1331",
+    "name": "Improper Isolation of Shared Resources in Network On Chip (NoC)",
+    "description": "The Network On Chip (NoC) does not isolate or incorrectly isolates its on-chip-fabric and internal resources such that they are shared between trusted and untrusted agents, creating timing channels.\n\n\n\t\t\t  ",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Stable",
+    "created_date": "2025-08-16T11:07:05.382609",
+    "last_modified": "2025-08-16T11:07:05.382612",
+    "raw_data": {
+      "cweId": "1331",
+      "name": "Improper Isolation of Shared Resources in Network On Chip (NoC)",
+      "description": "The Network On Chip (NoC) does not isolate or incorrectly isolates its on-chip-fabric and internal resources such that they are shared between trusted and untrusted agents, creating timing channels.\n\n\n\t\t\t  ",
+      "status": "Stable",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n\t\t\t\t\t",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "1390",
+    "name": "Weak Authentication",
+    "description": "The product uses an authentication mechanism to restrict access to specific users or identities, but the mechanism does not sufficiently prove that the claimed identity is correct.\n\n\n\t",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382618",
+    "last_modified": "2025-08-16T11:07:05.382621",
+    "raw_data": {
+      "cweId": "1390",
+      "name": "Weak Authentication",
+      "description": "The product uses an authentication mechanism to restrict access to specific users or identities, but the mechanism does not sufficiently prove that the claimed identity is correct.\n\n\n\t",
+      "status": "Incomplete",
+      "abstraction": "Class",
+      "structure": "Simple",
+      "mitigations": [],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "20",
+    "name": "Improper Input Validation",
+    "description": "The product receives input or data, but it does\n        not validate or incorrectly validates that the input has the\n        properties that are required to process the data safely and\n        correctly.\n\n\n\t   ",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Stable",
+    "created_date": "2025-08-16T11:07:05.382626",
+    "last_modified": "2025-08-16T11:07:05.382629",
+    "raw_data": {
+      "cweId": "20",
+      "name": "Improper Input Validation",
+      "description": "The product receives input or data, but it does\n        not validate or incorrectly validates that the input has the\n        properties that are required to process the data safely and\n        correctly.\n\n\n\t   ",
+      "status": "Stable",
+      "abstraction": "Class",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "285",
+    "name": "Improper Authorization",
+    "description": "The product does not perform or incorrectly performs an authorization check when an actor attempts to access a resource or perform an action.\n\n\n            ",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382634",
+    "last_modified": "2025-08-16T11:07:05.382637",
+    "raw_data": {
+      "cweId": "285",
+      "name": "Improper Authorization",
+      "description": "The product does not perform or incorrectly performs an authorization check when an actor attempts to access a resource or perform an action.\n\n\n            ",
+      "status": "Draft",
+      "abstraction": "Class",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "287",
+    "name": "Improper Authentication",
+    "description": "When an actor claims to have a given identity, the product does not prove or insufficiently proves that the claim is correct.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382643",
+    "last_modified": "2025-08-16T11:07:05.382646",
+    "raw_data": {
+      "cweId": "287",
+      "name": "Improper Authentication",
+      "description": "When an actor claims to have a given identity, the product does not prove or insufficiently proves that the claim is correct.",
+      "status": "Draft",
+      "abstraction": "Class",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "288",
+    "name": "Authentication Bypass Using an Alternate Path or Channel",
+    "description": "The product requires authentication, but the product has an alternate path or channel that does not require authentication.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382651",
+    "last_modified": "2025-08-16T11:07:05.382732",
+    "raw_data": {
+      "cweId": "288",
+      "name": "Authentication Bypass Using an Alternate Path or Channel",
+      "description": "The product requires authentication, but the product has an alternate path or channel that does not require authentication.",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "289",
+    "name": "Authentication Bypass by Alternate Name",
+    "description": "The product performs authentication based on the name of a resource being accessed, or the name of the actor performing the access, but it does not properly check all possible names for that resource or actor.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382744",
+    "last_modified": "2025-08-16T11:07:05.382747",
+    "raw_data": {
+      "cweId": "289",
+      "name": "Authentication Bypass by Alternate Name",
+      "description": "The product performs authentication based on the name of a resource being accessed, or the name of the actor performing the access, but it does not properly check all possible names for that resource or actor.",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "290",
+    "name": "Authentication Bypass by Spoofing",
+    "description": "This attack-focused weakness is caused by incorrectly implemented authentication schemes that are subject to spoofing attacks.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382755",
+    "last_modified": "2025-08-16T11:07:05.382758",
+    "raw_data": {
+      "cweId": "290",
+      "name": "Authentication Bypass by Spoofing",
+      "description": "This attack-focused weakness is caused by incorrectly implemented authentication schemes that are subject to spoofing attacks.",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "291",
+    "name": "Reliance on IP Address for Authentication",
+    "description": "The product uses an IP address for authentication.\n\nIP addresses can be easily spoofed. Attackers can forge the source IP address of the packets they send, but response packets will return to the forged IP address. To see the response packets, the attacker has to sniff the traffic between the victim machine and the forged IP address. In order to accomplish the required sniffing, attackers typically attempt to locate themselves on the same subnet as the victim machine. Attackers may be able to circumvent this requirement by using source routing, but source routing is disabled across much of the Internet today. In summary, IP address verification can be a useful part of an authentication scheme, but it should not be the single factor required for authentication.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382764",
+    "last_modified": "2025-08-16T11:07:05.382767",
+    "raw_data": {
+      "cweId": "291",
+      "name": "Reliance on IP Address for Authentication",
+      "description": "The product uses an IP address for authentication.\n\nIP addresses can be easily spoofed. Attackers can forge the source IP address of the packets they send, but response packets will return to the forged IP address. To see the response packets, the attacker has to sniff the traffic between the victim machine and the forged IP address. In order to accomplish the required sniffing, attackers typically attempt to locate themselves on the same subnet as the victim machine. Attackers may be able to circumvent this requirement by using source routing, but source routing is disabled across much of the Internet today. In summary, IP address verification can be a useful part of an authentication scheme, but it should not be the single factor required for authentication.",
+      "status": "Incomplete",
+      "abstraction": "Variant",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "293",
+    "name": "Using Referer Field for Authentication",
+    "description": "The referer field in HTTP requests can be easily modified and, as such, is not a valid means of message integrity checking.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382773",
+    "last_modified": "2025-08-16T11:07:05.382776",
+    "raw_data": {
+      "cweId": "293",
+      "name": "Using Referer Field for Authentication",
+      "description": "The referer field in HTTP requests can be easily modified and, as such, is not a valid means of message integrity checking.",
+      "status": "Draft",
+      "abstraction": "Variant",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "294",
+    "name": "Authentication Bypass by Capture-replay",
+    "description": "A capture-replay flaw exists when the design of the product makes it possible for a malicious user to sniff network traffic and bypass authentication by replaying it to the server in question to the same effect as the original message (or with minor changes).\n\nCapture-replay attacks are common and can be difficult to defeat without cryptography. They are a subset of network injection attacks that rely on observing previously-sent valid commands, then changing them slightly if necessary and resending the same commands to the server.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382782",
+    "last_modified": "2025-08-16T11:07:05.382785",
+    "raw_data": {
+      "cweId": "294",
+      "name": "Authentication Bypass by Capture-replay",
+      "description": "A capture-replay flaw exists when the design of the product makes it possible for a malicious user to sniff network traffic and bypass authentication by replaying it to the server in question to the same effect as the original message (or with minor changes).\n\nCapture-replay attacks are common and can be difficult to defeat without cryptography. They are a subset of network injection attacks that rely on observing previously-sent valid commands, then changing them slightly if necessary and resending the same commands to the server.",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "301",
+    "name": "Reflection Attack in an Authentication Protocol",
+    "description": "Simple authentication protocols are subject to reflection attacks if a malicious user can use the target machine to impersonate a trusted user.\n\n\n\t\t   ",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382790",
+    "last_modified": "2025-08-16T11:07:05.382793",
+    "raw_data": {
+      "cweId": "301",
+      "name": "Reflection Attack in an Authentication Protocol",
+      "description": "Simple authentication protocols are subject to reflection attacks if a malicious user can use the target machine to impersonate a trusted user.\n\n\n\t\t   ",
+      "status": "Draft",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "302",
+    "name": "Authentication Bypass by Assumed-Immutable Data",
+    "description": "The authentication scheme or implementation uses key data elements that are assumed to be immutable, but can be controlled or modified by the attacker.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382799",
+    "last_modified": "2025-08-16T11:07:05.382801",
+    "raw_data": {
+      "cweId": "302",
+      "name": "Authentication Bypass by Assumed-Immutable Data",
+      "description": "The authentication scheme or implementation uses key data elements that are assumed to be immutable, but can be controlled or modified by the attacker.",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "303",
+    "name": "Incorrect Implementation of Authentication Algorithm",
+    "description": "The requirements for the product dictate the use of an established authentication algorithm, but the implementation of the algorithm is incorrect.\n\nThis incorrect implementation may allow authentication to be bypassed.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382808",
+    "last_modified": "2025-08-16T11:07:05.382811",
+    "raw_data": {
+      "cweId": "303",
+      "name": "Incorrect Implementation of Authentication Algorithm",
+      "description": "The requirements for the product dictate the use of an established authentication algorithm, but the implementation of the algorithm is incorrect.\n\nThis incorrect implementation may allow authentication to be bypassed.",
+      "status": "Draft",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "304",
+    "name": "Missing Critical Step in Authentication",
+    "description": "The product implements an authentication technique, but it skips a step that weakens the technique.\n\nAuthentication techniques should follow the algorithms that define them exactly, otherwise authentication can be bypassed or more easily subjected to brute force attacks.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382816",
+    "last_modified": "2025-08-16T11:07:05.382819",
+    "raw_data": {
+      "cweId": "304",
+      "name": "Missing Critical Step in Authentication",
+      "description": "The product implements an authentication technique, but it skips a step that weakens the technique.\n\nAuthentication techniques should follow the algorithms that define them exactly, otherwise authentication can be bypassed or more easily subjected to brute force attacks.",
+      "status": "Draft",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "305",
+    "name": "Authentication Bypass by Primary Weakness",
+    "description": "The authentication algorithm is sound, but the implemented mechanism can be bypassed as the result of a separate weakness that is primary to the authentication error.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382826",
+    "last_modified": "2025-08-16T11:07:05.382829",
+    "raw_data": {
+      "cweId": "305",
+      "name": "Authentication Bypass by Primary Weakness",
+      "description": "The authentication algorithm is sound, but the implemented mechanism can be bypassed as the result of a separate weakness that is primary to the authentication error.",
+      "status": "Draft",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "306",
+    "name": "Missing Authentication for Critical Function",
+    "description": "The product does not perform any authentication for functionality that requires a provable user identity or consumes a significant amount of resources.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382835",
+    "last_modified": "2025-08-16T11:07:05.382837",
+    "raw_data": {
+      "cweId": "306",
+      "name": "Missing Authentication for Critical Function",
+      "description": "The product does not perform any authentication for functionality that requires a provable user identity or consumes a significant amount of resources.",
+      "status": "Draft",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n\t     ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "307",
+    "name": "Improper Restriction of Excessive Authentication Attempts",
+    "description": "The product does not implement sufficient measures to prevent multiple failed authentication attempts within a short time frame.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382844",
+    "last_modified": "2025-08-16T11:07:05.382847",
+    "raw_data": {
+      "cweId": "307",
+      "name": "Improper Restriction of Excessive Authentication Attempts",
+      "description": "The product does not implement sufficient measures to prevent multiple failed authentication attempts within a short time frame.",
+      "status": "Draft",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "308",
+    "name": "Use of Single-factor Authentication",
+    "description": "The use of single-factor authentication can lead to unnecessary risk of compromise when compared with the benefits of a dual-factor authentication scheme.\n\nWhile the use of multiple authentication schemes is simply piling on more complexity on top of authentication, it is inestimably valuable to have such measures of redundancy. The use of weak, reused, and common passwords is rampant on the internet. Without the added protection of multiple authentication schemes, a single mistake can result in the compromise of an account. For this reason, if multiple schemes are possible and also easy to use, they should be implemented and required.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382853",
+    "last_modified": "2025-08-16T11:07:05.382856",
+    "raw_data": {
+      "cweId": "308",
+      "name": "Use of Single-factor Authentication",
+      "description": "The use of single-factor authentication can lead to unnecessary risk of compromise when compared with the benefits of a dual-factor authentication scheme.\n\nWhile the use of multiple authentication schemes is simply piling on more complexity on top of authentication, it is inestimably valuable to have such measures of redundancy. The use of weak, reused, and common passwords is rampant on the internet. Without the added protection of multiple authentication schemes, a single mistake can result in the compromise of an account. For this reason, if multiple schemes are possible and also easy to use, they should be implemented and required.",
+      "status": "Draft",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "309",
+    "name": "Use of Password System for Primary Authentication",
+    "description": "The use of password systems as the primary means of authentication may be subject to several flaws or shortcomings, each reducing the effectiveness of the mechanism.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382862",
+    "last_modified": "2025-08-16T11:07:05.382865",
+    "raw_data": {
+      "cweId": "309",
+      "name": "Use of Password System for Primary Authentication",
+      "description": "The use of password systems as the primary means of authentication may be subject to several flaws or shortcomings, each reducing the effectiveness of the mechanism.",
+      "status": "Draft",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "322",
+    "name": "Key Exchange without Entity Authentication",
+    "description": "The product performs a key exchange with an actor without verifying the identity of that actor.\n\nPerforming a key exchange will preserve the integrity of the information sent between two entities, but this will not guarantee that the entities are who they claim they are. This may enable an attacker to impersonate an actor by modifying traffic between the two entities.  Typically, this involves a victim client that contacts a malicious server that is impersonating a trusted server. If the client skips authentication or ignores an authentication failure, the malicious server may request authentication information from the user. The malicious server can then use this authentication information to log in to the trusted server using the victim's credentials, sniff traffic between the victim and trusted server, etc.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382871",
+    "last_modified": "2025-08-16T11:07:05.382874",
+    "raw_data": {
+      "cweId": "322",
+      "name": "Key Exchange without Entity Authentication",
+      "description": "The product performs a key exchange with an actor without verifying the identity of that actor.\n\nPerforming a key exchange will preserve the integrity of the information sent between two entities, but this will not guarantee that the entities are who they claim they are. This may enable an attacker to impersonate an actor by modifying traffic between the two entities.  Typically, this involves a victim client that contacts a malicious server that is impersonating a trusted server. If the client skips authentication or ignores an authentication failure, the malicious server may request authentication information from the user. The malicious server can then use this authentication information to log in to the trusted server using the victim's credentials, sniff traffic between the victim and trusted server, etc.",
+      "status": "Draft",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "406",
+    "name": "Insufficient Control of Network Message Volume (Network Amplification)",
+    "description": "The product does not sufficiently monitor or control transmitted network traffic volume, so that an actor can cause the product to transmit more traffic than should be allowed for that actor.\n\nIn the absence of a policy to restrict asymmetric resource consumption, the application or system cannot distinguish between legitimate transmissions and traffic intended to serve as an amplifying attack on target systems. Systems can often be configured to restrict the amount of traffic sent out on behalf of a client, based on the client's origin or access level. This is usually defined in a resource allocation policy. In the absence of a mechanism to keep track of transmissions, the system or application can be easily abused to transmit asymmetrically greater traffic than the request or client should be permitted to.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382880",
+    "last_modified": "2025-08-16T11:07:05.382883",
+    "raw_data": {
+      "cweId": "406",
+      "name": "Insufficient Control of Network Message Volume (Network Amplification)",
+      "description": "The product does not sufficiently monitor or control transmitted network traffic volume, so that an actor can cause the product to transmit more traffic than should be allowed for that actor.\n\nIn the absence of a policy to restrict asymmetric resource consumption, the application or system cannot distinguish between legitimate transmissions and traffic intended to serve as an amplifying attack on target systems. Systems can often be configured to restrict the amount of traffic sent out on behalf of a client, based on the client's origin or access level. This is usually defined in a resource allocation policy. In the absence of a mechanism to keep track of transmissions, the system or application can be easily abused to transmit asymmetrically greater traffic than the request or client should be permitted to.",
+      "status": "Incomplete",
+      "abstraction": "Class",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "502",
+    "name": "Deserialization of Untrusted Data",
+    "description": "The product deserializes untrusted data without sufficiently ensuring that the resulting data will be valid.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382890",
+    "last_modified": "2025-08-16T11:07:05.382892",
+    "raw_data": {
+      "cweId": "502",
+      "name": "Deserialization of Untrusted Data",
+      "description": "The product deserializes untrusted data without sufficiently ensuring that the resulting data will be valid.",
+      "status": "Draft",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "506",
+    "name": "Embedded Malicious Code",
+    "description": "The product contains code that appears to be malicious in nature.\n\nMalicious flaws have acquired colorful names, including Trojan horse, trapdoor, timebomb, and logic-bomb. A developer might insert malicious code with the intent to subvert the security of a product or its host system at some time in the future. It generally refers to a program that performs a useful service but exploits rights of the program's user in a way the user does not intend.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382899",
+    "last_modified": "2025-08-16T11:07:05.382902",
+    "raw_data": {
+      "cweId": "506",
+      "name": "Embedded Malicious Code",
+      "description": "The product contains code that appears to be malicious in nature.\n\nMalicious flaws have acquired colorful names, including Trojan horse, trapdoor, timebomb, and logic-bomb. A developer might insert malicious code with the intent to subvert the security of a product or its host system at some time in the future. It generally refers to a program that performs a useful service but exploits rights of the program's user in a way the user does not intend.",
+      "status": "Incomplete",
+      "abstraction": "Class",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "551",
+    "name": "Incorrect Behavior Order: Authorization Before Parsing and Canonicalization",
+    "description": "If a web server does not fully parse requested URLs before it examines them for authorization, it may be possible for an attacker to bypass authorization protection.\n\nFor instance, the character strings /./ and / both mean current directory. If /SomeDirectory is a protected directory and an attacker requests /./SomeDirectory, the attacker may be able to gain access to the resource if /./ is not converted to / before the authorization check is performed.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382909",
+    "last_modified": "2025-08-16T11:07:05.382912",
+    "raw_data": {
+      "cweId": "551",
+      "name": "Incorrect Behavior Order: Authorization Before Parsing and Canonicalization",
+      "description": "If a web server does not fully parse requested URLs before it examines them for authorization, it may be possible for an attacker to bypass authorization protection.\n\nFor instance, the character strings /./ and / both mean current directory. If /SomeDirectory is a protected directory and an attacker requests /./SomeDirectory, the attacker may be able to gain access to the resource if /./ is not converted to / before the authorization check is performed.",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "554",
+    "name": "ASP.NET Misconfiguration: Not Using Input Validation Framework",
+    "description": "The ASP.NET application does not use an input validation framework.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382919",
+    "last_modified": "2025-08-16T11:07:05.382921",
+    "raw_data": {
+      "cweId": "554",
+      "name": "ASP.NET Misconfiguration: Not Using Input Validation Framework",
+      "description": "The ASP.NET application does not use an input validation framework.",
+      "status": "Draft",
+      "abstraction": "Variant",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "566",
+    "name": "Authorization Bypass Through User-Controlled SQL Primary Key",
+    "description": "The product uses a database table that includes records that should not be accessible to an actor, but it executes a SQL statement with a primary key that can be controlled by that actor.\n\n\n            ",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382928",
+    "last_modified": "2025-08-16T11:07:05.382931",
+    "raw_data": {
+      "cweId": "566",
+      "name": "Authorization Bypass Through User-Controlled SQL Primary Key",
+      "description": "The product uses a database table that includes records that should not be accessible to an actor, but it executes a SQL statement with a primary key that can be controlled by that actor.\n\n\n            ",
+      "status": "Incomplete",
+      "abstraction": "Variant",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "592",
+    "name": "DEPRECATED: Authentication Bypass Issues",
+    "description": "This weakness has been deprecated because it covered redundant concepts already described in CWE-287.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Deprecated",
+    "created_date": "2025-08-16T11:07:05.382938",
+    "last_modified": "2025-08-16T11:07:05.382941",
+    "raw_data": {
+      "cweId": "592",
+      "name": "DEPRECATED: Authentication Bypass Issues",
+      "description": "This weakness has been deprecated because it covered redundant concepts already described in CWE-287.",
+      "status": "Deprecated",
+      "abstraction": "Class",
+      "structure": "Simple",
+      "mitigations": [],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "593",
+    "name": "Authentication Bypass: OpenSSL CTX Object Modified after SSL Objects are Created",
+    "description": "The product modifies the SSL context after connection creation has begun.\n\nIf the program modifies the SSL_CTX object after creating SSL objects from it, there is the possibility that older SSL objects created from the original context could all be affected by that change.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382948",
+    "last_modified": "2025-08-16T11:07:05.382951",
+    "raw_data": {
+      "cweId": "593",
+      "name": "Authentication Bypass: OpenSSL CTX Object Modified after SSL Objects are Created",
+      "description": "The product modifies the SSL context after connection creation has begun.\n\nIf the program modifies the SSL_CTX object after creating SSL objects from it, there is the possibility that older SSL objects created from the original context could all be affected by that change.",
+      "status": "Draft",
+      "abstraction": "Variant",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "603",
+    "name": "Use of Client-Side Authentication",
+    "description": "A client/server product performs authentication within client code but not in server code, allowing server-side authentication to be bypassed via a modified client that omits the authentication check.\n\nClient-side authentication is extremely weak and may be breached easily. Any attacker may read the source code and reverse-engineer the authentication mechanism to access parts of the application which would otherwise be protected.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382960",
+    "last_modified": "2025-08-16T11:07:05.382962",
+    "raw_data": {
+      "cweId": "603",
+      "name": "Use of Client-Side Authentication",
+      "description": "A client/server product performs authentication within client code but not in server code, allowing server-side authentication to be bypassed via a modified client that omits the authentication check.\n\nClient-side authentication is extremely weak and may be breached easily. Any attacker may read the source code and reverse-engineer the authentication mechanism to access parts of the application which would otherwise be protected.",
+      "status": "Draft",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "612",
+    "name": "Improper Authorization of Index Containing Sensitive Information",
+    "description": "The product creates a search index of private or sensitive documents, but it does not properly limit index access to actors who are authorized to see the original information.\n\nWeb sites and other document repositories may apply an indexing routine against a group of private documents to facilitate search.  If the index's results are available to parties who do not have access to the documents being indexed, then attackers could obtain portions of the documents by conducting targeted searches and reading the results.  The risk is especially dangerous if search results include surrounding text that was not part of the search query. This issue can appear in search engines that are not configured (or implemented) to ignore critical files that should remain hidden; even without permissions to download these files directly, the remote user could read them.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Draft",
+    "created_date": "2025-08-16T11:07:05.382970",
+    "last_modified": "2025-08-16T11:07:05.382972",
+    "raw_data": {
+      "cweId": "612",
+      "name": "Improper Authorization of Index Containing Sensitive Information",
+      "description": "The product creates a search index of private or sensitive documents, but it does not properly limit index access to actors who are authorized to see the original information.\n\nWeb sites and other document repositories may apply an indexing routine against a group of private documents to facilitate search.  If the index's results are available to parties who do not have access to the documents being indexed, then attackers could obtain portions of the documents by conducting targeted searches and reading the results.  The risk is especially dangerous if search results include surrounding text that was not part of the search query. This issue can appear in search engines that are not configured (or implemented) to ignore critical files that should remain hidden; even without permissions to download these files directly, the remote user could read them.",
+      "status": "Draft",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "639",
+    "name": "Authorization Bypass Through User-Controlled Key",
+    "description": "The system's authorization functionality does not prevent one user from gaining access to another user's data or record by modifying the key value identifying the data.\n\n\n            ",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382980",
+    "last_modified": "2025-08-16T11:07:05.382983",
+    "raw_data": {
+      "cweId": "639",
+      "name": "Authorization Bypass Through User-Controlled Key",
+      "description": "The system's authorization functionality does not prevent one user from gaining access to another user's data or record by modifying the key value identifying the data.\n\n\n            ",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "643",
+    "name": "Improper Neutralization of Data within XPath Expressions ('XPath Injection')",
+    "description": "The product uses external input to dynamically construct an XPath expression used to retrieve data from an XML database, but it does not neutralize or incorrectly neutralizes that input. This allows an attacker to control the structure of the query.\n\nThe net effect is that the attacker will have control over the information selected from the XML database and may use that ability to control application flow, modify logic, retrieve unauthorized data, or bypass important checks (e.g. authentication).",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.382990",
+    "last_modified": "2025-08-16T11:07:05.382992",
+    "raw_data": {
+      "cweId": "643",
+      "name": "Improper Neutralization of Data within XPath Expressions ('XPath Injection')",
+      "description": "The product uses external input to dynamically construct an XPath expression used to retrieve data from an XML database, but it does not neutralize or incorrectly neutralizes that input. This allows an attacker to control the structure of the query.\n\nThe net effect is that the attacker will have control over the information selected from the XML database and may use that ability to control application flow, modify logic, retrieve unauthorized data, or bypass important checks (e.g. authentication).",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "647",
+    "name": "Use of Non-Canonical URL Paths for Authorization Decisions",
+    "description": "The product defines policy namespaces and makes authorization decisions based on the assumption that a URL is canonical. This can allow a non-canonical URL to bypass the authorization.\n\n\n            ",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.383000",
+    "last_modified": "2025-08-16T11:07:05.383002",
+    "raw_data": {
+      "cweId": "647",
+      "name": "Use of Non-Canonical URL Paths for Authorization Decisions",
+      "description": "The product defines policy namespaces and makes authorization decisions based on the assumption that a URL is canonical. This can allow a non-canonical URL to bypass the authorization.\n\n\n            ",
+      "status": "Incomplete",
+      "abstraction": "Variant",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "652",
+    "name": "Improper Neutralization of Data within XQuery Expressions ('XQuery Injection')",
+    "description": "The product uses external input to dynamically construct an XQuery expression used to retrieve data from an XML database, but it does not neutralize or incorrectly neutralizes that input. This allows an attacker to control the structure of the query.\n\nThe net effect is that the attacker will have control over the information selected from the XML database and may use that ability to control application flow, modify logic, retrieve unauthorized data, or bypass important checks (e.g. authentication).",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.383010",
+    "last_modified": "2025-08-16T11:07:05.383012",
+    "raw_data": {
+      "cweId": "652",
+      "name": "Improper Neutralization of Data within XQuery Expressions ('XQuery Injection')",
+      "description": "The product uses external input to dynamically construct an XQuery expression used to retrieve data from an XML database, but it does not neutralize or incorrectly neutralizes that input. This allows an attacker to control the structure of the query.\n\nThe net effect is that the attacker will have control over the information selected from the XML database and may use that ability to control application flow, modify logic, retrieve unauthorized data, or bypass important checks (e.g. authentication).",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "762",
+    "name": "Mismatched Memory Management Routines",
+    "description": "The product attempts to return a memory resource to the system, but it calls a release function that is not compatible with the function that was originally used to allocate that resource.\n\n\n            ",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.383020",
+    "last_modified": "2025-08-16T11:07:05.383022",
+    "raw_data": {
+      "cweId": "762",
+      "name": "Mismatched Memory Management Routines",
+      "description": "The product attempts to return a memory resource to the system, but it calls a release function that is not compatible with the function that was originally used to allocate that resource.\n\n\n            ",
+      "status": "Incomplete",
+      "abstraction": "Variant",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "836",
+    "name": "Use of Password Hash Instead of Password for Authentication",
+    "description": "The product records password hashes in a data store, receives a hash of a password from a client, and compares the supplied hash to the hash obtained from the data store.\n\n\n            ",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.383030",
+    "last_modified": "2025-08-16T11:07:05.383033",
+    "raw_data": {
+      "cweId": "836",
+      "name": "Use of Password Hash Instead of Password for Authentication",
+      "description": "The product records password hashes in a data store, receives a hash of a password from a client, and compares the supplied hash to the hash obtained from the data store.\n\n\n            ",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "862",
+    "name": "Missing Authorization",
+    "description": "The product does not perform an authorization check when an actor attempts to access a resource or perform an action.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.383040",
+    "last_modified": "2025-08-16T11:07:05.383043",
+    "raw_data": {
+      "cweId": "862",
+      "name": "Missing Authorization",
+      "description": "The product does not perform an authorization check when an actor attempts to access a resource or perform an action.",
+      "status": "Incomplete",
+      "abstraction": "Class",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "863",
+    "name": "Incorrect Authorization",
+    "description": "The product performs an authorization check when an actor attempts to access a resource or perform an action, but it does not correctly perform the check.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.383050",
+    "last_modified": "2025-08-16T11:07:05.383053",
+    "raw_data": {
+      "cweId": "863",
+      "name": "Incorrect Authorization",
+      "description": "The product performs an authorization check when an actor attempts to access a resource or perform an action, but it does not correctly perform the check.",
+      "status": "Incomplete",
+      "abstraction": "Class",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        },
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "923",
+    "name": "Improper Restriction of Communication Channel to Intended Endpoints",
+    "description": "The product establishes a communication channel to (or from) an endpoint for privileged or protected operations, but it does not properly ensure that it is communicating with the correct endpoint.\n\n\n            ",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.383061",
+    "last_modified": "2025-08-16T11:07:05.383063",
+    "raw_data": {
+      "cweId": "923",
+      "name": "Improper Restriction of Communication Channel to Intended Endpoints",
+      "description": "The product establishes a communication channel to (or from) an endpoint for privileged or protected operations, but it does not properly ensure that it is communicating with the correct endpoint.\n\n\n            ",
+      "status": "Incomplete",
+      "abstraction": "Class",
+      "structure": "Simple",
+      "mitigations": [],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "924",
+    "name": "Improper Enforcement of Message Integrity During Transmission in a Communication Channel",
+    "description": "The product establishes a communication channel with an endpoint and receives a message from that endpoint, but it does not sufficiently ensure that the message was not modified during transmission.\n\nAttackers might be able to modify the message and spoof the endpoint by interfering with the data as it crosses the network or by redirecting the connection to a system under their control.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.383071",
+    "last_modified": "2025-08-16T11:07:05.383073",
+    "raw_data": {
+      "cweId": "924",
+      "name": "Improper Enforcement of Message Integrity During Transmission in a Communication Channel",
+      "description": "The product establishes a communication channel with an endpoint and receives a message from that endpoint, but it does not sufficiently ensure that the message was not modified during transmission.\n\nAttackers might be able to modify the message and spoof the endpoint by interfering with the data as it crosses the network or by redirecting the connection to a system under their control.",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "927",
+    "name": "Use of Implicit Intent for Sensitive Communication",
+    "description": "The Android application uses an implicit intent for transmitting sensitive data to other applications.\n\n\n            ",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.383081",
+    "last_modified": "2025-08-16T11:07:05.383084",
+    "raw_data": {
+      "cweId": "927",
+      "name": "Use of Implicit Intent for Sensitive Communication",
+      "description": "The Android application uses an implicit intent for transmitting sensitive data to other applications.\n\n\n            ",
+      "status": "Incomplete",
+      "abstraction": "Variant",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "939",
+    "name": "Improper Authorization in Handler for Custom URL Scheme",
+    "description": "The product uses a handler for a custom URL scheme, but it does not properly restrict which actors can invoke the handler using the scheme.\n\nMobile platforms and other architectures allow the use of custom URL schemes to facilitate communication between applications. In the case of iOS, this is the only method to do inter-application communication. The implementation is at the developer's discretion which may open security flaws in the application. An example could be potentially dangerous functionality such as modifying files through a custom URL scheme.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.383092",
+    "last_modified": "2025-08-16T11:07:05.383095",
+    "raw_data": {
+      "cweId": "939",
+      "name": "Improper Authorization in Handler for Custom URL Scheme",
+      "description": "The product uses a handler for a custom URL scheme, but it does not properly restrict which actors can invoke the handler using the scheme.\n\nMobile platforms and other architectures allow the use of custom URL schemes to facilitate communication between applications. In the case of iOS, this is the only method to do inter-application communication. The implementation is at the developer's discretion which may open security flaws in the application. An example could be potentially dangerous functionality such as modifying files through a custom URL scheme.",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "940",
+    "name": "Improper Verification of Source of a Communication Channel",
+    "description": "The product establishes a communication channel to handle an incoming request that has been initiated by an actor, but it does not properly verify that the request is coming from the expected origin.\n\nWhen an attacker can successfully establish a communication channel from an untrusted origin, the attacker may be able to gain privileges and access unexpected functionality.",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.383102",
+    "last_modified": "2025-08-16T11:07:05.383105",
+    "raw_data": {
+      "cweId": "940",
+      "name": "Improper Verification of Source of a Communication Channel",
+      "description": "The product establishes a communication channel to handle an incoming request that has been initiated by an actor, but it does not properly verify that the request is coming from the expected origin.\n\nWhen an attacker can successfully establish a communication channel from an untrusted origin, the attacker may be able to gain privileges and access unexpected functionality.",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [
+        {
+          "description": "\n               ",
+          "effectiveness": "Unknown"
+        }
+      ],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  },
+  {
+    "cwe_id": "941",
+    "name": "Incorrectly Specified Destination in a Communication Channel",
+    "description": "The product creates a communication channel to initiate an outgoing request to an actor, but it does not correctly specify the intended destination for that actor.\n\n\n            ",
+    "category": null,
+    "ros_component": null,
+    "likelihood": null,
+    "status": "Incomplete",
+    "created_date": "2025-08-16T11:07:05.383113",
+    "last_modified": "2025-08-16T11:07:05.383116",
+    "raw_data": {
+      "cweId": "941",
+      "name": "Incorrectly Specified Destination in a Communication Channel",
+      "description": "The product creates a communication channel to initiate an outgoing request to an actor, but it does not correctly specify the intended destination for that actor.\n\n\n            ",
+      "status": "Incomplete",
+      "abstraction": "Base",
+      "structure": "Simple",
+      "mitigations": [],
+      "examples": [],
+      "source": "ROS_CWE_IDS"
+    }
+  }
+]

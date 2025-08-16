@@ -1,0 +1,23 @@
+{
+  "last_updated": "2025-08-11T21:07:00.885175",
+  "total_cves": 183,
+  "sources": [
+    "NVD API"
+  ],
+  "statistics": {
+    "by_severity": {
+      "Critical": 25,
+      "High": 58,
+      "Medium": 49,
+      "Low": 1
+    },
+    "by_keyword": {
+      "ros": 157,
+      "ament": 24,
+      "dds": 51,
+      "rosbag": 2,
+      "rcl": 2,
+      "rostopic": 2
+    }
+  }
+}

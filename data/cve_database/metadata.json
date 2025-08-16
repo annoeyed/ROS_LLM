@@ -1,0 +1,27 @@
+{
+  "last_updated": "2025-08-13T10:33:16.711601",
+  "total_cves": 61,
+  "sources": [
+    "NVD API (재구축)"
+  ],
+  "statistics": {
+    "by_severity": {
+      "Critical": 16,
+      "High": 29,
+      "Medium": 7,
+      "Low": 0
+    },
+    "by_keyword": {
+      "ros": 32,
+      "dds": 5,
+      "sros": 5,
+      "ament": 14,
+      "tf": 2,
+      "rcl": 1,
+      "moveit": 21,
+      "navigation": 18,
+      "rostopic": 2,
+      "rosbag": 1
+    }
+  }
+}

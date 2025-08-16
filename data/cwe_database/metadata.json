@@ -1,0 +1,16 @@
+{
+  "last_updated": "2025-08-16T11:44:05.195843",
+  "total_cwes": 176,
+  "sources": [
+    "NVD CWE API (재구축)",
+    "NVD CWE API"
+  ],
+  "statistics": {
+    "by_category": {
+      "input_validation": 2,
+      "file_operations": 2
+    },
+    "by_component": {},
+    "total_unique": 176
+  }
+}

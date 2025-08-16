@@ -1,0 +1,7 @@
+pydantic>=2.6.0,<3
+numpy>=1.24.0,<2
+requests>=2.31.0
+python-dotenv>=1.0.0
+lxml>=4.9.0
+# faiss는 선택적이며, 미설치 시 numpy 코사인 검색으로 대체됩니다.
+
