@@ -35,8 +35,9 @@ def main():
     print("1. 새로 구축 (기존 데이터 삭제)")
     print("2. 업데이트 (기존 데이터 유지)")
     print("3. 통계 보기")
+    print("4. 기존 CWE에 카테고리 할당")
     
-    choice = input("선택 (1-3): ").strip()
+    choice = input("선택 (1-4): ").strip()
     
     try:
         collector = ROSCWECollector()
@@ -72,6 +73,16 @@ def main():
             
         elif choice == "3":
             collector.show_statistics()
+            
+        elif choice == "4":
+            print("\n기존 CWE에 카테고리를 할당합니다...")
+            updated_count = collector.cwe_db.assign_categories_to_existing_cwes()
+            
+            if updated_count > 0:
+                print(f"\n카테고리 할당 완료: {updated_count}개 CWE 업데이트")
+                print("업데이트된 통계를 확인하려면 옵션 3을 선택하세요.")
+            else:
+                print("모든 CWE에 이미 카테고리가 할당되어 있습니다.")
             
         else:
             print("잘못된 선택입니다.")

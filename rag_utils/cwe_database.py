@@ -98,6 +98,74 @@ class CWEDatabase:
             "raw_data": cwe_data
         }
     
+    def assign_categories_to_existing_cwes(self):
+        """기존 CWE 데이터에 카테고리 자동 할당"""
+        print("기존 CWE 데이터에 카테고리 자동 할당 중...")
+        
+        updated_count = 0
+        
+        for cwe in self.cwes:
+            if not cwe.get('category'):  # 카테고리가 없는 경우만
+                cwe_id = cwe['cwe_id']
+                name = cwe['name'].lower()
+                description = cwe['description'].lower()
+                
+                # 설정된 카테고리 매핑에 따라 자동 할당
+                assigned_category = None
+                assigned_component = None
+                
+                # 카테고리별 매핑 확인
+                for category, cwe_ids in Config.ROS_CWE_CATEGORIES.items():
+                    if cwe_id in cwe_ids:
+                        assigned_category = category
+                        break
+                
+                # 컴포넌트별 매핑 확인
+                for component, cwe_ids in Config.ROS_COMPONENT_CWE_MAPPING.items():
+                    if cwe_id in cwe_ids:
+                        assigned_component = component
+                        break
+                
+                # 키워드 기반 자동 분류 (카테고리가 할당되지 않은 경우)
+                if not assigned_category:
+                    if any(kw in name or kw in description for kw in ['authentication', 'auth', 'login', 'password']):
+                        assigned_category = 'authentication'
+                    elif any(kw in name or kw in description for kw in ['authorization', 'permission', 'access control', 'privilege']):
+                        assigned_category = 'authorization'
+                    elif any(kw in name or kw in description for kw in ['input', 'validation', 'sanitize', 'filter']):
+                        assigned_category = 'input_validation'
+                    elif any(kw in name or kw in description for kw in ['memory', 'buffer', 'overflow', 'underflow']):
+                        assigned_category = 'memory_management'
+                    elif any(kw in name or kw in description for kw in ['file', 'path', 'traversal', 'directory']):
+                        assigned_category = 'file_operations'
+                    elif any(kw in name or kw in description for kw in ['race', 'condition', 'concurrent', 'thread']):
+                        assigned_category = 'race_conditions'
+                    elif any(kw in name or kw in description for kw in ['network', 'communication', 'protocol']):
+                        assigned_category = 'network_security'
+                    elif any(kw in name or kw in description for kw in ['cryptography', 'encryption', 'hash', 'ssl', 'tls']):
+                        assigned_category = 'cryptography'
+                    elif any(kw in name or kw in description for kw in ['log', 'logging', 'audit']):
+                        assigned_category = 'logging'
+                    elif any(kw in name or kw in description for kw in ['error', 'exception', 'handling']):
+                        assigned_category = 'error_handling'
+                
+                # 할당된 카테고리와 컴포넌트를 CWE 데이터에 추가
+                if assigned_category:
+                    cwe['category'] = assigned_category
+                    updated_count += 1
+                
+                if assigned_component:
+                    cwe['ros_component'] = assigned_component
+        
+        if updated_count > 0:
+            self._update_statistics()
+            self.save_database()
+            print(f"카테고리 할당 완료: {updated_count}개 CWE 업데이트")
+        else:
+            print("업데이트할 CWE가 없습니다.")
+        
+        return updated_count
+
     def _update_statistics(self):
         """통계 정보 업데이트"""
         # 카테고리별 통계

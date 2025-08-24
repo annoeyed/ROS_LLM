@@ -43,8 +43,7 @@ class OpenAIClient(AIClient):
         
         try:
             import openai
-            openai.api_key = self.api_key
-            self.client = openai
+            self.client = openai.OpenAI(api_key=self.api_key)
         except ImportError:
             self.logger.error("openai 패키지가 설치되지 않았습니다. pip install openai로 설치하세요.")
             self.client = None
@@ -55,7 +54,7 @@ class OpenAIClient(AIClient):
             return self._fallback_response(prompt, "OpenAI API를 사용할 수 없습니다.")
         
         try:
-            response = self.client.ChatCompletion.create(
+            response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[
                     {"role": "system", "content": "당신은 ROS 보안 전문가입니다. 보안을 고려한 정확하고 실용적인 답변을 제공하세요."},

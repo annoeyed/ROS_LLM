@@ -7,8 +7,15 @@
   ],
   "statistics": {
     "by_category": {
-      "input_validation": 2,
-      "file_operations": 2
+      "network_security": 6,
+      "file_operations": 25,
+      "error_handling": 2,
+      "memory_management": 19,
+      "input_validation": 42,
+      "race_conditions": 6,
+      "authorization": 22,
+      "authentication": 48,
+      "logging": 2
     },
     "by_component": {},
     "total_unique": 176

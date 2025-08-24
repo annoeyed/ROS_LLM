@@ -34,6 +34,57 @@ class ROSCWECollector:
         """ROS 관련 CWE 수집 (기존 메서드명 유지)"""
         return self.collect_all_ros_cwes()
     
+    def _assign_categories_to_cwe(self, cwe_data: Dict[str, Any]) -> Dict[str, Any]:
+        """CWE에 자동으로 카테고리 할당"""
+        cwe_id = cwe_data.get('cweId', '')
+        name = cwe_data.get('name', '').lower()
+        description = cwe_data.get('description', '').lower()
+        
+        # 설정된 카테고리 매핑에 따라 자동 할당
+        assigned_category = None
+        assigned_component = None
+        
+        # 카테고리별 매핑 확인
+        for category, cwe_ids in Config.ROS_CWE_CATEGORIES.items():
+            if cwe_id in cwe_ids:
+                assigned_category = category
+                break
+        
+        # 컴포넌트별 매핑 확인
+        for component, cwe_ids in Config.ROS_COMPONENT_CWE_MAPPING.items():
+            if cwe_id in cwe_ids:
+                assigned_component = component
+                break
+        
+        # 키워드 기반 자동 분류 (카테고리가 할당되지 않은 경우)
+        if not assigned_category:
+            if any(kw in name or kw in description for kw in ['authentication', 'auth', 'login', 'password']):
+                assigned_category = 'authentication'
+            elif any(kw in name or kw in description for kw in ['authorization', 'permission', 'access control', 'privilege']):
+                assigned_category = 'authorization'
+            elif any(kw in name or kw in description for kw in ['input', 'validation', 'sanitize', 'filter']):
+                assigned_category = 'input_validation'
+            elif any(kw in name or kw in description for kw in ['memory', 'buffer', 'overflow', 'underflow']):
+                assigned_category = 'memory_management'
+            elif any(kw in name or kw in description for kw in ['file', 'path', 'traversal', 'directory']):
+                assigned_category = 'file_operations'
+            elif any(kw in name or kw in description for kw in ['race', 'condition', 'concurrent', 'thread']):
+                assigned_category = 'race_conditions'
+            elif any(kw in name or kw in description for kw in ['network', 'communication', 'protocol']):
+                assigned_category = 'network_security'
+            elif any(kw in name or kw in description for kw in ['cryptography', 'encryption', 'hash', 'ssl', 'tls']):
+                assigned_category = 'cryptography'
+            elif any(kw in name or kw in description for kw in ['log', 'logging', 'audit']):
+                assigned_category = 'logging'
+            elif any(kw in name or kw in description for kw in ['error', 'exception', 'handling']):
+                assigned_category = 'error_handling'
+        
+        # 할당된 카테고리와 컴포넌트를 CWE 데이터에 추가
+        cwe_data['category'] = assigned_category
+        cwe_data['ros_component'] = assigned_component
+        
+        return cwe_data
+
     def collect_all_ros_cwes(self) -> List[Dict[str, Any]]:
         """모든 ROS 관련 CWE 수집"""
         print("ROS 관련 CWE 수집 시작...")
@@ -45,9 +96,11 @@ class ROSCWECollector:
         for cwe_id in Config.ROS_CWE_IDS:
             cwe_data = self.search_cwe_by_id(cwe_id)
             if cwe_data:
+                # 카테고리 자동 할당
+                cwe_data = self._assign_categories_to_cwe(cwe_data)
                 cwe_data['source'] = 'ROS_CWE_IDS'
                 all_cwes.append(cwe_data)
-                print(f"  ✓ {cwe_id} 수집 완료")
+                print(f"  ✓ {cwe_id} 수집 완료 (카테고리: {cwe_data.get('category', 'N/A')})")
             else:
                 print(f"  ✗ {cwe_id} 수집 실패")
             
@@ -60,12 +113,18 @@ class ROSCWECollector:
         print("\n2. 카테고리별 CWE 수집 중...")
         for category in Config.ROS_CWE_CATEGORIES.keys():
             category_cwes = self.search_cwes_by_category(category)
+            # 카테고리 할당
+            for cwe in category_cwes:
+                cwe = self._assign_categories_to_cwe(cwe)
             all_cwes.extend(category_cwes)
         
         # 3. 컴포넌트별 CWE 수집 (보완)
         print("\n3. 컴포넌트별 CWE 수집 중...")
         for component in Config.ROS_COMPONENT_CWE_MAPPING.keys():
             component_cwes = self.search_ros_component_cwes(component)
+            # 컴포넌트 할당
+            for cwe in component_cwes:
+                cwe = self._assign_categories_to_cwe(cwe)
             all_cwes.extend(component_cwes)
         
         # 4. 중복 제거
@@ -79,6 +138,17 @@ class ROSCWECollector:
                 seen_ids.add(cwe_id)
         
         print(f"\n총 {len(unique_cwes)}개의 고유한 ROS 관련 CWE 발견!")
+        
+        # 카테고리별 통계 출력
+        category_stats = {}
+        for cwe in unique_cwes:
+            category = cwe.get('category', 'uncategorized')
+            category_stats[category] = category_stats.get(category, 0) + 1
+        
+        print("\n=== 카테고리별 분류 통계 ===")
+        for category, count in sorted(category_stats.items()):
+            print(f"{category}: {count}개")
+        
         return unique_cwes
     
     def validate_ros_relevance(self, cwe_data: Dict[str, Any]) -> bool:

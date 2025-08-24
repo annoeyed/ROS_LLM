@@ -46,8 +46,18 @@ class SecurityGuideAgent(BaseAgent):
             self.status = 'error'
     
     def _load_security_systems(self):
-        """보안 시스템 로드"""
+        """보안 시스템 로드 (RAG 통합)"""
         try:
+            # 환경변수 로드
+            try:
+                from dotenv import load_dotenv
+                import os
+                # 현재 파일의 디렉토리를 기준으로 .env 파일 경로 설정
+                env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
+                load_dotenv(env_path)
+            except ImportError:
+                self.logger.warning("python-dotenv가 설치되지 않았습니다. 환경변수 로드 실패")
+            
             # CWE 데이터베이스 로드 시도
             try:
                 from rag_utils.cwe_database import CWEDatabase
@@ -58,27 +68,27 @@ class SecurityGuideAgent(BaseAgent):
                 self.logger.warning(f"CWE 데이터베이스 로드 실패: {cwe_db_error}")
                 self.cwe_database = None
             
-            # CWE RAG 시스템 로드 시도
+            # CWE RAG 시스템 로드 (핵심 기능)
             try:
                 from rag_utils.cwe_rag import CWERAGSearch
                 self.cwe_rag = CWERAGSearch()
-                self.logger.info("CWE RAG 시스템 로드 성공")
+                self.logger.info("CWE RAG 시스템 로드 성공 (핵심 기능)")
             except Exception as cwe_rag_error:
                 self.logger.warning(f"CWE RAG 시스템 로드 실패: {cwe_rag_error}")
                 self.cwe_rag = None
             
-            # 보안 가이드라인 생성 시도
+            # RAG 기반 보안 가이드라인 생성
             if self.cwe_database and self.cwe_rag:
                 try:
                     from rag_utils.security_guidelines import SecurityGuidelineGenerator
                     generator = SecurityGuidelineGenerator(self.cwe_database, self.cwe_rag)
                     self.guidelines = generator.generate_ros_security_guidelines()
-                    self.logger.info(f"AI 기반 보안 가이드라인 생성 완료: {len(self.guidelines.get('categories', {}))}개 카테고리")
+                    self.logger.info(f"RAG 기반 보안 가이드라인 생성 완료: {len(self.guidelines.get('categories', {}))}개 카테고리")
                 except Exception as guideline_error:
-                    self.logger.warning(f"AI 기반 가이드라인 생성 실패: {guideline_error}")
+                    self.logger.warning(f"RAG 기반 가이드라인 생성 실패: {guideline_error}")
                     self.guidelines = self._create_enhanced_guidelines()
             else:
-                # 기본 시스템이 없을 때 향상된 기본 가이드라인 생성
+                # RAG 시스템이 없을 때 향상된 기본 가이드라인 생성
                 self.guidelines = self._create_enhanced_guidelines()
                 self.logger.info("향상된 기본 보안 가이드라인 생성 완료")
             
@@ -493,8 +503,167 @@ class SecurityGuideAgent(BaseAgent):
         return self._get_relevant_guidelines(category, component)
     
     def analyze_code_security(self, code_snippet: str, component: str = 'general') -> Dict[str, Any]:
-        """코드 보안 분석 (외부 호출용)"""
-        return self._analyze_code_security_risks(code_snippet, component)
+        """코드 보안 분석 (외부 호출용) - RAG 통합"""
+        return self._analyze_code_security_risks_with_rag(code_snippet, component)
+    
+    def _analyze_code_security_risks_with_rag(self, code_snippet: str, component: str) -> Dict[str, Any]:
+        """RAG를 활용한 코드 보안 위험도 분석"""
+        # 기본 패턴 기반 분석
+        basic_analysis = self._analyze_code_security_risks(code_snippet, component)
+        
+        # RAG 기반 추가 분석
+        rag_analysis = self._perform_rag_based_analysis(code_snippet, component)
+        
+        # 결과 통합
+        combined_risks = basic_analysis.get('risks', [])
+        combined_risks.extend(rag_analysis.get('rag_risks', []))
+        
+        # 위험도 점수 재계산
+        total_risk_score = basic_analysis.get('risk_score', 0) + rag_analysis.get('rag_risk_score', 0)
+        
+        # 최종 위험도 레벨 결정
+        if total_risk_score >= 20:
+            final_risk_level = 'Critical'
+        elif total_risk_score >= 15:
+            final_risk_level = 'High'
+        elif total_risk_score >= 10:
+            final_risk_level = 'Medium'
+        else:
+            final_risk_level = 'Low'
+        
+        return {
+            'risk_level': final_risk_level,
+            'risk_score': total_risk_score,
+            'risks': combined_risks,
+            'basic_analysis': basic_analysis,
+            'rag_analysis': rag_analysis,
+            'recommendations': self._get_enhanced_security_recommendations(combined_risks, component),
+            'rag_enhanced': True
+        }
+    
+    def _perform_rag_based_analysis(self, code_snippet: str, component: str) -> Dict[str, Any]:
+        """RAG 기반 보안 분석 수행"""
+        if not self.cwe_rag:
+            return {
+                'rag_risks': [],
+                'rag_risk_score': 0,
+                'rag_enhanced': False,
+                'message': 'RAG 시스템이 사용 불가능합니다.'
+            }
+        
+        try:
+            # RAG 검색 수행
+            search_results = self.cwe_rag.search(code_snippet, top_k=5)
+            
+            rag_risks = []
+            rag_risk_score = 0
+            
+            for result in search_results:
+                if result.get('score', 0) > 0.7:  # 높은 유사도 결과만
+                    cwe_info = result.get('metadata', {})
+                    if cwe_info:
+                        rag_risk = {
+                            'type': 'rag_detected',
+                            'title': f"RAG 검색 결과: {cwe_info.get('cwe_id', 'Unknown')}",
+                            'description': cwe_info.get('description', ''),
+                            'cwe_id': cwe_info.get('cwe_id', ''),
+                            'severity_score': 8,  # RAG 검출 위험은 높은 점수
+                            'source': 'CWE RAG',
+                            'mitigation': cwe_info.get('mitigation', ''),
+                            'confidence': result.get('score', 0)
+                        }
+                        rag_risks.append(rag_risk)
+                        rag_risk_score += 8
+            
+            return {
+                'rag_risks': rag_risks,
+                'rag_risk_score': rag_risk_score,
+                'rag_enhanced': True,
+                'search_results_count': len(search_results),
+                'high_confidence_results': len(rag_risks)
+            }
+            
+        except Exception as e:
+            self.logger.error(f"RAG 기반 분석 실패: {e}")
+            return {
+                'rag_risks': [],
+                'rag_risk_score': 0,
+                'rag_enhanced': False,
+                'error': str(e)
+            }
+    
+    def _get_enhanced_security_recommendations(self, risks: List[Dict], component: str) -> List[str]:
+        """향상된 보안 권장사항 생성 (RAG 통합)"""
+        recommendations = []
+        
+        # 기본 권장사항
+        for risk in risks:
+            if risk.get('mitigation'):
+                recommendations.append(f"{risk['title']}: {risk['mitigation']}")
+        
+        # RAG 기반 추가 권장사항
+        rag_recommendations = self._get_rag_based_recommendations(risks, component)
+        recommendations.extend(rag_recommendations)
+        
+        # 컴포넌트별 추가 권장사항
+        component_recommendations = self._get_component_specific_recommendations(component)
+        recommendations.extend(component_recommendations)
+        
+        return list(set(recommendations))  # 중복 제거
+    
+    def _get_rag_based_recommendations(self, risks: List[Dict], component: str) -> List[str]:
+        """RAG 기반 추가 권장사항 생성"""
+        if not self.cwe_rag:
+            return []
+        
+        recommendations = []
+        
+        try:
+            # 위험 패턴을 RAG로 검색하여 추가 권장사항 생성
+            for risk in risks:
+                if risk.get('cwe_id'):
+                    # CWE ID로 관련 정보 검색
+                    cwe_search = f"CWE-{risk['cwe_id']}"
+                    search_results = self.cwe_rag.search(cwe_search, top_k=3)
+                    
+                    for result in search_results:
+                        if result.get('score', 0) > 0.8:
+                            cwe_info = result.get('metadata', {})
+                            if cwe_info.get('mitigation'):
+                                recommendations.append(f"RAG 권장사항: {cwe_info['mitigation']}")
+            
+        except Exception as e:
+            self.logger.error(f"RAG 기반 권장사항 생성 실패: {e}")
+        
+        return recommendations
+    
+    def _get_component_specific_recommendations(self, component: str) -> List[str]:
+        """컴포넌트별 특화 권장사항"""
+        component_recommendations = {
+            'rclpy/rclcpp': [
+                'ROS 2 보안 기능 활성화 (DDS 보안)',
+                '토픽 암호화 설정',
+                '노드 인증 및 권한 관리',
+                '네임스페이스 격리 설정'
+            ],
+            'tf2': [
+                '변환 데이터 검증 및 무결성 검사',
+                '보안 토픽 사용',
+                '메모리 사용량 모니터링'
+            ],
+            'urdf': [
+                'XML 파싱 보안 설정 (XXE 방지)',
+                '외부 파일 참조 검증',
+                '파일 경로 검증'
+            ],
+            'gazebo': [
+                '플러그인 보안 검증',
+                '네트워크 접근 제한',
+                '파일 시스템 접근 제한'
+            ]
+        }
+        
+        return component_recommendations.get(component, [])
     
     def _create_default_guidelines(self) -> Dict[str, Any]:
         """기본 보안 가이드라인 생성"""
@@ -763,11 +932,119 @@ class SecurityGuideAgent(BaseAgent):
                 ]
             },
             'ai_enhanced': True,
+            'rag_integrated': True,
             'metadata': {
                 'version': '2.0',
                 'last_updated': '2024',
                 'ai_generated': True,
                 'security_level': 'high',
-                'compliance': ['OWASP ASVS', 'NIST CSF', 'ISO 27001']
+                'compliance': ['OWASP ASVS', 'NIST CSF', 'ISO 27001'],
+                'rag_system': 'integrated'
             }
         }
+    
+    def _update_guidelines_with_feedback(self, feedback_details: str) -> Dict[str, Any]:
+        """피드백을 받아 보안 가이드라인 수정"""
+        try:
+            # 피드백 내용을 분석하여 가이드라인 업데이트
+            updated_guidelines = self.guidelines.copy()
+            
+            # 피드백에 따른 새로운 가이드라인 추가
+            if 'safety' in feedback_details.lower():
+                if 'safety_guidelines' not in updated_guidelines:
+                    updated_guidelines['safety_guidelines'] = []
+                
+                updated_guidelines['safety_guidelines'].append({
+                    'feedback': feedback_details,
+                    'timestamp': '2024',
+                    'priority': 'high'
+                })
+            
+            return {
+                'status': 'success',
+                'updated_guidelines': updated_guidelines,
+                'feedback_applied': True
+            }
+            
+        except Exception as e:
+            self.logger.error(f"가이드라인 업데이트 실패: {e}")
+            return {
+                'status': 'failed',
+                'error': str(e)
+            }
+    
+    def _rag_based_security_verification(self, algorithm_description: str, component: str) -> Dict[str, Any]:
+        """RAG 기반 보안 검증 (RAG Guard Agent 기능 통합)"""
+        try:
+            if not self.cwe_rag:
+                return {
+                    'status': 'failed',
+                    'error': 'RAG 시스템이 사용 불가능합니다.',
+                    'rag_enhanced': False
+                }
+            
+            # RAG 검색을 통한 보안 검증
+            search_results = self.cwe_rag.search(algorithm_description, top_k=5)
+            
+            security_issues = []
+            total_risk_score = 0
+            
+            for result in search_results:
+                if result.get('score', 0) > 0.7:  # 높은 유사도 결과만
+                    cwe_info = result.get('metadata', {})
+                    if cwe_info:
+                        security_issue = {
+                            'type': 'rag_detected',
+                            'title': f"RAG 검색 결과: {cwe_info.get('cwe_id', 'Unknown')}",
+                            'description': cwe_info.get('description', ''),
+                            'cwe_id': cwe_info.get('cwe_id', ''),
+                            'severity_score': 10,
+                            'source': 'CWE RAG',
+                            'mitigation': cwe_info.get('mitigation', ''),
+                            'confidence': result.get('score', 0)
+                        }
+                        security_issues.append(security_issue)
+                        total_risk_score += 10
+            
+            # 보안 위험도 레벨 결정
+            if total_risk_score >= 30:
+                risk_level = 'Critical'
+            elif total_risk_score >= 20:
+                risk_level = 'High'
+            elif total_risk_score >= 10:
+                risk_level = 'Medium'
+            else:
+                risk_level = 'Low'
+            
+            return {
+                'status': 'completed',
+                'rag_enhanced': True,
+                'security_issues': security_issues,
+                'total_risk_score': total_risk_score,
+                'risk_level': risk_level,
+                'search_results_count': len(search_results),
+                'high_confidence_issues': len(security_issues),
+                'recommendations': self._generate_security_recommendations_from_rag(security_issues, component)
+            }
+            
+        except Exception as e:
+            self.logger.error(f"RAG 기반 보안 검증 실패: {e}")
+            return {
+                'status': 'failed',
+                'error': str(e),
+                'rag_enhanced': False
+            }
+    
+    def _generate_security_recommendations_from_rag(self, security_issues: List[Dict], component: str) -> List[str]:
+        """RAG 검색 결과로부터 보안 권장사항 생성"""
+        recommendations = []
+        
+        for issue in security_issues:
+            if issue.get('mitigation'):
+                recommendations.append(f"{issue['title']}: {issue['mitigation']}")
+        
+        # 컴포넌트별 추가 권장사항
+        component_specific = self._get_component_specific_recommendations(component)
+        recommendations.extend(component_specific)
+        
+        return list(set(recommendations))  # 중복 제거

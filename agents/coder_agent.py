@@ -58,6 +58,13 @@ class CoderAgent(BaseAgent):
     def _load_ai_client(self):
         """AI 클라이언트 로드"""
         try:
+            # 환경변수 로드
+            from dotenv import load_dotenv
+            import os
+            # 현재 파일의 디렉토리를 기준으로 .env 파일 경로 설정
+            env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
+            load_dotenv(env_path)
+            
             from rag_utils.ai_client import AIClientFactory
             
             # 환경변수에서 AI 클라이언트 타입 확인

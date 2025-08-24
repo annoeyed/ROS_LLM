@@ -65,6 +65,13 @@ class PlannerAgent(BaseAgent):
     def _load_ai_client(self):
         """AI 클라이언트 로드"""
         try:
+            # 환경변수 로드
+            from dotenv import load_dotenv
+            import os
+            # 현재 파일의 디렉토리를 기준으로 .env 파일 경로 설정
+            env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
+            load_dotenv(env_path)
+            
             from rag_utils.ai_client import AIClientFactory
             
             # 환경변수에서 AI 클라이언트 타입 확인
@@ -85,6 +92,38 @@ class PlannerAgent(BaseAgent):
             except Exception as mock_e:
                 self.logger.error(f"Mock AI 클라이언트 로드도 실패: {mock_e}")
                 self.ai_client = None
+    
+    def analyze_request(self, user_request: str) -> Dict[str, Any]:
+        """사용자 요청 분석 및 코드 생성 계획 수립 (외부 호출용)"""
+        try:
+            self.logger.info(f"사용자 요청 분석 시작: {user_request[:100]}...")
+            
+            # 1. 요청 분석
+            analysis_result = self._analyze_user_request(user_request)
+            
+            # 2. 계획 수립
+            planning_result = self._create_code_generation_plan(analysis_result)
+            
+            # 3. 보안 요구사항 도출
+            security_requirements = self._extract_security_requirements(analysis_result)
+            
+            # 4. 결과 통합
+            final_result = {
+                'analysis': analysis_result,
+                'planning': planning_result,
+                'security_requirements': security_requirements,
+                'status': 'completed'
+            }
+            
+            self.logger.info("사용자 요청 분석 및 계획 수립 완료")
+            return final_result
+            
+        except Exception as e:
+            self.logger.error(f"요청 분석 실패: {e}")
+            return {
+                'status': 'failed',
+                'error': str(e)
+            }
     
     def process_message(self, message: AgentMessage) -> AgentMessage:
         """메시지 처리 - 사용자 요청 분석 및 계획 수립"""
@@ -176,100 +215,180 @@ class PlannerAgent(BaseAgent):
     
     def _analyze_user_request(self, user_request: str) -> Dict[str, Any]:
         """사용자 요청 분석"""
-        analysis = {
-            'ros_components': [],
-            'security_requirements': [],
-            'complexity_level': 'basic',
-            'estimated_effort': 'low',
-            'recommended_patterns': []
-        }
+        try:
+            analysis = {
+                'request_type': 'unknown',
+                'ros_components': [],
+                'security_level': 'medium',
+                'complexity': 'medium',
+                'estimated_lines': 0,
+                'dependencies': [],
+                'patterns': []
+            }
+            
+            # ROS 컴포넌트 패턴 매칭
+            for pattern_name, pattern in self.ros_patterns.items():
+                if re.search(pattern, user_request, re.IGNORECASE):
+                    analysis['ros_components'].append(pattern_name)
         
-        # ROS 컴포넌트 분석
-        for component, pattern in self.ros_patterns.items():
-            if re.search(pattern, user_request, re.IGNORECASE):
-                analysis['ros_components'].append(component)
+            # 보안 레벨 결정
+            security_matches = 0
+            for pattern_name, pattern in self.security_patterns.items():
+                if re.search(pattern, user_request, re.IGNORECASE):
+                    security_matches += 1
+            
+            if security_matches >= 3:
+                analysis['security_level'] = 'high'
+            elif security_matches >= 1:
+                analysis['security_level'] = 'medium'
+            else:
+                analysis['security_level'] = 'low'
+            
+            # 복잡도 추정
+            if len(analysis['ros_components']) >= 4:
+                analysis['complexity'] = 'high'
+                analysis['estimated_lines'] = 200
+            elif len(analysis['ros_components']) >= 2:
+                analysis['complexity'] = 'medium'
+                analysis['estimated_lines'] = 100
+            else:
+                analysis['complexity'] = 'low'
+                analysis['estimated_lines'] = 50
+            
+            # 의존성 추정
+            if 'node' in analysis['ros_components']:
+                analysis['dependencies'].extend(['rclpy', 'std_msgs'])
+            if 'camera' in analysis['ros_components']:
+                analysis['dependencies'].extend(['sensor_msgs', 'cv_bridge'])
+            if 'control' in analysis['ros_components']:
+                analysis['dependencies'].extend(['geometry_msgs', 'nav_msgs'])
         
-        # 보안 요구사항 분석
-        for security, pattern in self.security_patterns.items():
-            if re.search(pattern, user_request, re.IGNORECASE):
-                analysis['security_requirements'].append(security)
-        
-        # 복잡도 레벨 평가
-        component_count = len(analysis['ros_components'])
-        security_count = len(analysis['security_requirements'])
-        
-        if component_count > 5 or security_count > 3:
-            analysis['complexity_level'] = 'high'
-            analysis['estimated_effort'] = 'high'
-        elif component_count > 2 or security_count > 1:
-            analysis['complexity_level'] = 'medium'
-            analysis['estimated_effort'] = 'medium'
-        
-        # 권장 패턴 추천
-        if 'node' in analysis['ros_components']:
-            analysis['recommended_patterns'].append('basic_node')
-        if 'topic' in analysis['ros_components']:
-            analysis['recommended_patterns'].append('publisher_subscriber')
-        if 'safety' in analysis['security_requirements']:
-            analysis['recommended_patterns'].append('safety_monitoring')
-        
-        return analysis
+            return analysis
+            
+        except Exception as e:
+            self.logger.error(f"요청 분석 실패: {e}")
+            return {
+                'request_type': 'unknown',
+                'ros_components': [],
+                'security_level': 'medium',
+                'complexity': 'medium',
+                'estimated_lines': 50,
+                'dependencies': ['rclpy', 'std_msgs'],
+                'patterns': []
+            }
     
     def _create_code_generation_plan(self, analysis: Dict[str, Any]) -> Dict[str, Any]:
         """코드 생성 계획 수립"""
-        plan = {
-            'phases': [],
-            'estimated_time': '1-2 hours',
-            'required_agents': ['SecurityGuideAgent', 'CoderAgent'],
-            'security_checks': [],
-            'testing_approach': []
-        }
+        try:
+            plan = {
+                'required_agents': ['planner', 'agent', 'security_guide', 'coder', 'simulation'],
+                'estimated_time': '30분',
+                'phases': [
+                    {
+                        'phase': 1,
+                        'name': '요청 분석 및 계획 수립',
+                        'duration': '5분',
+                        'description': '사용자 요청 분석 및 코드 생성 계획 수립'
+                    },
+                    {
+                        'phase': 2,
+                        'name': '보안 가이드라인 생성',
+                        'duration': '5분',
+                        'description': 'CWE 기반 보안 가이드라인 및 RAG 검증'
+                    },
+                    {
+                        'phase': 3,
+                        'name': '코드 생성',
+                        'duration': '10분',
+                        'description': '보안 가이드라인을 반영한 ROS 코드 생성'
+                    },
+                    {
+                        'phase': 4,
+                        'name': '시뮬레이션 및 검증',
+                        'duration': '10분',
+                        'description': '코드 시뮬레이션 및 Oracle 검증'
+                    }
+                ],
+                'security_checks': [
+                    '입력 검증',
+                    '접근 제어',
+                    '데이터 보호',
+                    '로깅 및 모니터링'
+                ],
+                'testing_approach': [
+                    '단위 테스트',
+                    '통합 테스트',
+                    '보안 테스트',
+                    '성능 테스트'
+                ],
+                'risk_assessment': 'medium',
+                'mitigation_strategies': [
+                    '보안 코딩 표준 준수',
+                    '정적 분석 도구 사용',
+                    '정기적인 보안 검토'
+                ]
+            }
+            
+            # 분석 결과에 따른 계획 조정
+            if analysis['security_level'] == 'high':
+                plan['phases'][1]['duration'] = '8분'
+                plan['security_checks'].extend(['암호화', '인증', '권한 관리'])
+            
+            if analysis['complexity'] == 'high':
+                plan['estimated_time'] = '45분'
+                plan['phases'][2]['duration'] = '15분'
+                plan['phases'][3]['duration'] = '15분'
         
-        # 단계별 계획 수립
-        if analysis['complexity_level'] == 'basic':
-            plan['phases'] = [
-                {'phase': 1, 'name': '보안 요구사항 분석', 'duration': '30min'},
-                {'phase': 2, 'name': '기본 코드 생성', 'duration': '45min'},
-                {'phase': 3, 'name': '보안 검증', 'duration': '15min'}
-            ]
-        elif analysis['complexity_level'] == 'medium':
-            plan['phases'] = [
-                {'phase': 1, 'name': '보안 요구사항 분석', 'duration': '45min'},
-                {'phase': 2, 'name': '아키텍처 설계', 'duration': '30min'},
-                {'phase': 3, 'name': '코드 생성', 'duration': '1hour'},
-                {'phase': 4, 'name': '보안 검증', 'duration': '30min'},
-                {'phase': 5, 'name': '테스트', 'duration': '15min'}
-            ]
-        else:  # high complexity
-            plan['phases'] = [
-                {'phase': 1, 'name': '보안 요구사항 분석', 'duration': '1hour'},
-                {'phase': 2, 'name': '상세 아키텍처 설계', 'duration': '1hour'},
-                {'phase': 3, 'name': '코드 생성', 'duration': '2hours'},
-                {'phase': 4, 'name': '보안 검증', 'duration': '1hour'},
-                {'phase': 5, 'name': '통합 테스트', 'duration': '1hour'},
-                {'phase': 6, 'name': '보안 감사', 'duration': '30min'}
-            ]
+            return plan
+            
+        except Exception as e:
+            self.logger.error(f"계획 수립 실패: {e}")
+            return {
+                'required_agents': ['planner', 'security_guide', 'coder', 'simulation'],
+                'estimated_time': '30분',
+                'phases': [],
+                'security_checks': [],
+                'testing_approach': [],
+                'risk_assessment': 'medium',
+                'mitigation_strategies': []
+            }
+    
+    def _extract_security_requirements(self, analysis: Dict[str, Any]) -> List[str]:
+        """보안 요구사항 도출"""
+        requirements = []
         
-        # 보안 검사 항목 추가
-        for security_req in analysis['security_requirements']:
-            if security_req == 'input_validation':
-                plan['security_checks'].append('입력 검증 테스트')
-            elif security_req == 'access_control':
-                plan['security_checks'].append('접근 제어 테스트')
-            elif security_req == 'data_protection':
-                plan['security_checks'].append('데이터 보호 검증')
-            elif security_req == 'logging':
-                plan['security_checks'].append('로깅 및 감사 검증')
+        # 기본 보안 요구사항
+        requirements.extend([
+            '입력 데이터 검증',
+            '접근 권한 관리',
+            '로깅 및 모니터링',
+            '에러 처리'
+        ])
         
-        # 테스트 접근법 정의
-        if analysis['complexity_level'] == 'basic':
-            plan['testing_approach'] = ['단위 테스트', '기본 보안 테스트']
-        elif analysis['complexity_level'] == 'medium':
-            plan['testing_approach'] = ['단위 테스트', '통합 테스트', '보안 테스트', '성능 테스트']
-        else:
-            plan['testing_approach'] = ['단위 테스트', '통합 테스트', '보안 테스트', '성능 테스트', '침투 테스트', '사용성 테스트']
+        # 분석 결과에 따른 추가 요구사항
+        if analysis['security_level'] == 'high':
+            requirements.extend([
+                '데이터 암호화',
+                '사용자 인증',
+                '세션 관리',
+                '보안 헤더 설정'
+            ])
         
-        return plan
+        if 'camera' in analysis['ros_components']:
+            requirements.extend([
+                '이미지 데이터 보안',
+                '개인정보 보호',
+                '데이터 전송 보안'
+            ])
+        
+        if 'control' in analysis['ros_components']:
+            requirements.extend([
+                '제어 명령 검증',
+                '안전 장치 연동',
+                '비상 정지 기능'
+            ])
+        
+        return requirements
     
     def _analyze_requirements(self, requirements: str) -> Dict[str, Any]:
         """요구사항 분석"""
@@ -285,6 +404,10 @@ class PlannerAgent(BaseAgent):
         functional_keywords = ['must', 'should', 'will', 'shall', '해야', '필요', '구현']
         requirements_list = []
         
+        # requirements가 문자열인지 확인
+        if not isinstance(requirements, str):
+            return requirements_list
+        
         sentences = requirements.split('.')
         for sentence in sentences:
             if any(keyword in sentence for keyword in functional_keywords):
@@ -296,6 +419,10 @@ class PlannerAgent(BaseAgent):
         """비기능 요구사항 추출"""
         non_functional_keywords = ['performance', '성능', 'reliability', '신뢰성', 'scalability', '확장성']
         requirements_list = []
+        
+        # requirements가 문자열인지 확인
+        if not isinstance(requirements, str):
+            return requirements_list
         
         sentences = requirements.split('.')
         for sentence in sentences:
@@ -309,6 +436,10 @@ class PlannerAgent(BaseAgent):
         security_keywords = ['security', '보안', 'authentication', '인증', 'authorization', '권한', 'encryption', '암호화']
         requirements_list = []
         
+        # requirements가 문자열인지 확인
+        if not isinstance(requirements, str):
+            return requirements_list
+        
         sentences = requirements.split('.')
         for sentence in sentences:
             if any(keyword in sentence for keyword in security_keywords):
@@ -320,6 +451,10 @@ class PlannerAgent(BaseAgent):
         """제약사항 추출"""
         constraint_keywords = ['constraint', '제약', 'limit', '제한', 'must not', '하지 않아야']
         constraints_list = []
+        
+        # requirements가 문자열인지 확인
+        if not isinstance(requirements, str):
+            return constraints_list
         
         sentences = requirements.split('.')
         for sentence in sentences:
@@ -344,32 +479,21 @@ class PlannerAgent(BaseAgent):
             return self._analyze_user_request(user_request)
         
         try:
-            # AI 프롬프트 구성
-            ai_prompt = f"""
-            다음 ROS 2 개발 요청을 분석하세요:
-            
-            요청: {user_request}
-            
-            다음 형식으로 JSON 응답을 제공하세요:
-            {{
-                "ros_components": ["필요한 ROS 컴포넌트 목록"],
-                "security_requirements": ["보안 요구사항 목록"],
-                "complexity_level": "basic/medium/advanced",
-                "estimated_effort": "low/medium/high",
-                "technical_details": {{
-                    "communication_patterns": ["통신 패턴"],
-                    "data_flows": ["데이터 흐름"],
-                    "security_considerations": ["보안 고려사항"]
-                }}
-            }}
-            """
-            
             # AI 분석 수행
             ai_response = self.ai_client.analyze_content(user_request, "planning")
             
+            # AI 응답이 딕셔너리이고 필요한 키를 포함하는지 확인
             if isinstance(ai_response, dict) and 'ros_components' in ai_response:
-                # AI 응답 파싱 성공
-                return ai_response
+                # AI 응답 파싱 성공 - 기본 분석과 동일한 형식으로 변환
+                return {
+                    'request_type': 'ai_analyzed',
+                    'ros_components': ai_response.get('ros_components', []),
+                    'security_level': 'medium',  # 기본값
+                    'complexity': 'medium',      # 기본값
+                    'estimated_lines': 100,     # 기본값
+                    'dependencies': ['rclpy', 'std_msgs'],  # 기본값
+                    'patterns': []
+                }
             else:
                 # AI 응답 파싱 실패 시 기본 분석 사용
                 return self._analyze_user_request(user_request)
