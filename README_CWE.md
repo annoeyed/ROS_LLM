@@ -81,7 +81,7 @@ python -m rag_utils.cwe_collector --action stats
 - **Authentication**: CWE-287, CWE-288, CWE-290, CWE-295
 - **Authorization**: CWE-285, CWE-862, CWE-863, CWE-2000
 
-### 🛡️ 입력 검증 및 보안
+### 입력 검증 및 보안
 - **Input Validation**: CWE-20, CWE-78, CWE-79, CWE-89, CWE-125
 - **Memory Management**: CWE-119, CWE-787, CWE-125, CWE-190, CWE-191
 

@@ -253,7 +253,7 @@ class AddTwoIntsClient(Node):
             if result.success:
                 self.logger.info(f"✅ 성공: {a} + {b} = {result.result} (응답시간: {result.response_time:.6f}초)")
             else:
-                self.logger.warning(f"❌ 실패: {result.error_message} (코드: {result.error_code})")
+                self.logger.warning(f"실패: {result.error_message} (코드: {result.error_code})")
             
             # 요청 간 간격
             time.sleep(0.1)
@@ -313,12 +313,12 @@ class AddTwoIntsClient(Node):
         if stats['success_rate'] >= 80.0:
             self.logger.info("✅ 성공률 기준 통과 (≥80%)")
         else:
-            self.logger.warning("❌ 성공률 기준 미달")
+            self.logger.warning("성공률 기준 미달")
         
         if stats['successful_requests'] > 0 and stats['avg_response_time'] <= 0.1:
             self.logger.info("✅ 응답 시간 기준 통과 (≤0.1초)")
         else:
-            self.logger.warning("❌ 응답 시간 기준 미달")
+            self.logger.warning("응답 시간 기준 미달")
 
 
 def main():

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Planner Agent
-사용자의 자연어 요청을 분석하여 ROS 코드 생성 계획을 수립하는 Agent
+Agent that analyzes natural language requests from the user and establishes plans for ROS code generation
 """
 
 import os
@@ -12,31 +12,31 @@ from typing import Dict, Any, List, Optional
 from .base_agent import BaseAgent, AgentMessage, AgentTask
 
 class PlannerAgent(BaseAgent):
-    """사용자 요청을 분석하고 코드 생성 계획을 수립하는 Agent"""
+    """Agent that analyzes user requests and establishes code generation plans"""
     
     def __init__(self, agent_id: str = "planner_001"):
         super().__init__(agent_id, "Planner Agent")
         
-        # ROS 관련 키워드 패턴
+        # ROS-related keyword patterns
         self.ros_patterns = {
-            'node': r'\b(node|노드|publisher|subscriber|service|action)\b',
-            'topic': r'\b(topic|토픽|message|데이터|통신)\b',
-            'sensor': r'\b(sensor|센서|camera|카메라|lidar|라이다|imu|gps)\b',
-            'control': r'\b(control|제어|motion|모션|navigation|내비게이션)\b',
-            'safety': r'\b(safety|안전|emergency|비상|stop|정지)\b',
-            'authentication': r'\b(auth|인증|login|로그인|password|비밀번호)\b',
-            'encryption': r'\b(encrypt|암호화|ssl|tls|secure|보안)\b'
+            'node': r'\b(node|publisher|subscriber|service|action)\b',
+            'topic': r'\b(topic|message|data|communication)\b',
+            'sensor': r'\b(sensor|camera|lidar|imu|gps)\b',
+            'control': r'\b(control|motion|navigation)\b',
+            'safety': r'\b(safety|emergency|stop)\b',
+            'authentication': r'\b(auth|login|password)\b',
+            'encryption': r'\b(encrypt|ssl|tls|secure)\b'
         }
         
-        # 보안 관련 키워드 패턴
+        # Security-related keyword patterns
         self.security_patterns = {
-            'input_validation': r'\b(validate|검증|input|입력|sanitize|정제)\b',
-            'access_control': r'\b(access|접근|permission|권한|role|역할)\b',
-            'data_protection': r'\b(protect|보호|privacy|개인정보|encrypt|암호화)\b',
-            'logging': r'\b(log|로그|audit|감사|monitor|모니터링)\b'
+            'input_validation': r'\b(validate|input|sanitize)\b',
+            'access_control': r'\b(access|permission|role)\b',
+            'data_protection': r'\b(protect|privacy|encrypt)\b',
+            'logging': r'\b(log|audit|monitor)\b'
         }
         
-        # 코드 생성 템플릿
+        # Code generation templates
         self.code_templates = {
             'basic_node': 'basic_ros_node',
             'publisher_subscriber': 'pub_sub_pattern',
@@ -46,57 +46,57 @@ class PlannerAgent(BaseAgent):
             'diagnostics': 'diagnostics_pattern'
         }
         
-        # AI 클라이언트 초기화
+        # Initialize AI client
         self.ai_client = None
     
     def _initialize(self):
-        """Planner Agent 초기화"""
+        """Initialize Planner Agent"""
         super()._initialize()
         
         try:
-            # AI 클라이언트 로드
+            # Load AI client
             self._load_ai_client()
-            self.logger.info("AI 클라이언트 로드 완료")
-            self.logger.info("AI 기반 ROS 코드 생성 계획 수립 시스템 초기화 완료")
+            self.logger.info("AI client loaded successfully")
+            self.logger.info("AI-based ROS code generation planning system initialized")
         except Exception as e:
-            self.logger.error(f"AI 클라이언트 로드 실패: {e}")
+            self.logger.error(f"Failed to load AI client: {e}")
             self.status = 'error'
     
     def _load_ai_client(self):
-        """AI 클라이언트 로드"""
+        """Load AI client"""
         try:
-            # 환경변수 로드
+            # Load environment variables
             from dotenv import load_dotenv
             import os
-            # 현재 파일의 디렉토리를 기준으로 .env 파일 경로 설정
+            # Set .env file path based on current file directory
             env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
             load_dotenv(env_path)
             
             from rag_utils.ai_client import AIClientFactory
             
-            # 환경변수에서 AI 클라이언트 타입 확인
+            # Check AI client type from environment variables
             ai_client_type = os.getenv('AI_CLIENT_TYPE', 'mock')
             
-            # AI 클라이언트 생성
+            # Create AI client
             self.ai_client = AIClientFactory.create_client(ai_client_type)
             
-            self.logger.info(f"AI 클라이언트 로드 완료: {ai_client_type}")
+            self.logger.info(f"AI client loaded successfully: {ai_client_type}")
             
         except Exception as e:
-            self.logger.error(f"AI 클라이언트 로드 중 오류: {e}")
-            # AI 클라이언트 로드 실패 시 Mock 클라이언트 사용
+            self.logger.error(f"Error loading AI client: {e}")
+            # Use Mock client if AI client loading fails
             try:
                 from rag_utils.ai_client import MockAIClient
                 self.ai_client = MockAIClient()
-                self.logger.info("Mock AI 클라이언트로 대체")
+                self.logger.info("Fallback to Mock AI client")
             except Exception as mock_e:
-                self.logger.error(f"Mock AI 클라이언트 로드도 실패: {mock_e}")
+                self.logger.error(f"Failed to load Mock AI client: {mock_e}")
                 self.ai_client = None
     
     def analyze_request(self, user_request: str) -> Dict[str, Any]:
-        """사용자 요청 분석 및 코드 생성 계획 수립 (외부 호출용)"""
+        """Analyze user request and establish code generation plan (for external calls)"""
         try:
-            self.logger.info(f"사용자 요청 분석 시작: {user_request[:100]}...")
+            self.logger.info(f"Starting user request analysis: {user_request[:100]}...")
             
             # 1. 요청 분석
             analysis_result = self._analyze_user_request(user_request)

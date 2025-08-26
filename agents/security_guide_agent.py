@@ -11,7 +11,7 @@ import re
 from typing import Dict, Any, List, Optional
 from .base_agent import BaseAgent, AgentMessage, AgentTask
 
-# 상위 디렉토리 경로 추가 (rag_utils 모듈 접근용)
+# Add parent directory path (for accessing rag_utils module)
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 class SecurityGuideAgent(BaseAgent):
@@ -20,12 +20,12 @@ class SecurityGuideAgent(BaseAgent):
     def __init__(self, agent_id: str = "security_guide_001"):
         super().__init__(agent_id, "Security Guide Agent")
         
-        # 보안 가이드라인 생성기 초기화
-        self.guidelines = None  # None으로 초기화하여 _initialize에서 설정
+        # Initialize security guideline generator
+        self.guidelines = None  # Initialize as None to set in _initialize
         self.cwe_database = None
         self.cwe_rag = None
         
-        # 보안 위험도 레벨
+        # Security risk levels
         self.risk_levels = {
             'critical': 4,
             'high': 3,
@@ -34,70 +34,70 @@ class SecurityGuideAgent(BaseAgent):
         }
     
     def _initialize(self):
-        """Security Guide Agent 초기화"""
+        """Initialize Security Guide Agent"""
         super()._initialize()
         
         try:
-            # CWE 데이터베이스 및 RAG 시스템 로드
+            # Load CWE database and RAG system
             self._load_security_systems()
-            self.logger.info("보안 시스템 로드 완료")
+            self.logger.info("Security system loaded successfully")
         except Exception as e:
-            self.logger.error(f"보안 시스템 로드 실패: {e}")
+            self.logger.error(f"Failed to load security system: {e}")
             self.status = 'error'
     
     def _load_security_systems(self):
-        """보안 시스템 로드 (RAG 통합)"""
+        """Load security systems (RAG integration)"""
         try:
-            # 환경변수 로드
+            # Load environment variables
             try:
                 from dotenv import load_dotenv
                 import os
-                # 현재 파일의 디렉토리를 기준으로 .env 파일 경로 설정
+                # Set .env file path based on current file directory
                 env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
                 load_dotenv(env_path)
             except ImportError:
-                self.logger.warning("python-dotenv가 설치되지 않았습니다. 환경변수 로드 실패")
+                self.logger.warning("python-dotenv not installed. Failed to load environment variables")
             
-            # CWE 데이터베이스 로드 시도
+            # Try to load CWE database
             try:
                 from rag_utils.cwe_database import CWEDatabase
                 self.cwe_database = CWEDatabase()
                 self.cwe_database.load_database()
-                self.logger.info("CWE 데이터베이스 로드 성공")
+                self.logger.info("CWE database loaded successfully")
             except Exception as cwe_db_error:
-                self.logger.warning(f"CWE 데이터베이스 로드 실패: {cwe_db_error}")
+                self.logger.warning(f"Failed to load CWE database: {cwe_db_error}")
                 self.cwe_database = None
             
-            # CWE RAG 시스템 로드 (핵심 기능)
+            # Load CWE RAG system (core functionality)
             try:
                 from rag_utils.cwe_rag import CWERAGSearch
-                # 절대 경로로 CWE 인덱스 디렉토리 설정
+                # Set absolute path for CWE index directory
                 cwe_index_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'rag_sources', 'cwe_index')
                 self.cwe_rag = CWERAGSearch(cwe_index_dir)
-                self.logger.info("CWE RAG 시스템 로드 성공 (핵심 기능)")
+                self.logger.info("CWE RAG system loaded successfully (core functionality)")
             except Exception as cwe_rag_error:
-                self.logger.warning(f"CWE RAG 시스템 로드 실패: {cwe_rag_error}")
+                self.logger.warning(f"Failed to load CWE RAG system: {cwe_rag_error}")
                 self.cwe_rag = None
             
-            # RAG 기반 보안 가이드라인 생성
+            # Generate RAG-based security guidelines
             if self.cwe_database and self.cwe_rag:
                 try:
                     from rag_utils.security_guidelines import SecurityGuidelineGenerator
                     generator = SecurityGuidelineGenerator(self.cwe_database, self.cwe_rag)
                     self.guidelines = generator.generate_ros_security_guidelines()
-                    self.logger.info(f"RAG 기반 보안 가이드라인 생성 완료: {len(self.guidelines.get('categories', {}))}개 카테고리")
-                    self.logger.info(f"가이드라인 내용 확인: {type(self.guidelines)}, 키: {list(self.guidelines.keys()) if isinstance(self.guidelines, dict) else 'Not a dict'}")
+                    self.logger.info(f"RAG-based security guidelines generated: {len(self.guidelines.get('categories', {}))} categories")
+                    self.logger.info(f"Guideline content check: {type(self.guidelines)}, keys: {list(self.guidelines.keys()) if isinstance(self.guidelines, dict) else 'Not a dict'}")
                 except Exception as guideline_error:
-                    self.logger.warning(f"RAG 기반 가이드라인 생성 실패: {guideline_error}")
-                    self.logger.warning(f"오류 상세: {type(guideline_error)}, {str(guideline_error)}")
+                    self.logger.warning(f"Failed to generate RAG-based guidelines: {guideline_error}")
+                    self.logger.warning(f"Error details: {type(guideline_error)}, {str(guideline_error)}")
                     self.guidelines = self._create_enhanced_guidelines()
             else:
-                # RAG 시스템이 없을 때 향상된 기본 가이드라인 생성
+                # Generate enhanced basic guidelines when RAG system is not available
                 self.guidelines = self._create_enhanced_guidelines()
-                self.logger.info("향상된 기본 보안 가이드라인 생성 완료")
+                self.logger.info("Enhanced basic security guidelines generated")
             
         except Exception as e:
-            self.logger.error(f"보안 시스템 로드 중 치명적 오류: {e}")
+            self.logger.error(f"Critical error loading security systems: {e}")
             # 최종 대안으로 기본 가이드라인 생성
             self.guidelines = self._create_default_guidelines()
             self.logger.warning("기본 보안 가이드라인을 사용합니다.")

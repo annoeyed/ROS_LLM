@@ -43,7 +43,7 @@ class ValidationResult:
         }
     
     def __str__(self) -> str:
-        status = "✅ 통과" if self.passed else "❌ 실패"
+        status = "통과" if self.passed else "실패"
         return f"[{self.level.value}] {self.rule_name}: {status} - {self.message}"
 
 
@@ -473,7 +473,7 @@ class SecurityChecklist:
         
         self.logger.info(f"검증 완료: {passed_rules}/{total_rules} 규칙 통과")
         if critical_failures > 0:
-            self.logger.warning(f"⚠️ 치명적 오류: {critical_failures}개")
+            self.logger.warning(f"치명적 오류: {critical_failures}개")
         
         return validations
     
@@ -501,7 +501,7 @@ class SecurityChecklist:
             report += str(result) + "\n"
             if result.details:
                 for key, value in result.details.items():
-                    status = "✅" if value else "❌"
+                    status = "통과" if value else "실패"
                     report += f"  - {key}: {status}\n"
             report += "\n"
         
@@ -509,9 +509,9 @@ class SecurityChecklist:
         if critical_failures == 0 and high_failures == 0:
             report += "🎉 모든 중요 규칙이 통과되었습니다!"
         elif critical_failures == 0:
-            report += "⚠️ 치명적 오류는 없지만 높은 위험 요소가 있습니다."
+            report += "치명적 오류는 없지만 높은 위험 요소가 있습니다."
         else:
-            report += "🚨 치명적 보안 오류가 발견되었습니다!"
+            report += "치명적 보안 오류가 발견되었습니다!"
         
         return report
     

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Coder Agent
-AI 기반으로 보안을 고려한 ROS 코드를 생성하는 Agent
+AI-based Agent for generating secure ROS code
 """
 
 import sys
@@ -15,7 +15,7 @@ from .base_agent import BaseAgent, AgentMessage, AgentTask
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 class CoderAgent(BaseAgent):
-    """AI 기반 ROS 코드 생성 Agent"""
+    """AI-based ROS code generation Agent"""
     
     def __init__(self, agent_id: str = "coder_001"):
         super().__init__(agent_id, "Coder Agent")
@@ -244,17 +244,17 @@ class CoderAgent(BaseAgent):
         )
     
     def _generate_ros_code(self, parameters: Dict[str, Any]) -> Dict[str, Any]:
-        """AI 기반 ROS 코드 생성"""
+        """AI-based ROS code generation"""
         requirements = parameters.get('requirements', '')
         component_type = parameters.get('component_type', 'basic_node')
         security_level = parameters.get('security_level', 'medium')
         
         if not requirements:
-            return {'error': '요구사항이 제공되지 않았습니다.'}
+            return {'error': 'Requirements not provided.'}
         
         try:
             if self.ai_client:
-                # AI 기반 코드 생성
+                # AI-based code generation
                 ai_generated_code = self._ai_generate_code(requirements, component_type, security_level)
                 if ai_generated_code and 'error' not in ai_generated_code:
                     return {
@@ -266,7 +266,7 @@ class CoderAgent(BaseAgent):
                         'security_level': security_level
                     }
             
-            # AI 실패 시 템플릿 기반 코드 생성
+            # Fallback to template-based code generation if AI fails
             template_code = self._generate_from_template(requirements, component_type, security_level)
             return {
                 'code': template_code['code'],
@@ -278,100 +278,100 @@ class CoderAgent(BaseAgent):
             }
             
         except Exception as e:
-            self.logger.error(f"코드 생성 실패: {e}")
-            return {'error': f'코드 생성 실패: {str(e)}'}
+            self.logger.error(f"Code generation failed: {e}")
+            return {'error': f'Code generation failed: {str(e)}'}
     
     def _ai_generate_code(self, requirements: str, component_type: str, security_level: str) -> Dict[str, Any]:
-        """AI 기반 코드 생성"""
+        """AI-based code generation"""
         try:
-            # AI 프롬프트 구성 (더 상세하고 구체적으로)
+            # AI prompt composition (more detailed and specific)
             ai_prompt = f"""
-            다음 요구사항에 따라 고품질의 ROS 2 Python 코드를 생성하세요:
+            Generate high-quality ROS 2 Python code according to the following requirements:
             
-            요구사항: {requirements}
-            컴포넌트 타입: {component_type}
-            보안 수준: {security_level}
+            Requirements: {requirements}
+            Component type: {component_type}
+            Security level: {security_level}
             
-            다음을 포함하여 완전하고 안전한 Python 코드를 생성하세요:
+            Generate complete and safe Python code including:
             
-            1. 필요한 import 문 (rclpy, std_msgs, sensor_msgs 등)
-            2. 클래스 정의 및 Node 상속
-            3. 초기화 메서드 (보안 설정 포함)
-            4. 보안 기능:
-               - 입력 검증 및 정제
-               - 에러 처리 및 복구
-               - 보안 로깅 (민감 정보 마스킹)
-               - 인증 및 권한 검증
-               - 데이터 암호화 (필요시)
-            5. 메인 함수 및 예외 처리
-            6. 상세한 주석 및 문서화
-            7. 타입 힌트 사용
+            1. Required import statements (rclpy, std_msgs, sensor_msgs, etc.)
+            2. Class definition and Node inheritance
+            3. Initialization method (including security settings)
+            4. Security features:
+               - Input validation and sanitization
+               - Error handling and recovery
+               - Secure logging (sensitive information masking)
+               - Authentication and authorization
+               - Data encryption (when needed)
+            5. Main function and exception handling
+            6. Detailed comments and documentation
+            7. Type hints usage
             
-            보안 수준별 상세 요구사항:
-            - low: 기본 에러 처리, 로깅
-            - medium: 입력 검증 + 에러 처리 + 보안 로깅 + 기본 인증
-            - high: 모든 보안 기능 + 암호화 + 다중 인증 + 감사 로그
+            Detailed requirements by security level:
+            - low: Basic error handling, logging
+            - medium: Input validation + error handling + secure logging + basic authentication
+            - high: All security features + encryption + multi-factor authentication + audit logs
             
-            ROS 2 보안 모범 사례:
-            - DDS 보안 설정
-            - 토픽 암호화
-            - 노드 네임스페이스 격리
-            - QoS 보안 설정
+            ROS 2 security best practices:
+            - DDS security configuration
+            - Topic encryption
+            - Node namespace isolation
+            - QoS security settings
             
-            다음 JSON 형식으로 응답하세요:
+            Respond in the following JSON format:
             {{
-                "code": "완전한 Python 코드 (실행 가능한 상태)",
+                "code": "Complete Python code (executable state)",
                 "metadata": {{
-                    "description": "상세한 코드 설명",
-                    "dependencies": ["필요한 패키지 목록"],
-                    "usage": "사용법 및 실행 방법",
-                    "security_features": ["구현된 보안 기능 목록"],
-                    "testing_notes": "테스트 시 고려사항",
-                    "deployment_notes": "배포 시 주의사항"
+                    "description": "Detailed code description",
+                    "dependencies": ["List of required packages"],
+                    "usage": "Usage and execution instructions",
+                    "security_features": ["List of implemented security features"],
+                    "testing_notes": "Testing considerations",
+                    "deployment_notes": "Deployment precautions"
                 }},
                 "security_analysis": {{
-                    "vulnerabilities": ["잠재적 취약점"],
-                    "mitigations": ["완화 방안"],
-                    "compliance": ["준수하는 보안 표준"]
+                    "vulnerabilities": ["Potential vulnerabilities"],
+                    "mitigations": ["Mitigation strategies"],
+                    "compliance": ["Security standards compliance"]
                 }},
-                "performance_notes": "성능 최적화 포인트"
+                "performance_notes": "Performance optimization points"
             }}
             
-            코드는 실제 ROS 2 환경에서 실행 가능해야 하며, 보안 모범 사례를 따라야 합니다.
+            The code must be executable in a real ROS 2 environment and follow security best practices.
             """
             
-            # AI 코드 생성 수행
+            # Execute AI code generation
             ai_response = self.ai_client.analyze_content(ai_prompt, "code_generation")
             
             if isinstance(ai_response, dict) and 'code' in ai_response:
-                # AI 응답 검증 및 개선
+                # Validate and improve AI response
                 validated_code = self._validate_and_improve_ai_code(ai_response['code'], security_level)
                 ai_response['code'] = validated_code
                 ai_response['ai_enhanced'] = True
                 ai_response['quality_score'] = self._assess_code_quality(validated_code)
                 
-                self.logger.info(f"AI 기반 코드 생성 성공 (품질 점수: {ai_response['quality_score']})")
+                self.logger.info(f"AI-based code generation successful (quality score: {ai_response['quality_score']})")
                 return ai_response
             else:
-                # AI 응답 파싱 실패
-                self.logger.warning("AI 응답 파싱 실패, 템플릿 기반 생성으로 대체")
-                return {'error': 'AI 응답 파싱 실패'}
+                # AI response parsing failed
+                self.logger.warning("AI response parsing failed, falling back to template-based generation")
+                return {'error': 'AI response parsing failed'}
                 
         except Exception as e:
-            self.logger.error(f"AI 기반 코드 생성 실패: {e}")
-            return {'error': f'AI 코드 생성 실패: {str(e)}'}
+            self.logger.error(f"AI-based code generation failed: {e}")
+            return {'error': f'AI code generation failed: {str(e)}'}
     
     def _validate_and_improve_ai_code(self, code: str, security_level: str) -> str:
-        """AI 생성 코드 검증 및 개선"""
+        """Validate and improve AI-generated code"""
         try:
-            # 기본 검증
+            # Basic validation
             if not code or len(code.strip()) < 100:
-                self.logger.warning("AI 생성 코드가 너무 짧음")
+                self.logger.warning("AI-generated code is too short")
                 return code
             
-            # 보안 수준에 따른 추가 검증
+            # Additional validation based on security level
             if security_level == 'high':
-                # 고보안 수준 검증
+                # High security level validation
                 if 'import hashlib' not in code and 'import cryptography' not in code:
                     code = self._add_encryption_imports(code)
                 if 'validate_input' not in code:
@@ -379,7 +379,7 @@ class CoderAgent(BaseAgent):
                 if 'secure_log' not in code:
                     code = self._add_secure_logging(code)
             
-            # 코드 품질 개선
+            # Code quality improvement
             code = self._improve_code_structure(code)
             code = self._add_error_handling(code)
             code = self._add_type_hints(code)
@@ -387,16 +387,16 @@ class CoderAgent(BaseAgent):
             return code
             
         except Exception as e:
-            self.logger.error(f"코드 검증 및 개선 실패: {e}")
+            self.logger.error(f"Code validation and improvement failed: {e}")
             return code
     
     def _assess_code_quality(self, code: str) -> float:
-        """코드 품질 평가"""
+        """Assess code quality"""
         try:
             score = 0.0
             max_score = 100.0
             
-            # 기본 구조 검사
+            # Basic structure check
             if 'class' in code and 'Node' in code:
                 score += 20
             if 'def __init__' in code:
@@ -404,7 +404,7 @@ class CoderAgent(BaseAgent):
             if 'def main' in code:
                 score += 15
             
-            # 보안 기능 검사
+            # Security feature check
             if 'validate_input' in code:
                 score += 10
             if 'try:' in code and 'except' in code:
@@ -412,10 +412,10 @@ class CoderAgent(BaseAgent):
             if 'get_logger' in code:
                 score += 10
             
-            # 코드 품질 검사
-            if '#' in code:  # 주석
+            # Code quality check
+            if '#' in code:  # Comments
                 score += 5
-            if '->' in code:  # 타입 힌트
+            if '->' in code:  # Type hints
                 score += 5
             if 'import' in code:
                 score += 5
@@ -425,66 +425,66 @@ class CoderAgent(BaseAgent):
             return min(score, max_score)
             
         except Exception as e:
-            self.logger.error(f"코드 품질 평가 실패: {e}")
+            self.logger.error(f"Code quality assessment failed: {e}")
             return 50.0
     
     def _add_encryption_imports(self, code: str) -> str:
-        """암호화 관련 import 추가"""
+        """Add encryption-related imports"""
         try:
             if 'import hashlib' not in code:
                 code = "import hashlib\nimport secrets\n" + code
             return code
         except Exception as e:
-            self.logger.error(f"암호화 import 추가 실패: {e}")
+            self.logger.error(f"Failed to add encryption imports: {e}")
             return code
     
     def _add_input_validation(self, code: str) -> str:
-        """입력 검증 메서드 추가"""
+        """Add input validation method"""
         try:
             validation_method = """
     def validate_input(self, input_data: str) -> str:
-        \"\"\"입력 데이터 검증\"\"\"
+        \"\"\"Input data validation\"\"\"
         if not input_data:
-            raise ValueError("입력 데이터가 비어있습니다")
+            raise ValueError("Input data is empty")
         
-        # 타입 검증
+        # Type validation
         if not isinstance(input_data, str):
-            raise TypeError("입력 데이터는 문자열이어야 합니다")
+            raise TypeError("Input data must be a string")
         
-        # 길이 검증
+        # Length validation
         if len(input_data) > 1000:
-            raise ValueError("입력 데이터가 너무 깁니다")
+            raise ValueError("Input data is too long")
         
-        # 특수 문자 필터링
+        # Special character filtering
         import re
         if re.search(r'[<>\"']', input_data):
-            raise ValueError("허용되지 않는 특수 문자가 포함되어 있습니다")
+            raise ValueError("Input data contains disallowed special characters")
         
         return input_data.strip()
 """
-            # 클래스 내부에 메서드 추가
+            # Add method inside class
             if 'class' in code and 'def' in code:
-                # 마지막 메서드 다음에 추가
+                # Add after the last method
                 lines = code.split('\n')
                 for i, line in enumerate(lines):
                     if line.strip().startswith('def ') and 'def __init__' not in line:
-                        # 첫 번째 메서드 다음에 추가
+                        # Add after the first method
                         lines.insert(i, validation_method)
                         break
                 code = '\n'.join(lines)
             
             return code
         except Exception as e:
-            self.logger.error(f"입력 검증 메서드 추가 실패: {e}")
+            self.logger.error(f"Failed to add input validation method: {e}")
             return code
     
     def _add_secure_logging(self, code: str) -> str:
-        """보안 로깅 메서드 추가"""
+        """Add secure logging method"""
         try:
             logging_method = """
     def secure_log(self, message: str, level: str = 'info') -> None:
-        \"\"\"보안 로깅 (민감 정보 마스킹)\"\"\"
-        # 민감 정보 마스킹
+        \"\"\"Secure logging (sensitive information masking)\"\"\"
+        # Mask sensitive information
         import re
         masked_message = re.sub(r'password[=:]\\s*\\S+', 'password=***', message)
         masked_message = re.sub(r'api_key[=:]\\s*\\S+', 'api_key=***', masked_message)
@@ -499,7 +499,7 @@ class CoderAgent(BaseAgent):
         else:
             self.get_logger().info(masked_message)
 """
-            # 클래스 내부에 메서드 추가
+            # Add method inside class
             if 'class' in code and 'def' in code:
                 lines = code.split('\n')
                 for i, line in enumerate(lines):
@@ -510,30 +510,30 @@ class CoderAgent(BaseAgent):
             
             return code
         except Exception as e:
-            self.logger.error(f"보안 로깅 메서드 추가 실패: {e}")
+            self.logger.error(f"Failed to add secure logging method: {e}")
             return code
     
     def _improve_code_structure(self, code: str) -> str:
-        """코드 구조 개선"""
+        """Improve code structure"""
         try:
-            # 기본 구조 검사 및 개선
+            # Basic structure check and improvement
             if 'if __name__ == "__main__":' not in code:
                 code += '\n\nif __name__ == "__main__":\n    main()\n'
             
             return code
         except Exception as e:
-            self.logger.error(f"코드 구조 개선 실패: {e}")
+            self.logger.error(f"Code structure improvement failed: {e}")
             return code
     
     def _add_error_handling(self, code: str) -> str:
-        """에러 처리 추가"""
+        """Add error handling"""
         try:
-            # 메인 함수에 에러 처리 추가
+            # Add error handling to main function
             if 'def main(' in code and 'try:' not in code:
                 lines = code.split('\n')
                 for i, line in enumerate(lines):
                     if 'def main(' in line:
-                        # main 함수 시작 부분에 try-except 추가
+                        # Add try-except at the beginning of main function
                         lines.insert(i + 1, '    try:')
                         lines.insert(i + 2, '        rclpy.init(args=args)')
                         lines.insert(i + 3, '        node = GenericNode()')
@@ -541,7 +541,7 @@ class CoderAgent(BaseAgent):
                         lines.insert(i + 5, '    except KeyboardInterrupt:')
                         lines.insert(i + 6, '        pass')
                         lines.insert(i + 7, '    except Exception as e:')
-                        lines.insert(i + 8, '        node.get_logger().error(f"오류 발생: {e}")')
+                        lines.insert(i + 8, '        node.get_logger().error(f"Error occurred: {e}")')
                         lines.insert(i + 9, '    finally:')
                         lines.insert(i + 10, '        if "node" in locals():')
                         lines.insert(i + 11, '            node.destroy_node()')
@@ -551,13 +551,13 @@ class CoderAgent(BaseAgent):
             
             return code
         except Exception as e:
-            self.logger.error(f"에러 처리 추가 실패: {e}")
+            self.logger.error(f"Failed to add error handling: {e}")
             return code
     
     def _add_type_hints(self, code: str) -> str:
-        """타입 힌트 추가"""
+        """Add type hints"""
         try:
-            # 기본 타입 힌트 추가
+            # Add basic type hints
             if 'def __init__(self):' in code:
                 code = code.replace('def __init__(self):', 'def __init__(self) -> None:')
             
@@ -566,25 +566,25 @@ class CoderAgent(BaseAgent):
             
             return code
         except Exception as e:
-            self.logger.error(f"타입 힌트 추가 실패: {e}")
+            self.logger.error(f"Failed to add type hints: {e}")
             return code
     
     def _generate_from_template(self, requirements: str, component_type: str, security_level: str) -> Dict[str, Any]:
-        """템플릿 기반 코드 생성"""
+        """Template-based code generation"""
         try:
-            # 기본 템플릿 가져오기
+            # Get base template
             base_template = self.code_templates.get(component_type, self.code_templates['basic_node'])
             
-            # 보안 기능 추가
+            # Add security features
             security_code = self._add_security_features(base_template, security_level)
             
-            # 요구사항에 맞게 커스터마이징
+            # Customize according to requirements
             customized_code = self._customize_code(security_code, requirements)
             
             return {
                 'code': customized_code,
                 'metadata': {
-                    'description': f'{component_type} 기반 코드',
+                    'description': f'{component_type} based code',
                     'dependencies': ['rclpy', 'std_msgs'],
                     'usage': 'python3 generated_node.py'
                 },
@@ -592,38 +592,38 @@ class CoderAgent(BaseAgent):
             }
             
         except Exception as e:
-            self.logger.error(f"템플릿 기반 코드 생성 실패: {e}")
-            return {'error': f'템플릿 코드 생성 실패: {str(e)}'}
+            self.logger.error(f"Template-based code generation failed: {e}")
+            return {'error': f'Template code generation failed: {str(e)}'}
     
     def _add_security_features(self, base_code: str, security_level: str) -> str:
-        """보안 기능 추가"""
+        """Add security features"""
         security_code = base_code
         
         if security_level in ['medium', 'high']:
-            # 입력 검증 추가
+            # Add input validation
             security_code += "\n" + self.security_patterns['input_validation']
             
-            # 에러 처리 추가
+            # Add error handling
             security_code += "\n" + self.security_patterns['error_handling']
             
-            # 보안 로깅 추가
+            # Add secure logging
             security_code += "\n" + self.security_patterns['secure_logging']
         
         if security_level == 'high':
-            # 인증 추가
+            # Add authentication
             security_code += "\n" + self.security_patterns['authentication']
             
-            # 암호화 추가
+            # Add encryption
             security_code += "\n" + self.security_patterns['encryption']
         
         return security_code
     
     def _customize_code(self, base_code: str, requirements: Any) -> str:
-        """요구사항에 맞게 코드 커스터마이징"""
-        # 간단한 텍스트 치환 (실제로는 더 정교한 파싱 필요)
+        """Customize code according to requirements"""
+        # Simple text replacement (more sophisticated parsing needed in practice)
         customized_code = base_code
         
-        # requirements가 딕셔너리인 경우 user_request를 추출
+        # Extract user_request if requirements is a dictionary
         if isinstance(requirements, dict):
             requirements_text = requirements.get('user_request', str(requirements))
         else:
@@ -639,25 +639,25 @@ class CoderAgent(BaseAgent):
         return customized_code
     
     def _get_security_features(self, security_level: str) -> List[str]:
-        """보안 수준별 기능 목록"""
+        """List of features by security level"""
         if security_level == 'low':
-            return ['기본 에러 처리']
+            return ['Basic error handling']
         elif security_level == 'medium':
-            return ['입력 검증', '에러 처리', '보안 로깅']
+            return ['Input validation', 'Error handling', 'Secure logging']
         else:  # high
-            return ['입력 검증', '에러 처리', '보안 로깅', '인증', '암호화']
+            return ['Input validation', 'Error handling', 'Secure logging', 'Authentication', 'Encryption']
     
     def _modify_code(self, parameters: Dict[str, Any]) -> Dict[str, Any]:
-        """AI 기반 코드 수정"""
+        """AI-based code modification"""
         existing_code = parameters.get('existing_code', '')
         modification_request = parameters.get('modification_request', '')
         
         if not existing_code or not modification_request:
-            return {'error': '기존 코드와 수정 요청이 필요합니다.'}
+            return {'error': 'Existing code and modification request are required.'}
         
         try:
             if self.ai_client:
-                # AI 기반 코드 수정
+                # AI-based code modification
                 ai_modified_code = self._ai_modify_code(existing_code, modification_request)
                 if ai_modified_code and 'error' not in ai_modified_code:
                     return {
@@ -666,7 +666,7 @@ class CoderAgent(BaseAgent):
                         'ai_enhanced': True
                     }
             
-            # AI 실패 시 기본 수정
+            # Basic modification if AI fails
             return {
                 'modified_code': existing_code + f"\n# TODO: {modification_request}",
                 'changes': [modification_request],
@@ -674,27 +674,27 @@ class CoderAgent(BaseAgent):
             }
             
         except Exception as e:
-            self.logger.error(f"코드 수정 실패: {e}")
-            return {'error': f'코드 수정 실패: {str(e)}'}
+            self.logger.error(f"Code modification failed: {e}")
+            return {'error': f'Code modification failed: {str(e)}'}
     
     def _ai_modify_code(self, existing_code: str, modification_request: str) -> Dict[str, Any]:
-        """AI 기반 코드 수정"""
+        """AI-based code modification"""
         try:
             ai_prompt = f"""
-            다음 기존 코드를 수정 요청에 따라 수정하세요:
+            Modify the following existing code according to the modification request:
             
-            기존 코드:
+            Existing code:
             {existing_code}
             
-            수정 요청: {modification_request}
+            Modification request: {modification_request}
             
-            수정된 완전한 코드를 제공하고, 변경 사항을 설명하세요.
+            Provide the complete modified code and explain the changes.
             
-            JSON 형식으로 응답하세요:
+            Respond in JSON format:
             {{
-                "code": "수정된 완전한 코드",
-                "changes": ["변경 사항 목록"],
-                "explanation": "수정 설명"
+                "code": "Complete modified code",
+                "changes": ["List of changes"],
+                "explanation": "Modification explanation"
             }}
             """
             
@@ -703,23 +703,23 @@ class CoderAgent(BaseAgent):
             if isinstance(ai_response, dict) and 'code' in ai_response:
                 return ai_response
             else:
-                return {'error': 'AI 응답 파싱 실패'}
+                return {'error': 'AI response parsing failed'}
                 
         except Exception as e:
-            self.logger.error(f"AI 기반 코드 수정 실패: {e}")
-            return {'error': f'AI 코드 수정 실패: {str(e)}'}
+            self.logger.error(f"AI-based code modification failed: {e}")
+            return {'error': f'AI code modification failed: {str(e)}'}
     
     def _review_code(self, parameters: Dict[str, Any]) -> Dict[str, Any]:
-        """AI 기반 코드 리뷰"""
+        """AI-based code review"""
         code_snippet = parameters.get('code_snippet', '')
         review_focus = parameters.get('review_focus', 'security')
         
         if not code_snippet:
-            return {'error': '코드 스니펫이 필요합니다.'}
+            return {'error': 'Code snippet is required.'}
         
         try:
             if self.ai_client:
-                # AI 기반 코드 리뷰
+                # AI-based code review
                 ai_review = self._ai_review_code(code_snippet, review_focus)
                 if ai_review and 'error' not in ai_review:
                     return {
@@ -727,36 +727,36 @@ class CoderAgent(BaseAgent):
                         'ai_enhanced': True
                     }
             
-            # AI 실패 시 기본 리뷰
+            # Basic review if AI fails
             return {
                 'review_result': {
                     'score': 7,
-                    'issues': ['기본 코드 리뷰만 수행됨'],
-                    'recommendations': ['AI 기반 상세 리뷰 권장']
+                    'issues': ['Only basic code review performed'],
+                    'recommendations': ['AI-based detailed review recommended']
                 },
                 'ai_enhanced': False
             }
             
         except Exception as e:
-            self.logger.error(f"코드 리뷰 실패: {e}")
-            return {'error': f'코드 리뷰 실패: {str(e)}'}
+            self.logger.error(f"Code review failed: {e}")
+            return {'error': f'Code review failed: {str(e)}'}
     
     def _ai_review_code(self, code_snippet: str, review_focus: str) -> Dict[str, Any]:
-        """AI 기반 코드 리뷰"""
+        """AI-based code review"""
         try:
             ai_prompt = f"""
-            다음 ROS 2 Python 코드를 {review_focus} 관점에서 리뷰하세요:
+            Review the following ROS 2 Python code from a {review_focus} perspective:
             
-            코드:
+            Code:
             {code_snippet}
             
-            다음 형식으로 JSON 응답을 제공하세요:
+            Provide JSON response in the following format:
             {{
                 "score": 0-10,
-                "issues": ["발견된 문제점"],
-                "recommendations": ["개선 권장사항"],
-                "security_concerns": ["보안 우려사항"],
-                "best_practices": ["적용된 모범 사례"]
+                "issues": ["Issues found"],
+                "recommendations": ["Improvement recommendations"],
+                "security_concerns": ["Security concerns"],
+                "best_practices": ["Best practices applied"]
             }}
             """
             
@@ -765,23 +765,23 @@ class CoderAgent(BaseAgent):
             if isinstance(ai_response, dict) and 'score' in ai_response:
                 return ai_response
             else:
-                return {'error': 'AI 응답 파싱 실패'}
+                return {'error': 'AI response parsing failed'}
                 
         except Exception as e:
-            self.logger.error(f"AI 기반 코드 리뷰 실패: {e}")
-            return {'error': f'AI 코드 리뷰 실패: {str(e)}'}
+            self.logger.error(f"AI-based code review failed: {e}")
+            return {'error': f'AI code review failed: {str(e)}'}
     
     def _optimize_code(self, parameters: Dict[str, Any]) -> Dict[str, Any]:
-        """AI 기반 코드 최적화"""
+        """AI-based code optimization"""
         code_snippet = parameters.get('code_snippet', '')
         optimization_goal = parameters.get('optimization_goal', 'performance')
         
         if not code_snippet:
-            return {'error': '코드 스니펫이 필요합니다.'}
+            return {'error': 'Code snippet is required.'}
         
         try:
             if self.ai_client:
-                # AI 기반 코드 최적화
+                # AI-based code optimization
                 ai_optimized = self._ai_optimize_code(code_snippet, optimization_goal)
                 if ai_optimized and 'error' not in ai_optimized:
                     return {
@@ -790,34 +790,34 @@ class CoderAgent(BaseAgent):
                         'ai_enhanced': True
                     }
             
-            # AI 실패 시 기본 최적화
+            # Basic optimization if AI fails
             return {
-                'optimized_code': code_snippet + f"\n# TODO: {optimization_goal} 최적화 필요",
-                'optimizations': [f'{optimization_goal} 최적화'],
+                'optimized_code': code_snippet + f"\n# TODO: {optimization_goal} optimization needed",
+                'optimizations': [f'{optimization_goal} optimization'],
                 'ai_enhanced': False
             }
             
         except Exception as e:
-            self.logger.error(f"코드 최적화 실패: {e}")
-            return {'error': f'코드 최적화 실패: {str(e)}'}
+            self.logger.error(f"Code optimization failed: {e}")
+            return {'error': f'Code optimization failed: {str(e)}'}
     
     def _ai_optimize_code(self, code_snippet: str, optimization_goal: str) -> Dict[str, Any]:
-        """AI 기반 코드 최적화"""
+        """AI-based code optimization"""
         try:
             ai_prompt = f"""
-            다음 ROS 2 Python 코드를 {optimization_goal} 관점에서 최적화하세요:
+            Optimize the following ROS 2 Python code from a {optimization_goal} perspective:
             
-            코드:
+            Code:
             {code_snippet}
             
-            최적화된 코드를 제공하고, 적용된 최적화 기법을 설명하세요.
+            Provide optimized code and explain the optimization techniques applied.
             
-            JSON 형식으로 응답하세요:
+            Respond in JSON format:
             {{
-                "code": "최적화된 코드",
-                "optimizations": ["적용된 최적화 기법"],
-                "performance_improvements": ["성능 개선 사항"],
-                "trade_offs": ["트레이드오프 고려사항"]
+                "code": "Optimized code",
+                "optimizations": ["Optimization techniques applied"],
+                "performance_improvements": ["Performance improvements"],
+                "trade_offs": ["Trade-off considerations"]
             }}
             """
             
@@ -826,13 +826,13 @@ class CoderAgent(BaseAgent):
             if isinstance(ai_response, dict) and 'code' in ai_response:
                 return ai_response
             else:
-                return {'error': 'AI 응답 파싱 실패'}
+                return {'error': 'AI response parsing failed'}
                 
         except Exception as e:
-            self.logger.error(f"AI 기반 코드 최적화 실패: {e}")
-            return {'error': f'AI 코드 최적화 실패: {str(e)}'}
+            self.logger.error(f"AI-based code optimization failed: {e}")
+            return {'error': f'AI code optimization failed: {str(e)}'}
     
-    # 코드 템플릿 메서드들
+    # Code template methods
     def _get_basic_node_template(self) -> str:
         return '''#!/usr/bin/env python3
 import rclpy
@@ -1032,52 +1032,52 @@ def main(args=None):
 if __name__ == '__main__':
     main()'''
     
-    # 보안 패턴 메서드들
+    # Security pattern methods
     def _get_input_validation_pattern(self) -> str:
         return '''
 def validate_input(self, input_data):
-    """입력 데이터 검증"""
+    """Input data validation"""
     if not input_data:
-        raise ValueError("입력 데이터가 비어있습니다")
+        raise ValueError("Input data is empty")
     
-    # 타입 검증
+    # Type validation
     if not isinstance(input_data, str):
-        raise TypeError("입력 데이터는 문자열이어야 합니다")
+        raise TypeError("Input data must be a string")
     
-    # 길이 검증
+    # Length validation
     if len(input_data) > 1000:
-        raise ValueError("입력 데이터가 너무 깁니다")
+        raise ValueError("Input data is too long")
     
-    # 특수 문자 필터링
+    # Special character filtering
     import re
     if re.search(r'[<>"\']', input_data):
-        raise ValueError("허용되지 않는 특수 문자가 포함되어 있습니다")
+        raise ValueError("Input data contains disallowed special characters")
     
     return input_data.strip()'''
     
     def _get_error_handling_pattern(self) -> str:
         return '''
 def safe_execute(self, operation, *args, **kwargs):
-    """안전한 작업 실행"""
+    """Safe operation execution"""
     try:
         result = operation(*args, **kwargs)
         return result
     except Exception as e:
-        self.get_logger().error(f"작업 실행 실패: {e}")
-        # 기본값 반환 또는 에러 처리
+        self.get_logger().error(f"Operation execution failed: {e}")
+        # Return default value or handle error
         return None
     
 def handle_critical_error(self, error):
-    """치명적 오류 처리"""
-    self.get_logger().error(f"치명적 오류 발생: {error}")
-    # 시스템 안전 상태로 전환
+    """Critical error handling"""
+    self.get_logger().error(f"Critical error occurred: {error}")
+    # Transition to system safe state
     self.emergency_shutdown()'''
     
     def _get_secure_logging_pattern(self) -> str:
         return '''
 def secure_log(self, message, level='info'):
-    """보안 로깅"""
-    # 민감 정보 마스킹
+    """Secure logging"""
+    # Mask sensitive information
     import re
     masked_message = re.sub(r'password[=:]\s*\S+', 'password=***', message)
     masked_message = re.sub(r'api_key[=:]\s*\S+', 'api_key=***', masked_message)
@@ -1092,34 +1092,34 @@ def secure_log(self, message, level='info'):
     def _get_authentication_pattern(self) -> str:
         return '''
 def authenticate_user(self, credentials):
-    """사용자 인증"""
+    """User authentication"""
     # TODO: Add authentication
     if not credentials:
         return False
     
-    # 인증 로직 구현
+    # Implement authentication logic
     return True
     
 def check_permission(self, user, resource):
-    """권한 확인"""
+    """Permission check"""
     # TODO: Add permission check
     return True'''
     
     def _get_encryption_pattern(self) -> str:
         return '''
 def encrypt_data(self, data):
-    """데이터 암호화"""
+    """Data encryption"""
     # TODO: Add encryption
     import hashlib
     return hashlib.sha256(data.encode()).hexdigest()
     
 def decrypt_data(self, encrypted_data):
-    """데이터 복호화"""
+    """Data decryption"""
     # TODO: Add decryption
     return encrypted_data'''
     
     def get_status(self) -> Dict[str, Any]:
-        """Agent 상태 조회"""
+        """Query Agent status"""
         return {
             'agent_id': self.agent_id,
             'agent_name': self.agent_name,
@@ -1133,5 +1133,4 @@ def decrypt_data(self, encrypted_data):
                 'enhanced_generation': self.ai_client is not None
             },
             'code_templates': list(self.code_templates.keys()),
-            'security_patterns': list(self.security_patterns.keys())
-        }
+            'security_patterns': list(self.security_patterns.keys()

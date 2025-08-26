@@ -54,17 +54,17 @@ class ROS2SecurityAI:
             if result["message_count"] >= 50:
                 result["message_requirement"] = "✅ 통과"
             else:
-                result["message_requirement"] = "❌ 미달"
+                result["message_requirement"] = "미달"
             
             if abs(result["p95_interval"] - 1.0) <= 0.1:
                 result["timing_requirement"] = "✅ 통과"
             else:
-                result["timing_requirement"] = "❌ 미달"
+                result["timing_requirement"] = "미달"
             
             if result["loss_rate"] == 0.0:
                 result["loss_requirement"] = "✅ 통과"
             else:
-                result["loss_requirement"] = "❌ 미달"
+                result["loss_requirement"] = "미달"
             
             self.results["domains"]["pubsub"] = result
             return result
@@ -141,12 +141,12 @@ class ROS2SecurityAI:
             if success_rate >= 80.0:
                 success_requirement = "✅ 통과"
             else:
-                success_requirement = "❌ 미달"
+                success_requirement = "미달"
             
             if avg_response_time <= 0.1:
                 timing_requirement = "✅ 통과"
             else:
-                timing_requirement = "❌ 미달"
+                timing_requirement = "미달"
             
             result = {
                 "status": "success",
@@ -213,7 +213,7 @@ class ROS2SecurityAI:
             if access_control_working:
                 access_control_status = "✅ 작동"
             else:
-                access_control_status = "❌ 미작동"
+                access_control_status = "미작동"
             
             result = {
                 "status": "success",
@@ -380,9 +380,9 @@ class SecureNode(Node):
             if overall_score >= 90.0:
                 recommendations.append("🎉 전반적으로 우수한 성능을 보이고 있습니다!")
             elif overall_score >= 70.0:
-                recommendations.append("⚠️ 전반적인 성능은 양호하지만 일부 영역에서 개선이 필요합니다.")
+                recommendations.append("전반적인 성능은 양호하지만 일부 영역에서 개선이 필요합니다.")
             else:
-                recommendations.append("🚨 전반적인 성능 개선이 시급합니다.")
+                recommendations.append("전반적인 성능 개선이 시급합니다.")
             
             self.results["recommendations"] = recommendations
             return recommendations
@@ -406,9 +406,9 @@ class SecureNode(Node):
             elif overall_score >= 70.0:
                 report += "🟡 양호\n"
             elif overall_score >= 50.0:
-                report += "🟠 보통\n"
+                report += "보통\n"
             else:
-                report += "🔴 미흡\n"
+                report += "미흡\n"
             
             report += "\n" + "="*50 + "\n\n"
             
@@ -422,12 +422,12 @@ class SecureNode(Node):
                         if domain_result["score"] >= 80.0:
                             report += "   상태: ✅ 양호\n"
                         else:
-                            report += "   상태: ⚠️ 개선 필요\n"
+                            report += "   상태: 개선 필요\n"
                     
                     report += "\n"
                 else:
                     report += f"📊 {domain_name.upper()} 도메인\n"
-                    report += f"   상태: ❌ 오류 발생\n"
+                    report += f"   상태: 오류 발생\n"
                     report += f"   오류: {domain_result.get('error', '알 수 없음')}\n\n"
             
             # 권장사항

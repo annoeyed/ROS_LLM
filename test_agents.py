@@ -9,95 +9,95 @@ import logging
 import sys
 import os
 
-# 로깅 설정
+# Logging configuration
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 
 def test_planner_agent():
-    """Planner Agent 테스트"""
-    print("=== Planner Agent 테스트 시작 ===")
+    """Test Planner Agent"""
+    print("=== Starting Planner Agent Test ===")
     
     try:
         from agents.planner_agent import PlannerAgent
         
-        # Planner Agent 생성
+        # Create Planner Agent
         planner = PlannerAgent()
-        print(f"Planner Agent 생성 완료: {planner}")
+        print(f"Planner Agent created: {planner}")
         
-        # 상태 확인
+        # Check status
         status = planner.get_status()
-        print(f"Agent 상태: {status}")
+        print(f"Agent status: {status}")
         
-        # 간단한 요청 분석 테스트
-        test_request = "ROS 2 노드를 만들어서 카메라 토픽을 구독하고, 인증 기능을 포함한 안전한 통신을 구현해줘"
+        # Simple request analysis test
+        test_request = "Create a ROS 2 node that subscribes to camera topics and implements secure communication with authentication features"
         
-        print(f"\n테스트 요청: {test_request}")
+        print(f"\nTest request: {test_request}")
         
-        # 요청 분석
+        # Analyze request
         result = planner.plan_ros_code_generation(test_request)
         
-        print("\n=== 분석 결과 ===")
-        print(f"ROS 컴포넌트: {result['analysis']['ros_components']}")
-        print(f"보안 요구사항: {result['analysis']['security_requirements']}")
-        print(f"복잡도 레벨: {result['analysis']['complexity_level']}")
-        print(f"추정 작업량: {result['analysis']['estimated_effort']}")
+        print("\n=== Analysis Results ===")
+        print(f"ROS components: {result['analysis']['ros_components']}")
+        print(f"Security requirements: {result['analysis']['security_requirements']}")
+        print(f"Complexity level: {result['analysis']['complexity_level']}")
+        print(f"Estimated effort: {result['analysis']['estimated_effort']}")
         
-        print("\n=== 생성 계획 ===")
-        print(f"필요한 Agent: {result['plan']['required_agents']}")
-        print(f"예상 소요 시간: {result['plan']['estimated_time']}")
+        print("\n=== Generation Plan ===")
+        print(f"Required agents: {result['plan']['required_agents']}")
+        print(f"Estimated time: {result['plan']['estimated_time']}")
         
         for phase in result['plan']['phases']:
             print(f"  {phase['phase']}. {phase['name']} ({phase['duration']})")
         
-        print("\n=== 보안 검사 항목 ===")
+        print("\n=== Security Check Items ===")
         for check in result['plan']['security_checks']:
             print(f"  - {check}")
         
-        print("\n=== 테스트 접근법 ===")
+        print("\n=== Testing Approach ===")
         for approach in result['plan']['testing_approach']:
             print(f"  - {approach}")
         
-        print("\n=== Planner Agent 테스트 완료 ===")
+        print("\n=== Planner Agent Test Completed ===")
         return True
         
     except Exception as e:
-        print(f"Planner Agent 테스트 실패: {e}")
+        print(f"Planner Agent test failed: {e}")
         import traceback
         traceback.print_exc()
         return False
 
 def test_security_guide_agent():
-    """Security Guide Agent 테스트"""
-    print("\n=== Security Guide Agent 테스트 시작 ===")
+    """Test Security Guide Agent"""
+    print("\n=== Starting Security Guide Agent Test ===")
     
     try:
         from agents.security_guide_agent import SecurityGuideAgent
         
-        # Security Guide Agent 생성
+        # Create Security Guide Agent
         security_guide = SecurityGuideAgent()
-        print(f"Security Guide Agent 생성 완료: {security_guide}")
+        print(f"Security Guide Agent created: {security_guide}")
         
-        # 상태 확인
+        # Check status
         status = security_guide.get_status()
-        print(f"Agent 상태: {status}")
+        print(f"Agent status: {status}")
         
-        # 보안 가이드라인 조회 테스트
-        print("\n=== 보안 가이드라인 조회 테스트 ===")
+        # Security guideline query test
+        print("\n=== Security Guideline Query Test ===")
         guidelines = security_guide.get_security_guidelines('authentication', 'rclpy/rclcpp')
         
         if 'error' not in guidelines:
-            print("인증 카테고리 가이드라인 조회 성공")
+            print("Authentication category guideline query successful")
             if 'categories' in guidelines and 'authentication' in guidelines['categories']:
                 auth_guidelines = guidelines['categories']['authentication']
-                print(f"  - 위험도: {auth_guidelines.get('risk_level', 'Unknown')}")
-                print(f"  - CWE 수: {auth_guidelines.get('cwe_count', 0)}개")
+                print(f"  - Risk level: {auth_guidelines.get('risk_level', 'Unknown')}")
+                print(f"  - CWE count: {auth_guidelines.get('cwe_count', 0)}")
         else:
-            print(f"가이드라인 조회 실패: {guidelines['error']}")
+            print(f"Guideline query failed: {guidelines['error']}")
         
-        # 코드 보안 분석 테스트
-        print("\n=== 코드 보안 분석 테스트 ===")
+        # Code security analysis test
+        print("\n=== Code Security Analysis Test ===")
         test_code = """
         password = "admin123"
         api_key = "sk-1234567890abcdef"

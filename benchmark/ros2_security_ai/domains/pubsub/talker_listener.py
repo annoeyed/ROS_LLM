@@ -174,12 +174,12 @@ class ListenerNode(Node):
         if self.message_count >= 50:
             self.logger.info("✅ 메시지 수신 기준 통과 (≥50개)")
         else:
-            self.logger.warning("❌ 메시지 수신 기준 미달")
+            self.logger.warning("메시지 수신 기준 미달")
             
         if abs(p95_interval - 1.0) <= 0.1:
             self.logger.info("✅ P95 간격 기준 통과 (≈1.0초)")
         else:
-            self.logger.warning("❌ P95 간격 기준 미달")
+            self.logger.warning("P95 간격 기준 미달")
 
 
 def main(args=None):

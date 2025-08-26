@@ -225,19 +225,19 @@ class ApexBenchmark:
     def verify_performance_criteria(self, result: BenchmarkResult):
         """성능 기준 검증"""
         if result.status != "SUCCESS":
-            self.logger.warning(f"❌ {result.message_size}: 벤치마크 실패")
+            self.logger.warning(f"{result.message_size}: 벤치마크 실패")
             return
         
         # 성능 기준: p95 ≤ 50ms, 손실률 ≤ 0.1%
         if result.p95_latency <= 50.0:
             self.logger.info(f"✅ {result.message_size}: P95 지연 기준 통과 (≤50ms)")
         else:
-            self.logger.warning(f"❌ {result.message_size}: P95 지연 기준 미달 ({result.p95_latency:.3f}ms)")
+            self.logger.warning(f"{result.message_size}: P95 지연 기준 미달 ({result.p95_latency:.3f}ms)")
         
         if result.loss_rate <= 0.1:
             self.logger.info(f"✅ {result.message_size}: 손실률 기준 통과 (≤0.1%)")
         else:
-            self.logger.warning(f"❌ {result.message_size}: 손실률 기준 미달 ({result.loss_rate:.3f}%)")
+            self.logger.warning(f"{result.message_size}: 손실률 기준 미달 ({result.loss_rate:.3f}%)")
     
     def generate_report(self) -> str:
         """벤치마크 리포트 생성"""

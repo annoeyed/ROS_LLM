@@ -19,30 +19,30 @@ class SecurityGuidelineGenerator:
         self.guidelines = {}
     
     def generate_ros_security_guidelines(self) -> Dict[str, Any]:
-        """ROS 보안 가이드라인 전체 생성"""
-        print("=== ROS 보안 가이드라인 생성 시작 ===")
+        """Generate complete ROS security guidelines"""
+        print("=== Starting ROS Security Guidelines Generation ===")
         
-        # 1. 카테고리별 가이드라인 생성
+        # 1. Generate category-based guidelines
         self.guidelines['categories'] = self._generate_category_guidelines()
         
-        # 2. ROS 컴포넌트별 가이드라인 생성
+        # 2. Generate ROS component-based guidelines
         self.guidelines['components'] = self._generate_component_guidelines()
         
-        # 3. 개발 단계별 가이드라인 생성
+        # 3. Generate development phase-based guidelines
         self.guidelines['development_phases'] = self._generate_development_phase_guidelines()
         
-        # 4. 보안 체크리스트 생성
+        # 4. Generate security checklist
         self.guidelines['checklist'] = self._generate_security_checklist()
         
-        print("=== ROS 보안 가이드라인 생성 완료 ===")
+        print("=== ROS Security Guidelines Generation Completed ===")
         return self.guidelines
     
     def _generate_category_guidelines(self) -> Dict[str, Any]:
-        """카테고리별 보안 가이드라인 생성"""
+        """Generate security guidelines by category"""
         category_guidelines = {}
         
         for category, cwe_ids in Config.ROS_CWE_CATEGORIES.items():
-            print(f"카테고리 '{category}' 가이드라인 생성 중...")
+            print(f"Generating guidelines for category '{category}'...")
             
             category_info = {
                 'name': category,
@@ -54,7 +54,7 @@ class SecurityGuidelineGenerator:
                 'mitigations': []
             }
             
-            # 각 CWE에 대한 상세 가이드라인 생성
+            # Generate detailed guidelines for each CWE
             for cwe_id in cwe_ids:
                 cwe_guideline = self._generate_cwe_guideline(cwe_id)
                 if cwe_guideline:
@@ -65,11 +65,11 @@ class SecurityGuidelineGenerator:
         return category_guidelines
     
     def _generate_component_guidelines(self) -> Dict[str, Any]:
-        """ROS 컴포넌트별 보안 가이드라인 생성"""
+        """Generate security guidelines by ROS component"""
         component_guidelines = {}
         
         for component, cwe_ids in Config.ROS_COMPONENT_CWE_MAPPING.items():
-            print(f"컴포넌트 '{component}' 가이드라인 생성 중...")
+            print(f"Generating guidelines for component '{component}'...")
             
             component_info = {
                 'name': component,
@@ -81,7 +81,7 @@ class SecurityGuidelineGenerator:
                 'testing_recommendations': []
             }
             
-            # 각 CWE에 대한 보안 권장사항 생성
+            # Generate security recommendations for each CWE
             for cwe_id in cwe_ids:
                 cwe_info = self._get_cwe_info(cwe_id)
                 if cwe_info:
@@ -97,7 +97,7 @@ class SecurityGuidelineGenerator:
         return component_guidelines
     
     def _generate_development_phase_guidelines(self) -> Dict[str, Any]:
-        """개발 단계별 보안 가이드라인 생성"""
+        """Generate security guidelines by development phase"""
         phases = {
             'planning': {
                 'name': '계획 단계',

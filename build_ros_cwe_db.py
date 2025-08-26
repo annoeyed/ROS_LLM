@@ -1,94 +1,94 @@
 #!/usr/bin/env python3
 """
-ROS CWE 데이터베이스 구축 실행 스크립트
+ROS CWE Database Construction Execution Script
 """
 
 import sys
 import os
 
-# 프로젝트 루트를 Python 경로에 추가
+# Add project root to Python path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from rag_utils.cwe_collector import ROSCWECollector
 
 def main():
-    print("=== ROS CWE 데이터베이스 구축 도구 ===")
-    print("이 도구는 NVD CWE API를 사용하여")
-    print("ROS 관련 취약점 유형(CWE)을 수집합니다.")
+    print("=== ROS CWE Database Construction Tool ===")
+    print("This tool collects ROS-related vulnerability types (CWE)")
+    print("using the NVD CWE API.")
     print()
     
-    # NVD API 키 입력 (선택사항)
-    api_key = input("NVD API 키를 입력하세요 (없으면 Enter): ").strip()
+    # NVD API key input (optional)
+    api_key = input("Enter NVD API key (press Enter if none): ").strip()
     if not api_key:
         api_key = None
-        print("API 키 없이 진행합니다 (제한된 요청만 가능)")
+        print("Proceeding without API key (limited requests only)")
     else:
-        # .env 파일에 API 키 저장
+        # Save API key to .env file
         with open('.env', 'w') as f:
             f.write(f'NVD_API_KEY={api_key}\n')
-        print(".env 파일에 API 키를 저장했습니다.")
+        print("API key saved to .env file.")
     
     print()
     
-    # 작업 선택
-    print("수행할 작업을 선택하세요:")
-    print("1. 새로 구축 (기존 데이터 삭제)")
-    print("2. 업데이트 (기존 데이터 유지)")
-    print("3. 통계 보기")
-    print("4. 기존 CWE에 카테고리 할당")
+    # Task selection
+    print("Select task to perform:")
+    print("1. Build new (delete existing data)")
+    print("2. Update (keep existing data)")
+    print("3. View statistics")
+    print("4. Assign categories to existing CWEs")
     
-    choice = input("선택 (1-4): ").strip()
+    choice = input("Choice (1-4): ").strip()
     
     try:
         collector = ROSCWECollector()
         
         if choice == "1":
-            # 백업 여부 확인
-            backup_choice = input("기존 데이터를 백업하시겠습니까? (y/n): ").strip().lower()
+            # Check if backup is needed
+            backup_choice = input("Backup existing data? (y/n): ").strip().lower()
             
             if backup_choice == 'y':
                 backup_dir = collector.backup_existing_database()
-                print(f"백업 완료: {backup_dir}")
+                print(f"Backup completed: {backup_dir}")
                 print()
             
-            # 구축 진행 여부 확인
-            proceed = input("데이터베이스를 새로 구축하시겠습니까? (y/n): ").strip().lower()
+            # Confirm construction
+            proceed = input("Build database from scratch? (y/n): ").strip().lower()
             
             if proceed == 'y':
-                print("\n구축을 시작합니다...")
+                print("\nStarting construction...")
                 ros_cwes = collector.build_database()
                 
-                print(f"\n구축 완료!")
-                print(f"발견된 ROS 관련 CWE: {len(ros_cwes)}개")
+                print(f"\nConstruction completed!")
+                print(f"ROS-related CWEs found: {len(ros_cwes)}")
                 
             else:
-                print("구축을 취소했습니다.")
+                print("Construction cancelled.")
                 
         elif choice == "2":
-            print("\n업데이트를 시작합니다...")
+            print("\nStarting update...")
             ros_cwes = collector.update_database()
             
-            print(f"\n업데이트 완료!")
-            print(f"업데이트된 ROS 관련 CWE: {len(ros_cwes)}개")
+            print(f"\nUpdate completed!")
+            print(f"Updated ROS-related CWEs: {len(ros_cwes)}")
             
         elif choice == "3":
             collector.show_statistics()
             
         elif choice == "4":
-            print("\n기존 CWE에 카테고리를 할당합니다...")
+            print("\nAssigning categories to existing CWEs...")
             updated_count = collector.cwe_db.assign_categories_to_existing_cwes()
             
             if updated_count > 0:
-                print(f"\n카테고리 할당 완료: {updated_count}개 CWE 업데이트")
-                print("업데이트된 통계를 확인하려면 옵션 3을 선택하세요.")
+                print(f"\nCategory assignment completed: {updated_count} CWEs updated")
+                print("Select option 3 to view updated statistics.")
             else:
-                print("모든 CWE에 이미 카테고리가 할당되어 있습니다.")
+                print("All CWEs already have categories assigned.")
             
         else:
-            print("잘못된 선택입니다.")
+            print("Invalid choice.")
             
     except Exception as e:
-        print(f"오류 발생: {e}")
+        print(f"Error occurred: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":

@@ -53,12 +53,12 @@ def embed_texts(texts: List[str]) -> np.ndarray:
 def infer_metadata(section_title: str, text: str) -> ChunkMetadata:
     title_lower = section_title.lower()
     rule_type = None
-    if any(k in title_lower for k in ["mitigation", "대응", "방지", "완화", "guide", "가이드"]):
+    if any(k in title_lower for k in ["mitigation", "response", "prevention", "mitigation", "guide", "guideline"]):
         rule_type = "guideline"
-    elif any(k in title_lower for k in ["cve", "취약점", "vulnerability"]):
+    elif any(k in title_lower for k in ["cve", "vulnerability"]):
         rule_type = "cve"
     keywords = []
-    for kw in ["ROS", "DDS", "auth", "encryption", "TLS", "topic", "service", "parameter", "permissions", "시뮬", "안전"]:
+    for kw in ["ROS", "DDS", "auth", "encryption", "TLS", "topic", "service", "parameter", "permissions", "simulation", "safety"]:
         if kw.lower() in text.lower() or kw.lower() in title_lower:
             keywords.append(kw)
     return ChunkMetadata(section=section_title or None, rule_type=rule_type, keywords=keywords)

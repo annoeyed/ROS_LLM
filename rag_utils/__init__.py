@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-RAG 유틸리티 모듈
+RAG Utilities Module
 """
 
 from .ai_client import AIClient, OpenAIClient, AnthropicClient, MockAIClient, AIClientFactory

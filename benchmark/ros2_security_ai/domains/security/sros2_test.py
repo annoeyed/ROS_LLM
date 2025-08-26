@@ -426,7 +426,7 @@ class SROS2Test:
         for result in self.results:
             report += f"테스트: {result.test_name}\n"
             report += f"보안 모드: {result.security_mode}\n"
-            report += f"성공: {'✅' if result.success else '❌'}\n"
+            report += f"성공: {'성공' if result.success else '실패'}\n"
             
             if result.security_mode == "OFF":
                 report += f"P95 지연: {result.p95_latency:.2f}ms\n"
@@ -450,8 +450,8 @@ class SROS2Test:
             report += "\n=== 보안 오버헤드 분석 ===\n"
             report += f"지연 오버헤드: {overhead['latency_overhead_percent']:.1f}%\n"
             report += f"CPU 오버헤드: {overhead['cpu_overhead_percent']:.1f}%\n"
-            report += f"보안 활성화: {'✅' if overhead['security_enabled'] else '❌'}\n"
-            report += f"접근 제어 작동: {'✅' if overhead['access_control_working'] else '❌'}\n"
+            report += f"보안 활성화: {'활성화' if overhead['security_enabled'] else '비활성화'}\n"
+            report += f"접근 제어 작동: {'작동' if overhead['access_control_working'] else '미작동'}\n"
         
         return report
     

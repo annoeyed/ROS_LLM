@@ -10,23 +10,23 @@ class CVERAGBuilder:
         self.cve_db = cve_db
     
     def build_rag_index(self, output_dir: str = "data/rag_sources/cve_index"):
-        """CVE 데이터베이스를 RAG 인덱스로 변환"""
+        """Convert CVE database to RAG index"""
         cves = self.cve_db.cves
         
-        # CVE를 청크로 변환
+        # Convert CVEs to chunks
         chunks = []
         for cve in cves:
-            # CVE 정보를 텍스트로 변환
+            # Convert CVE information to text
             cve_text = self._format_cve_for_rag(cve)
             
-            # 메타데이터 생성
+            # Create metadata
             metadata = ChunkMetadata(
                 section="CVE",
                 rule_type="vulnerability",
                 keywords=cve['keywords']
             )
             
-            # 청크 생성
+            # Create chunk
             chunk = ChunkRecord(
                 doc_id=f"cve_{cve['cve_id']}",
                 title=cve['cve_id'],
@@ -35,21 +35,21 @@ class CVERAGBuilder:
             )
             chunks.append(chunk)
         
-        # 임베딩 생성
+        # Generate embeddings
         texts = [chunk.text for chunk in chunks]
         embeddings = embed_texts(texts)
         
-        # FAISS 인덱스 생성
+        # Create FAISS index
         index = build_faiss_index(chunks, embeddings)
         
-        # 저장
+        # Save
         save_faiss(index, output_dir)
         
-        print(f"CVE RAG 인덱스 생성 완료: {len(chunks)}개 청크")
+        print(f"CVE RAG index creation completed: {len(chunks)} chunks")
         return index
     
     def _format_cve_for_rag(self, cve: Dict[str, Any]) -> str:
-        """CVE를 RAG용 텍스트로 변환"""
+        """Convert CVE to RAG text format"""
         text_parts = [
             f"CVE ID: {cve['cve_id']}",
             f"Severity: {cve['severity']}",

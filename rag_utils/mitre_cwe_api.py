@@ -11,7 +11,7 @@ from datetime import datetime
 from .config import Config
 
 class MITRECWEAPIClient:
-    """MITRE CWE API 클라이언트"""
+    """MITRE CWE API client"""
     
     def __init__(self):
         self.mitre_base_url = Config.MITRE_CWE_BASE_URL
@@ -19,140 +19,140 @@ class MITRECWEAPIClient:
         self.cache_dir = "data/cwe_cache"
         self.cwe_data_file = os.path.join(self.cache_dir, "cwe_data.xml")
         
-        # 다운로드된 ZIP 파일 경로
+        # Downloaded ZIP file path
         self.local_zip_file = "cwec_latest.xml.zip"
         
-        # 캐시 디렉토리 생성
+        # Create cache directory
         os.makedirs(self.cache_dir, exist_ok=True)
         
-        # 설정 검증
+        # Validate configuration
         Config.validate_config()
     
     def download_cwe_data(self) -> bool:
-        """MITRE CWE 데이터 다운로드 또는 로컬 파일 사용"""
+        """Download MITRE CWE data or use local file"""
         try:
-            # 먼저 로컬 ZIP 파일 확인
+            # First check local ZIP file
             if os.path.exists(self.local_zip_file):
-                print("로컬 ZIP 파일을 사용합니다...")
+                print("Using local ZIP file...")
                 return self._extract_from_local_zip()
             
-            print("MITRE CWE 데이터 다운로드 중...")
+            print("Downloading MITRE CWE data...")
             
-            # ZIP 파일 다운로드
+            # Download ZIP file
             response = requests.get(self.download_url)
             if response.status_code != 200:
-                print(f"CWE 데이터 다운로드 실패: {response.status_code}")
+                print(f"CWE data download failed: {response.status_code}")
                 return False
             
-            # ZIP 파일 압축 해제
+            # Extract ZIP file
             with zipfile.ZipFile(io.BytesIO(response.content)) as zip_file:
                 return self._extract_xml_from_zip(zip_file)
                 
         except Exception as e:
-            print(f"CWE 데이터 다운로드 중 오류: {e}")
+            print(f"Error downloading CWE data: {e}")
             return False
     
     def _extract_from_local_zip(self) -> bool:
-        """로컬 ZIP 파일에서 XML 추출"""
+        """Extract XML from local ZIP file"""
         try:
             with zipfile.ZipFile(self.local_zip_file, 'r') as zip_file:
                 return self._extract_xml_from_zip(zip_file)
         except Exception as e:
-            print(f"로컬 ZIP 파일 처리 중 오류: {e}")
+            print(f"Error processing local ZIP file: {e}")
             return False
     
     def _extract_xml_from_zip(self, zip_file) -> bool:
-        """ZIP 파일에서 XML 추출"""
-        # XML 파일 찾기
+        """Extract XML from ZIP file"""
+        # Find XML files
         xml_files = [f for f in zip_file.namelist() if f.endswith('.xml')]
         if not xml_files:
-            print("ZIP 파일에서 XML 파일을 찾을 수 없습니다.")
+            print("No XML files found in ZIP file.")
             return False
         
-        # 첫 번째 XML 파일 추출
+        # Extract first XML file
         xml_content = zip_file.read(xml_files[0])
         
-        # XML 파일 저장
+        # Save XML file
         with open(self.cwe_data_file, 'wb') as f:
             f.write(xml_content)
         
-        print(f"CWE 데이터 추출 완료: {xml_files[0]}")
+        print(f"CWE data extraction completed: {xml_files[0]}")
         return True
     
     def load_cwe_data(self) -> Optional[ET.Element]:
-        """CWE 데이터 로드"""
+        """Load CWE data"""
         if not os.path.exists(self.cwe_data_file):
-            print("CWE 데이터 파일이 없습니다. 다운로드를 시도합니다...")
+            print("CWE data file not found. Attempting download...")
             if not self.download_cwe_data():
                 return None
         
         try:
-            print(f"XML 파일 경로: {self.cwe_data_file}")
-            print(f"XML 파일 크기: {os.path.getsize(self.cwe_data_file)} bytes")
+            print(f"XML file path: {self.cwe_data_file}")
+            print(f"XML file size: {os.path.getsize(self.cwe_data_file)} bytes")
             
             tree = ET.parse(self.cwe_data_file)
             root = tree.getroot()
-            print("CWE 데이터 로드 완료")
-            print(f"루트 태그: {root.tag}")
+            print("CWE data loaded successfully")
+            print(f"Root tag: {root.tag}")
             
-            # Weakness 요소 수 확인
+            # Check number of Weakness elements
             ns = {'cwe': 'http://cwe.mitre.org/cwe-7'}
             weaknesses = root.findall('.//cwe:Weakness', ns)
-            print(f"발견된 Weakness 요소 수: {len(weaknesses)}")
+            print(f"Number of Weakness elements found: {len(weaknesses)}")
             
             if weaknesses:
-                print(f"첫 번째 Weakness ID: {weaknesses[0].get('ID')}")
+                print(f"First Weakness ID: {weaknesses[0].get('ID')}")
             
             return root
         except Exception as e:
-            print(f"CWE 데이터 로드 중 오류: {e}")
+            print(f"Error loading CWE data: {e}")
             return None
     
     def search_cwe_by_id(self, cwe_id: str) -> Optional[Dict[str, Any]]:
-        """특정 CWE ID로 검색"""
-        print(f"CWE {cwe_id} 검색 시작...")
+        """Search by specific CWE ID"""
+        print(f"Starting search for CWE {cwe_id}...")
         root = self.load_cwe_data()
         if not root:
-            print("CWE 데이터를 로드할 수 없습니다.")
+            print("Unable to load CWE data.")
             return None
         
         try:
-            # CWE ID에서 "CWE-" 접두사 제거 (예: "CWE-119" -> "119")
+            # Remove "CWE-" prefix from CWE ID (e.g., "CWE-119" -> "119")
             if cwe_id.startswith('CWE-'):
-                search_id = cwe_id[4:]  # "CWE-" 제거
+                search_id = cwe_id[4:]  # Remove "CWE-"
             else:
                 search_id = cwe_id
             
-            print(f"검색할 ID: {search_id}")
+            print(f"Searching for ID: {search_id}")
             
-            # XML 네임스페이스 정의
+            # Define XML namespace
             ns = {'cwe': 'http://cwe.mitre.org/cwe-7'}
             
-            print(f"네임스페이스: {ns}")
-            print(f"루트 태그: {root.tag}")
+            print(f"Namespace: {ns}")
+            print(f"Root tag: {root.tag}")
             
-            # 네임스페이스를 고려한 Weakness 요소 검색
+            # Search for Weakness elements considering namespace
             weaknesses = root.findall('.//cwe:Weakness', ns)
-            print(f"검색된 Weakness 요소 수: {len(weaknesses)}")
+            print(f"Number of Weakness elements found: {len(weaknesses)}")
             
             for i, weakness in enumerate(weaknesses):
                 weakness_id = weakness.get('ID')
-                if i < 5:  # 처음 5개만 출력
+                if i < 5:  # Only print first 5
                     print(f"  Weakness {i+1}: ID={weakness_id}, Name={weakness.get('Name', 'N/A')}")
                 
                 if weakness_id == search_id:
-                    print(f"CWE {cwe_id} 발견!")
+                    print(f"CWE {cwe_id} found!")
                     return self._parse_cwe_element(weakness)
             
-            print(f"CWE {cwe_id}를 찾을 수 없습니다.")
+            print(f"CWE {cwe_id} not found.")
             return None
             
         except Exception as e:
-            print(f"CWE {cwe_id} 검색 중 오류: {e}")
+            print(f"Error searching for CWE {cwe_id}: {e}")
             return None
     
     def _parse_cwe_element(self, weakness: ET.Element) -> Dict[str, Any]:
-        """CWE XML 요소 파싱"""
+        """Parse CWE XML element"""
         cwe_data = {
             'cweId': weakness.get('ID', 'Unknown'),
             'name': weakness.get('Name', 'No name'),
@@ -164,20 +164,20 @@ class MITRECWEAPIClient:
             'examples': []
         }
         
-        # XML 네임스페이스 정의
+        # Define XML namespace
         ns = {'cwe': 'http://cwe.mitre.org/cwe-7'}
         
-        # Description 요소 찾기 (네임스페이스 고려)
+        # Find Description element (considering namespace)
         description_elem = weakness.find('.//cwe:Description', ns)
         if description_elem is not None:
             cwe_data['description'] = description_elem.text or 'No description'
         
-        # Extended Description도 추가 (네임스페이스 고려)
+        # Also add Extended Description (considering namespace)
         extended_desc_elem = weakness.find('.//cwe:Extended_Description', ns)
         if extended_desc_elem is not None and extended_desc_elem.text:
             cwe_data['description'] += f"\n\n{extended_desc_elem.text}"
         
-        # 완화 방법 추출 (네임스페이스 고려)
+        # Extract mitigations (considering namespace)
         for mitigation in weakness.findall('.//cwe:Mitigation', ns):
             if mitigation.text:
                 cwe_data['mitigations'].append({
@@ -185,7 +185,7 @@ class MITRECWEAPIClient:
                     'effectiveness': mitigation.get('Effectiveness', 'Unknown')
                 })
         
-        # 예시 추출 (네임스페이스 고려)
+        # Extract examples (considering namespace)
         for example in weakness.findall('.//cwe:Example', ns):
             if example.text:
                 cwe_data['examples'].append({
@@ -196,11 +196,11 @@ class MITRECWEAPIClient:
         return cwe_data
     
     def search_cwes_by_category(self, category: str) -> List[Dict[str, Any]]:
-        """카테고리별 CWE 검색"""
+        """Search CWEs by category"""
         cwe_ids = Config.ROS_CWE_CATEGORIES.get(category, [])
         cwes = []
         
-        print(f"{category} 카테고리 CWE 검색 중...")
+        print(f"Searching for CWEs in {category} category...")
         
         for cwe_id in cwe_ids:
             cwe_data = self.search_cwe_by_id(cwe_id)
@@ -208,18 +208,18 @@ class MITRECWEAPIClient:
                 cwe_data['category'] = category
                 cwes.append(cwe_data)
             
-            # 요청 지연
+            # Request delay
             time.sleep(Config.NVD_REQUEST_DELAY)
         
-        print(f"{category} 카테고리에서 {len(cwes)}개 CWE 발견")
+        print(f"Found {len(cwes)} CWEs in {category} category")
         return cwes
     
     def search_ros_component_cwes(self, component: str) -> List[Dict[str, Any]]:
-        """ROS 컴포넌트별 관련 CWE 검색"""
+        """Search CWEs related to ROS component"""
         cwe_ids = Config.ROS_COMPONENT_CWE_MAPPING.get(component, [])
         cwes = []
         
-        print(f"{component} 컴포넌트 CWE 검색 중...")
+        print(f"Searching for CWEs in {component} component...")
         
         for cwe_id in cwe_ids:
             cwe_data = self.search_cwe_by_id(cwe_id)
@@ -229,26 +229,26 @@ class MITRECWEAPIClient:
             
             time.sleep(Config.NVD_REQUEST_DELAY)
         
-        print(f"{component} 컴포넌트에서 {len(cwes)}개 CWE 발견")
+        print(f"Found {len(cwes)} CWEs in {component} component")
         return cwes
     
     def collect_all_ros_cwes(self) -> List[Dict[str, Any]]:
-        """모든 ROS 관련 CWE 수집"""
-        print("ROS 관련 CWE 수집 시작...")
+        """Collect all ROS-related CWEs"""
+        print("Starting ROS-related CWE collection...")
         
         all_cwes = []
         
-        # 1. 카테고리별 CWE 수집
+        # 1. Collect CWEs by category
         for category in Config.ROS_CWE_CATEGORIES.keys():
             category_cwes = self.search_cwes_by_category(category)
             all_cwes.extend(category_cwes)
         
-        # 2. 컴포넌트별 CWE 수집
+        # 2. Collect CWEs by component
         for component in Config.ROS_COMPONENT_CWE_MAPPING.keys():
             component_cwes = self.search_ros_component_cwes(component)
             all_cwes.extend(component_cwes)
         
-        # 3. 중복 제거
+        # 3. Remove duplicates
         unique_cwes = []
         seen_ids = set()
         
@@ -258,83 +258,83 @@ class MITRECWEAPIClient:
                 unique_cwes.append(cwe)
                 seen_ids.add(cwe_id)
         
-        print(f"총 {len(unique_cwes)}개의 고유한 ROS 관련 CWE 발견!")
+        print(f"Found {len(unique_cwes)} unique ROS-related CWEs!")
         return unique_cwes
     
     def test_api_connection(self):
-        """API 연결 테스트"""
-        print("=== MITRE CWE API 연결 테스트 ===")
+        """Test API connection"""
+        print("=== MITRE CWE API Connection Test ===")
         print(f"Base URL: {self.mitre_base_url}")
         print(f"Download URL: {self.download_url}")
         
         try:
-            # 1. 기본 연결 테스트
-            print("\n1. MITRE CWE 웹사이트 연결 테스트...")
+            # 1. Basic connection test
+            print("\n1. Testing MITRE CWE website connection...")
             response = requests.get(self.mitre_base_url)
-            print(f"응답 상태: {response.status_code}")
+            print(f"Response status: {response.status_code}")
             
             if response.status_code == 200:
-                print("MITRE CWE 웹사이트 연결 성공!")
+                print("MITRE CWE website connection successful!")
             else:
-                print(f"MITRE CWE 웹사이트 연결 실패: {response.status_code}")
+                print(f"MITRE CWE website connection failed: {response.status_code}")
             
-            # 2. CWE 데이터 다운로드 테스트
-            print("\n2. CWE 데이터 다운로드 테스트...")
+            # 2. CWE data download test
+            print("\n2. Testing CWE data download...")
             if self.download_cwe_data():
-                print("CWE 데이터 다운로드 성공!")
+                print("CWE data download successful!")
                 
-                # 3. 특정 CWE 검색 테스트
-                print("\n3. CWE 검색 테스트...")
+                # 3. Specific CWE search test
+                print("\n3. Testing CWE search...")
                 test_cwe = self.search_cwe_by_id("CWE-287")
                 if test_cwe:
-                    print("CWE 검색 성공!")
-                    print(f"테스트 CWE: {test_cwe.get('cweId')} - {test_cwe.get('name')}")
+                    print("CWE search successful!")
+                    print(f"Test CWE: {test_cwe.get('cweId')} - {test_cwe.get('name')}")
                 else:
-                    print("CWE 검색 실패")
+                    print("CWE search failed")
             else:
-                print("CWE 데이터 다운로드 실패")
+                print("CWE data download failed")
                 
         except Exception as e:
-            print(f"API 테스트 중 오류: {e}")
+            print(f"Error during API test: {e}")
     
     def format_cwe_for_rag(self, cwe_data: Dict[str, Any]) -> str:
-        """CWE 데이터를 RAG용 텍스트로 변환"""
+        """Convert CWE data to RAG text format"""
         cwe_id = cwe_data.get('cweId', 'Unknown')
         name = cwe_data.get('name', 'No name')
         description = cwe_data.get('description', 'No description')
         
-        # 완화 방법 추출
+        # Extract mitigations
         mitigations = []
         if 'mitigations' in cwe_data:
             for mitigation in cwe_data['mitigations']:
                 if 'description' in mitigation:
                     mitigations.append(mitigation['description'])
         
-        # 예시 추출
+        # Extract examples
         examples = []
         if 'examples' in cwe_data:
             for example in cwe_data['examples']:
                 if 'description' in example:
                     examples.append(example['description'])
         
-        # ROS 관련성 정보
+        # ROS relevance information
         ros_info = ""
         if 'ros_component' in cwe_data:
-            ros_info = f"**ROS 컴포넌트**: {cwe_data['ros_component']}\n"
+            ros_info = f"**ROS Component**: {cwe_data['ros_component']}\n"
         if 'category' in cwe_data:
-            ros_info += f"**취약점 카테고리**: {cwe_data['category']}\n"
+            ros_info += f"**Vulnerability Category**: {cwe_data['category']}\n"
         
         return f"""# CWE: {cwe_id} - {name}
 
-## 설명
+## Description
 {description}
 
 {ros_info}
-## 완화 방법
-{chr(10).join(f"- {mit}" for mit in mitigations) if mitigations else "- 정보 없음"}
+## Mitigation
+{chr(10).join(f"- {mit}" for mit in mitigations) if mitigations else "- No information"}
 
-## 예시
-{chr(10).join(f"- {ex}" for ex in examples) if examples else "- 정보 없음"}
+## Examples
+{chr(10).join(f"- {ex}" for ex in examples) if examples else "- No information"}
 
 ---
 """

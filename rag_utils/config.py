@@ -5,23 +5,23 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Config:
-    """CWE 시스템 설정"""
+    """CWE system configuration"""
     
-    # MITRE CWE API 설정
+    # MITRE CWE API configuration
     MITRE_CWE_BASE_URL = "https://cwe.mitre.org"
     MITRE_CWE_API_URL = "https://cwe.mitre.org/data/xsd/cwe_latest.xsd"
     MITRE_CWE_DOWNLOAD_URL = "https://cwe.mitre.org/data/xml/cwec_latest.xml.zip"
     
-    # NVD API 설정 (CVE 검색용)
+    # NVD API configuration (for CVE search)
     NVD_API_KEY = os.getenv('NVD_API_KEY')
     NVD_API_BASE_URL = os.getenv('NVD_API_BASE_URL', 'https://services.nvd.nist.gov/rest/json')
     NVD_CVE_ENDPOINT = '/cves/2.0'
     
-    # API 요청 설정
+    # API request configuration
     NVD_REQUEST_DELAY = int(os.getenv('NVD_REQUEST_DELAY', '1'))
     NVD_MAX_RESULTS_PER_PAGE = int(os.getenv('NVD_MAX_RESULTS_PER_PAGE', '20'))
     
-    # ROS 관련 CWE 설정 (실제 존재하는 ID들로 업데이트)
+    # ROS-related CWE configuration (updated with actual existing IDs)
     ROS_CWE_IDS = [
         "CWE-1051", "CWE-1066", "CWE-1080", "CWE-1084", "CWE-1118",
         "CWE-119", "CWE-120", "CWE-121", "CWE-122", "CWE-1223",
@@ -60,7 +60,7 @@ class Config:
         "CWE-98", "CWE-99",
     ]
     
-    # ROS 관련 CWE 카테고리 (실제 존재하는 ID들로 업데이트)
+    # ROS-related CWE categories (updated with actual existing IDs)
     ROS_CWE_CATEGORIES = {
         "authentication": ["CWE-287", "CWE-288", "CWE-289", "CWE-290", "CWE-291", "CWE-293", "CWE-294", "CWE-301", "CWE-302", "CWE-303", "CWE-304", "CWE-305", "CWE-306", "CWE-307", "CWE-308", "CWE-309", "CWE-836"],
         "authorization": ["CWE-285", "CWE-862", "CWE-863", "CWE-250", "CWE-266", "CWE-267", "CWE-268", "CWE-269", "CWE-270", "CWE-271", "CWE-272", "CWE-273", "CWE-274", "CWE-280", "CWE-551", "CWE-566", "CWE-612", "CWE-639", "CWE-648", "CWE-647"],
@@ -74,7 +74,7 @@ class Config:
         "error_handling": ["CWE-544", "CWE-1118", "CWE-1319", "CWE-1331", "CWE-1334"]
     }
     
-    # ROS 컴포넌트별 취약점 매핑 (실제 존재하는 ID들로 업데이트)
+    # ROS component vulnerability mapping (updated with actual existing IDs)
     ROS_COMPONENT_CWE_MAPPING = {
         "rclpy/rclcpp": ["CWE-287", "CWE-285", "CWE-434", "CWE-20", "CWE-119", "CWE-362", "CWE-367", "CWE-502", "CWE-532", "CWE-778"],
         "tf2": ["CWE-20", "CWE-119", "CWE-362", "CWE-367", "CWE-434", "CWE-532", "CWE-778"],
@@ -90,17 +90,17 @@ class Config:
         "communication": ["CWE-406", "CWE-923", "CWE-924", "CWE-927", "CWE-940", "CWE-941", "CWE-1051", "CWE-1066", "CWE-1080", "CWE-1084"]
     }
     
-    # 데이터베이스 경로
+    # Database paths
     CWE_DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "cwe_database")
     RAG_SOURCES_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "rag_sources")
     
     @classmethod
     def validate_config(cls):
-        """설정 유효성 검사"""
+        """Validate configuration"""
         if not cls.NVD_API_KEY:
-            print("NVD API 키가 설정되지 않았습니다. 제한된 요청만 가능합니다.")
+            print("NVD API key not set. Limited requests only.")
         else:
-            print(f"NVD API 키가 설정되었습니다: {cls.NVD_API_KEY[:10]}...")
+            print(f"NVD API key set: {cls.NVD_API_KEY[:10]}...")
         
         print(f"MITRE CWE URL: {cls.MITRE_CWE_BASE_URL}")
         print(f"NVD CVE API: {cls.NVD_API_BASE_URL}{cls.NVD_CVE_ENDPOINT}")

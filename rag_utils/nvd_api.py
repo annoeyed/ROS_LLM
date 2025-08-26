@@ -11,15 +11,15 @@ class NVDApiClient:
         self.base_url = "https://services.nvd.nist.gov/rest/json/cves/2.0"
         self.headers = {"apiKey": api_key} if api_key else {}
         
-        # API 키 검증
+        # API key validation
         if not api_key:
-            print(" NVD API 키가 없습니다. 제한된 요청만 가능합니다.")
+            print(" NVD API key not available. Limited requests only.")
         else:
-            print(f"NVD API 키가 설정되었습니다: {api_key[:10]}...")
+            print(f"NVD API key set: {api_key[:10]}...")
     
     def search_ros_cves(self, days_back: int = 365) -> List[Dict[str, Any]]:
-        """ROS 관련 CVE 검색 - NVD API v2.0 사용"""
-        # ROS 관련 검색어들
+        """Search for ROS-related CVEs - using NVD API v2.0"""
+        # ROS-related search queries
         ros_search_queries = [
             "ROS", "Gazebo", "MoveIt", "RViz", "rclpy", "rclcpp", 
             "ament", "tf2", "urdf", "rosbag"
@@ -28,9 +28,9 @@ class NVDApiClient:
         all_cves = []
         
         for query in ros_search_queries:
-            # NVD API v2.0의 정확한 검색 파라미터
+            # Exact search parameters for NVD API v2.0
             params = {
-                "keywordSearch": query,  # v2.0에서는 "keywordSearch" 사용
+                "keywordSearch": query,  # Use "keywordSearch" in v2.0
                 "resultsPerPage": 20
             }
             
@@ -46,14 +46,14 @@ class NVDApiClient:
                     all_cves.extend(cves)
                     print(f"Found {len(cves)} CVEs for '{query}'")
                 elif response.status_code == 403:
-                    print(f" API 키 인증 실패: {response.status_code}")
-                    print("올바른 NVD API 키를 발급받아주세요: https://nvd.nist.gov/developers/request-an-api-key")
+                    print(f" API key authentication failed: {response.status_code}")
+                    print("Please obtain a valid NVD API key: https://nvd.nist.gov/developers/request-an-api-key")
                     break
                 else:
                     print(f"API error for '{query}': {response.status_code}")
                     print(f"Response: {response.text[:300]}")
                     
-                # API 호출 제한 방지
+                # Prevent API call rate limiting
                 import time
                 time.sleep(1)
                 
@@ -63,8 +63,8 @@ class NVDApiClient:
         return all_cves
     
     def search_ros_cves_by_cpe(self) -> List[Dict[str, Any]]:
-        """CPE를 통한 ROS 관련 제품 CVE 검색 - 수정된 버전"""
-        # 더 간단한 CPE 패턴 사용
+        """Search for ROS-related product CVEs via CPE - modified version"""
+        # Use simpler CPE patterns
         ros_cpe_patterns = [
             "cpe:2.3:a:*:ros:*:*:*:*:*:*:*",
             "cpe:2.3:a:*:gazebo:*:*:*:*:*:*:*"
@@ -89,7 +89,7 @@ class NVDApiClient:
                     print(f"CPE search error: {response.status_code}")
                     print(f"CPE Response: {response.text[:200]}")
                 
-                # API 호출 제한 방지
+                # Prevent API call rate limiting
                 import time
                 time.sleep(1)
                 
@@ -99,14 +99,14 @@ class NVDApiClient:
         return all_cves
     
     def search_ros_cves_simple(self) -> List[Dict[str, Any]]:
-        """가장 기본적인 검색 방법 - 테스트용"""
-        # 가장 기본적인 검색
+        """Most basic search method - for testing"""
+        # Most basic search
         simple_queries = ["ROS"]
         
         all_cves = []
         
         for query in simple_queries:
-            # 기본 검색 파라미터
+            # Basic search parameters
             params = {"keywordSearch": query}
             
             try:
@@ -124,7 +124,7 @@ class NVDApiClient:
                     print(f"Simple search error for '{query}': {response.status_code}")
                     print(f"Simple Response: {response.text[:300]}")
                     
-                # API 호출 제한 방지
+                # Prevent API call rate limiting
                 import time
                 time.sleep(1)
                 
@@ -134,43 +134,43 @@ class NVDApiClient:
         return all_cves
     
     def test_api_connection(self):
-        """API 연결 테스트"""
-        print("=== NVD API 연결 테스트 ===")
+        """Test API connection"""
+        print("=== NVD API Connection Test ===")
         print(f"Base URL: {self.base_url}")
         print(f"Headers: {self.headers}")
         
         try:
-            # 1. 기본 엔드포인트 테스트
-            print("\n1. 기본 엔드포인트 테스트...")
+            # 1. Basic endpoint test
+            print("\n1. Testing basic endpoint...")
             response = requests.get(self.base_url, headers=self.headers)
-            print(f"기본 응답 상태: {response.status_code}")
-            print(f"기본 응답 URL: {response.url}")
+            print(f"Basic response status: {response.status_code}")
+            print(f"Basic response URL: {response.url}")
             
             if response.status_code == 200:
-                print("기본 엔드포인트 연결 성공!")
+                print("Basic endpoint connection successful!")
             else:
-                print(f"기본 엔드포인트 연결 실패: {response.status_code}")
-                print(f"오류 응답: {response.text[:500]}")
+                print(f"Basic endpoint connection failed: {response.status_code}")
+                print(f"Error response: {response.text[:500]}")
             
-            # 2. 검색 파라미터 테스트
-            print("\n2. 검색 파라미터 테스트...")
+            # 2. Search parameter test
+            print("\n2. Testing search parameters...")
             params = {"resultsPerPage": 1}
             response = requests.get(self.base_url, headers=self.headers, params=params)
-            print(f"검색 파라미터 응답 상태: {response.status_code}")
-            print(f"검색 파라미터 응답 URL: {response.url}")
+            print(f"Search parameter response status: {response.status_code}")
+            print(f"Search parameter response URL: {response.url}")
             
             if response.status_code == 200:
                 data = response.json()
-                print(f"검색 파라미터 테스트 성공!")
-                print(f"응답 키: {list(data.keys())}")
+                print(f"Search parameter test successful!")
+                print(f"Response keys: {list(data.keys())}")
                 if 'vulnerabilities' in data:
-                    print(f"CVE 개수: {len(data['vulnerabilities'])}")
+                    print(f"CVE count: {len(data['vulnerabilities'])}")
             else:
-                print(f"검색 파라미터 테스트 실패: {response.status_code}")
-                print(f"오류 응답: {response.text[:500]}")
+                print(f"Search parameter test failed: {response.status_code}")
+                print(f"Error response: {response.text[:500]}")
             
-            # 3. 다른 엔드포인트 테스트
-            print("\n3. 다른 엔드포인트 테스트...")
+            # 3. Test other endpoints
+            print("\n3. Testing other endpoints...")
             test_urls = [
                 "https://services.nvd.nist.gov/rest/json/cves/2.0",
                 "https://services.nvd.nist.gov/rest/json/cves/2.0/",
@@ -180,21 +180,21 @@ class NVDApiClient:
             
             for test_url in test_urls:
                 try:
-                    print(f"테스트 URL: {test_url}")
+                    print(f"Test URL: {test_url}")
                     response = requests.get(test_url, headers=self.headers)
-                    print(f"  응답 상태: {response.status_code}")
+                    print(f"  Response status: {response.status_code}")
                     if response.status_code == 200:
-                        print(f"  성공! 이 URL을 사용하세요: {test_url}")
+                        print(f"  Success! Use this URL: {test_url}")
                         break
                 except Exception as e:
-                                            print(f"  오류: {e}")
+                                            print(f"  Error: {e}")
                 
         except Exception as e:
-            print(f"API 테스트 중 오류: {e}")
-            print(f"오류 타입: {type(e).__name__}")
+            print(f"Error during API test: {e}")
+            print(f"Error type: {type(e).__name__}")
     
     def format_cve_for_rag(self, cve_data: Dict[str, Any]) -> str:
-        """CVE 데이터를 RAG용 텍스트로 변환"""
+        """Convert CVE data to RAG text format"""
         cve_id = cve_data.get('cve', {}).get('id', 'Unknown')
         description = cve_data.get('cve', {}).get('descriptions', [{}])[0].get('value', 'No description')
         severity = cve_data.get('cve', {}).get('metrics', {}).get('cvssMetricV31', [{}])[0].get('cvssData', {}).get('baseSeverity', 'Unknown')

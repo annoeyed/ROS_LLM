@@ -12,52 +12,52 @@ from typing import Dict, Any, List, Optional
 from abc import ABC, abstractmethod
 
 class AIClient(ABC):
-    """AI 클라이언트 기본 클래스"""
+    """Base AI client class"""
     
     def __init__(self):
         self.logger = logging.getLogger(self.__class__.__name__)
     
     @abstractmethod
     def generate_response(self, prompt: str, **kwargs) -> str:
-        """AI 응답 생성"""
+        """Generate AI response"""
         pass
     
     @abstractmethod
     def analyze_content(self, content: str, analysis_type: str, **kwargs) -> Dict[str, Any]:
-        """컨텐츠 분석"""
+        """Analyze content"""
         pass
 
 class OpenAIClient(AIClient):
-    """OpenAI GPT API 클라이언트"""
+    """OpenAI GPT API client"""
     
     def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None):
         super().__init__()
         self.api_key = api_key or os.getenv('OPENAI_API_KEY')
-        # 환경 변수에서 모델 설정을 우선으로 하고, 기본값은 gpt-4
+        # Prioritize model setting from environment variables, default is gpt-4
         self.model = model or os.getenv('OPENAI_MODEL', 'gpt-4')
         
         if not self.api_key:
-            self.logger.warning("OpenAI API 키가 설정되지 않았습니다. 환경변수 OPENAI_API_KEY를 설정하세요.")
+            self.logger.warning("OpenAI API key not set. Please set OPENAI_API_KEY environment variable.")
         
-        self.logger.info(f"OpenAI 클라이언트 초기화: 모델={self.model}")
+        self.logger.info(f"OpenAI client initialized: model={self.model}")
         
         try:
             import openai
             self.client = openai.OpenAI(api_key=self.api_key)
         except ImportError:
-            self.logger.error("openai 패키지가 설치되지 않았습니다. pip install openai로 설치하세요.")
+            self.logger.error("openai package not installed. Install with: pip install openai")
             self.client = None
     
     def generate_response(self, prompt: str, **kwargs) -> str:
-        """OpenAI GPT로 응답 생성"""
+        """Generate response using OpenAI GPT"""
         if not self.client or not self.api_key:
-            return self._fallback_response(prompt, "OpenAI API를 사용할 수 없습니다.")
+            return self._fallback_response(prompt, "OpenAI API not available.")
         
         try:
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": "당신은 ROS 보안 전문가입니다. 보안을 고려한 정확하고 실용적인 답변을 제공하세요."},
+                    {"role": "system", "content": "You are a ROS security expert. Provide accurate and practical answers considering security."},
                     {"role": "user", "content": prompt}
                 ],
                 max_tokens=kwargs.get('max_tokens', 1000),
@@ -67,35 +67,35 @@ class OpenAIClient(AIClient):
             return response.choices[0].message.content
             
         except Exception as e:
-            self.logger.error(f"OpenAI API 호출 실패: {e}")
-            return self._fallback_response(prompt, f"API 오류: {str(e)}")
+            self.logger.error(f"OpenAI API call failed: {e}")
+            return self._fallback_response(prompt, f"API error: {str(e)}")
     
     def analyze_content(self, content: str, analysis_type: str, **kwargs) -> Dict[str, Any]:
-        """컨텐츠 분석"""
+        """Analyze content"""
         if analysis_type == "security":
             prompt = f"""
-            다음 코드/알고리즘의 보안을 분석하세요:
+            Analyze the security of the following code/algorithm:
             
             {content}
             
-            다음 형식으로 JSON 응답을 제공하세요:
+            Provide JSON response in the following format:
             {{
                 "risk_level": "high/medium/low",
                 "risk_score": 0-100,
                 "vulnerabilities": [
                     {{
-                        "type": "취약점 유형",
-                        "description": "설명",
-                        "severity": "심각도",
-                        "mitigation": "완화 방안"
+                        "type": "Vulnerability type",
+                        "description": "Description",
+                        "severity": "Severity",
+                        "mitigation": "Mitigation strategy"
                     }}
                 ],
-                "recommendations": ["권장사항1", "권장사항2"]
+                "recommendations": ["Recommendation1", "Recommendation2"]
             }}
             """
         elif analysis_type == "code_generation":
             prompt = f"""
-            다음 요구사항에 따라 ROS 2 Python 코드를 생성하세요:
+            Generate ROS 2 Python code according to the following requirements:
             
             {content}
             

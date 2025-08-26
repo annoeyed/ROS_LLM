@@ -10,53 +10,53 @@ from .cwe_database import CWEDatabase
 from .config import Config
 
 class ROSCWECollector:
-    """ROS 관련 CWE 수집기"""
+    """ROS-related CWE collector"""
     
     def __init__(self):
         self.cwe_api = MITRECWEAPIClient()
         self.cwe_db = CWEDatabase()
         
     def backup_existing_database(self):
-        """기존 데이터베이스 백업"""
+        """Backup existing database"""
         if os.path.exists(Config.CWE_DB_PATH):
             backup_dir = f"data/cwe_database_backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
             shutil.copytree(Config.CWE_DB_PATH, backup_dir)
-            print(f"기존 데이터베이스를 {backup_dir}에 백업했습니다.")
+            print(f"Existing database backed up to {backup_dir}.")
             return backup_dir
         return None
     
     def clear_existing_database(self):
-        """기존 데이터베이스 초기화"""
+        """Initialize existing database"""
         self.cwe_db.clear_database()
-        print("기존 데이터베이스를 초기화했습니다.")
+        print("Existing database initialized.")
     
     def collect_ros_cwes(self) -> List[Dict[str, Any]]:
-        """ROS 관련 CWE 수집 (기존 메서드명 유지)"""
+        """Collect ROS-related CWEs (maintain existing method name)"""
         return self.collect_all_ros_cwes()
     
     def _assign_categories_to_cwe(self, cwe_data: Dict[str, Any]) -> Dict[str, Any]:
-        """CWE에 자동으로 카테고리 할당"""
+        """Automatically assign categories to CWE"""
         cwe_id = cwe_data.get('cweId', '')
         name = cwe_data.get('name', '').lower()
         description = cwe_data.get('description', '').lower()
         
-        # 설정된 카테고리 매핑에 따라 자동 할당
+        # Automatically assign based on configured category mapping
         assigned_category = None
         assigned_component = None
         
-        # 카테고리별 매핑 확인
+        # Check category-based mapping
         for category, cwe_ids in Config.ROS_CWE_CATEGORIES.items():
             if cwe_id in cwe_ids:
                 assigned_category = category
                 break
         
-        # 컴포넌트별 매핑 확인
+        # Check component-based mapping
         for component, cwe_ids in Config.ROS_COMPONENT_CWE_MAPPING.items():
             if cwe_id in cwe_ids:
                 assigned_component = component
                 break
         
-        # 키워드 기반 자동 분류 (카테고리가 할당되지 않은 경우)
+        # Keyword-based automatic classification (when category is not assigned)
         if not assigned_category:
             if any(kw in name or kw in description for kw in ['authentication', 'auth', 'login', 'password']):
                 assigned_category = 'authentication'
@@ -79,24 +79,24 @@ class ROSCWECollector:
             elif any(kw in name or kw in description for kw in ['error', 'exception', 'handling']):
                 assigned_category = 'error_handling'
         
-        # 할당된 카테고리와 컴포넌트를 CWE 데이터에 추가
+        # Add assigned category and component to CWE data
         cwe_data['category'] = assigned_category
         cwe_data['ros_component'] = assigned_component
         
         return cwe_data
 
     def collect_all_ros_cwes(self) -> List[Dict[str, Any]]:
-        """모든 ROS 관련 CWE 수집"""
-        print("ROS 관련 CWE 수집 시작...")
+        """Collect all ROS-related CWEs"""
+        print("Starting ROS-related CWE collection...")
         
         all_cwes = []
         
-        # 1. ROS_CWE_IDS에서 직접 수집 (우선순위)
-        print("\n1. ROS_CWE_IDS에서 CWE 수집 중...")
+        # 1. Direct collection from ROS_CWE_IDS (priority)
+        print("\n1. Collecting CWEs from ROS_CWE_IDS...")
         for cwe_id in Config.ROS_CWE_IDS:
             cwe_data = self.search_cwe_by_id(cwe_id)
             if cwe_data:
-                # 카테고리 자동 할당
+                # Automatic category assignment
                 cwe_data = self._assign_categories_to_cwe(cwe_data)
                 cwe_data['source'] = 'ROS_CWE_IDS'
                 all_cwes.append(cwe_data)

@@ -1,55 +1,55 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-CWE 카테고리 할당 테스트 스크립트
+CWE Category Assignment Test Script
 """
 
 import sys
 import os
 
-# 프로젝트 루트를 Python 경로에 추가
+# Add project root to Python path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from rag_utils.cwe_database import CWEDatabase
 
 def test_category_assignment():
-    """카테고리 할당 테스트"""
-    print("=== CWE 카테고리 할당 테스트 ===")
+    """Category assignment test"""
+    print("=== CWE Category Assignment Test ===")
     
     try:
-        # CWE 데이터베이스 로드
+        # Load CWE database
         cwe_db = CWEDatabase()
-        print(f"데이터베이스 로드 완료: {len(cwe_db.cwes)}개 CWE")
+        print(f"Database loaded: {len(cwe_db.cwes)} CWEs")
         
-        # 기존 통계 확인
-        print("\n=== 기존 통계 ===")
+        # Check existing statistics
+        print("\n=== Existing Statistics ===")
         old_stats = cwe_db.get_statistics()
-        print(f"카테고리별 분류: {old_stats.get('by_category', {})}")
-        print(f"컴포넌트별 분류: {old_stats.get('by_component', {})}")
+        print(f"By category: {old_stats.get('by_category', {})}")
+        print(f"By component: {old_stats.get('by_component', {})}")
         
-        # 카테고리 할당 실행
-        print("\n=== 카테고리 할당 실행 ===")
+        # Execute category assignment
+        print("\n=== Executing Category Assignment ===")
         updated_count = cwe_db.assign_categories_to_existing_cwes()
         
-        # 업데이트된 통계 확인
-        print("\n=== 업데이트된 통계 ===")
+        # Check updated statistics
+        print("\n=== Updated Statistics ===")
         new_stats = cwe_db.get_statistics()
-        print(f"카테고리별 분류: {new_stats.get('by_category', {})}")
-        print(f"컴포넌트별 분류: {new_stats.get('by_component', {})}")
+        print(f"By category: {new_stats.get('by_category', {})}")
+        print(f"By component: {new_stats.get('by_component', {})}")
         
-        # 샘플 CWE 확인
-        print("\n=== 샘플 CWE 확인 ===")
-        sample_cwes = cwe_db.cwes[:5]  # 처음 5개
+        # Check sample CWEs
+        print("\n=== Sample CWE Check ===")
+        sample_cwes = cwe_db.cwes[:5]  # First 5
         for cwe in sample_cwes:
             print(f"CWE-{cwe['cwe_id']}: {cwe['name']}")
-            print(f"  카테고리: {cwe.get('category', 'N/A')}")
-            print(f"  ROS 컴포넌트: {cwe.get('ros_component', 'N/A')}")
+            print(f"  Category: {cwe.get('category', 'N/A')}")
+            print(f"  ROS Component: {cwe.get('ros_component', 'N/A')}")
             print()
         
-        print(f"테스트 완료! {updated_count}개 CWE 업데이트됨")
+        print(f"Test completed! {updated_count} CWEs updated")
         
     except Exception as e:
-        print(f"테스트 중 오류 발생: {e}")
+        print(f"Error during test: {e}")
         import traceback
         traceback.print_exc()
 

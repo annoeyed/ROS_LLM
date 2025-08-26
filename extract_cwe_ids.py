@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-XML에서 실제 CWE ID 목록 추출 스크립트
+Script to extract actual CWE ID list from XML
 """
 
 import xml.etree.ElementTree as ET
 
 def extract_actual_cwe_ids():
-    """XML에서 실제 CWE ID 목록 추출"""
+    """Extract actual CWE ID list from XML"""
     try:
         tree = ET.parse('cwec_v4.17.xml')
         root = tree.getroot()
@@ -21,11 +21,11 @@ def extract_actual_cwe_ids():
         return actual_ids
         
     except Exception as e:
-        print(f"오류 발생: {e}")
+        print(f"Error occurred: {e}")
         return []
 
 def filter_ros_related_cwes(cwe_list):
-    """ROS 관련 CWE 필터링"""
+    """Filter ROS-related CWEs"""
     ros_keywords = [
         'robot', 'autonomous', 'sensor', 'actuator', 'control system',
         'real-time', 'embedded', 'network', 'communication', 'authentication',
@@ -43,30 +43,30 @@ def filter_ros_related_cwes(cwe_list):
     return ros_related
 
 def main():
-    print("=== CWE ID 추출 및 ROS 관련성 필터링 ===")
+    print("=== CWE ID Extraction and ROS Relevance Filtering ===")
     
-    # 1. 실제 CWE ID 목록 추출
-    print("\n1. XML에서 CWE ID 추출 중...")
+    # 1. Extract actual CWE ID list
+    print("\n1. Extracting CWE IDs from XML...")
     all_cwes = extract_actual_cwe_ids()
-    print(f"총 {len(all_cwes)}개의 CWE 발견")
+    print(f"Total {len(all_cwes)} CWEs found")
     
     if all_cwes:
-        print("\n처음 10개 CWE:")
+        print("\nFirst 10 CWEs:")
         for i, (cwe_id, name) in enumerate(all_cwes[:10]):
             print(f"  {i+1:2d}. CWE-{cwe_id}: {name}")
         
-        # 2. ROS 관련 CWE 필터링
-        print("\n2. ROS 관련 CWE 필터링 중...")
+        # 2. Filter ROS-related CWEs
+        print("\n2. Filtering ROS-related CWEs...")
         ros_cwes = filter_ros_related_cwes(all_cwes)
-        print(f"ROS 관련 CWE: {len(ros_cwes)}개")
+        print(f"ROS-related CWEs: {len(ros_cwes)}")
         
         if ros_cwes:
-            print("\nROS 관련 CWE 목록:")
+            print("\nROS-related CWE list:")
             for i, (cwe_id, name) in enumerate(ros_cwes):
                 print(f"  {i+1:3d}. CWE-{cwe_id}: {name}")
             
-            # 3. 설정 파일용 ID 목록 생성
-            print("\n3. 설정 파일용 ID 목록:")
+            # 3. Generate ID list for configuration file
+            print("\n3. ID list for configuration file:")
             cwe_ids = [cwe_id for cwe_id, _ in ros_cwes]
             print("ROS_CWE_IDS = [")
             for i in range(0, len(cwe_ids), 5):
@@ -76,7 +76,7 @@ def main():
             print("]")
         
     else:
-        print("CWE ID를 추출할 수 없습니다.")
+        print("Unable to extract CWE IDs.")
 
 if __name__ == "__main__":
     main()

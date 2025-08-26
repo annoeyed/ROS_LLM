@@ -9,7 +9,7 @@ from .config import Config
 
 @dataclass
 class CWEData:
-    """CWE 데이터 구조"""
+    """CWE data structure"""
     cwe_id: str
     name: str
     description: str
@@ -22,7 +22,7 @@ class CWEData:
     raw_data: Dict[str, Any]
 
 class CWEDatabase:
-    """CWE 데이터베이스 관리"""
+    """CWE database management"""
     
     def __init__(self, db_path: str = None):
         self.db_path = db_path or Config.CWE_DB_PATH
@@ -33,7 +33,7 @@ class CWEDatabase:
         self.load_database()
     
     def load_database(self):
-        """기존 CWE 데이터베이스 로드"""
+        """Load existing CWE database"""
         if os.path.exists(self.cwes_file):
             with open(self.cwes_file, 'r', encoding='utf-8') as f:
                 self.cwes = json.load(f)
@@ -52,27 +52,27 @@ class CWEDatabase:
             }
     
     def add_cwes(self, new_cwes: List[Dict[str, Any]], source: str = "NVD CWE API"):
-        """새로운 CWE들 추가"""
+        """Add new CWEs"""
         added_count = 0
         updated_count = 0
         
         for cwe_data in new_cwes:
             cwe_id = cwe_data.get('cweId', 'Unknown')
             
-            # 기존 CWE인지 확인
+            # Check if CWE already exists
             existing_cwe = next((c for c in self.cwes if c['cwe_id'] == cwe_id), None)
             
             if existing_cwe:
-                # 기존 CWE 업데이트
+                # Update existing CWE
                 existing_cwe.update(self._extract_cwe_info(cwe_data))
                 updated_count += 1
             else:
-                # 새로운 CWE 추가
+                # Add new CWE
                 cwe_info = self._extract_cwe_info(cwe_data)
                 self.cwes.append(cwe_info)
                 added_count += 1
         
-        # 메타데이터 업데이트
+        # Update metadata
         self.metadata["last_updated"] = datetime.now().isoformat()
         self.metadata["total_cwes"] = len(self.cwes)
         if source not in self.metadata["sources"]:
@@ -84,7 +84,7 @@ class CWEDatabase:
         return {"added": added_count, "updated": updated_count}
     
     def _extract_cwe_info(self, cwe_data: Dict[str, Any]) -> Dict[str, Any]:
-        """CWE 데이터에서 필요한 정보 추출"""
+        """Extract necessary information from CWE data"""
         return {
             "cwe_id": cwe_data.get('cweId', 'Unknown'),
             "name": cwe_data.get('name', 'No name'),

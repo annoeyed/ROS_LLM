@@ -18,25 +18,25 @@ class CWERAGBuilder:
         self.cwe_db = cwe_db
     
     def build_rag_index(self, output_dir: str = "data/rag_sources/cwe_index"):
-        """CWE 데이터베이스를 RAG 인덱스로 변환"""
+        """Convert CWE database to RAG index"""
         cwes = self.cwe_db.cwes
         
-        print(f"CWE RAG 인덱스 구축 시작: {len(cwes)}개 CWE")
+        print(f"Starting CWE RAG index construction: {len(cwes)} CWEs")
         
-        # CWE를 청크로 변환
+        # Convert CWEs to chunks
         chunks = []
         for cwe in cwes:
-            # CWE 정보를 텍스트로 변환
+            # Convert CWE information to text
             cwe_text = self._format_cwe_for_rag(cwe)
             
-            # 메타데이터 생성
+            # Create metadata
             metadata = ChunkMetadata(
                 section="CWE",
                 rule_type="vulnerability",
                 keywords=self._extract_keywords(cwe)
             )
             
-            # 청크 생성
+            # Create chunk
             chunk = ChunkRecord(
                 doc_id=f"cwe_{cwe['cwe_id']}",
                 title=f"CWE-{cwe['cwe_id']}: {cwe['name']}",
@@ -45,33 +45,33 @@ class CWERAGBuilder:
             )
             chunks.append(chunk)
         
-        print(f"청크 생성 완료: {len(chunks)}개")
+        print(f"Chunk creation completed: {len(chunks)} chunks")
         
-        # 임베딩 생성
+        # Generate embeddings
         texts = [chunk.text for chunk in chunks]
-        print("임베딩 생성 중...")
+        print("Generating embeddings...")
         embeddings = embed_texts(texts)
         
-        # FAISS 인덱스 생성
-        print("FAISS 인덱스 생성 중...")
+        # Create FAISS index
+        print("Creating FAISS index...")
         index = build_faiss_index(chunks, embeddings)
         
-        # 저장
-        print(f"인덱스 저장 중: {output_dir}")
+        # Save
+        print(f"Saving index to: {output_dir}")
         save_faiss(index, output_dir)
         
-        print(f"CWE RAG 인덱스 생성 완료: {len(chunks)}개 청크")
+        print(f"CWE RAG index creation completed: {len(chunks)} chunks")
         return index
     
     def _format_cwe_for_rag(self, cwe: Dict[str, Any]) -> str:
-        """CWE를 RAG용 텍스트로 변환"""
+        """Convert CWE to RAG text format"""
         text_parts = [
             f"CWE ID: CWE-{cwe['cwe_id']}",
             f"Name: {cwe['name']}",
             f"Description: {cwe['description']}"
         ]
         
-        # raw_data에서 추가 정보 추출
+        # Extract additional information from raw_data
         raw_data = cwe.get('raw_data', {})
         
         if raw_data.get('abstraction'):
@@ -83,13 +83,13 @@ class CWERAGBuilder:
         if raw_data.get('status'):
             text_parts.append(f"Status: {raw_data['status']}")
         
-        # mitigations 추가
+        # Add mitigations
         if raw_data.get('mitigations'):
             mitigations_text = " | ".join([m.get('description', '') for m in raw_data['mitigations']])
             if mitigations_text:
                 text_parts.append(f"Mitigations: {mitigations_text}")
         
-        # examples 추가
+        # Add examples
         if raw_data.get('examples'):
             examples_text = " | ".join([ex.get('description', '') for ex in raw_data['examples']])
             if examples_text:
@@ -98,7 +98,7 @@ class CWERAGBuilder:
         return " | ".join(text_parts)
     
     def _extract_keywords(self, cwe: Dict[str, Any]) -> List[str]:
-        """CWE에서 키워드 추출"""
+        """Extract keywords from CWE"""
         keywords = []
         
         # 기본 키워드

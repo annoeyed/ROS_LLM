@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Sequential 워크플로우 실행 테스트
+Sequential Workflow Execution Test
 """
 
 import sys
 import os
 import logging
 
-# 상위 디렉토리 경로 추가
+# Add parent directory path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from app.sequential_workflow import SequentialWorkflow
 
 def setup_logging():
-    """로깅 설정"""
+    """Setup logging"""
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(name)s - %(levelname)s - %(name)s - %(levelname)s - %(message)s',
@@ -31,23 +31,23 @@ def save_generated_code(workflow_result, logger):
         import os
         from datetime import datetime
         
-        # 저장 디렉토리 생성
+        # Create output directory
         output_dir = os.path.join(os.path.dirname(__file__), '..', 'data', 'generated_code')
         os.makedirs(output_dir, exist_ok=True)
         
-        # 타임스탬프 생성
+        # Create timestamp
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         
-        # 워크플로우 결과를 JSON으로 저장
+        # Save workflow result as JSON
         json_filename = f"workflow_result_{timestamp}.json"
         json_path = os.path.join(output_dir, json_filename)
         
         with open(json_path, 'w', encoding='utf-8') as f:
             json.dump(workflow_result, f, ensure_ascii=False, indent=2)
         
-        logger.info(f"워크플로우 결과가 JSON으로 저장되었습니다: {json_path}")
+        logger.info(f"Workflow result saved as JSON: {json_path}")
         
-        # 생성된 ROS 코드를 Python 파일로 저장
+        # Save generated ROS code as Python file
         if 'result' in workflow_result and 'generation_phase' in workflow_result['result']:
             generation_phase = workflow_result['result']['generation_phase']
             
@@ -55,16 +55,16 @@ def save_generated_code(workflow_result, logger):
                 generated_code = generation_phase['result']['code']
                 
                 if generated_code:
-                    # Python 파일로 저장
+                    # Save as Python file
                     py_filename = f"generated_ros_node_{timestamp}.py"
                     py_path = os.path.join(output_dir, py_filename)
                     
                     with open(py_path, 'w', encoding='utf-8') as f:
                         f.write(generated_code)
                     
-                    logger.info(f"생성된 ROS 코드가 Python 파일로 저장되었습니다: {py_path}")
+                    logger.info(f"Generated ROS code saved as Python file: {py_path}")
                     
-                    # 코드 메타데이터도 별도 JSON으로 저장
+                    # Save code metadata as separate JSON
                     metadata_filename = f"code_metadata_{timestamp}.json"
                     metadata_path = os.path.join(output_dir, metadata_filename)
                     
@@ -81,57 +81,57 @@ def save_generated_code(workflow_result, logger):
                     with open(metadata_path, 'w', encoding='utf-8') as f:
                         json.dump(code_metadata, f, ensure_ascii=False, indent=2)
                     
-                    logger.info(f"코드 메타데이터가 JSON으로 저장되었습니다: {metadata_path}")
+                    logger.info(f"Code metadata saved as JSON: {metadata_path}")
                 else:
-                    logger.warning("생성된 코드가 비어있습니다.")
+                    logger.warning("Generated code is empty.")
             else:
-                logger.warning("코드 생성 결과를 찾을 수 없습니다.")
+                logger.warning("Code generation result not found.")
         else:
-            logger.warning("워크플로우 결과에서 코드 생성 정보를 찾을 수 없습니다.")
+            logger.warning("Code generation information not found in workflow result.")
             
     except Exception as e:
-        logger.error(f"코드 저장 중 오류 발생: {e}")
+        logger.error(f"Error occurred while saving code: {e}")
         import traceback
         traceback.print_exc()
 
 def main():
-    """메인 실행 함수"""
+    """Main execution function"""
     setup_logging()
     logger = logging.getLogger(__name__)
     
     try:
-        logger.info("Sequential 워크플로우 테스트 시작")
+        logger.info("Sequential workflow test started")
         
-        # 워크플로우 초기화
+        # Initialize workflow
         workflow = SequentialWorkflow()
         
-        # Agent들 초기화
+        # Initialize agents
         if not workflow.initialize_agents():
-            logger.error("Agent 초기화 실패")
+            logger.error("Agent initialization failed")
             return
         
-        logger.info("모든 Agent 초기화 완료")
+        logger.info("All agents initialized successfully")
         
-        # 테스트 요청
+        # Test request
         test_request = """
-        ROS2 노드를 생성하여 간단한 퍼블리셔/서브스크라이버 패턴을 구현하세요.
-        노드는 'hello_world' 토픽을 통해 메시지를 주고받을 수 있어야 합니다.
-        보안을 고려하여 안전한 코드를 생성해주세요.
+        Create a ROS2 node that implements a simple publisher/subscriber pattern.
+        The node should be able to send and receive messages through the 'hello_world' topic.
+        Please generate secure code considering security.
         """
         
-        logger.info(f"테스트 요청: {test_request.strip()}")
+        logger.info(f"Test request: {test_request.strip()}")
         
-        # 워크플로우 실행
+        # Execute workflow
         result = workflow.execute_workflow(test_request)
         
-        # 결과 출력
-        logger.info("=== 워크플로우 실행 결과 ===")
-        logger.info(f"상태: {result['status']}")
-        logger.info(f"메시지: {result['message']}")
-        logger.info(f"실행 시간: {result['execution_time']:.2f}초")
+        # Output results
+        logger.info("=== Workflow Execution Results ===")
+        logger.info(f"Status: {result['status']}")
+        logger.info(f"Message: {result['message']}")
+        logger.info(f"Execution time: {result['execution_time']:.2f} seconds")
         
         if result['status'] == 'completed':
-            logger.info("워크플로우 성공적으로 완료!")
+            logger.info("Workflow completed successfully!")
             if 'result' in result:
                 logger.info("최종 결과:")
                 logger.info(f"  - Generation 단계: {result['result']['generation_phase']['status']}")

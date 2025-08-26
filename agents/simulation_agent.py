@@ -13,7 +13,7 @@ import time
 from typing import Dict, Any, List, Optional
 from .base_agent import BaseAgent, AgentMessage, AgentTask
 
-# 상위 디렉토리 경로 추가 (rag_utils 모듈 접근용)
+# Add parent directory path (for accessing rag_utils module)
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 class SimulationAgent(BaseAgent):
@@ -22,20 +22,20 @@ class SimulationAgent(BaseAgent):
     def __init__(self, agent_id: str = "simulation_001"):
         super().__init__(agent_id, "Simulation Agent")
         
-        # AI 클라이언트 초기화
+        # Initialize AI client
         self.ai_client = None
         
-        # 시뮬레이션 환경 설정
+        # Simulation environment settings
         self.simulation_environments = {
-            'gazebo': 'Gazebo 시뮬레이터',
-            'rviz': 'RViz 시각화 도구',
-            'rosbag': 'ROS Bag 재생',
-            'unit_test': '단위 테스트',
-            'integration_test': '통합 테스트',
-            'security_test': '보안 테스트'
+            'gazebo': 'Gazebo simulator',
+            'rviz': 'RViz visualization tool',
+            'rosbag': 'ROS Bag playback',
+            'unit_test': 'Unit test',
+            'integration_test': 'Integration test',
+            'security_test': 'Security test'
         }
         
-        # 테스트 시나리오
+        # Test scenarios
         self.test_scenarios = {
             'basic_functionality': self._get_basic_functionality_scenario(),
             'error_handling': self._get_error_handling_scenario(),
@@ -45,51 +45,51 @@ class SimulationAgent(BaseAgent):
         }
     
     def _initialize(self):
-        """Simulation Agent 초기화"""
+        """Initialize Simulation Agent"""
         super()._initialize()
         
         try:
-            # AI 클라이언트 로드
+            # Load AI client
             self._load_ai_client()
-            self.logger.info("AI 클라이언트 로드 완료")
-            self.logger.info("AI 기반 ROS 시뮬레이션 시스템 초기화 완료")
+            self.logger.info("AI client loaded successfully")
+            self.logger.info("AI-based ROS simulation system initialized")
         except Exception as e:
-            self.logger.error(f"AI 클라이언트 로드 실패: {e}")
+            self.logger.error(f"Failed to load AI client: {e}")
             self.status = 'error'
     
     def _load_ai_client(self):
-        """AI 클라이언트 로드"""
+        """Load AI client"""
         try:
-            # 환경변수 로드
+            # Load environment variables
             from dotenv import load_dotenv
             import os
-            # 현재 파일의 디렉토리를 기준으로 .env 파일 경로 설정
+            # Set .env file path based on current file directory
             env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
             load_dotenv(env_path)
             
             from rag_utils.ai_client import AIClientFactory
             
-            # 환경변수에서 AI 클라이언트 타입 확인
+            # Check AI client type from environment variables
             ai_client_type = os.getenv('AI_CLIENT_TYPE', 'mock')
             
-            # AI 클라이언트 생성
+            # Create AI client
             self.ai_client = AIClientFactory.create_client(ai_client_type)
             
-            self.logger.info(f"AI 클라이언트 로드 완료: {ai_client_type}")
+            self.logger.info(f"AI client loaded successfully: {ai_client_type}")
             
         except Exception as e:
-            self.logger.error(f"AI 클라이언트 로드 중 오류: {e}")
-            # AI 클라이언트 로드 실패 시 Mock 클라이언트 사용
+            self.logger.error(f"Error loading AI client: {e}")
+            # Use Mock client if AI client loading fails
             try:
                 from rag_utils.ai_client import MockAIClient
                 self.ai_client = MockAIClient()
-                self.logger.info("Mock AI 클라이언트로 대체")
+                self.logger.info("Fallback to Mock AI client")
             except Exception as mock_e:
-                self.logger.error(f"Mock AI 클라이언트 로드도 실패: {mock_e}")
+                self.logger.error(f"Failed to load Mock AI client: {mock_e}")
                 self.ai_client = None
     
     def process_message(self, message: AgentMessage) -> AgentMessage:
-        """메시지 처리 - 시뮬레이션 및 테스트 요청 처리"""
+        """Process messages - handle simulation and test requests"""
         if message.message_type == 'request':
             if 'simulate_code' in message.content:
                 return self._handle_simulation_request(message)

@@ -11,18 +11,18 @@ from typing import Dict, Any, Optional
 from pathlib import Path
 
 class ConfigLoader:
-    """설정 로더 클래스"""
+    """Configuration loader class"""
     
     def __init__(self, config_dir: str = "config"):
         self.config_dir = Path(config_dir)
         self.logger = logging.getLogger(self.__class__.__name__)
         
     def load_env_file(self, filename: str = ".env") -> Dict[str, str]:
-        """환경 변수 파일 로드"""
+        """Load environment variable file"""
         env_file = self.config_dir / filename
         
         if not env_file.exists():
-            self.logger.warning(f"환경 변수 파일을 찾을 수 없습니다: {env_file}")
+            self.logger.warning(f"Environment variable file not found: {env_file}")
             return {}
         
         config = {}
@@ -34,18 +34,18 @@ class ConfigLoader:
                         key, value = line.split('=', 1)
                         config[key.strip()] = value.strip()
             
-            self.logger.info(f"환경 변수 파일 로드 완료: {env_file}")
+            self.logger.info(f"Environment variable file loaded: {env_file}")
             return config
             
         except Exception as e:
-            self.logger.error(f"환경 변수 파일 로드 실패: {e}")
+            self.logger.error(f"Failed to load environment variable file: {e}")
             return {}
     
     def get_ai_config(self) -> Dict[str, Any]:
-        """AI 설정 가져오기"""
+        """Get AI configuration"""
         config = {}
         
-        # 환경 변수에서 직접 설정
+        # Direct setting from environment variables
         config['client_type'] = os.getenv('AI_CLIENT_TYPE', 'mock')
         config['openai_api_key'] = os.getenv('OPENAI_API_KEY')
         config['openai_model'] = os.getenv('OPENAI_MODEL', 'gpt-4')
@@ -54,7 +54,7 @@ class ConfigLoader:
         config['max_tokens'] = int(os.getenv('AI_MAX_TOKENS', '1000'))
         config['temperature'] = float(os.getenv('AI_TEMPERATURE', '0.3'))
         
-        # .env 파일이 있다면 로드
+        # Load .env file if it exists
         env_config = self.load_env_file()
         if env_config:
             config.update(env_config)
@@ -62,25 +62,25 @@ class ConfigLoader:
         return config
     
     def get_model_info(self) -> Dict[str, str]:
-        """사용 가능한 모델 정보 반환"""
+        """Return available model information"""
         return {
             'openai': {
-                'gpt-4': 'GPT-4 (가장 강력한 모델)',
-                'gpt-4-turbo': 'GPT-4 Turbo (빠르고 효율적)',
-                'gpt-3.5-turbo': 'GPT-3.5 Turbo (빠르고 경제적)',
-                'gpt-4o': 'GPT-4o (최신 모델)',
-                'gpt-4o-mini': 'GPT-4o Mini (경제적)'
+                'gpt-4': 'GPT-4 (Most powerful model)',
+                'gpt-4-turbo': 'GPT-4 Turbo (Fast and efficient)',
+                'gpt-3.5-turbo': 'GPT-3.5 Turbo (Fast and economical)',
+                'gpt-4o': 'GPT-4o (Latest model)',
+                'gpt-4o-mini': 'GPT-4o Mini (Economical)'
             },
             'anthropic': {
-                'claude-3-opus-20240229': 'Claude 3 Opus (가장 강력한 모델)',
-                'claude-3-sonnet-20240229': 'Claude 3 Sonnet (균형잡힌 성능)',
-                'claude-3-haiku-20240307': 'Claude 3 Haiku (빠르고 경제적)',
-                'claude-3.5-sonnet-20241022': 'Claude 3.5 Sonnet (최신 모델)'
+                'claude-3-opus-20240229': 'Claude 3 Opus (Most powerful model)',
+                'claude-3-sonnet-20240229': 'Claude 3 Sonnet (Balanced performance)',
+                'claude-3-haiku-20240307': 'Claude 3 Haiku (Fast and economical)',
+                'claude-3.5-sonnet-20241022': 'Claude 3.5 Sonnet (Latest model)'
             }
         }
     
     def validate_config(self, config: Dict[str, Any]) -> bool:
-        """설정 유효성 검사"""
+        """Validate configuration"""
         required_fields = {
             'openai': ['openai_api_key'],
             'anthropic': ['anthropic_api_key'],
@@ -89,12 +89,12 @@ class ConfigLoader:
         
         client_type = config.get('client_type', 'mock')
         if client_type not in required_fields:
-            self.logger.error(f"알 수 없는 클라이언트 타입: {client_type}")
+            self.logger.error(f"Unknown client type: {client_type}")
             return False
         
         for field in required_fields[client_type]:
             if not config.get(field):
-                self.logger.error(f"필수 설정이 누락되었습니다: {field}")
+                self.logger.error(f"Required configuration missing: {field}")
                 return False
         
         return True
