@@ -67,7 +67,7 @@ class SimulationAgent(BaseAgent):
             env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
             load_dotenv(env_path)
             
-            from rag_utils.ai_client import AIClientFactory
+            from utils.ai_client import AIClientFactory
             
             # Check AI client type from environment variables
             ai_client_type = os.getenv('AI_CLIENT_TYPE', 'mock')
