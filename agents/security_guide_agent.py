@@ -7,7 +7,6 @@ CWE 데이터베이스를 기반으로 ROS 보안 가이드라인을 생성하�
 
 import sys
 import os
-import json
 import re
 from typing import Dict, Any, List, Optional
 from .base_agent import BaseAgent, AgentMessage, AgentTask
@@ -20,7 +19,7 @@ class SecurityGuideAgent(BaseAgent):
     
     def __init__(self, agent_id: str = "security_guide_001"):
         super().__init__(agent_id, "Security Guide Agent")
-        self.llm_client = llm_client  # LLM 클라이언트는 BaseAgent에서 초기화됨
+        
         # Initialize security guideline generator
         self.guidelines = None  # Initialize as None to set in _initialize
         self.cwe_database = None
@@ -102,92 +101,6 @@ class SecurityGuideAgent(BaseAgent):
             # 최종 대안으로 기본 가이드라인 생성
             self.guidelines = self._create_default_guidelines()
             self.logger.warning("기본 보안 가이드라인을 사용합니다.")
-    
-    def run(self, plan: str):
-        """
-        워크플로우에서 부르는 어댑터.
-        Returns: (guidelines_markdown: str, rag_context: str, cwe_ids: List[str])
-        """
-        return self.generate_guildelines(plan)
-    
-    def generate_guildelines(self, plan: str):
-        """
-        주어진 plan에 대해 보안 가이드라인을 Markdown으로 만들어서 돌려준다.
-        내부의 self.guidelines(dict) 를 RAG/기본 가이드라인 소스로 쓰고,
-        llm_client가 있으면 요약/정리, 없으면 고정 Fallback 문구 사용.
-        """
-        #1) RAG/기본 가이드라인(dict)→ rag_context(JSON)
-        baseline = self.get_security_guidelines(category='all', component='all')
-        try:
-            rag_context = json.dumps(baseline, ensure_ascii=False, indent=2)
-        except Exception:
-            rag_context = str(baseline)
-        rag_context = self.truncate(rag_context, 8000)
-        
-        #2) Markdown 가이드라인 생성
-        guidelines_md = None
-        if getattr(self, 'llm_client', None):
-            prompt = f"""
-    You are a ROS 2 security expert. Create concise, actionable security guidelines
-    for the plan below. Focus on preventing unauthorized runtime parameter changes
-    (read-only parameters), safe node lifecycle, robust input validation, secret-safe
-    logging, QoS consistency, and forbidding dangerous execution APIs.
-    
-    # plan
-    {plan}
-    
-    # Baseline Guidelines (Context)
-    {rag_context}
-    
-    # Write
-    - One-sentence rationale.
-- 8–12 concrete, verifiable bullets (imperative voice).
-- Include: read-only parameters (no runtime mutation / disable dynamic reconfigure),
-  try/except around init/spin/shutdown, least-privilege on params/services/topics,
-  QoS consistency, secret masking in logs, and banning eval/exec/os.system/subprocess.
-- End with: `CWE: CWE-xxx, ...`
-
-Return Markdown only.
-""".strip()
-            try:
-                guidelines_md = (self.llm_client.generate_response(
-                    prompt,
-                    temperature=float(os.getenv("AI_TEMPERATURE", "0.2")),
-                    max_tokens=int(os.getenv("AI_MAX_TOKENS", "900")),
-                ) or "").strip()
-            except Exception as e:
-                self.logger.warning(f"LLM call failed, using fallback guidelines: {e}")
-                guidelines_md = self._fallback_guidelines()
-        else:
-            guidelines_md = self._fallback_guidelines()
-
-        # 3) CWE ID 추출 (guidelines + rag_context 모두에서)
-        cwe_ids = sorted(set(re.findall(r"CWE-\d+", f"{guidelines_md}\n{rag_context}")))
-        return guidelines_md, rag_context, cwe_ids
-
-    # (추가) 헬퍼들 ---------------------------------------------------------
-    def _truncate(self, s: str, limit: int) -> str:
-        if not isinstance(s, str):
-            return ""
-        return s if len(s) <= limit else (s[:limit] + "\n... (truncated)")
-
-    def _fallback_guidelines(self) -> str:
-        # LLM 없이도 항상 나오는 고정 Markdown
-        return (
-            "### Rationale\n"
-            "Apply defense-in-depth for ROS 2 nodes. Prevent runtime parameter tampering and ensure safe lifecycle.\n\n"
-            "### Rules\n"
-            "- Declare sensitive parameters as **read-only** at startup; disable any dynamic reconfigure.\n"
-            "- Validate all inputs (type/range/length); sanitize strings before using them in logic or I/O.\n"
-            "- Wrap init/spin/shutdown in try/except; always destroy nodes and call `rclpy.shutdown()` in `finally`.\n"
-            "- Mask secrets/PII in logs; never log tokens, keys, or credentials.\n"
-            "- **Ban** `eval`, `exec`, `os.system`, and `subprocess.*` unless a strict allowlist is enforced.\n"
-            "- Keep publisher/subscriber QoS profiles consistent and appropriate for reliability requirements.\n"
-            "- Enforce least-privilege for services, topics, and parameters (RBAC).\n"
-            "- Enable DDS Security (authentication, encryption, access control) where available.\n"
-            "- Add tests that attempt to change read-only parameters and assert failure.\n\n"
-            "CWE: CWE-284, CWE-306, CWE-20, CWE-200, CWE-78"
-        ) 
     
     def process_message(self, message: AgentMessage) -> AgentMessage:
         """메시지 처리 - 보안 가이드라인 요청 처리"""
