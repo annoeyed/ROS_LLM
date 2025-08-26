@@ -1133,4 +1133,5 @@ def decrypt_data(self, encrypted_data):
                 'enhanced_generation': self.ai_client is not None
             },
             'code_templates': list(self.code_templates.keys()),
-            'security_patterns': list(self.security_patterns.keys()
+            'security_patterns': list(self.security_patterns.keys())
+        }

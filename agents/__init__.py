@@ -9,6 +9,7 @@ from .planner_agent import PlannerAgent
 from .security_guide_agent import SecurityGuideAgent
 from .coder_agent import CoderAgent
 from .simulation_agent import SimulationAgent
+from .judge_agent import JudgeAgent
 
 __all__ = [
     'BaseAgent',
@@ -16,4 +17,5 @@ __all__ = [
     'SecurityGuideAgent',
     'CoderAgent',
     'SimulationAgent'
+    'JudgeAgent'
 ]
