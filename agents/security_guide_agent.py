@@ -17,8 +17,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 class SecurityGuideAgent(BaseAgent):
     """CWE 기반 보안 가이드라인 생성 및 제공 Agent"""
     
-    def __init__(self, agent_id: str = "security_guide_001"):
+    def __init__(self, llm_client, agent_id: str = "security_guide_001"):
         super().__init__(agent_id, "Security Guide Agent")
+        self.llm_client = llm_client
         
         # Initialize security guideline generator
         self.guidelines = None  # Initialize as None to set in _initialize
@@ -1087,3 +1088,144 @@ class SecurityGuideAgent(BaseAgent):
         recommendations.extend(component_specific)
         
         return list(set(recommendations))  # 중복 제거
+
+    def generate_ros_security_guidelines(self) -> Dict[str, Any]:
+        """Generate comprehensive ROS security guidelines"""
+        try:
+            guidelines = {}
+            
+            # Generate category-based guidelines
+            category_guidelines = {}
+            for category in ['authentication', 'authorization', 'input_validation', 
+                           'memory_management', 'file_operations', 'race_conditions',
+                           'network_security', 'cryptography', 'logging', 'error_handling']:
+                category_guidelines[category] = self.get_security_guidelines(category=category)
+            
+            # Generate component-based guidelines  
+            component_guidelines = {}
+            for component in ['rclpy/rclcpp', 'tf2', 'urdf', 'gazebo', 'moveit', 
+                            'rosbag', 'navigation', 'control', 'diagnostics', 
+                            'visualization', 'hardware_drivers', 'communication']:
+                component_guidelines[component] = self.get_security_guidelines(component=component)
+            
+            guidelines['category_guidelines'] = category_guidelines
+            guidelines['component_guidelines'] = component_guidelines
+            guidelines['status'] = 'success'
+            
+            return guidelines
+            
+        except Exception as e:
+            self.logger.error(f"보안 가이드라인 생성 실패: {e}")
+            return {
+                'status': 'error',
+                'error': str(e),
+                'category_guidelines': {},
+                'component_guidelines': {}
+            }
+
+    def generate_guidelines(self, plan: str) -> str:
+        """Generate security guidelines based on the plan (wrapper for workflow compatibility)"""
+        try:
+            # Use summarized guidelines to avoid token limits
+            return self.generate_summarized_security_guidelines(plan)
+        except Exception as e:
+            self.logger.error(f"가이드라인 생성 실패: {e}")
+            return f"가이드라인 생성 실패: {str(e)}"
+
+    def process_message(self, message: AgentMessage) -> AgentMessage:
+        """Process incoming messages"""
+        if message.message_type == 'guidelines_request':
+            plan = message.content.get('plan', '')
+            guidelines = self.generate_guidelines(plan)
+            
+            return self.send_message(
+                message.sender,
+                'guidelines_response',
+                {'guidelines': guidelines}
+            )
+        else:
+            return self.send_message(
+                message.sender,
+                'error',
+                {'error': f'Unknown message type: {message.message_type}'}
+            )
+
+    def execute_task(self, task: AgentTask) -> Dict[str, Any]:
+        """Execute a security guidelines task"""
+        try:
+            if task.task_type == 'security_guidelines':
+                plan = task.parameters.get('plan', '')
+                guidelines = self.generate_guidelines(plan)
+                
+                return {
+                    'status': 'completed',
+                    'result': {'guidelines': guidelines}
+                }
+            else:
+                return {
+                    'status': 'failed',
+                    'error': f'Unknown task type: {task.task_type}'
+                }
+        except Exception as e:
+            return {
+                'status': 'failed',
+                'error': str(e)
+            }
+    
+    def generate_summarized_security_guidelines(self, plan: str) -> str:
+        """Generate summarized security guidelines to avoid token limits.
+        
+        Args:
+            plan: The ROS code generation plan
+            
+        Returns:
+            str: Summarized security guidelines
+        """
+        guidelines = """# ROS Security Guidelines (Summary)
+
+## Critical Security Practices
+
+### Authentication & Authorization
+- Use proper authentication mechanisms (avoid CWE-306: Missing Authentication)
+- Implement least privilege principle (avoid CWE-250: Execution with Unnecessary Privileges)
+- Verify user permissions before granting access (avoid CWE-862: Missing Authorization)
+
+### Input Validation
+- Validate all user inputs (avoid CWE-20: Improper Input Validation)
+- Prevent command injection (avoid CWE-78: OS Command Injection)
+- Sanitize path inputs to prevent traversal (avoid CWE-22: Path Traversal)
+
+### Memory Management
+- Check buffer bounds (avoid CWE-119: Improper Restriction of Operations within Memory Buffer)
+- Prevent integer overflow (avoid CWE-190: Integer Overflow)
+- Handle memory allocation errors properly
+
+### Communication Security
+- Verify communication endpoints (avoid CWE-940: Improper Verification of Source)
+- Ensure message integrity (avoid CWE-924: Improper Enforcement of Message Integrity)
+- Use secure protocols for sensitive data
+
+### Error Handling & Logging
+- Implement standardized error handling (avoid CWE-544: Missing Standardized Error Handling)
+- Log security events appropriately (avoid CWE-778: Insufficient Logging)
+- Avoid logging sensitive information (avoid CWE-532: Insertion of Sensitive Information into Log)
+
+### File Operations
+- Validate file paths and names (avoid CWE-73: External Control of File Name or Path)
+- Use secure temporary files (avoid CWE-377: Insecure Temporary File)
+- Control file access permissions properly
+
+## ROS-Specific Security
+- Secure ROS node communication
+- Validate topic messages
+- Implement proper service authentication
+- Control access to parameters
+- Use secure DDS configurations
+
+## Code Implementation
+- Use secure coding standards
+- Perform regular security testing
+- Conduct code reviews with security focus
+- Apply static analysis tools
+"""
+        return guidelines

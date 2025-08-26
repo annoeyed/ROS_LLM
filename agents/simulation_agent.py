@@ -73,20 +73,14 @@ class SimulationAgent(BaseAgent):
             ai_client_type = os.getenv('AI_CLIENT_TYPE', 'mock')
             
             # Create AI client
-            self.ai_client = AIClientFactory.create_client(ai_client_type)
+            # self.ai_client = AIClientFactory.create_client(ai_client_type)
+            self.ai_client = None  # Will be set by workflow
             
             self.logger.info(f"AI client loaded successfully: {ai_client_type}")
             
         except Exception as e:
             self.logger.error(f"Error loading AI client: {e}")
-            # Use Mock client if AI client loading fails
-            try:
-                from rag_utils.ai_client import MockAIClient
-                self.ai_client = MockAIClient()
-                self.logger.info("Fallback to Mock AI client")
-            except Exception as mock_e:
-                self.logger.error(f"Failed to load Mock AI client: {mock_e}")
-                self.ai_client = None
+            self.ai_client = None
     
     def process_message(self, message: AgentMessage) -> AgentMessage:
         """Process messages - handle simulation and test requests"""

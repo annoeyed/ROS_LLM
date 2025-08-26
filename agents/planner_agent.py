@@ -14,8 +14,9 @@ from .base_agent import BaseAgent, AgentMessage, AgentTask
 class PlannerAgent(BaseAgent):
     """Agent that analyzes user requests and establishes code generation plans"""
     
-    def __init__(self, agent_id: str = "planner_001"):
+    def __init__(self, llm_client, agent_id: str = "planner_001"):
         super().__init__(agent_id, "Planner Agent")
+        self.llm_client = llm_client
         
         # ROS-related keyword patterns
         self.ros_patterns = {
@@ -78,20 +79,14 @@ class PlannerAgent(BaseAgent):
             ai_client_type = os.getenv('AI_CLIENT_TYPE', 'mock')
             
             # Create AI client
-            self.ai_client = AIClientFactory.create_client(ai_client_type)
+            # self.ai_client = AIClientFactory.create_client(ai_client_type)
+            self.ai_client = None  # Will be set by workflow
             
             self.logger.info(f"AI client loaded successfully: {ai_client_type}")
             
         except Exception as e:
             self.logger.error(f"Error loading AI client: {e}")
-            # Use Mock client if AI client loading fails
-            try:
-                from rag_utils.ai_client import MockAIClient
-                self.ai_client = MockAIClient()
-                self.logger.info("Fallback to Mock AI client")
-            except Exception as mock_e:
-                self.logger.error(f"Failed to load Mock AI client: {mock_e}")
-                self.ai_client = None
+            self.ai_client = None
     
     def analyze_request(self, user_request: str) -> Dict[str, Any]:
         """Analyze user request and establish code generation plan (for external calls)"""
@@ -582,3 +577,74 @@ class PlannerAgent(BaseAgent):
                     'error': f'계획 수립 실패: {str(e)} (fallback도 실패: {str(fallback_e)})',
                     'status': 'error'
                 }
+
+    def generate_plan(self, instruction: str) -> str:
+        """Generate a plan for the given instruction (wrapper for workflow compatibility)"""
+        result = self.plan_ros_code_generation(instruction)
+        if result.get('status') == 'success':
+            plan_dict = result.get('plan', {})
+            # Convert plan dictionary to string format
+            plan_str = f"""
+## ROS Code Generation Plan
+
+### Analysis:
+{result.get('analysis', {}).get('summary', 'N/A')}
+
+### Implementation Steps:
+"""
+            steps = plan_dict.get('implementation_steps', [])
+            for i, step in enumerate(steps, 1):
+                plan_str += f"{i}. {step}\n"
+            
+            plan_str += f"""
+### ROS Components:
+- Node Type: {plan_dict.get('ros_components', {}).get('node_type', 'N/A')}
+- Topics: {', '.join(plan_dict.get('ros_components', {}).get('topics', []))}
+- Services: {', '.join(plan_dict.get('ros_components', {}).get('services', []))}
+
+### Security Considerations:
+{', '.join(plan_dict.get('security_considerations', []))}
+"""
+            return plan_str
+        else:
+            return f"계획 수립 실패: {result.get('error', 'Unknown error')}"
+
+    def process_message(self, message: AgentMessage) -> AgentMessage:
+        """Process incoming messages"""
+        if message.message_type == 'plan_request':
+            instruction = message.content.get('instruction', '')
+            plan = self.generate_plan(instruction)
+            
+            return self.send_message(
+                message.sender,
+                'plan_response',
+                {'plan': plan}
+            )
+        else:
+            return self.send_message(
+                message.sender,
+                'error',
+                {'error': f'Unknown message type: {message.message_type}'}
+            )
+
+    def execute_task(self, task: AgentTask) -> Dict[str, Any]:
+        """Execute a planning task"""
+        try:
+            if task.task_type == 'planning':
+                instruction = task.parameters.get('instruction', '')
+                plan = self.generate_plan(instruction)
+                
+                return {
+                    'status': 'completed',
+                    'result': {'plan': plan}
+                }
+            else:
+                return {
+                    'status': 'failed',
+                    'error': f'Unknown task type: {task.task_type}'
+                }
+        except Exception as e:
+            return {
+                'status': 'failed',
+                'error': str(e)
+            }

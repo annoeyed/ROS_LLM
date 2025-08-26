@@ -19,7 +19,11 @@ class ConfigLoader:
         
     def load_env_file(self, filename: str = ".env") -> Dict[str, str]:
         """Load environment variable file"""
-        env_file = self.config_dir / filename
+        # Try root directory first, then config directory
+        root_env_file = Path(filename)
+        config_env_file = self.config_dir / filename
+        
+        env_file = root_env_file if root_env_file.exists() else config_env_file
         
         if not env_file.exists():
             self.logger.warning(f"Environment variable file not found: {env_file}")
@@ -45,19 +49,56 @@ class ConfigLoader:
         """Get AI configuration"""
         config = {}
         
-        # Direct setting from environment variables
-        config['client_type'] = os.getenv('AI_CLIENT_TYPE', 'mock')
-        config['openai_api_key'] = os.getenv('OPENAI_API_KEY')
-        config['openai_model'] = os.getenv('OPENAI_MODEL', 'gpt-4')
-        config['anthropic_api_key'] = os.getenv('ANTHROPIC_API_KEY')
-        config['anthropic_model'] = os.getenv('ANTHROPIC_MODEL', 'claude-3-sonnet-20240229')
-        config['max_tokens'] = int(os.getenv('AI_MAX_TOKENS', '1000'))
-        config['temperature'] = float(os.getenv('AI_TEMPERATURE', '0.3'))
-        
-        # Load .env file if it exists
+        # Load .env file first
         env_config = self.load_env_file()
         if env_config:
             config.update(env_config)
+        
+        # Override with direct environment variables if they exist
+        if os.getenv('AI_CLIENT_TYPE'):
+            config['client_type'] = os.getenv('AI_CLIENT_TYPE')
+        elif 'AI_CLIENT_TYPE' in config:
+            config['client_type'] = config['AI_CLIENT_TYPE']
+        else:
+            config['client_type'] = 'openai'  # default
+        
+        if os.getenv('OPENAI_API_KEY'):
+            config['openai_api_key'] = os.getenv('OPENAI_API_KEY')
+        elif 'OPENAI_API_KEY' in config:
+            config['openai_api_key'] = config['OPENAI_API_KEY']
+            
+        if os.getenv('OPENAI_MODEL'):
+            config['openai_model'] = os.getenv('OPENAI_MODEL')
+        elif 'OPENAI_MODEL' in config:
+            config['openai_model'] = config['OPENAI_MODEL']
+        else:
+            config['openai_model'] = 'gpt-4o-mini'
+            
+        if os.getenv('ANTHROPIC_API_KEY'):
+            config['anthropic_api_key'] = os.getenv('ANTHROPIC_API_KEY')
+        elif 'ANTHROPIC_API_KEY' in config:
+            config['anthropic_api_key'] = config['ANTHROPIC_API_KEY']
+            
+        if os.getenv('ANTHROPIC_MODEL'):
+            config['anthropic_model'] = os.getenv('ANTHROPIC_MODEL')
+        elif 'ANTHROPIC_MODEL' in config:
+            config['anthropic_model'] = config['ANTHROPIC_MODEL']
+        else:
+            config['anthropic_model'] = 'claude-3-sonnet-20240229'
+            
+        if os.getenv('AI_MAX_TOKENS'):
+            config['max_tokens'] = int(os.getenv('AI_MAX_TOKENS'))
+        elif 'AI_MAX_TOKENS' in config:
+            config['max_tokens'] = int(config['AI_MAX_TOKENS'])
+        else:
+            config['max_tokens'] = 1000
+            
+        if os.getenv('AI_TEMPERATURE'):
+            config['temperature'] = float(os.getenv('AI_TEMPERATURE'))
+        elif 'AI_TEMPERATURE' in config:
+            config['temperature'] = float(config['AI_TEMPERATURE'])
+        else:
+            config['temperature'] = 0.3
         
         return config
     

@@ -17,14 +17,15 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 class CoderAgent(BaseAgent):
     """AI-based ROS code generation Agent"""
     
-    def __init__(self, agent_id: str = "coder_001"):
+    def __init__(self, llm_client, agent_id: str = "coder_001"):
         super().__init__(agent_id, "Coder Agent")
         
         # Initialize AI client
-        self.ai_client = None
+        self.llm_client = llm_client
+        self.ai_client = llm_client  # 기존 코드와의 호환성을 위해
         
-        # Code generation templates
-        self.code_templates = {
+        # Code generation templates - Python
+        self.python_templates = {
             'basic_node': self._get_basic_node_template(),
             'publisher': self._get_publisher_template(),
             'subscriber': self._get_subscriber_template(),
@@ -32,6 +33,19 @@ class CoderAgent(BaseAgent):
             'action': self._get_action_template(),
             'parameter': self._get_parameter_template()
         }
+        
+        # Code generation templates - C++
+        self.cpp_templates = {
+            'basic_node': self._get_cpp_basic_node_template(),
+            'publisher': self._get_cpp_publisher_template(),
+            'subscriber': self._get_cpp_subscriber_template(),
+            'service': self._get_cpp_service_template(),
+            'action': self._get_cpp_action_template(),
+            'parameter': self._get_cpp_parameter_template()
+        }
+        
+        # Combined templates for backward compatibility
+        self.code_templates = self.python_templates
         
         # Security code patterns
         self.security_patterns = {
@@ -71,7 +85,8 @@ class CoderAgent(BaseAgent):
             ai_client_type = os.getenv('AI_CLIENT_TYPE', 'mock')
             
             # Create AI client
-            self.ai_client = AIClientFactory.create_client(ai_client_type)
+            # self.ai_client = AIClientFactory.create_client(ai_client_type)
+            self.ai_client = None  # Will be set by workflow
             
             # Verify AI client loaded properly
             if self.ai_client and hasattr(self.ai_client, 'analyze_content'):
@@ -92,14 +107,9 @@ class CoderAgent(BaseAgent):
             self._fallback_to_mock_client()
     
     def _fallback_to_mock_client(self):
-        """Fallback to Mock AI client"""
-        try:
-            from rag_utils.ai_client import MockAIClient
-            self.ai_client = MockAIClient()
-            self.logger.info("Fallback to Mock AI client completed")
-        except Exception as mock_e:
-            self.logger.error(f"Failed to load Mock AI client: {mock_e}")
-            self.ai_client = None
+        """Fallback - set ai_client to None"""
+        self.ai_client = None
+        self.logger.info("AI client set to None")
     
     def process_message(self, message: AgentMessage) -> AgentMessage:
         """Process messages - handle code generation requests"""
@@ -281,64 +291,14 @@ class CoderAgent(BaseAgent):
             self.logger.error(f"Code generation failed: {e}")
             return {'error': f'Code generation failed: {str(e)}'}
     
-    def _ai_generate_code(self, requirements: str, component_type: str, security_level: str) -> Dict[str, Any]:
+    def _ai_generate_code(self, requirements: str, component_type: str, security_level: str, language: str = "python") -> Dict[str, Any]:
         """AI-based code generation"""
         try:
-            # AI prompt composition (more detailed and specific)
-            ai_prompt = f"""
-            Generate high-quality ROS 2 Python code according to the following requirements:
-            
-            Requirements: {requirements}
-            Component type: {component_type}
-            Security level: {security_level}
-            
-            Generate complete and safe Python code including:
-            
-            1. Required import statements (rclpy, std_msgs, sensor_msgs, etc.)
-            2. Class definition and Node inheritance
-            3. Initialization method (including security settings)
-            4. Security features:
-               - Input validation and sanitization
-               - Error handling and recovery
-               - Secure logging (sensitive information masking)
-               - Authentication and authorization
-               - Data encryption (when needed)
-            5. Main function and exception handling
-            6. Detailed comments and documentation
-            7. Type hints usage
-            
-            Detailed requirements by security level:
-            - low: Basic error handling, logging
-            - medium: Input validation + error handling + secure logging + basic authentication
-            - high: All security features + encryption + multi-factor authentication + audit logs
-            
-            ROS 2 security best practices:
-            - DDS security configuration
-            - Topic encryption
-            - Node namespace isolation
-            - QoS security settings
-            
-            Respond in the following JSON format:
-            {{
-                "code": "Complete Python code (executable state)",
-                "metadata": {{
-                    "description": "Detailed code description",
-                    "dependencies": ["List of required packages"],
-                    "usage": "Usage and execution instructions",
-                    "security_features": ["List of implemented security features"],
-                    "testing_notes": "Testing considerations",
-                    "deployment_notes": "Deployment precautions"
-                }},
-                "security_analysis": {{
-                    "vulnerabilities": ["Potential vulnerabilities"],
-                    "mitigations": ["Mitigation strategies"],
-                    "compliance": ["Security standards compliance"]
-                }},
-                "performance_notes": "Performance optimization points"
-            }}
-            
-            The code must be executable in a real ROS 2 environment and follow security best practices.
-            """
+            # Language-specific prompt generation
+            if language.lower() == "cpp" or language.lower() == "c++":
+                ai_prompt = self._generate_cpp_prompt(requirements, component_type, security_level)
+            else:
+                ai_prompt = self._generate_python_prompt(requirements, component_type, security_level)
             
             # Execute AI code generation
             ai_response = self.ai_client.analyze_content(ai_prompt, "code_generation")
@@ -390,6 +350,133 @@ class CoderAgent(BaseAgent):
             self.logger.error(f"Code validation and improvement failed: {e}")
             return code
     
+    def _generate_python_prompt(self, requirements: str, component_type: str, security_level: str) -> str:
+        """Generate Python-specific AI prompt"""
+        return f"""
+        Generate high-quality, secure ROS 2 Python code according to the following requirements:
+        
+        Requirements: {requirements}
+        Component type: {component_type}
+        Security level: {security_level}
+        
+        Generate complete and secure Python code that includes:
+        
+        1. Required import statements (rclpy, std_msgs, sensor_msgs, etc.)
+        2. Class definition with proper Node inheritance
+        3. Secure initialization method with:
+           - Proper QoS configuration
+           - Parameter validation
+           - Secure logging setup
+        4. Essential security features:
+           - Input validation with regex patterns for all received data
+           - Comprehensive error handling with try-catch blocks
+           - Secure parameter handling with validation callbacks
+           - Safe file operations (if needed) with path validation
+           - Appropriate logging without sensitive data exposure
+        5. Main function and exception handling
+        6. Detailed comments and documentation
+        7. Type hints usage
+        
+        Detailed requirements by security level:
+        - low: Basic error handling, logging
+        - medium: Input validation + error handling + secure logging + basic authentication
+        - high: All security features + encryption + multi-factor authentication + audit logs
+        
+        ROS 2 security best practices:
+        - DDS security configuration
+        - Topic encryption
+        - Node namespace isolation
+        - QoS security settings
+        
+        Respond in the following JSON format:
+        {{
+            "code": "Complete Python code (executable state)",
+            "metadata": {{
+                "description": "Detailed code description",
+                "dependencies": ["List of required packages"],
+                "usage": "Usage and execution instructions",
+                "security_features": ["List of implemented security features"],
+                "testing_notes": "Testing considerations",
+                "deployment_notes": "Deployment precautions"
+            }},
+            "security_analysis": {{
+                "vulnerabilities": ["Potential vulnerabilities"],
+                "mitigations": ["Mitigation strategies"],
+                "compliance": ["Security standards compliance"]
+            }},
+            "performance_notes": "Performance optimization points"
+        }}
+        
+        The code must be executable in a real ROS 2 environment and follow security best practices.
+        """
+
+    def _generate_cpp_prompt(self, requirements: str, component_type: str, security_level: str) -> str:
+        """Generate C++-specific AI prompt"""
+        return f"""
+        Generate high-quality, secure ROS 2 C++ code according to the following requirements:
+        
+        Requirements: {requirements}
+        Component type: {component_type}
+        Security level: {security_level}
+        
+        Generate complete and secure C++ code that includes:
+        
+        1. Required header files (#include <rclcpp/rclcpp.hpp>, <std_msgs/msg/string.hpp>, etc.)
+        2. Class definition inheriting from rclcpp::Node
+        3. Secure initialization method with:
+           - Proper QoS configuration
+           - Parameter validation
+           - Secure logging setup
+        4. Essential security features:
+           - Input validation for all received data
+           - Comprehensive error handling with try-catch blocks
+           - Secure parameter handling with validation callbacks
+           - Safe file operations (if needed) with path validation
+           - Appropriate logging without sensitive data exposure
+           - Memory management (smart pointers, RAII)
+        5. Main function and exception handling
+        6. Detailed comments and documentation
+        7. CMakeLists.txt and package.xml configuration
+        
+        Detailed requirements by security level:
+        - low: Basic error handling, logging, memory safety
+        - medium: Input validation + error handling + secure logging + basic authentication
+        - high: All security features + encryption + multi-factor authentication + audit logs
+        
+        ROS 2 C++ security best practices:
+        - Use smart pointers (std::shared_ptr, std::unique_ptr)
+        - RAII for resource management
+        - DDS security configuration
+        - Topic encryption
+        - Node namespace isolation
+        - QoS security settings
+        - Bounds checking for arrays/vectors
+        
+        Respond in the following JSON format:
+        {{
+            "code": "Complete C++ source code (.cpp file)",
+            "header": "Header file (.hpp) if needed",
+            "cmake": "CMakeLists.txt content",
+            "package": "package.xml content", 
+            "metadata": {{
+                "description": "Detailed code description",
+                "dependencies": ["List of required packages"],
+                "usage": "Usage and compilation instructions",
+                "security_features": ["List of implemented security features"],
+                "testing_notes": "Testing considerations",
+                "deployment_notes": "Deployment precautions"
+            }},
+            "security_analysis": {{
+                "vulnerabilities": ["Potential vulnerabilities"],
+                "mitigations": ["Mitigation strategies"],
+                "compliance": ["Security standards compliance"]
+            }},
+            "performance_notes": "Performance optimization points"
+        }}
+        
+        The code must be compilable and executable in a real ROS 2 environment and follow security best practices.
+        """
+
     def _assess_code_quality(self, code: str) -> float:
         """Assess code quality"""
         try:
@@ -481,14 +568,14 @@ class CoderAgent(BaseAgent):
     def _add_secure_logging(self, code: str) -> str:
         """Add secure logging method"""
         try:
-            logging_method = """
+            logging_method = r"""
     def secure_log(self, message: str, level: str = 'info') -> None:
         \"\"\"Secure logging (sensitive information masking)\"\"\"
         # Mask sensitive information
         import re
-        masked_message = re.sub(r'password[=:]\\s*\\S+', 'password=***', message)
-        masked_message = re.sub(r'api_key[=:]\\s*\\S+', 'api_key=***', masked_message)
-        masked_message = re.sub(r'token[=:]\\s*\\S+', 'token=***', masked_message)
+        masked_message = re.sub(r'password[=:]\s*\S+', 'password=***', message)
+        masked_message = re.sub(r'api_key[=:]\s*\S+', 'api_key=***', masked_message)
+        masked_message = re.sub(r'token[=:]\s*\S+', 'token=***', masked_message)
         
         if level == 'info':
             self.get_logger().info(masked_message)
@@ -1074,7 +1161,7 @@ def handle_critical_error(self, error):
     self.emergency_shutdown()'''
     
     def _get_secure_logging_pattern(self) -> str:
-        return '''
+        return r'''
 def secure_log(self, message, level='info'):
     """Secure logging"""
     # Mask sensitive information
@@ -1135,3 +1222,87 @@ def decrypt_data(self, encrypted_data):
             'code_templates': list(self.code_templates.keys()),
             'security_patterns': list(self.security_patterns.keys())
         }
+
+    def generate_code(self, plan: str, security_guidelines: str) -> str:
+        """Generate ROS code based on plan and security guidelines"""
+        try:
+            # Create a prompt for code generation
+            prompt = f"""
+You are an expert ROS developer tasked with generating secure Python code.
+
+Plan:
+{plan}
+
+Security Guidelines:
+{security_guidelines}
+
+Please generate secure, production-ready ROS 2 Python code that follows the plan and adheres to all security guidelines.
+The code should include:
+1. Proper error handling
+2. Input validation
+3. Security best practices
+4. Clear documentation
+
+Return only the Python code without any explanations or markdown formatting.
+"""
+            
+            if self.llm_client:
+                generated_code = self.llm_client.chat(prompt)
+            else:
+                # Fallback to template-based generation
+                generated_code = self._generate_basic_ros_node()
+            
+            return generated_code
+        except Exception as e:
+            self.logger.error(f"코드 생성 실패: {e}")
+            return f"# 코드 생성 실패: {str(e)}\n# 기본 템플릿을 사용하세요."
+
+    def add_feedback_to_history(self, feedback: str):
+        """Add feedback to generation history for improvement"""
+        # Store feedback for next generation attempt
+        if not hasattr(self, 'feedback_history'):
+            self.feedback_history = []
+        self.feedback_history.append(feedback)
+        self.logger.info(f"피드백 추가됨: {feedback[:100]}...")
+
+    def process_message(self, message: AgentMessage) -> AgentMessage:
+        """Process incoming messages"""
+        if message.message_type == 'code_generation_request':
+            plan = message.content.get('plan', '')
+            security_guidelines = message.content.get('security_guidelines', '')
+            code = self.generate_code(plan, security_guidelines)
+            
+            return self.send_message(
+                message.sender,
+                'code_generation_response',
+                {'code': code}
+            )
+        else:
+            return self.send_message(
+                message.sender,
+                'error',
+                {'error': f'Unknown message type: {message.message_type}'}
+            )
+
+    def execute_task(self, task: AgentTask) -> Dict[str, Any]:
+        """Execute a code generation task"""
+        try:
+            if task.task_type == 'code_generation':
+                plan = task.parameters.get('plan', '')
+                security_guidelines = task.parameters.get('security_guidelines', '')
+                code = self.generate_code(plan, security_guidelines)
+                
+                return {
+                    'status': 'completed',
+                    'result': {'code': code}
+                }
+            else:
+                return {
+                    'status': 'failed',
+                    'error': f'Unknown task type: {task.task_type}'
+                }
+        except Exception as e:
+            return {
+                'status': 'failed',
+                'error': str(e)
+            }
