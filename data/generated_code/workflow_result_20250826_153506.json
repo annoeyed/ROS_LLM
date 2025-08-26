@@ -1,0 +1,342 @@
+{
+  "workflow_id": "workflow_1756190106",
+  "status": "completed",
+  "message": "모든 단계 완료",
+  "result": {
+    "generation_phase": {
+      "status": "completed",
+      "results": [
+        {
+          "step_name": "AI 기반 계획 수립",
+          "agent": "Planner Agent",
+          "status": "completed",
+          "result": {
+            "analysis": {
+              "request_type": "unknown",
+              "ros_components": [],
+              "security_level": "low",
+              "complexity": "low",
+              "estimated_lines": 50,
+              "dependencies": [],
+              "patterns": []
+            },
+            "planning": {
+              "required_agents": [
+                "planner",
+                "agent",
+                "security_guide",
+                "coder",
+                "simulation"
+              ],
+              "estimated_time": "30분",
+              "phases": [
+                {
+                  "phase": 1,
+                  "name": "요청 분석 및 계획 수립",
+                  "duration": "5분",
+                  "description": "사용자 요청 분석 및 코드 생성 계획 수립"
+                },
+                {
+                  "phase": 2,
+                  "name": "보안 가이드라인 생성",
+                  "duration": "5분",
+                  "description": "CWE 기반 보안 가이드라인 및 RAG 검증"
+                },
+                {
+                  "phase": 3,
+                  "name": "코드 생성",
+                  "duration": "10분",
+                  "description": "보안 가이드라인을 반영한 ROS 코드 생성"
+                },
+                {
+                  "phase": 4,
+                  "name": "시뮬레이션 및 검증",
+                  "duration": "10분",
+                  "description": "코드 시뮬레이션 및 Oracle 검증"
+                }
+              ],
+              "security_checks": [
+                "입력 검증",
+                "접근 제어",
+                "데이터 보호",
+                "로깅 및 모니터링"
+              ],
+              "testing_approach": [
+                "단위 테스트",
+                "통합 테스트",
+                "보안 테스트",
+                "성능 테스트"
+              ],
+              "risk_assessment": "medium",
+              "mitigation_strategies": [
+                "보안 코딩 표준 준수",
+                "정적 분석 도구 사용",
+                "정기적인 보안 검토"
+              ]
+            },
+            "security_requirements": [],
+            "status": "completed"
+          },
+          "execution_time": 0.003014802932739258
+        },
+        {
+          "step_name": "보안 가이드라인 생성 및 검증",
+          "agent": "Security Guide Agent",
+          "status": "completed",
+          "result": {
+            "guidelines": {
+              "categories": {
+                "general": {}
+              },
+              "components": {
+                "ros_node": {}
+              }
+            },
+            "security_verification": {
+              "status": "completed",
+              "rag_enhanced": true,
+              "security_issues": [
+                {
+                  "type": "rag_detected",
+                  "title": "RAG 검색 결과: CWE-131",
+                  "description": "CWE ID: CWE-131 | Name: Incorrect Calculation of Buffer Size | Description: The product does not correctly calculate the size to be used when allocating a buffer, which could lead to a buffer overflow...",
+                  "cwe_id": "CWE-131",
+                  "severity_score": 10,
+                  "source": "CWE RAG",
+                  "mitigation": "코드 리뷰 및 보안 테스트 수행",
+                  "confidence": 0.9883058071136475
+                },
+                {
+                  "type": "rag_detected",
+                  "title": "RAG 검색 결과: CWE-434",
+                  "description": "CWE ID: CWE-434 | Name: Unrestricted Upload of File with Dangerous Type | Description: The product allows the upload or transfer of dangerous file types that are automatically processed within its env...",
+                  "cwe_id": "CWE-434",
+                  "severity_score": 10,
+                  "source": "CWE RAG",
+                  "mitigation": "코드 리뷰 및 보안 테스트 수행",
+                  "confidence": 0.9783886075019836
+                },
+                {
+                  "type": "rag_detected",
+                  "title": "RAG 검색 결과: CWE-78",
+                  "description": "CWE ID: CWE-78 | Name: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') | Description: The product constructs all or part of an OS command using externally-in...",
+                  "cwe_id": "CWE-78",
+                  "severity_score": 10,
+                  "source": "CWE RAG",
+                  "mitigation": "코드 리뷰 및 보안 테스트 수행",
+                  "confidence": 0.9708557724952698
+                },
+                {
+                  "type": "rag_detected",
+                  "title": "RAG 검색 결과: CWE-73",
+                  "description": "CWE ID: CWE-73 | Name: External Control of File Name or Path | Description: The product allows user input to control or influence paths or file names that are used in filesystem operations.\n\n\n        ...",
+                  "cwe_id": "CWE-73",
+                  "severity_score": 10,
+                  "source": "CWE RAG",
+                  "mitigation": "코드 리뷰 및 보안 테스트 수행",
+                  "confidence": 0.969484269618988
+                },
+                {
+                  "type": "rag_detected",
+                  "title": "RAG 검색 결과: CWE-20",
+                  "description": "CWE ID: CWE-20 | Name: Improper Input Validation | Description: The product receives input or data, but it does\n        not validate or incorrectly validates that the input has the\n        properties ...",
+                  "cwe_id": "CWE-20",
+                  "severity_score": 10,
+                  "source": "CWE RAG",
+                  "mitigation": "코드 리뷰 및 보안 테스트 수행",
+                  "confidence": 0.9681233763694763
+                }
+              ],
+              "total_risk_score": 50,
+              "risk_level": "Critical",
+              "search_results_count": 5,
+              "high_confidence_issues": 5,
+              "recommendations": [
+                "RAG 검색 결과: CWE-78: 코드 리뷰 및 보안 테스트 수행",
+                "RAG 검색 결과: CWE-73: 코드 리뷰 및 보안 테스트 수행",
+                "RAG 검색 결과: CWE-20: 코드 리뷰 및 보안 테스트 수행",
+                "RAG 검색 결과: CWE-434: 코드 리뷰 및 보안 테스트 수행",
+                "RAG 검색 결과: CWE-131: 코드 리뷰 및 보안 테스트 수행"
+              ]
+            }
+          },
+          "execution_time": 0.4270644187927246
+        },
+        {
+          "step_name": "AI 기반 보안 코드 생성",
+          "agent": "Coder Agent",
+          "status": "completed",
+          "result": {
+            "code": "#!/usr/bin/env python3\nimport rclpy\nfrom rclpy.node import Node\nfrom std_msgs.msg import String\n\nclass GenericNode(Node):\n    def __init__(self):\n        super().__init__('generic_node')\n        self.publisher = self.create_publisher(String, 'generic_topic', 10)\n        self.timer = self.create_timer(1.0, self.timer_callback)\n        self.get_logger().info('Generic node has been started')\n    \n    def timer_callback(self):\n        msg = String()\n        msg.data = 'Hello World'\n        self.publisher.publish(msg)\n        self.get_logger().info('Publishing: \"%s\"' % msg.data)\n\ndef main(args=None):\n    rclpy.init(args=args)\n    node = GenericNode()\n    try:\n        rclpy.spin(node)\n    except KeyboardInterrupt:\n        pass\n    finally:\n        node.destroy_node()\n        rclpy.shutdown()\n\nif __name__ == '__main__':\n    main()\n\ndef validate_input(self, input_data):\n    \"\"\"입력 데이터 검증\"\"\"\n    if not input_data:\n        raise ValueError(\"입력 데이터가 비어있습니다\")\n    \n    # 타입 검증\n    if not isinstance(input_data, str):\n        raise TypeError(\"입력 데이터는 문자열이어야 합니다\")\n    \n    # 길이 검증\n    if len(input_data) > 1000:\n        raise ValueError(\"입력 데이터가 너무 깁니다\")\n    \n    # 특수 문자 필터링\n    import re\n    if re.search(r'[<>\"']', input_data):\n        raise ValueError(\"허용되지 않는 특수 문자가 포함되어 있습니다\")\n    \n    return input_data.strip()\n\ndef safe_execute(self, operation, *args, **kwargs):\n    \"\"\"안전한 작업 실행\"\"\"\n    try:\n        result = operation(*args, **kwargs)\n        return result\n    except Exception as e:\n        self.get_logger().error(f\"작업 실행 실패: {e}\")\n        # 기본값 반환 또는 에러 처리\n        return None\n    \ndef handle_critical_error(self, error):\n    \"\"\"치명적 오류 처리\"\"\"\n    self.get_logger().error(f\"치명적 오류 발생: {error}\")\n    # 시스템 안전 상태로 전환\n    self.emergency_shutdown()\n\ndef secure_log(self, message, level='info'):\n    \"\"\"보안 로깅\"\"\"\n    # 민감 정보 마스킹\n    import re\n    masked_message = re.sub(r'password[=:]\\s*\\S+', 'password=***', message)\n    masked_message = re.sub(r'api_key[=:]\\s*\\S+', 'api_key=***', masked_message)\n    \n    if level == 'info':\n        self.get_logger().info(masked_message)\n    elif level == 'warn':\n        self.get_logger().warn(masked_message)\n    elif level == 'error':\n        self.get_logger().error(masked_message)\n\ndef authenticate_user(self, credentials):\n    \"\"\"사용자 인증\"\"\"\n    # TODO: Add authentication\n    if not credentials:\n        return False\n    \n    # 인증 로직 구현\n    return True\n    \ndef check_permission(self, user, resource):\n    \"\"\"권한 확인\"\"\"\n    # TODO: Add permission check\n    return True\n\ndef encrypt_data(self, data):\n    \"\"\"데이터 암호화\"\"\"\n    # TODO: Add encryption\n    import hashlib\n    return hashlib.sha256(data.encode()).hexdigest()\n    \ndef decrypt_data(self, encrypted_data):\n    \"\"\"데이터 복호화\"\"\"\n    # TODO: Add decryption\n    return encrypted_data",
+            "metadata": {
+              "description": "basic_node 기반 코드",
+              "dependencies": [
+                "rclpy",
+                "std_msgs"
+              ],
+              "usage": "python3 generated_node.py"
+            },
+            "security_features": [
+              "입력 검증",
+              "에러 처리",
+              "보안 로깅",
+              "인증",
+              "암호화"
+            ],
+            "ai_enhanced": false,
+            "component_type": "basic_node",
+            "security_level": "high"
+          },
+          "generated_code": "#!/usr/bin/env python3\nimport rclpy\nfrom rclpy.node import Node\nfrom std_msgs.msg import String\n\nclass GenericNode(Node):\n    def __init__(self):\n        super().__init__('generic_node')\n        self.publisher = self.create_publisher(String, 'generic_topic', 10)\n        self.timer = self.create_timer(1.0, self.timer_callback)\n        self.get_logger().info('Generic node has been started')\n    \n    def timer_callback(self):\n        msg = String()\n        msg.data = 'Hello World'\n        self.publisher.publish(msg)\n        self.get_logger().info('Publishing: \"%s\"' % msg.data)\n\ndef main(args=None):\n    rclpy.init(args=args)\n    node = GenericNode()\n    try:\n        rclpy.spin(node)\n    except KeyboardInterrupt:\n        pass\n    finally:\n        node.destroy_node()\n        rclpy.shutdown()\n\nif __name__ == '__main__':\n    main()\n\ndef validate_input(self, input_data):\n    \"\"\"입력 데이터 검증\"\"\"\n    if not input_data:\n        raise ValueError(\"입력 데이터가 비어있습니다\")\n    \n    # 타입 검증\n    if not isinstance(input_data, str):\n        raise TypeError(\"입력 데이터는 문자열이어야 합니다\")\n    \n    # 길이 검증\n    if len(input_data) > 1000:\n        raise ValueError(\"입력 데이터가 너무 깁니다\")\n    \n    # 특수 문자 필터링\n    import re\n    if re.search(r'[<>\"']', input_data):\n        raise ValueError(\"허용되지 않는 특수 문자가 포함되어 있습니다\")\n    \n    return input_data.strip()\n\ndef safe_execute(self, operation, *args, **kwargs):\n    \"\"\"안전한 작업 실행\"\"\"\n    try:\n        result = operation(*args, **kwargs)\n        return result\n    except Exception as e:\n        self.get_logger().error(f\"작업 실행 실패: {e}\")\n        # 기본값 반환 또는 에러 처리\n        return None\n    \ndef handle_critical_error(self, error):\n    \"\"\"치명적 오류 처리\"\"\"\n    self.get_logger().error(f\"치명적 오류 발생: {error}\")\n    # 시스템 안전 상태로 전환\n    self.emergency_shutdown()\n\ndef secure_log(self, message, level='info'):\n    \"\"\"보안 로깅\"\"\"\n    # 민감 정보 마스킹\n    import re\n    masked_message = re.sub(r'password[=:]\\s*\\S+', 'password=***', message)\n    masked_message = re.sub(r'api_key[=:]\\s*\\S+', 'api_key=***', masked_message)\n    \n    if level == 'info':\n        self.get_logger().info(masked_message)\n    elif level == 'warn':\n        self.get_logger().warn(masked_message)\n    elif level == 'error':\n        self.get_logger().error(masked_message)\n\ndef authenticate_user(self, credentials):\n    \"\"\"사용자 인증\"\"\"\n    # TODO: Add authentication\n    if not credentials:\n        return False\n    \n    # 인증 로직 구현\n    return True\n    \ndef check_permission(self, user, resource):\n    \"\"\"권한 확인\"\"\"\n    # TODO: Add permission check\n    return True\n\ndef encrypt_data(self, data):\n    \"\"\"데이터 암호화\"\"\"\n    # TODO: Add encryption\n    import hashlib\n    return hashlib.sha256(data.encode()).hexdigest()\n    \ndef decrypt_data(self, encrypted_data):\n    \"\"\"데이터 복호화\"\"\"\n    # TODO: Add decryption\n    return encrypted_data",
+          "execution_time": 0.008935689926147461
+        },
+        {
+          "step_name": "LLM as Judge - 안전성 검증",
+          "agent": "LLM Judge",
+          "status": "completed",
+          "verdict": "pass",
+          "feedback": "안전성 검증 통과",
+          "execution_time": 1.5735626220703125e-05
+        }
+      ],
+      "final_code": "#!/usr/bin/env python3\nimport rclpy\nfrom rclpy.node import Node\nfrom std_msgs.msg import String\n\nclass GenericNode(Node):\n    def __init__(self):\n        super().__init__('generic_node')\n        self.publisher = self.create_publisher(String, 'generic_topic', 10)\n        self.timer = self.create_timer(1.0, self.timer_callback)\n        self.get_logger().info('Generic node has been started')\n    \n    def timer_callback(self):\n        msg = String()\n        msg.data = 'Hello World'\n        self.publisher.publish(msg)\n        self.get_logger().info('Publishing: \"%s\"' % msg.data)\n\ndef main(args=None):\n    rclpy.init(args=args)\n    node = GenericNode()\n    try:\n        rclpy.spin(node)\n    except KeyboardInterrupt:\n        pass\n    finally:\n        node.destroy_node()\n        rclpy.shutdown()\n\nif __name__ == '__main__':\n    main()\n\ndef validate_input(self, input_data):\n    \"\"\"입력 데이터 검증\"\"\"\n    if not input_data:\n        raise ValueError(\"입력 데이터가 비어있습니다\")\n    \n    # 타입 검증\n    if not isinstance(input_data, str):\n        raise TypeError(\"입력 데이터는 문자열이어야 합니다\")\n    \n    # 길이 검증\n    if len(input_data) > 1000:\n        raise ValueError(\"입력 데이터가 너무 깁니다\")\n    \n    # 특수 문자 필터링\n    import re\n    if re.search(r'[<>\"']', input_data):\n        raise ValueError(\"허용되지 않는 특수 문자가 포함되어 있습니다\")\n    \n    return input_data.strip()\n\ndef safe_execute(self, operation, *args, **kwargs):\n    \"\"\"안전한 작업 실행\"\"\"\n    try:\n        result = operation(*args, **kwargs)\n        return result\n    except Exception as e:\n        self.get_logger().error(f\"작업 실행 실패: {e}\")\n        # 기본값 반환 또는 에러 처리\n        return None\n    \ndef handle_critical_error(self, error):\n    \"\"\"치명적 오류 처리\"\"\"\n    self.get_logger().error(f\"치명적 오류 발생: {error}\")\n    # 시스템 안전 상태로 전환\n    self.emergency_shutdown()\n\ndef secure_log(self, message, level='info'):\n    \"\"\"보안 로깅\"\"\"\n    # 민감 정보 마스킹\n    import re\n    masked_message = re.sub(r'password[=:]\\s*\\S+', 'password=***', message)\n    masked_message = re.sub(r'api_key[=:]\\s*\\S+', 'api_key=***', masked_message)\n    \n    if level == 'info':\n        self.get_logger().info(masked_message)\n    elif level == 'warn':\n        self.get_logger().warn(masked_message)\n    elif level == 'error':\n        self.get_logger().error(masked_message)\n\ndef authenticate_user(self, credentials):\n    \"\"\"사용자 인증\"\"\"\n    # TODO: Add authentication\n    if not credentials:\n        return False\n    \n    # 인증 로직 구현\n    return True\n    \ndef check_permission(self, user, resource):\n    \"\"\"권한 확인\"\"\"\n    # TODO: Add permission check\n    return True\n\ndef encrypt_data(self, data):\n    \"\"\"데이터 암호화\"\"\"\n    # TODO: Add encryption\n    import hashlib\n    return hashlib.sha256(data.encode()).hexdigest()\n    \ndef decrypt_data(self, encrypted_data):\n    \"\"\"데이터 복호화\"\"\"\n    # TODO: Add decryption\n    return encrypted_data"
+    },
+    "evaluation_phase": {
+      "status": "completed",
+      "results": [
+        {
+          "step_name": "AI 기반 시뮬레이션 및 테스트",
+          "agent": "Simulation Agent",
+          "status": "completed",
+          "result": {
+            "test_type": "comprehensive",
+            "test_result": {
+              "test_plan": {
+                "test_categories": [
+                  "기능",
+                  "보안",
+                  "성능"
+                ],
+                "test_cases": [
+                  {
+                    "category": "기능",
+                    "name": "기본 동작",
+                    "description": "노드 기본 동작 확인"
+                  },
+                  {
+                    "category": "보안",
+                    "name": "입력 검증",
+                    "description": "보안 검증 확인"
+                  },
+                  {
+                    "category": "성능",
+                    "name": "응답 시간",
+                    "description": "성능 측정"
+                  }
+                ],
+                "test_sequence": [
+                  "기능",
+                  "보안",
+                  "성능"
+                ],
+                "coverage_goals": [
+                  "기본 기능 100%",
+                  "보안 검증 80%",
+                  "성능 측정 90%"
+                ],
+                "risk_assessment": "낮음"
+              },
+              "test_result": {
+                "test_results": [
+                  {
+                    "category": "기능",
+                    "name": "기본 동작",
+                    "status": "passed"
+                  },
+                  {
+                    "category": "보안",
+                    "name": "입력 검증",
+                    "status": "passed"
+                  },
+                  {
+                    "category": "성능",
+                    "name": "응답 시간",
+                    "status": "passed"
+                  }
+                ],
+                "execution_sequence": [
+                  "기능",
+                  "보안",
+                  "성능"
+                ],
+                "overall_status": "completed",
+                "success_rate": 100.0,
+                "coverage": 75.0
+              },
+              "ai_enhanced": false,
+              "test_type": "basic_functionality"
+            },
+            "ai_enhanced": false,
+            "status": "completed"
+          },
+          "execution_time": 2.09808349609375e-05
+        },
+        {
+          "step_name": "Oracles 검증",
+          "agent": "Oracle System",
+          "status": "completed",
+          "results": {
+            "param": {
+              "oracle_type": "param",
+              "result": "pass",
+              "feedback_target": "coder",
+              "details": "파라미터 검증 통과"
+            },
+            "safety": {
+              "oracle_type": "safety",
+              "result": "pass",
+              "feedback_target": "security_guide",
+              "details": "안전성 준수 검증 통과"
+            },
+            "mode": {
+              "oracle_type": "mode",
+              "result": "pass",
+              "feedback_target": "planner",
+              "details": "모드 시퀀스 검증 통과"
+            }
+          },
+          "execution_time": 2.1696090698242188e-05
+        }
+      ],
+      "oracle_results": {
+        "step_name": "Oracles 검증",
+        "agent": "Oracle System",
+        "status": "completed",
+        "results": {
+          "param": {
+            "oracle_type": "param",
+            "result": "pass",
+            "feedback_target": "coder",
+            "details": "파라미터 검증 통과"
+          },
+          "safety": {
+            "oracle_type": "safety",
+            "result": "pass",
+            "feedback_target": "security_guide",
+            "details": "안전성 준수 검증 통과"
+          },
+          "mode": {
+            "oracle_type": "mode",
+            "result": "pass",
+            "feedback_target": "planner",
+            "details": "모드 시퀀스 검증 통과"
+          }
+        },
+        "execution_time": 2.1696090698242188e-05
+      }
+    },
+    "final_status": "completed",
+    "total_execution_time": 0.45026206970214844
+  },
+  "execution_time": 0.45026612281799316
+}

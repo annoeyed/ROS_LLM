@@ -222,10 +222,23 @@ class SequentialWorkflow:
         try:
             start_time = time.time()
             
+            self.logger.info("=== Planner Agent 활성화 시작 ===")
+            self.logger.info(f"사용자 요청: {user_request[:100]}...")
+            
             planner_agent = self.agents['planner']
+            self.logger.info("Planner Agent가 요청을 분석하고 있습니다...")
+            
             planning_result = planner_agent.analyze_request(user_request)
             
             execution_time = time.time() - start_time
+            
+            if 'error' not in planning_result:
+                self.logger.info("=== Planner Agent 작업 완료 ===")
+                self.logger.info(f"계획 수립 결과: {planning_result.get('plan_summary', '계획 생성됨')}")
+                self.logger.info(f"보안 요구사항: {planning_result.get('security_requirements', [])}")
+            else:
+                self.logger.error("=== Planner Agent 작업 실패 ===")
+                self.logger.error(f"오류 내용: {planning_result.get('error', '알 수 없는 오류')}")
             
             return {
                 'step_name': 'AI 기반 계획 수립',
@@ -236,7 +249,8 @@ class SequentialWorkflow:
             }
             
         except Exception as e:
-            self.logger.error(f"Planning 단계 실패: {e}")
+            self.logger.error(f"=== Planner Agent 실행 중 예외 발생 ===")
+            self.logger.error(f"예외 내용: {e}")
             return {
                 'step_name': 'AI 기반 계획 수립',
                 'agent': 'Planner Agent',
@@ -250,26 +264,49 @@ class SequentialWorkflow:
         try:
             start_time = time.time()
             
-            self.logger.info("Security Guide 단계 시작")
+            self.logger.info("=== Security Guide Agent 활성화 시작 ===")
+            self.logger.info("CWE 데이터베이스 및 RAG 시스템을 로드하고 있습니다...")
+            
             security_agent = self.agents['security_guide']
             security_requirements = planning_result.get('result', {}).get('security_requirements', [])
             
             self.logger.info(f"보안 요구사항: {security_requirements}")
             
             # RAG 기반 보안 가이드라인 생성
-            self.logger.info("보안 가이드라인 생성 시작")
+            self.logger.info("=== 보안 가이드라인 생성 시작 ===")
+            self.logger.info("Security Guide Agent가 RAG 시스템을 통해 가이드라인을 생성하고 있습니다...")
+            
             guidelines_result = security_agent.get_security_guidelines('general', 'ros_node')
-            self.logger.info(f"가이드라인 생성 결과: {guidelines_result}")
+            
+            if 'error' not in guidelines_result:
+                self.logger.info("=== 보안 가이드라인 생성 완료 ===")
+                self.logger.info(f"가이드라인 카테고리: {list(guidelines_result.get('categories', {}).keys())}")
+                self.logger.info(f"가이드라인 컴포넌트: {list(guidelines_result.get('components', {}).keys())}")
+            else:
+                self.logger.error("=== 보안 가이드라인 생성 실패 ===")
+                self.logger.error(f"오류 내용: {guidelines_result.get('error', '알 수 없는 오류')}")
             
             # RAG 기반 보안 검증
-            self.logger.info("보안 검증 시작")
+            self.logger.info("=== RAG 기반 보안 검증 시작 ===")
+            self.logger.info("Security Guide Agent가 RAG 시스템을 통해 보안 검증을 수행하고 있습니다...")
+            
             security_verification_result = security_agent._rag_based_security_verification(
                 guidelines_result.get('description', user_request), # 가이드라인 설명 또는 사용자 요청
                 'ros_node'
             )
-            self.logger.info(f"보안 검증 결과: {security_verification_result}")
+            
+            if security_verification_result.get('status') == 'completed':
+                self.logger.info("=== RAG 기반 보안 검증 완료 ===")
+                self.logger.info(f"검출된 보안 이슈: {len(security_verification_result.get('security_issues', []))}개")
+                self.logger.info(f"위험도 레벨: {security_verification_result.get('risk_level', 'Unknown')}")
+                self.logger.info(f"RAG 강화: {security_verification_result.get('rag_enhanced', False)}")
+            else:
+                self.logger.error("=== RAG 기반 보안 검증 실패 ===")
+                self.logger.error(f"오류 내용: {security_verification_result.get('error', '알 수 없는 오류')}")
             
             execution_time = time.time() - start_time
+            
+            self.logger.info("=== Security Guide Agent 작업 완료 ===")
             
             return {
                 'step_name': '보안 가이드라인 생성 및 검증',
@@ -283,7 +320,8 @@ class SequentialWorkflow:
             }
             
         except Exception as e:
-            self.logger.error(f"Security Guide 단계 실패: {e}")
+            self.logger.error(f"=== Security Guide Agent 실행 중 예외 발생 ===")
+            self.logger.error(f"예외 내용: {e}")
             import traceback
             self.logger.error(f"상세 오류: {traceback.format_exc()}")
             return {
@@ -300,12 +338,20 @@ class SequentialWorkflow:
         try:
             start_time = time.time()
             
+            self.logger.info("=== Coder Agent 활성화 시작 ===")
+            self.logger.info("AI 기반 ROS 코드 생성을 시작합니다...")
+            
             coder_agent = self.agents['coder']
             
             # 모든 결과를 결합하여 코드 생성 요청
+            self.logger.info("=== 코드 생성 요구사항 통합 ===")
             code_generation_request = self._combine_requirements_for_code_generation(
                 user_request, planning_result, security_result
             )
+            self.logger.info(f"통합된 요구사항: {list(code_generation_request.keys())}")
+            
+            self.logger.info("=== AI 기반 코드 생성 시작 ===")
+            self.logger.info("Coder Agent가 OpenAI를 사용하여 보안을 고려한 ROS 코드를 생성하고 있습니다...")
             
             code_generation_result = coder_agent._generate_ros_code({
                 'requirements': code_generation_request,
@@ -314,6 +360,26 @@ class SequentialWorkflow:
             })
             
             execution_time = time.time() - start_time
+            
+            if 'error' not in code_generation_result:
+                self.logger.info("=== AI 기반 코드 생성 완료 ===")
+                generated_code = code_generation_result.get('code', '')
+                if generated_code:
+                    self.logger.info(f"생성된 코드 길이: {len(generated_code)} 문자")
+                    self.logger.info(f"컴포넌트 타입: {code_generation_result.get('component_type', 'unknown')}")
+                    self.logger.info(f"보안 수준: {code_generation_result.get('security_level', 'unknown')}")
+                    self.logger.info(f"AI 강화: {code_generation_result.get('ai_enhanced', False)}")
+                    
+                    # 코드의 주요 부분 미리보기
+                    code_preview = generated_code[:200] + "..." if len(generated_code) > 200 else generated_code
+                    self.logger.info(f"코드 미리보기: {code_preview}")
+                else:
+                    self.logger.warning("생성된 코드가 비어있습니다.")
+            else:
+                self.logger.error("=== AI 기반 코드 생성 실패 ===")
+                self.logger.error(f"오류 내용: {code_generation_result.get('error', '알 수 없는 오류')}")
+            
+            self.logger.info("=== Coder Agent 작업 완료 ===")
             
             return {
                 'step_name': 'AI 기반 보안 코드 생성',
@@ -325,7 +391,8 @@ class SequentialWorkflow:
             }
             
         except Exception as e:
-            self.logger.error(f"Coder 단계 실패: {e}")
+            self.logger.error(f"=== Coder Agent 실행 중 예외 발생 ===")
+            self.logger.error(f"예외 내용: {e}")
             return {
                 'step_name': 'AI 기반 보안 코드 생성',
                 'agent': 'Coder Agent',
@@ -904,6 +971,10 @@ class SequentialWorkflow:
         
         self.workflow_history.append(self.current_workflow)
         
+        # 워크플로우가 성공적으로 완료된 경우 생성된 코드 자동 저장
+        if status == 'completed' and result:
+            self._auto_save_workflow_results(result)
+        
         return {
             'workflow_id': self.current_workflow['id'],
             'status': status,
@@ -911,3 +982,77 @@ class SequentialWorkflow:
             'result': result,
             'execution_time': self.current_workflow.get('end_time', 0) - self.current_workflow['start_time']
         }
+    
+    def _auto_save_workflow_results(self, workflow_result: Dict[str, Any]):
+        """워크플로우 결과를 자동으로 저장"""
+        try:
+            import json
+            import os
+            from datetime import datetime
+            
+            # 저장 디렉토리 생성
+            output_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'generated_code')
+            os.makedirs(output_dir, exist_ok=True)
+            
+            # 타임스탬프 생성
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            
+            # 워크플로우 결과를 JSON으로 저장
+            json_filename = f"workflow_result_{timestamp}.json"
+            json_path = os.path.join(output_dir, json_filename)
+            
+            with open(json_path, 'w', encoding='utf-8') as f:
+                json.dump(workflow_result, f, ensure_ascii=False, indent=2)
+            
+            self.logger.info(f"워크플로우 결과가 JSON으로 저장되었습니다: {json_path}")
+            
+            # 생성된 ROS 코드를 Python 파일로 저장
+            if 'generation_phase' in workflow_result:
+                generation_phase = workflow_result['generation_phase']
+                
+                if 'results' in generation_phase:
+                    # Coder Agent 결과에서 생성된 코드 찾기
+                    for step_result in generation_phase['results']:
+                        if step_result.get('agent') == 'Coder Agent' and 'result' in step_result:
+                            coder_result = step_result['result']
+                            
+                            if 'code' in coder_result and coder_result['code']:
+                                # Python 파일로 저장
+                                py_filename = f"generated_ros_node_{timestamp}.py"
+                                py_path = os.path.join(output_dir, py_filename)
+                                
+                                with open(py_path, 'w', encoding='utf-8') as f:
+                                    f.write(coder_result['code'])
+                                
+                                self.logger.info(f"생성된 ROS 코드가 Python 파일로 저장되었습니다: {py_path}")
+                                
+                                # 코드 메타데이터도 별도 JSON으로 저장
+                                metadata_filename = f"code_metadata_{timestamp}.json"
+                                metadata_path = os.path.join(output_dir, metadata_filename)
+                                
+                                code_metadata = {
+                                    'timestamp': timestamp,
+                                    'filename': py_filename,
+                                    'component_type': coder_result.get('component_type', 'unknown'),
+                                    'security_level': coder_result.get('security_level', 'unknown'),
+                                    'ai_enhanced': coder_result.get('ai_enhanced', False),
+                                    'metadata': coder_result.get('metadata', {}),
+                                    'security_features': coder_result.get('security_features', [])
+                                }
+                                
+                                with open(metadata_path, 'w', encoding='utf-8') as f:
+                                    json.dump(code_metadata, f, ensure_ascii=False, indent=2)
+                                
+                                self.logger.info(f"코드 메타데이터가 JSON으로 저장되었습니다: {metadata_path}")
+                                break
+                    else:
+                        self.logger.warning("Coder Agent 결과에서 생성된 코드를 찾을 수 없습니다.")
+                else:
+                    self.logger.warning("Generation 단계 결과를 찾을 수 없습니다.")
+            else:
+                self.logger.warning("워크플로우 결과에서 Generation 단계 정보를 찾을 수 없습니다.")
+                
+        except Exception as e:
+            self.logger.error(f"워크플로우 결과 자동 저장 중 오류 발생: {e}")
+            import traceback
+            traceback.print_exc()

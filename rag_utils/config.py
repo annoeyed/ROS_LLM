@@ -91,8 +91,8 @@ class Config:
     }
     
     # 데이터베이스 경로
-    CWE_DB_PATH = "data/cwe_database"
-    RAG_SOURCES_PATH = "data/rag_sources"
+    CWE_DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "cwe_database")
+    RAG_SOURCES_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "rag_sources")
     
     @classmethod
     def validate_config(cls):

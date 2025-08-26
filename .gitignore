@@ -132,8 +132,25 @@ dmypy.json
 .DS_Store
 Thumbs.db
 
-# Large data files
+# Large data files and archives
 *.xml
 *.zip
 *.db
 *.sqlite
+*.tar
+*.gz
+*.rar
+*.7z
+
+# ROS specific large files
+*.bag
+*.pcd
+*.ply
+*.stl
+*.obj
+
+# Temporary and cache files
+*.tmp
+*.temp
+*.cache
+*.log

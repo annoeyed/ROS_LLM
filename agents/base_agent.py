@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Agent 기본 클래스
-모든 Agent가 상속받는 기본 구조와 공통 기능을 정의
+Base Agent Class
+Defines the basic structure and common functionality that all Agents inherit
 """
 
 import json
@@ -13,7 +13,7 @@ from dataclasses import dataclass, asdict
 
 @dataclass
 class AgentMessage:
-    """Agent 간 통신을 위한 메시지 구조"""
+    """Message structure for inter-agent communication"""
     sender: str
     receiver: str
     message_type: str  # 'request', 'response', 'notification', 'error'
@@ -29,7 +29,7 @@ class AgentMessage:
 
 @dataclass
 class AgentTask:
-    """Agent가 수행할 작업 정의"""
+    """Definition of tasks that an Agent performs"""
     task_id: str
     task_type: str
     description: str
@@ -40,7 +40,7 @@ class AgentTask:
     error: Optional[str] = None
 
 class BaseAgent(ABC):
-    """모든 Agent의 기본 클래스"""
+    """Base class for all Agents"""
     
     def __init__(self, agent_id: str, agent_name: str):
         self.agent_id = agent_id
@@ -50,29 +50,29 @@ class BaseAgent(ABC):
         self.task_history: List[AgentTask] = []
         self.current_task: Optional[AgentTask] = None
         
-        # 로깅 설정
+        # Logging configuration
         self.logger = logging.getLogger(f"Agent.{agent_name}")
         self.logger.setLevel(logging.INFO)
         
-        # Agent 초기화
+        # Agent initialization
         self._initialize()
     
     def _initialize(self):
-        """Agent 초기화 - 하위 클래스에서 구현"""
-        self.logger.info(f"Agent {self.agent_name} 초기화 완료")
+        """Agent initialization - implemented in subclasses"""
+        self.logger.info(f"Agent {self.agent_name} initialization complete")
     
     @abstractmethod
     def process_message(self, message: AgentMessage) -> AgentMessage:
-        """메시지 처리 - 하위 클래스에서 구현"""
+        """Message processing - implemented in subclasses"""
         pass
     
     @abstractmethod
     def execute_task(self, task: AgentTask) -> Dict[str, Any]:
-        """작업 실행 - 하위 클래스에서 구현"""
+        """Task execution - implemented in subclasses"""
         pass
     
     def send_message(self, receiver: str, message_type: str, content: Dict[str, Any]) -> AgentMessage:
-        """메시지 전송"""
+        """Send message"""
         import time
         import uuid
         
@@ -85,20 +85,20 @@ class BaseAgent(ABC):
             message_id=str(uuid.uuid4())
         )
         
-        self.logger.info(f"메시지 전송: {receiver}에게 {message_type} 타입 메시지")
+        self.logger.info(f"Message sent: {message_type} type message to {receiver}")
         return message
     
     def receive_message(self, message: AgentMessage):
-        """메시지 수신"""
+        """Receive message"""
         self.message_queue.append(message)
-        self.logger.info(f"메시지 수신: {message.sender}로부터 {message.message_type} 타입 메시지")
+        self.logger.info(f"Message received: {message.message_type} type message from {message.sender}")
         
-        # 메시지 처리
+        # Process message
         try:
             response = self.process_message(message)
             return response
         except Exception as e:
-            self.logger.error(f"메시지 처리 실패: {e}")
+            self.logger.error(f"Message processing failed: {e}")
             return self.send_message(
                 message.sender,
                 'error',
@@ -106,12 +106,12 @@ class BaseAgent(ABC):
             )
     
     def add_task(self, task: AgentTask):
-        """작업 추가"""
+        """Add task"""
         self.task_history.append(task)
-        self.logger.info(f"작업 추가: {task.task_type} - {task.description}")
+        self.logger.info(f"Task added: {task.task_type} - {task.description}")
     
     def get_status(self) -> Dict[str, Any]:
-        """Agent 상태 반환"""
+        """Return Agent status"""
         return {
             'agent_id': self.agent_id,
             'agent_name': self.agent_name,
@@ -122,14 +122,14 @@ class BaseAgent(ABC):
         }
     
     def get_task_status(self, task_id: str) -> Optional[AgentTask]:
-        """특정 작업 상태 조회"""
+        """Query specific task status"""
         for task in self.task_history:
             if task.task_id == task_id:
                 return task
         return None
     
     def update_task_status(self, task_id: str, status: str, result: Optional[Dict[str, Any]] = None, error: Optional[str] = None):
-        """작업 상태 업데이트"""
+        """Update task status"""
         task = self.get_task_status(task_id)
         if task:
             task.status = status
@@ -137,15 +137,15 @@ class BaseAgent(ABC):
                 task.result = result
             if error:
                 task.error = error
-            self.logger.info(f"작업 상태 업데이트: {task_id} -> {status}")
+            self.logger.info(f"Task status updated: {task_id} -> {status}")
     
     def clear_message_queue(self):
-        """메시지 큐 정리"""
+        """Clear message queue"""
         self.message_queue.clear()
-        self.logger.info("메시지 큐 정리 완료")
+        self.logger.info("Message queue cleared")
     
     def get_performance_metrics(self) -> Dict[str, Any]:
-        """성능 메트릭 반환"""
+        """Return performance metrics"""
         completed_tasks = [t for t in self.task_history if t.status == 'completed']
         failed_tasks = [t for t in self.task_history if t.status == 'failed']
         

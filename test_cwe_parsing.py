@@ -1,81 +1,81 @@
 #!/usr/bin/env python3
 """
-CWE XML 파싱 테스트 스크립트
+CWE XML Parsing Test Script
 """
 
 import xml.etree.ElementTree as ET
 
 def test_cwe_parsing():
-    """CWE XML 파싱 테스트"""
+    """CWE XML Parsing Test"""
     try:
-        # XML 파일 파싱
+        # Parse XML file
         tree = ET.parse('cwec_v4.17.xml')
         root = tree.getroot()
         
-        print("XML 로드 성공!")
-        print(f"루트 태그: {root.tag}")
+        print("XML loaded successfully!")
+        print(f"Root tag: {root.tag}")
         
-        # XML 네임스페이스 정의
+        # Define XML namespace
         ns = {'cwe': 'http://cwe.mitre.org/cwe-7'}
         
-        # 네임스페이스를 고려한 Weakness 요소 찾기
+        # Find Weakness elements considering namespace
         weaknesses_with_ns = root.findall('.//cwe:Weakness', ns)
-        print(f"네임스페이스 고려한 Weakness 요소 수: {len(weaknesses_with_ns)}")
+        print(f"Number of Weakness elements with namespace: {len(weaknesses_with_ns)}")
         
-        # 네임스페이스 없이도 시도
+        # Try without namespace as well
         weaknesses_without_ns = root.findall('.//Weakness')
-        print(f"네임스페이스 없이 Weakness 요소 수: {len(weaknesses_without_ns)}")
+        print(f"Number of Weakness elements without namespace: {len(weaknesses_without_ns)}")
         
-        # 모든 하위 요소 확인
+        # Check all child elements
         all_elements = root.findall('.//*')
-        print(f"총 하위 요소 수: {len(all_elements)}")
+        print(f"Total number of child elements: {len(all_elements)}")
         
-        # Weakness로 시작하는 태그 찾기
+        # Find tags starting with Weakness
         weakness_tags = [elem.tag for elem in all_elements if 'Weakness' in elem.tag]
-        print(f"Weakness 관련 태그들: {set(weakness_tags)}")
+        print(f"Weakness related tags: {set(weakness_tags)}")
         
         if weaknesses_with_ns:
-            # 첫 번째 Weakness 요소 확인
+            # Check first Weakness element
             first_weakness = weaknesses_with_ns[0]
-            print(f"\n첫 번째 Weakness (네임스페이스 고려):")
+            print(f"\nFirst Weakness (with namespace):")
             print(f"  ID: {first_weakness.get('ID')}")
             print(f"  Name: {first_weakness.get('Name')}")
             print(f"  Status: {first_weakness.get('Status')}")
             
         elif weaknesses_without_ns:
-            # 첫 번째 Weakness 요소 확인
+            # Check first Weakness element
             first_weakness = weaknesses_without_ns[0]
-            print(f"\n첫 번째 Weakness (네임스페이스 없이):")
+            print(f"\nFirst Weakness (without namespace):")
             print(f"  ID: {first_weakness.get('ID')}")
             print(f"  Name: {first_weakness.get('Name')}")
             print(f"  Status: {first_weakness.get('Status')}")
         
-        # 특정 CWE ID 검색 테스트
-        print(f"\nCWE-287 검색 테스트:")
+        # Test searching for specific CWE ID
+        print(f"\nCWE-287 search test:")
         found_287 = False
         for weakness in weaknesses_with_ns + weaknesses_without_ns:
             if weakness.get('ID') == '287':
-                print(f"  CWE-287 발견: {weakness.get('Name')}")
+                print(f"  CWE-287 found: {weakness.get('Name')}")
                 found_287 = True
                 break
         
         if not found_287:
-            print("  CWE-287을 찾을 수 없음")
+            print("  CWE-287 not found")
                 
-        # CWE-1004 검색 테스트 (XML에서 확인된 것)
-        print(f"\nCWE-1004 검색 테스트:")
+        # CWE-1004 search test (confirmed in XML)
+        print(f"\nCWE-1004 search test:")
         found_1004 = False
         for weakness in weaknesses_with_ns + weaknesses_without_ns:
             if weakness.get('ID') == '1004':
-                print(f"  CWE-1004 발견: {weakness.get('Name')}")
+                print(f"  CWE-1004 found: {weakness.get('Name')}")
                 found_1004 = True
                 break
         
         if not found_1004:
-            print("  CWE-1004을 찾을 수 없음")
+            print("  CWE-1004 not found")
         
     except Exception as e:
-        print(f"오류 발생: {e}")
+        print(f"Error occurred: {e}")
 
 if __name__ == "__main__":
     test_cwe_parsing()

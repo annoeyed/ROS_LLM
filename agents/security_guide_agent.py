@@ -21,7 +21,7 @@ class SecurityGuideAgent(BaseAgent):
         super().__init__(agent_id, "Security Guide Agent")
         
         # 보안 가이드라인 생성기 초기화
-        self.guidelines = {}
+        self.guidelines = None  # None으로 초기화하여 _initialize에서 설정
         self.cwe_database = None
         self.cwe_rag = None
         
@@ -71,7 +71,9 @@ class SecurityGuideAgent(BaseAgent):
             # CWE RAG 시스템 로드 (핵심 기능)
             try:
                 from rag_utils.cwe_rag import CWERAGSearch
-                self.cwe_rag = CWERAGSearch()
+                # 절대 경로로 CWE 인덱스 디렉토리 설정
+                cwe_index_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'rag_sources', 'cwe_index')
+                self.cwe_rag = CWERAGSearch(cwe_index_dir)
                 self.logger.info("CWE RAG 시스템 로드 성공 (핵심 기능)")
             except Exception as cwe_rag_error:
                 self.logger.warning(f"CWE RAG 시스템 로드 실패: {cwe_rag_error}")
@@ -84,8 +86,10 @@ class SecurityGuideAgent(BaseAgent):
                     generator = SecurityGuidelineGenerator(self.cwe_database, self.cwe_rag)
                     self.guidelines = generator.generate_ros_security_guidelines()
                     self.logger.info(f"RAG 기반 보안 가이드라인 생성 완료: {len(self.guidelines.get('categories', {}))}개 카테고리")
+                    self.logger.info(f"가이드라인 내용 확인: {type(self.guidelines)}, 키: {list(self.guidelines.keys()) if isinstance(self.guidelines, dict) else 'Not a dict'}")
                 except Exception as guideline_error:
                     self.logger.warning(f"RAG 기반 가이드라인 생성 실패: {guideline_error}")
+                    self.logger.warning(f"오류 상세: {type(guideline_error)}, {str(guideline_error)}")
                     self.guidelines = self._create_enhanced_guidelines()
             else:
                 # RAG 시스템이 없을 때 향상된 기본 가이드라인 생성
@@ -228,8 +232,39 @@ class SecurityGuideAgent(BaseAgent):
     
     def _get_relevant_guidelines(self, category: str = 'all', component: str = 'all') -> Dict[str, Any]:
         """관련 보안 가이드라인 조회"""
-        if not self.guidelines:
-            return {'error': '보안 가이드라인이 로드되지 않았습니다.'}
+        # 디버깅을 위한 로깅 추가
+        self.logger.info(f"가이드라인 조회 요청: category={category}, component={component}")
+        self.logger.info(f"현재 self.guidelines 상태: {type(self.guidelines)}, 내용: {self.guidelines}")
+        
+        if self.guidelines is None or (isinstance(self.guidelines, dict) and not self.guidelines):
+            self.logger.warning("가이드라인이 비어있음. RAG 기반 가이드라인 재생성 시도...")
+            # RAG 시스템 상태 확인
+            self.logger.info(f"RAG 시스템 상태 확인: cwe_database={self.cwe_database is not None}, cwe_rag={self.cwe_rag is not None}")
+            
+            # RAG 시스템이 없으면 다시 초기화 시도
+            if not self.cwe_database or not self.cwe_rag:
+                self.logger.warning("RAG 시스템이 없음. 보안 시스템 재초기화 시도...")
+                try:
+                    self._load_security_systems()
+                    self.logger.info("보안 시스템 재초기화 완료")
+                except Exception as e:
+                    self.logger.error(f"보안 시스템 재초기화 실패: {e}")
+            
+            # 가이드라인이 비어있으면 RAG 기반 가이드라인을 다시 생성 시도
+            try:
+                if self.cwe_database and self.cwe_rag:
+                    from rag_utils.security_guidelines import SecurityGuidelineGenerator
+                    generator = SecurityGuidelineGenerator(self.cwe_database, self.cwe_rag)
+                    self.guidelines = generator.generate_ros_security_guidelines()
+                    self.logger.info("RAG 기반 가이드라인 재생성 완료")
+                else:
+                    self.logger.warning("RAG 시스템이 여전히 없음. 향상된 기본 가이드라인 생성...")
+                    self.guidelines = self._create_enhanced_guidelines()
+                    self.logger.info("향상된 기본 가이드라인 생성 완료")
+            except Exception as e:
+                self.logger.error(f"가이드라인 재생성 실패: {e}")
+                self.logger.warning("최종 대안으로 기본 가이드라인 생성...")
+                self.guidelines = self._create_enhanced_guidelines()
         
         result = {}
         
@@ -990,21 +1025,25 @@ class SecurityGuideAgent(BaseAgent):
             total_risk_score = 0
             
             for result in search_results:
-                if result.get('score', 0) > 0.7:  # 높은 유사도 결과만
-                    cwe_info = result.get('metadata', {})
-                    if cwe_info:
-                        security_issue = {
-                            'type': 'rag_detected',
-                            'title': f"RAG 검색 결과: {cwe_info.get('cwe_id', 'Unknown')}",
-                            'description': cwe_info.get('description', ''),
-                            'cwe_id': cwe_info.get('cwe_id', ''),
-                            'severity_score': 10,
-                            'source': 'CWE RAG',
-                            'mitigation': cwe_info.get('mitigation', ''),
-                            'confidence': result.get('score', 0)
-                        }
-                        security_issues.append(security_issue)
-                        total_risk_score += 10
+                if result.score > 0.7:  # 높은 유사도 결과만
+                    chunk = result.chunk
+                    # CWE ID 추출 (제목에서 CWE-XXX 형식 찾기)
+                    cwe_id = "Unknown"
+                    if "CWE-" in chunk.title:
+                        cwe_id = chunk.title.split("CWE-")[1].split(":")[0]
+                    
+                    security_issue = {
+                        'type': 'rag_detected',
+                        'title': f"RAG 검색 결과: CWE-{cwe_id}",
+                        'description': chunk.text[:200] + "..." if len(chunk.text) > 200 else chunk.text,
+                        'cwe_id': f"CWE-{cwe_id}",
+                        'severity_score': 10,
+                        'source': 'CWE RAG',
+                        'mitigation': '코드 리뷰 및 보안 테스트 수행',
+                        'confidence': result.score
+                    }
+                    security_issues.append(security_issue)
+                    total_risk_score += 10
             
             # 보안 위험도 레벨 결정
             if total_risk_score >= 30:

@@ -11,7 +11,7 @@ import re
 from typing import Dict, Any, List, Optional
 from .base_agent import BaseAgent, AgentMessage, AgentTask
 
-# 상위 디렉토리 경로 추가 (rag_utils 모듈 접근용)
+# Add parent directory path (for accessing rag_utils module)
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 class CoderAgent(BaseAgent):
@@ -20,10 +20,10 @@ class CoderAgent(BaseAgent):
     def __init__(self, agent_id: str = "coder_001"):
         super().__init__(agent_id, "Coder Agent")
         
-        # AI 클라이언트 초기화
+        # Initialize AI client
         self.ai_client = None
         
-        # 코드 생성 템플릿
+        # Code generation templates
         self.code_templates = {
             'basic_node': self._get_basic_node_template(),
             'publisher': self._get_publisher_template(),
@@ -33,7 +33,7 @@ class CoderAgent(BaseAgent):
             'parameter': self._get_parameter_template()
         }
         
-        # 보안 코드 패턴
+        # Security code patterns
         self.security_patterns = {
             'input_validation': self._get_input_validation_pattern(),
             'error_handling': self._get_error_handling_pattern(),
@@ -43,66 +43,66 @@ class CoderAgent(BaseAgent):
         }
     
     def _initialize(self):
-        """Coder Agent 초기화"""
+        """Initialize Coder Agent"""
         super()._initialize()
         
         try:
-            # AI 클라이언트 로드
+            # Load AI client
             self._load_ai_client()
-            self.logger.info("AI 클라이언트 로드 완료")
-            self.logger.info("AI 기반 ROS 코드 생성 시스템 초기화 완료")
+            self.logger.info("AI client loaded successfully")
+            self.logger.info("AI-based ROS code generation system initialized")
         except Exception as e:
-            self.logger.error(f"AI 클라이언트 로드 실패: {e}")
+            self.logger.error(f"Failed to load AI client: {e}")
             self.status = 'error'
     
     def _load_ai_client(self):
-        """AI 클라이언트 로드"""
+        """Load AI client"""
         try:
-            # 환경변수 로드
+            # Load environment variables
             from dotenv import load_dotenv
             import os
-            # 현재 파일의 디렉토리를 기준으로 .env 파일 경로 설정
+            # Set .env file path based on current file directory
             env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
             load_dotenv(env_path)
             
             from rag_utils.ai_client import AIClientFactory
             
-            # 환경변수에서 AI 클라이언트 타입 확인
+            # Check AI client type from environment variables
             ai_client_type = os.getenv('AI_CLIENT_TYPE', 'mock')
             
-            # AI 클라이언트 생성
+            # Create AI client
             self.ai_client = AIClientFactory.create_client(ai_client_type)
             
-            # AI 클라이언트가 제대로 로드되었는지 확인
+            # Verify AI client loaded properly
             if self.ai_client and hasattr(self.ai_client, 'analyze_content'):
-                self.logger.info(f"AI 클라이언트 로드 완료: {ai_client_type}")
-                # AI 기능 테스트
-                test_response = self.ai_client.analyze_content("테스트", "test")
+                self.logger.info(f"AI client loaded successfully: {ai_client_type}")
+                # Test AI functionality
+                test_response = self.ai_client.analyze_content("test", "test")
                 if test_response:
-                    self.logger.info("AI 기능 테스트 성공")
+                    self.logger.info("AI functionality test successful")
                 else:
-                    self.logger.warning("AI 기능 테스트 실패, Mock 클라이언트로 대체")
+                    self.logger.warning("AI functionality test failed, falling back to Mock client")
                     self._fallback_to_mock_client()
             else:
-                self.logger.warning("AI 클라이언트 로드 실패, Mock 클라이언트로 대체")
+                self.logger.warning("Failed to load AI client, falling back to Mock client")
                 self._fallback_to_mock_client()
             
         except Exception as e:
-            self.logger.error(f"AI 클라이언트 로드 중 오류: {e}")
+            self.logger.error(f"Error loading AI client: {e}")
             self._fallback_to_mock_client()
     
     def _fallback_to_mock_client(self):
-        """Mock AI 클라이언트로 대체"""
+        """Fallback to Mock AI client"""
         try:
             from rag_utils.ai_client import MockAIClient
             self.ai_client = MockAIClient()
-            self.logger.info("Mock AI 클라이언트로 대체 완료")
+            self.logger.info("Fallback to Mock AI client completed")
         except Exception as mock_e:
-            self.logger.error(f"Mock AI 클라이언트 로드도 실패: {mock_e}")
+            self.logger.error(f"Failed to load Mock AI client: {mock_e}")
             self.ai_client = None
     
     def process_message(self, message: AgentMessage) -> AgentMessage:
-        """메시지 처리 - 코드 생성 요청 처리"""
+        """Process messages - handle code generation requests"""
         if message.message_type == 'request':
             if 'generate_code' in message.content:
                 return self._handle_code_generation_request(message)
@@ -118,11 +118,11 @@ class CoderAgent(BaseAgent):
             return self.send_message(
                 message.sender,
                 'error',
-                {'error': f'지원하지 않는 메시지 타입: {message.message_type}'}
+                {'error': f'Unsupported message type: {message.message_type}'}
             )
     
     def execute_task(self, task: AgentTask) -> Dict[str, Any]:
-        """작업 실행 - AI 기반 코드 생성"""
+        """Execute tasks - AI-based code generation"""
         self.status = 'busy'
         self.current_task = task
         
@@ -136,20 +136,20 @@ class CoderAgent(BaseAgent):
             elif task.task_type == 'optimize_code':
                 result = self._optimize_code(task.parameters)
             else:
-                result = {'error': f'지원하지 않는 작업 타입: {task.task_type}'}
+                result = {'error': f'Unsupported task type: {task.task_type}'}
             
             self.update_task_status(task.task_id, 'completed', result)
             self.status = 'idle'
             return result
             
         except Exception as e:
-            error_msg = f'작업 실행 실패: {str(e)}'
+            error_msg = f'Task execution failed: {str(e)}'
             self.update_task_status(task.task_id, 'failed', error=error_msg)
             self.status = 'error'
             return {'error': error_msg}
     
     def _handle_code_generation_request(self, message: AgentMessage) -> AgentMessage:
-        """코드 생성 요청 처리"""
+        """Handle code generation request"""
         requirements = message.content.get('requirements', '')
         component_type = message.content.get('component_type', 'basic_node')
         security_level = message.content.get('security_level', 'medium')
@@ -172,7 +172,7 @@ class CoderAgent(BaseAgent):
         )
     
     def _handle_code_modification_request(self, message: AgentMessage) -> AgentMessage:
-        """코드 수정 요청 처리"""
+        """Handle code modification request"""
         existing_code = message.content.get('existing_code', '')
         modification_request = message.content.get('modification_request', '')
         
@@ -212,7 +212,7 @@ class CoderAgent(BaseAgent):
         )
     
     def _handle_code_optimization_request(self, message: AgentMessage) -> AgentMessage:
-        """코드 최적화 요청 처리"""
+        """Handle code optimization request"""
         code_snippet = message.content.get('code_snippet', '')
         optimization_goal = message.content.get('optimization_goal', 'performance')
         
@@ -232,12 +232,12 @@ class CoderAgent(BaseAgent):
         )
     
     def _handle_general_request(self, message: AgentMessage) -> AgentMessage:
-        """일반 요청 처리"""
+        """Handle general requests"""
         return self.send_message(
             message.sender,
             'response',
             {
-                'message': 'Coder Agent가 요청을 처리했습니다.',
+                'message': 'Coder Agent has processed the request.',
                 'content': message.content,
                 'status': 'success'
             }
@@ -618,16 +618,22 @@ class CoderAgent(BaseAgent):
         
         return security_code
     
-    def _customize_code(self, base_code: str, requirements: str) -> str:
+    def _customize_code(self, base_code: str, requirements: Any) -> str:
         """요구사항에 맞게 코드 커스터마이징"""
         # 간단한 텍스트 치환 (실제로는 더 정교한 파싱 필요)
         customized_code = base_code
         
-        if 'camera' in requirements.lower():
+        # requirements가 딕셔너리인 경우 user_request를 추출
+        if isinstance(requirements, dict):
+            requirements_text = requirements.get('user_request', str(requirements))
+        else:
+            requirements_text = str(requirements)
+        
+        if 'camera' in requirements_text.lower():
             customized_code = customized_code.replace('GenericNode', 'CameraNode')
             customized_code = customized_code.replace('generic_topic', 'camera_topic')
         
-        if 'authentication' in requirements.lower():
+        if 'authentication' in requirements_text.lower():
             customized_code = customized_code.replace('# TODO: Add authentication', self.security_patterns['authentication'])
         
         return customized_code
