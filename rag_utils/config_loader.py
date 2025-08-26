@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-설정 로더
-환경 변수와 설정 파일을 로드하는 유틸리티
+Configuration Loader
+Utility for loading environment variables and configuration files
 """
 
 import os
@@ -86,12 +86,12 @@ class ConfigLoader:
         else:
             config['anthropic_model'] = 'claude-3-sonnet-20240229'
             
+        # Only set max_tokens if explicitly configured
         if os.getenv('AI_MAX_TOKENS'):
             config['max_tokens'] = int(os.getenv('AI_MAX_TOKENS'))
         elif 'AI_MAX_TOKENS' in config:
             config['max_tokens'] = int(config['AI_MAX_TOKENS'])
-        else:
-            config['max_tokens'] = 1000
+        # Remove default max_tokens - let the API use its own defaults
             
         if os.getenv('AI_TEMPERATURE'):
             config['temperature'] = float(os.getenv('AI_TEMPERATURE'))
@@ -141,34 +141,34 @@ class ConfigLoader:
         return True
     
     def print_config_summary(self, config: Dict[str, Any]):
-        """설정 요약 출력"""
-        print("\n=== AI 설정 요약 ===")
-        print(f"클라이언트 타입: {config.get('client_type', 'N/A')}")
+        """Print configuration summary"""
+        print("\n=== AI Configuration Summary ===")
+        print(f"Client Type: {config.get('client_type', 'N/A')}")
         
         if config.get('client_type') == 'openai':
-            print(f"OpenAI 모델: {config.get('openai_model', 'N/A')}")
-            print(f"OpenAI API 키: {'설정됨' if config.get('openai_api_key') else '설정되지 않음'}")
+            print(f"OpenAI Model: {config.get('openai_model', 'N/A')}")
+            print(f"OpenAI API Key: {'Set' if config.get('openai_api_key') else 'Not set'}")
         elif config.get('client_type') == 'anthropic':
-            print(f"Anthropic 모델: {config.get('anthropic_model', 'N/A')}")
-            print(f"Anthropic API 키: {'설정됨' if config.get('anthropic_api_key') else '설정되지 않음'}")
+            print(f"Anthropic Model: {config.get('anthropic_model', 'N/A')}")
+            print(f"Anthropic API Key: {'Set' if config.get('anthropic_api_key') else 'Not set'}")
         
-        print(f"최대 토큰: {config.get('max_tokens', 'N/A')}")
-        print(f"온도: {config.get('temperature', 'N/A')}")
-        print("==================\n")
+        print(f"Max Tokens: {config.get('max_tokens', 'N/A')}")
+        print(f"Temperature: {config.get('temperature', 'N/A')}")
+        print("================================\n")
 
-# 사용 예시
+# Usage example
 if __name__ == "__main__":
     config_loader = ConfigLoader()
     config = config_loader.get_ai_config()
     
-    print("로드된 설정:")
+    print("Loaded configuration:")
     for key, value in config.items():
         if 'key' in key.lower():
-            print(f"{key}: {'설정됨' if value else '설정되지 않음'}")
+            print(f"{key}: {'Set' if value else 'Not set'}")
         else:
             print(f"{key}: {value}")
     
-    print("\n사용 가능한 모델:")
+    print("\nAvailable models:")
     models = config_loader.get_model_info()
     for provider, model_list in models.items():
         print(f"\n{provider.upper()}:")
@@ -176,7 +176,7 @@ if __name__ == "__main__":
             print(f"  {model}: {description}")
     
     if config_loader.validate_config(config):
-        print("\n설정이 유효합니다!")
+        print("\nConfiguration is valid!")
         config_loader.print_config_summary(config)
     else:
-        print("\n설정에 문제가 있습니다.")
+        print("\nThere are issues with the configuration.")

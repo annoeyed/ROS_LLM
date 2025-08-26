@@ -40,18 +40,18 @@ class Phase1_GenerationWorkflow:
     # Create an AI client using the factory based on the config
     client_type = ai_config.get('client_type')
     if not client_type:
-      raise ValueError("AI_CLIENT_TYPE 환경변수가 설정되지 않았습니다. 'openai' 또는 'anthropic'으로 설정하세요.")
+      raise ValueError("AI_CLIENT_TYPE environment variable is not set. Please set it to 'openai' or 'anthropic'.")
     
     if client_type == 'openai':
       model_name = ai_config.get('openai_model')
       if not ai_config.get('openai_api_key'):
-        raise ValueError("OPENAI_API_KEY 환경변수가 설정되지 않았습니다.")
+        raise ValueError("OPENAI_API_KEY environment variable is not set.")
     elif client_type == 'anthropic':
       model_name = ai_config.get('anthropic_model')
       if not ai_config.get('anthropic_api_key'):
-        raise ValueError("ANTHROPIC_API_KEY 환경변수가 설정되지 않았습니다.")
+        raise ValueError("ANTHROPIC_API_KEY environment variable is not set.")
     else:
-      raise ValueError(f"지원하지 않는 클라이언트 타입입니다: {client_type}. 'openai' 또는 'anthropic'을 사용하세요.")
+      raise ValueError(f"Unsupported client type: {client_type}. Please use 'openai' or 'anthropic'.")
     
     self.llm_client = AIClientFactory.create_client(
         client_name=client_type,
@@ -60,7 +60,7 @@ class Phase1_GenerationWorkflow:
 
     if not self.llm_client:
       raise ValueError(
-          f"AI 클라이언트 생성에 실패했습니다. {client_type} 설정을 확인하세요.")
+          f"Failed to create AI client. Please check your {client_type} configuration.")
 
     # Initialize agents with the created client
     self.planner = PlannerAgent(self.llm_client)
@@ -68,7 +68,7 @@ class Phase1_GenerationWorkflow:
     self.coder = CoderAgent(self.llm_client)
     self.judge = JudgeAgent(self.llm_client)
 
-  def run(self, instruction: str) -> Dict[str, Any]:
+  def run(self, instruction: str, language: str = "python") -> Dict[str, Any]:
     """Runs the Phase 1 workflow.
 
     Args:
@@ -153,7 +153,7 @@ class Phase1_GenerationWorkflow:
       
       # Coder Agent
       coder_start = datetime.datetime.now()
-      generated_code = self.coder.generate_code(plan, security_guidelines)
+      generated_code = self.coder.generate_code(plan, security_guidelines, language)
       coder_duration = (datetime.datetime.now() - coder_start).total_seconds()
       
       # Display generated code
@@ -172,10 +172,10 @@ class Phase1_GenerationWorkflow:
         is_safe, feedback = self.judge.verify_code(generated_code, security_guidelines)
         judge_duration = (datetime.datetime.now() - judge_start).total_seconds()
       except Exception as e:
-        print(f"Judge Agent에서 오류 발생: {e}")
+        print(f"Error occurred in Judge Agent: {e}")
         judge_duration = (datetime.datetime.now() - judge_start).total_seconds()
         is_safe = False
-        feedback = f"Judge Agent 실행 오류: {str(e)}"
+        feedback = f"Judge Agent execution error: {str(e)}"
       
       attempt_duration = (datetime.datetime.now() - attempt_start).total_seconds()
       
@@ -230,7 +230,7 @@ class Phase1_GenerationWorkflow:
           "security_guidelines": security_guidelines,
           "generated_code": generated_code,
           "verification_status": "Failed - Maximum retries exceeded",
-          "final_feedback": feedback if feedback else "코드 생성이 최대 시도 횟수를 초과했습니다.",
+          "final_feedback": feedback if feedback else "Code generation exceeded maximum retry attempts.",
           "workflow_log": workflow_log
       }
       self.partial_result = result
@@ -278,7 +278,6 @@ def save_results(result: Dict[str, Any]):
   with open(full_result_filename, "w", encoding="utf-8") as f:
     json.dump(result, f, indent=2, ensure_ascii=False)
   print(f"Full workflow results saved to {full_result_filename}")
-
   # Save agent interactions separately for easier analysis
   if "workflow_log" in result:
     agent_log_filename = os.path.join(run_dir, f"agent_interactions_{timestamp}.json")
@@ -308,16 +307,35 @@ def save_results(result: Dict[str, Any]):
       json.dump(summary, f, indent=2, ensure_ascii=False)
     print(f"Workflow summary saved to {summary_filename}")
 
-  # Save the generated code to a .py file (only if code was actually generated)
+  # Save the generated code to appropriate file (language-specific extension)
   generated_code = result.get("generated_code", "")
-  if generated_code and not generated_code.startswith("# 코드 생성 실패"):
-    code_filename = os.path.join(run_dir, f"generated_ros_node_{timestamp}.py")
-    with open(code_filename, "w", encoding="utf-8") as f:
-      # Add header comment with metadata
-      header = f"""#!/usr/bin/env python3
+  language = result.get("language", "python")  # Default to python if not specified
+  
+  if generated_code and not generated_code.startswith("# Code generation failed"):
+    # Determine file extension based on language
+    if language.lower() in ["cpp", "c++"]:
+      code_extension = "cpp"
+      header_comment = f"""/*
+ * Generated ROS 2 C++ Node - Secure Code
+ * Generated by Phase 1 Multi-Agent Workflow
+ * 
+ * Timestamp: {timestamp}
+ * Instruction: {result.get("instruction", "N/A")}
+ * Verification Status: {result.get("verification_status", "N/A")}
+ * Judge Feedback: {result.get("final_feedback", "N/A")}
+ */
+
+"""
+      # Generate and save CMakeLists.txt and package.xml for C++
+      node_name = f"generated_ros_node_{timestamp}"
+      _save_cpp_build_files(run_dir, node_name, timestamp, result)
+      
+    else:
+      code_extension = "py"
+      header_comment = f"""#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 \"\"\"
-Generated ROS 2 Node - Secure Code
+Generated ROS 2 Python Node - Secure Code
 Generated by Phase 1 Multi-Agent Workflow
 
 Timestamp: {timestamp}
@@ -327,8 +345,16 @@ Judge Feedback: {result.get("final_feedback", "N/A")}
 \"\"\"
 
 """
-      f.write(header + generated_code)
+    
+    code_filename = os.path.join(run_dir, f"generated_ros_node_{timestamp}.{code_extension}")
+    with open(code_filename, "w", encoding="utf-8") as f:
+      f.write(header_comment + generated_code)
     print(f"Generated code saved to {code_filename}")
+    
+    # Try to compile C++ code if it's C++
+    if language.lower() in ["cpp", "c++"]:
+      _validate_cpp_compilation(run_dir, f"generated_ros_node_{timestamp}")
+      
   else:
     print("No valid code generated - skipping code file save")
 
@@ -348,33 +374,196 @@ Judge Feedback: {result.get("final_feedback", "N/A")}
   return run_dir
 
 
+def _save_cpp_build_files(run_dir: str, node_name: str, timestamp: str, result: Dict[str, Any]):
+  """Generate and save CMakeLists.txt and package.xml for C++ projects"""
+  
+  # Generate CMakeLists.txt
+  cmake_content = f"""cmake_minimum_required(VERSION 3.8)
+project({node_name})
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+# find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(rclcpp_action REQUIRED)
+find_package(example_interfaces REQUIRED)
+find_package(std_srvs REQUIRED)
+
+# Add executable
+add_executable({node_name} {node_name}.cpp)
+
+# Include directories
+target_include_directories({node_name} PUBLIC
+  $<BUILD_INTERFACE:${{CMAKE_CURRENT_SOURCE_DIR}}/include>
+  $<INSTALL_INTERFACE:include>)
+
+# Specify dependencies
+ament_target_dependencies({node_name}
+  rclcpp
+  std_msgs
+  rclcpp_action
+  example_interfaces
+  std_srvs)
+
+# Install executable
+install(TARGETS {node_name}
+  DESTINATION lib/${{PROJECT_NAME}})
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  # the following line skips the linter which checks for copyrights
+  # comment the line when a copyright and license is added to all source files
+  set(ament_cmake_copyright_FOUND TRUE)
+  # the following line skips cpplint (only works in a git repo)
+  # comment the line when this package is in a git repo and when
+  # a copyright and license is added to all source files
+  set(ament_cmake_cpplint_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
+endif()
+
+ament_package()
+"""
+  
+  # Generate package.xml
+  package_content = f"""<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>{node_name}</name>
+  <version>1.0.0</version>
+  <description>Generated ROS 2 C++ secure node - {timestamp}</description>
+  <maintainer email="developer@example.com">ROS LLM Generator</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
+  <depend>rclcpp_action</depend>
+  <depend>example_interfaces</depend>
+  <depend>std_srvs</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+"""
+  
+  # Save files
+  cmake_filename = os.path.join(run_dir, "CMakeLists.txt")
+  with open(cmake_filename, "w", encoding="utf-8") as f:
+    f.write(cmake_content)
+  print(f"CMakeLists.txt saved to {cmake_filename}")
+  
+  package_filename = os.path.join(run_dir, "package.xml")
+  with open(package_filename, "w", encoding="utf-8") as f:
+    f.write(package_content)
+  print(f"package.xml saved to {package_filename}")
+
+
+def _validate_cpp_compilation(run_dir: str, node_name: str):
+  """Validate C++ code compilation"""
+  import subprocess
+  
+  try:
+    print(f"\\nValidating C++ compilation for {node_name}...")
+    
+    # Check if ROS 2 is available (Windows compatible)
+    try:
+      # Try Windows first
+      result = subprocess.run(["where", "colcon"], capture_output=True, text=True, shell=True)
+      if result.returncode != 0:
+        # Try Linux/Mac
+        result = subprocess.run(["which", "colcon"], capture_output=True, text=True)
+        if result.returncode != 0:
+          print("⚠️  ROS 2 colcon not found - skipping compilation validation")
+          print("💡 To enable compilation validation, install ROS 2 and colcon")
+          return
+    except FileNotFoundError:
+      print("⚠️  ROS 2 colcon not found - skipping compilation validation")
+      print("💡 To enable compilation validation, install ROS 2 and colcon")
+      return
+    
+    # Try to build the package
+    print("Attempting to build C++ package...")
+    build_result = subprocess.run(
+      ["colcon", "build", "--packages-select", node_name],
+      cwd=run_dir,
+      capture_output=True,
+      text=True,
+      timeout=60
+    )
+    
+    if build_result.returncode == 0:
+      print("✅ C++ code compilation successful!")
+      print("Build output:")
+      print(build_result.stdout)
+    else:
+      print("❌ C++ code compilation failed:")
+      print("Error output:")
+      print(build_result.stderr)
+      
+      # Save compilation errors to file
+      error_filename = os.path.join(run_dir, f"compilation_errors_{node_name}.txt")
+      with open(error_filename, "w", encoding="utf-8") as f:
+        f.write("Compilation Error Log\\n")
+        f.write("="*50 + "\\n\\n")
+        f.write("STDOUT:\\n")
+        f.write(build_result.stdout)
+        f.write("\\n\\nSTDERR:\\n")
+        f.write(build_result.stderr)
+      print(f"Compilation errors saved to {error_filename}")
+      
+  except subprocess.TimeoutExpired:
+    print("⚠️  Compilation timeout - build took too long")
+  except FileNotFoundError:
+    print("⚠️  Build tools not found - skipping compilation validation")
+  except Exception as e:
+    print(f"⚠️  Compilation validation error: {e}")
+
+
 if __name__ == "__main__":
-  # Example instruction
+  # Example instructions with language specification
   # pylint: disable=line-too-long
-  user_instruction = "Create a ROS 2 node in Python that subscribes to a 'std_msgs/String' topic named 'chatter' and prints the received messages to the console. The node should be named 'listener_node'."
+  user_instruction_python = "Create a ROS 2 node in Python that subscribes to a 'std_msgs/String' topic named 'chatter' and prints the received messages to the console. The node should be named 'listener_node'."
+  user_instruction_cpp = "Create a ROS 2 node in C++ that subscribes to a 'std_msgs/String' topic named 'chatter' and prints the received messages to the console. The node should be named 'listener_node'."
+  
+  # Choose language (python or cpp)
+  language = "cpp"  # Change this to "cpp" for C++ code generation
+  user_instruction = user_instruction_python if language == "python" else user_instruction_cpp
 
   # Initialize and run the workflow
   workflow = Phase1_GenerationWorkflow(max_retries=5)
   workflow_result = None
   
   try:
-    workflow_result = workflow.run(user_instruction)
+    workflow_result = workflow.run(user_instruction, language)
+    # Add language info to result for proper file saving
+    workflow_result["language"] = language
     save_results(workflow_result)
-    print(f"\n워크플로우가 성공적으로 완료되었습니다!")
+    print(f"\nWorkflow completed successfully!")
   except (RuntimeError, ValueError) as e:
-    print(f"\n워크플로우 실행 중 오류가 발생했습니다: {e}")
+    print(f"\nError occurred during workflow execution: {e}")
     
-    # 실패한 경우에도 부분적인 결과가 있다면 저장
+    # Save partial results if available
     if hasattr(workflow, 'partial_result') and workflow.partial_result:
-      print("부분적인 결과를 저장하는 중...")
+      print("Saving partial results...")
+      workflow.partial_result["language"] = language
       save_results(workflow.partial_result)
     else:
-      # 기본 실패 결과 생성
+      # Generate default failure result
       failure_result = {
         "instruction": user_instruction,
-        "plan": "워크플로우 실행 실패",
-        "security_guidelines": "생성되지 않음",
-        "generated_code": f"# 코드 생성 실패\n# 오류: {str(e)}",
+        "language": language,
+        "plan": "Workflow execution failed",
+        "security_guidelines": "Not generated",
+        "generated_code": f"# Code generation failed\n# Error: {str(e)}",
         "verification_status": "Failed",
         "final_feedback": str(e),
         "workflow_log": {
@@ -387,11 +576,11 @@ if __name__ == "__main__":
           "attempts": []
         }
       }
-      print("실패 결과를 저장하는 중...")
+      print("Saving failure results...")
       save_results(failure_result)
 
-# === To-do: Phase 2 and Feedback Loop Structure ===
-#
+  # === To-do: Phase 2 and Feedback Loop Structure ===
+  #
 # Phase 2: Evaluation (Oracle Verification)
 #   Simulation → Oracles (Param, Safety, Mode)
 #   - Simulation: Execute SITL or actual hardware simulation.

@@ -77,14 +77,16 @@ def _extract_json_snippet(text: str) -> Optional[str]:
 class OpenAIClient(AIClient):
   """A client for interacting with the OpenAI API."""
 
-  def __init__(self, model_name: str, api_key: Optional[str] = None):
+  def __init__(self, model_name: str, api_key: Optional[str] = None, max_tokens: Optional[int] = None):
     """Initializes the OpenAIClient.
 
     Args:
       model_name: The name of the OpenAI model to use.
       api_key: The OpenAI API key.
+      max_tokens: The maximum number of tokens to generate (optional).
     """
     self.model_name = model_name
+    self.max_tokens = max_tokens
     self.client = OpenAI(api_key=api_key)
 
   def chat(self,
@@ -106,25 +108,32 @@ class OpenAIClient(AIClient):
       messages.extend(history)
     messages.append({"role": "user", "content": prompt})
 
-    response = self.client.chat.completions.create(
-        model=self.model_name,
-        messages=messages,
-        temperature=temperature,
-    )
+    # Only include max_tokens if specified
+    kwargs = {
+        'model': self.model_name,
+        'messages': messages,
+        'temperature': temperature,
+    }
+    if self.max_tokens is not None:
+        kwargs['max_tokens'] = self.max_tokens
+    
+    response = self.client.chat.completions.create(**kwargs)
     return response.choices[0].message.content
 
 
 class AnthropicClient(AIClient):
   """A client for interacting with the Anthropic API."""
 
-  def __init__(self, model_name: str, api_key: Optional[str] = None):
+  def __init__(self, model_name: str, api_key: Optional[str] = None, max_tokens: Optional[int] = None):
     """Initializes the AnthropicClient.
 
     Args:
       model_name: The name of the Anthropic model to use.
       api_key: The Anthropic API key.
+      max_tokens: The maximum number of tokens to generate (optional, defaults to 4096 for Anthropic).
     """
     self.model_name = model_name
+    self.max_tokens = max_tokens or 4096  # Anthropic requires max_tokens, so use 4096 as default
     self.client = Anthropic(api_key=api_key)
 
   def chat(self,
@@ -154,7 +163,7 @@ class AnthropicClient(AIClient):
 
     response = self.client.messages.create(
         model=self.model_name,
-        max_tokens=4096,
+        max_tokens=self.max_tokens,
         messages=messages,
         system=system_prompt if system_prompt else None,
         temperature=temperature,
@@ -185,33 +194,35 @@ class AIClientFactory:
     """
     # Handle both Config object and dictionary
     if isinstance(config, dict):
+      max_tokens = config.get('max_tokens')  # Only use if explicitly set
       if client_name == "openai":
         model = model_name or config.get('openai_model', 'gpt-4')
         api_key = config.get('openai_api_key')
         if not api_key:
           print("OpenAI API key not found in configuration.")
           return None
-        return OpenAIClient(model_name=model, api_key=api_key)
+        return OpenAIClient(model_name=model, api_key=api_key, max_tokens=max_tokens)
       elif client_name == "anthropic":
         model = model_name or config.get('anthropic_model', 'claude-3-sonnet-20240229')
         api_key = config.get('anthropic_api_key')
         if not api_key:
           print("Anthropic API key not found in configuration.")
           return None
-        return AnthropicClient(model_name=model, api_key=api_key)
+        return AnthropicClient(model_name=model, api_key=api_key, max_tokens=max_tokens)
       else:
         print(f"Unknown client: {client_name}. AI Client creation failed.")
         return None
     else:
       # Original Config object handling
+      max_tokens = getattr(config, 'max_tokens', None)
       if client_name == "openai":
         model = model_name or config.model.name
         api_key = config.api_keys.openai
-        return OpenAIClient(model_name=model, api_key=api_key)
+        return OpenAIClient(model_name=model, api_key=api_key, max_tokens=max_tokens)
       elif client_name == "anthropic":
         model = model_name or config.model.name
         api_key = config.api_keys.anthropic
-        return AnthropicClient(model_name=model, api_key=api_key)
+        return AnthropicClient(model_name=model, api_key=api_key, max_tokens=max_tokens)
       else:
         print(f"Unknown client: {client_name}. AI Client creation failed.")
         return None

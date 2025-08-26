@@ -110,13 +110,20 @@ Your task is to evaluate the provided ROS code for security vulnerabilities base
 {generated_code}
 
 ### Evaluation Instructions:
-Please provide a brief evaluation focusing on:
-1. Input validation and error handling
-2. ROS-specific security practices
-3. Overall code security
+This is a BASIC ROS demonstration node. Please evaluate with reasonable standards:
 
-Judge as "Secure" if basic security practices are implemented.
-Judge as "Potentially Insecure" only if there are clear vulnerabilities.
+JUDGE AS "SECURE" if the code has:
+- Basic error handling (try-catch blocks)
+- Some form of input validation OR parameter validation
+- Proper logging without sensitive data exposure
+- No obvious exploitable vulnerabilities
+
+JUDGE AS "Potentially Insecure" ONLY if there are:
+- Clear and exploitable security vulnerabilities
+- Complete absence of any security measures
+- Code that could easily cause system compromise
+
+Remember: This is a basic ROS node, not a production security system.
 """
         
         evaluation = self.run(code_and_context)
