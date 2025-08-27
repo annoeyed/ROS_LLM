@@ -1,16 +1,29 @@
 # rag_utils/cve_rag.py
 from typing import List, Dict, Any
-from .cve_database import CVEDatabase
 from .build_ragbase import build_faiss_index, save_faiss, embed_texts
 from .schema import ChunkRecord, ChunkMetadata, DocumentRecord
 import uuid
 
+class CVERAG:
+    """CVE RAG 시스템의 메인 클래스"""
+    def __init__(self):
+        pass
+    
+    def search(self, query: str, top_k: int = 5):
+        """CVE 검색 (기본 구현)"""
+        print(f"CVE 검색: {query}")
+        return []
+
 class CVERAGBuilder:
-    def __init__(self, cve_db: CVEDatabase):
+    def __init__(self, cve_db=None):
         self.cve_db = cve_db
     
     def build_rag_index(self, output_dir: str = "data/rag_sources/cve_index"):
         """Convert CVE database to RAG index"""
+        if not self.cve_db:
+            print("CVE 데이터베이스가 없습니다.")
+            return None
+            
         cves = self.cve_db.cves
         
         # Convert CVEs to chunks
@@ -23,7 +36,7 @@ class CVERAGBuilder:
             metadata = ChunkMetadata(
                 section="CVE",
                 rule_type="vulnerability",
-                keywords=cve['keywords']
+                keywords=cve.get('keywords', [])
             )
             
             # Create chunk
@@ -52,17 +65,17 @@ class CVERAGBuilder:
         """Convert CVE to RAG text format"""
         text_parts = [
             f"CVE ID: {cve['cve_id']}",
-            f"Severity: {cve['severity']}",
-            f"Description: {cve['description']}"
+            f"Severity: {cve.get('severity', 'Unknown')}",
+            f"Description: {cve.get('description', 'No description')}"
         ]
         
-        if cve['cvss_score']:
+        if cve.get('cvss_score'):
             text_parts.append(f"CVSS Score: {cve['cvss_score']}")
         
-        if cve['keywords']:
+        if cve.get('keywords'):
             text_parts.append(f"Keywords: {', '.join(cve['keywords'])}")
         
-        if cve['affected_products']:
+        if cve.get('affected_products'):
             text_parts.append(f"Affected Products: {', '.join(cve['affected_products'])}")
         
         return " | ".join(text_parts)

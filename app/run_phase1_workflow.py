@@ -4,14 +4,72 @@ import datetime
 import json
 import os
 import sys
+import logging
+import io
 from typing import Any, Dict, Optional
 
 # Add the project root to the Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from agents import CoderAgent, JudgeAgent, PlannerAgent, SecurityGuideAgent
-from rag_utils.ai_client import AIClientFactory
-from rag_utils.config_loader import ConfigLoader
+from utils.ai_client import AIClientFactory
+from utils.config_loader import ConfigLoader
+
+
+class ConsoleCapture:
+    """Captures console output and saves it to a file."""
+    
+    def __init__(self, log_file_path: str):
+        self.log_file_path = log_file_path
+        self.console_output = []
+        self.original_stdout = sys.stdout
+        self.original_stderr = sys.stderr
+        
+    def __enter__(self):
+        # Create custom stdout/stderr that captures output
+        self.captured_stdout = io.StringIO()
+        self.captured_stderr = io.StringIO()
+        
+        # Create tee-like behavior - output to both console and capture
+        class TeeStream:
+            def __init__(self, original, captured, output_list):
+                self.original = original
+                self.captured = captured
+                self.output_list = output_list
+                
+            def write(self, text):
+                self.original.write(text)  # Write to console
+                self.captured.write(text)  # Capture for later
+                self.output_list.append(text)  # Store in list
+                return len(text)
+                
+            def flush(self):
+                self.original.flush()
+                self.captured.flush()
+        
+        # Replace stdout and stderr
+        sys.stdout = TeeStream(self.original_stdout, self.captured_stdout, self.console_output)
+        sys.stderr = TeeStream(self.original_stderr, self.captured_stderr, self.console_output)
+        
+        return self
+        
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        # Restore original stdout/stderr
+        sys.stdout = self.original_stdout
+        sys.stderr = self.original_stderr
+        
+        # Save captured output to file
+        try:
+            os.makedirs(os.path.dirname(self.log_file_path), exist_ok=True)
+            with open(self.log_file_path, 'w', encoding='utf-8') as f:
+                f.write(''.join(self.console_output))
+            print(f"Console output saved to: {self.log_file_path}")
+        except Exception as e:
+            print(f"Failed to save console output: {e}")
+    
+    def get_captured_output(self) -> str:
+        """Get the captured console output as a string."""
+        return ''.join(self.console_output)
 
 
 class Phase1_GenerationWorkflow:
@@ -257,21 +315,25 @@ class Phase1_GenerationWorkflow:
     return result
 
 
-def save_results(result: Dict[str, Any]):
+def save_results(result: Dict[str, Any], timestamp: str = None, run_dir: str = None):
   """Saves the workflow results to a JSON file and the generated code to a Python file.
 
     Args:
         result: A dictionary containing the workflow results.
+        timestamp: Timestamp for file naming (if None, generates new one).
+        run_dir: Directory to save results (if None, creates new one).
   """
-  timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+  if timestamp is None:
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
   
-  # Create results directory
-  output_dir = "results"
-  os.makedirs(output_dir, exist_ok=True)
-  
-  # Create subdirectory for this run
-  run_dir = os.path.join(output_dir, f"phase1_run_{timestamp}")
-  os.makedirs(run_dir, exist_ok=True)
+  if run_dir is None:
+    # Create results directory
+    output_dir = "results"
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Create subdirectory for this run
+    run_dir = os.path.join(output_dir, f"phase1_run_{timestamp}")
+    os.makedirs(run_dir, exist_ok=True)
 
   # Save the full workflow result as JSON (including all agent interactions)
   full_result_filename = os.path.join(run_dir, f"full_workflow_result_{timestamp}.json")
@@ -583,7 +645,7 @@ def _validate_cpp_compilation(run_dir: str, node_name: str):
   import subprocess
   
   try:
-    print(f"\\nValidating C++ compilation for {node_name}...")
+    print(f"\\nPhase 1 code generation review completed: {node_name}")
     
     # Check if ROS 2 is available (Windows compatible)
     try:
@@ -594,11 +656,13 @@ def _validate_cpp_compilation(run_dir: str, node_name: str):
         result = subprocess.run(["which", "colcon"], capture_output=True, text=True)
         if result.returncode != 0:
           print("ROS 2 colcon not found - skipping compilation validation")
-          print("To enable compilation validation, install ROS 2 and colcon")
+          print("Phase 1 complete: Code generation and AI review finished")
+          print("Compilation and execution validation will be performed in Phase 2: Evaluation")
           return
     except FileNotFoundError:
       print("ROS 2 colcon not found - skipping compilation validation")
-      print("To enable compilation validation, install ROS 2 and colcon")
+      print("Phase 1 complete: Code generation and AI review finished")
+      print("Compilation and execution validation will be performed in Phase 2: Evaluation")
       return
     
     # Try to build the package
@@ -655,11 +719,13 @@ def _validate_c_compilation(run_dir: str, node_name: str):
         result = subprocess.run(["which", "colcon"], capture_output=True, text=True)
         if result.returncode != 0:
           print("ROS 2 colcon not found - skipping compilation validation")
-          print("To enable compilation validation, install ROS 2 and colcon")
+          print("Phase 1 complete: Code generation and AI review finished")
+          print("Compilation and execution validation will be performed in Phase 2: Evaluation")
           return
     except FileNotFoundError:
       print("ROS 2 colcon not found - skipping compilation validation")
-      print("To enable compilation validation, install ROS 2 and colcon")
+      print("Phase 1 complete: Code generation and AI review finished")
+      print("Compilation and execution validation will be performed in Phase 2: Evaluation")
       return
     
     # Try to build the package
@@ -716,46 +782,58 @@ if __name__ == "__main__":
   else:
     user_instruction = user_instruction_cpp
 
-  # Initialize and run the workflow
-  workflow = Phase1_GenerationWorkflow(max_retries=5)
+  # Create timestamp for this run
+  timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+  
+  # Create results directory for this run
+  results_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "results", f"phase1_run_{timestamp}")
+  os.makedirs(results_dir, exist_ok=True)
+  
+  # Set up console log file path
+  console_log_path = os.path.join(results_dir, f"console_output_{timestamp}.log")
+  
+  # Initialize and run the workflow with console capture
   workflow_result = None
   
-  try:
-    workflow_result = workflow.run(user_instruction, language)
-    # Add language info to result for proper file saving
-    workflow_result["language"] = language
-    save_results(workflow_result)
-    print(f"\nWorkflow completed successfully!")
-  except (RuntimeError, ValueError) as e:
-    print(f"\nError occurred during workflow execution: {e}")
+  with ConsoleCapture(console_log_path):
+    workflow = Phase1_GenerationWorkflow(max_retries=5)
     
-    # Save partial results if available
-    if hasattr(workflow, 'partial_result') and workflow.partial_result:
-      print("Saving partial results...")
-      workflow.partial_result["language"] = language
-      save_results(workflow.partial_result)
-    else:
-      # Generate default failure result
-      failure_result = {
-        "instruction": user_instruction,
-        "language": language,
-        "plan": "Workflow execution failed",
-        "security_guidelines": "Not generated",
-        "generated_code": f"# Code generation failed\n# Error: {str(e)}",
-        "verification_status": "Failed",
-        "final_feedback": str(e),
-        "workflow_log": {
-          "timestamp": datetime.datetime.now().isoformat(),
+    try:
+      workflow_result = workflow.run(user_instruction, language)
+      # Add language info to result for proper file saving
+      workflow_result["language"] = language
+      save_results(workflow_result, timestamp, results_dir)
+      print(f"\nWorkflow completed successfully!")
+    except (RuntimeError, ValueError) as e:
+      print(f"\nError occurred during workflow execution: {e}")
+      
+      # Save partial results if available
+      if hasattr(workflow, 'partial_result') and workflow.partial_result:
+        print("Saving partial results...")
+        workflow.partial_result["language"] = language
+        save_results(workflow.partial_result, timestamp, results_dir)
+      else:
+        # Generate default failure result
+        failure_result = {
           "instruction": user_instruction,
-          "final_status": "failed",
-          "failure_reason": str(e),
-          "workflow_steps": [],
-          "agent_interactions": [],
-          "attempts": []
+          "language": language,
+          "plan": "Workflow execution failed",
+          "security_guidelines": "Not generated",
+          "generated_code": f"# Code generation failed\n# Error: {str(e)}",
+          "verification_status": "Failed",
+          "final_feedback": str(e),
+          "workflow_log": {
+            "timestamp": datetime.datetime.now().isoformat(),
+            "instruction": user_instruction,
+            "final_status": "failed",
+            "failure_reason": str(e),
+            "workflow_steps": [],
+            "agent_interactions": [],
+            "attempts": []
+          }
         }
-      }
-      print("Saving failure results...")
-      save_results(failure_result)
+        print("Saving failure results...")
+        save_results(failure_result, timestamp, results_dir)
 
   # === To-do: Phase 2 and Feedback Loop Structure ===
   #

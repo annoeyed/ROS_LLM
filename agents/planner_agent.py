@@ -76,7 +76,7 @@ class PlannerAgent(BaseAgent):
             from utils.ai_client import AIClientFactory
             
             # Check AI client type from environment variables
-            ai_client_type = os.getenv('AI_CLIENT_TYPE', 'mock')
+            ai_client_type = os.getenv('AI_CLIENT_TYPE')
             
             # Create AI client
             # self.ai_client = AIClientFactory.create_client(ai_client_type)

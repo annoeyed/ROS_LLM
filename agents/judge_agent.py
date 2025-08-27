@@ -41,8 +41,18 @@ Your task is to evaluate the provided ROS code for security vulnerabilities base
 4.  **Explain Your Reasoning:** Provide a clear, concise explanation for your judgment, referencing specific parts of the code and guidelines.
 """
         # Generate the evaluation using the language model.
-        response = self.llm_client.chat(prompt)
-        return response
+        try:
+            if hasattr(self.llm_client, 'chat'):
+                response = self.llm_client.chat(prompt)
+            elif hasattr(self.llm_client, 'generate_response'):
+                response = self.llm_client.generate_response(prompt)
+            else:
+                raise AttributeError("AI 클라이언트가 chat 또는 generate_response 메서드를 지원하지 않습니다.")
+            return response
+        except Exception as e:
+            error_msg = f"AI 클라이언트 호출 실패: {str(e)}"
+            print(f"[ERROR] {error_msg}")
+            return f"코드 평가를 수행할 수 없습니다. {error_msg}"
 
     def process_message(self, message: AgentMessage) -> AgentMessage:
         """Process incoming messages"""

@@ -91,33 +91,23 @@ class CoderAgent(BaseAgent):
             from utils.ai_client import AIClientFactory
             
             # Check AI client type from environment variables
-            ai_client_type = os.getenv('AI_CLIENT_TYPE', 'mock')
+            ai_client_type = os.getenv('AI_CLIENT_TYPE')
             
             # AI client is already set from constructor parameter
             # No need to create a new one here
             
             # Verify AI client loaded properly
-            if self.ai_client and hasattr(self.ai_client, 'analyze_content'):
+            if self.ai_client and hasattr(self.ai_client, 'generate_response'):
                 self.logger.info(f"AI client loaded successfully: {ai_client_type}")
-                # Test AI functionality
-                test_response = self.ai_client.analyze_content("test", "test")
-                if test_response:
-                    self.logger.info("AI functionality test successful")
-                else:
-                    self.logger.warning("AI functionality test failed, falling back to Mock client")
-                    self._fallback_to_mock_client()
             else:
-                self.logger.warning("Failed to load AI client, falling back to Mock client")
-                self._fallback_to_mock_client()
+                self.logger.error("AI client not properly initialized")
+                raise AttributeError("AI client not available")
             
         except Exception as e:
             self.logger.error(f"Error loading AI client: {e}")
-            self._fallback_to_mock_client()
+            # Keep the existing ai_client, don't fall back to mock
     
-    def _fallback_to_mock_client(self):
-        """Fallback - set ai_client to None"""
-        self.ai_client = None
-        self.logger.info("AI client set to None")
+
     
     def process_message(self, message: AgentMessage) -> AgentMessage:
         """Process messages - handle code generation requests"""
