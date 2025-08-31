@@ -465,12 +465,39 @@ class PlannerAgent(BaseAgent):
 
             response = self.ai_client.generate_response(prompt)
             
-            # JSON 응답 파싱
+            # JSON 응답 파싱 - 개선된 오류 처리
             import json
-            spec = json.loads(response)
-            
-            self.logger.info("AI 기반 실행 명세 생성 완료")
-            return spec
+            try:
+                # 응답이 문자열인지 확인
+                if isinstance(response, str):
+                    # JSON 응답에서 코드 블록 제거
+                    cleaned_response = response
+                    if "```json" in response:
+                        start_idx = response.find("```json") + 7
+                        end_idx = response.find("```", start_idx)
+                        if end_idx != -1:
+                            cleaned_response = response[start_idx:end_idx].strip()
+                    elif "```" in response:
+                        start_idx = response.find("```") + 3
+                        end_idx = response.find("```", start_idx)
+                        if end_idx != -1:
+                            cleaned_response = response[start_idx:end_idx].strip()
+                    
+                    # JSON 파싱 시도
+                    spec = json.loads(cleaned_response)
+                    self.logger.info("AI 기반 실행 명세 생성 완료")
+                    return spec
+                else:
+                    self.logger.warning("AI 응답이 문자열이 아님, 템플릿 기반 생성으로 전환")
+                    return self._generate_template_specification(user_request)
+                    
+            except json.JSONDecodeError as json_error:
+                self.logger.warning(f"JSON 파싱 실패: {json_error}, 템플릿 기반 생성으로 전환")
+                self.logger.debug(f"AI 응답: {response[:200]}...")  # 처음 200자만 로깅
+                return self._generate_template_specification(user_request)
+            except Exception as parse_error:
+                self.logger.warning(f"응답 파싱 중 예상치 못한 오류: {parse_error}, 템플릿 기반 생성으로 전환")
+                return self._generate_template_specification(user_request)
             
         except Exception as e:
             self.logger.error(f"AI 기반 실행 명세 생성 실패: {e}")

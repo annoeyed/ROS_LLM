@@ -35,11 +35,11 @@ class CoderAgent(BaseAgent):
         
         # Code generation templates - C++ (simplified)
         self.cpp_templates = {
-            'basic_node': '',  
-            'publisher': '',   
-            'subscriber': '',  
-            'service': '',     
-            'parameter': ''    
+            'basic_node': self._get_cpp_basic_node_template(),  
+            'publisher': self._get_cpp_publisher_template(),   
+            'subscriber': self._get_cpp_subscriber_template(),  
+            'service': self._get_cpp_service_template(),     
+            'parameter': self._get_cpp_parameter_template()    
         }
         
         # C 언어 템플릿 제거됨
@@ -669,38 +669,29 @@ class CoderAgent(BaseAgent):
             return code
     
     def _generate_from_template(self, requirements: str, component_type: str, security_level: str, language: str = "python") -> Dict[str, Any]:
-        """Template-based code generation"""
+        """Template-based code generation - 단순화된 버전"""
         try:
-            # Select template based on language
-            if language.lower() in ["cpp", "c++"]:
-                templates = self.cpp_templates
-                file_extension = "cpp"
-                dependencies = ['rclcpp', 'std_msgs']
-                usage = f'colcon build && ros2 run <package_name> <node_name>'
-            else:
-                # Default to Python
-                templates = self.python_templates
-                file_extension = "py"
-                dependencies = ['rclpy', 'std_msgs']
-                usage = 'python3 generated_node.py'
+            # 언어 결정
+            lang = 'python' if language.lower() in ['python', 'py'] else 'cpp'
             
-            # Get base template
-            base_template = templates.get(component_type, templates['basic_node'])
+            # 기본 템플릿 가져오기
+            base_template = self._get_template(lang, component_type)
             
-            # Add security features (language-specific)
-            security_code = self._add_security_features(base_template, security_level, language)
+            # 보안 기능 추가
+            if security_level in ['medium', 'high']:
+                base_template = self._add_security_to_template(base_template, lang, security_level)
             
-            # Customize according to requirements
-            customized_code = self._customize_code(security_code, requirements)
+            # 요구사항에 따른 커스터마이징
+            customized_code = self._customize_template(base_template, requirements, lang)
             
             return {
                 'code': customized_code,
                 'metadata': {
-                    'description': f'{component_type} based {language} code',
-                    'dependencies': dependencies,
-                    'usage': usage,
-                    'language': language,
-                    'file_extension': file_extension
+                    'description': f'{component_type} based {lang} code',
+                    'dependencies': ['rclpy', 'std_msgs'] if lang == 'python' else ['rclcpp', 'std_msgs'],
+                    'usage': 'python3 generated_node.py' if lang == 'python' else 'colcon build && ros2 run <package_name> <node_name>',
+                    'language': lang,
+                    'file_extension': 'py' if lang == 'python' else 'cpp'
                 },
                 'security_features': self._get_security_features(security_level)
             }
@@ -709,41 +700,69 @@ class CoderAgent(BaseAgent):
             self.logger.error(f"Template-based code generation failed: {e}")
             return {'error': f'Template code generation failed: {str(e)}'}
     
-    def _add_security_features(self, base_code: str, security_level: str, language: str = "python") -> str:
-        """Add security features"""
-        security_code = base_code
-        
-        # 언어별로 적절한 보안 패턴 선택
-        if language.lower() in ["cpp", "c++"]:
-            # C++용 보안 패턴
-            if security_level in ['medium', 'high']:
-                security_code += "\n" + self._get_cpp_security_patterns(security_level)
+    def _get_template(self, language: str, component_type: str) -> str:
+        """언어와 컴포넌트 타입에 따른 템플릿 반환"""
+        if language == 'python':
+            return self._get_python_template(component_type)
         else:
-            # Python용 보안 패턴 (기본값)
-            if security_level in ['medium', 'high']:
-                security_code += "\n" + self._get_python_security_patterns(security_level)
-        
-        return security_code
+            return self._get_cpp_template(component_type)
     
-    def _customize_code(self, base_code: str, requirements: Any) -> str:
-        """Customize code according to requirements"""
-        # Simple text replacement (more sophisticated parsing needed in practice)
-        customized_code = base_code
+    def _add_security_to_template(self, template: str, language: str, security_level: str) -> str:
+        """템플릿에 보안 기능 추가"""
+        security_code = ""
         
-        # Extract user_request if requirements is a dictionary
+        # 기본 보안 기능 (medium 이상)
+        if security_level in ['medium', 'high']:
+            if language == 'python':
+                security_code += self._get_python_security_pattern('input_validation')
+                security_code += self._get_python_security_pattern('error_handling')
+                security_code += self._get_python_security_pattern('secure_logging')
+            else:
+                security_code += self._get_cpp_security_pattern('input_validation')
+                security_code += self._get_cpp_security_pattern('error_handling')
+                security_code += self._get_cpp_security_pattern('secure_logging')
+        
+        # 고급 보안 기능 (high만)
+        if security_level == 'high':
+            if language == 'python':
+                security_code += self._get_python_security_pattern('authentication')
+                security_code += self._get_python_security_pattern('encryption')
+            else:
+                security_code += self._get_cpp_security_pattern('authentication')
+                security_code += self._get_cpp_security_pattern('encryption')
+        
+        return template + security_code
+    
+    def _customize_template(self, template: str, requirements: Any, language: str) -> str:
+        """템플릿을 요구사항에 맞게 커스터마이징"""
+        customized = template
+        
+        # 요구사항 텍스트 추출
         if isinstance(requirements, dict):
-            requirements_text = requirements.get('user_request', str(requirements))
+            req_text = requirements.get('user_request', str(requirements))
         else:
-            requirements_text = str(requirements)
+            req_text = str(requirements)
         
-        if 'camera' in requirements_text.lower():
-            customized_code = customized_code.replace('GenericNode', 'CameraNode')
-            customized_code = customized_code.replace('generic_topic', 'camera_topic')
+        # 속도 제어 노드로 변경
+        if 'speed' in req_text.lower() or 'velocity' in req_text.lower():
+            if language == 'python':
+                customized = customized.replace('GenericNode', 'SpeedControlNode')
+                customized = customized.replace('generic_node', 'speed_control_node')
+                customized = customized.replace('generic_topic', 'speed_command')
+            else:  # C++
+                customized = customized.replace('GenericNode', 'SpeedControlNode')
+                customized = customized.replace('generic_node', 'speed_control_node')
+                customized = customized.replace('generic_topic', 'speed_command')
+                
+                # Float64 메시지 타입으로 변경
+                if '#include <std_msgs/msg/string.hpp>' in customized:
+                    customized = customized.replace('#include <std_msgs/msg/string.hpp>', '#include <std_msgs/msg/float64.hpp>')
+                if 'std_msgs::msg::String' in customized:
+                    customized = customized.replace('std_msgs::msg::String', 'std_msgs::msg::Float64')
+                if 'message.data = "Hello World"' in customized:
+                    customized = customized.replace('message.data = "Hello World"', 'message.data = 0.0')
         
-        if 'authentication' in requirements_text.lower():
-            customized_code = customized_code.replace('# TODO: Add authentication', self.security_patterns['authentication'])
-        
-        return customized_code
+        return customized
     
     def _get_security_features(self, security_level: str) -> List[str]:
         """List of features by security level"""
@@ -1648,3 +1667,899 @@ setup(
         except Exception as e:
             self.logger.error(f"보안 강화 적용 실패: {e}")
             return execution_spec
+    
+    # C++ 보안 패턴 메서드들 추가
+    def _get_cpp_input_validation_pattern(self) -> str:
+        return '''
+    // Input validation for C++
+    bool validateInput(const std::string& input_data) {
+        if (input_data.empty()) {
+            RCLCPP_ERROR(this->get_logger(), "Input data is empty");
+            return false;
+        }
+        
+        // Length validation
+        if (input_data.length() > 1000) {
+            RCLCPP_ERROR(this->get_logger(), "Input data is too long");
+            return false;
+        }
+        
+        // Special character filtering
+        if (input_data.find('<') != std::string::npos || 
+            input_data.find('>') != std::string::npos ||
+            input_data.find('"') != std::string::npos ||
+            input_data.find('\'') != std::string::npos) {
+            RCLCPP_ERROR(this->get_logger(), "Input data contains disallowed special characters");
+            return false;
+        }
+        
+        return true;
+    }'''
+    
+    def _get_cpp_error_handling_pattern(self) -> str:
+        return '''
+    // Error handling for C++
+    template<typename T>
+    T safeExecute(std::function<T()> operation, T default_value = T{}) {
+        try {
+            return operation();
+        } catch (const std::exception& e) {
+            RCLCPP_ERROR(this->get_logger(), "Operation execution failed: %s", e.what());
+            return default_value;
+        }
+    }
+    
+    void handleCriticalError(const std::string& error) {
+        RCLCPP_ERROR(this->get_logger(), "Critical error occurred: %s", error.c_str());
+        // Transition to system safe state
+        emergencyShutdown();
+    }'''
+    
+    def _get_cpp_secure_logging_pattern(self) -> str:
+        return '''
+    // Secure logging for C++
+    void secureLog(const std::string& message, const std::string& level = "info") {
+        // Mask sensitive information
+        std::string masked_message = message;
+        
+        // Mask passwords
+        size_t pos = masked_message.find("password=");
+        if (pos != std::string::npos) {
+            size_t end_pos = masked_message.find_first_of(" \n", pos);
+            if (end_pos != std::string::npos) {
+                masked_message.replace(pos + 9, end_pos - pos - 9, "***");
+            }
+        }
+        
+        // Mask API keys
+        pos = masked_message.find("api_key=");
+        if (pos != std::string::npos) {
+            size_t end_pos = masked_message.find_first_of(" \n", pos);
+            if (end_pos != std::string::npos) {
+                masked_message.replace(pos + 8, end_pos - pos - 8, "***");
+            }
+        }
+        
+        if (level == "info") {
+            RCLCPP_INFO(this->get_logger(), "%s", masked_message.c_str());
+        } else if (level == "warn") {
+            RCLCPP_WARN(this->get_logger(), "%s", masked_message.c_str());
+        } else if (level == "error") {
+            RCLCPP_ERROR(this->get_logger(), "%s", masked_message.c_str());
+        }
+    }'''
+    
+    def _get_cpp_authentication_pattern(self) -> str:
+        return '''
+    // Authentication for C++
+    bool authenticateUser(const std::string& credentials) {
+        // TODO: Add authentication
+        if (credentials.empty()) {
+            return false;
+        }
+        
+        // Implement authentication logic
+        return true;
+    }
+    
+    bool checkPermission(const std::string& user, const std::string& resource) {
+        // TODO: Add permission check
+        return true;
+    }'''
+    
+    def _get_cpp_encryption_pattern(self) -> str:
+        return '''
+    // Encryption for C++
+    std::string encryptData(const std::string& data) {
+        // TODO: Add encryption
+        // Simple hash for demonstration
+        std::hash<std::string> hasher;
+        return std::to_string(hasher(data));
+    }
+    
+    std::string decryptData(const std::string& encrypted_data) {
+        // TODO: Add decryption
+        return encrypted_data;
+    }'''
+    
+    def _extract_code_from_response(self, response: str) -> str:
+        """AI 응답에서 코드 블록을 추출합니다."""
+        try:
+            # ```python, ```cpp, ```c++ 등의 코드 블록 찾기
+            if "```python" in response:
+                start_idx = response.find("```python") + 9
+                end_idx = response.find("```", start_idx)
+                if end_idx != -1:
+                    return response[start_idx:end_idx].strip()
+            elif "```cpp" in response:
+                start_idx = response.find("```cpp") + 6
+                end_idx = response.find("```", start_idx)
+                if end_idx != -1:
+                    return response[start_idx:end_idx].strip()
+            elif "```c++" in response:
+                start_idx = response.find("```c++") + 6
+                end_idx = response.find("```", start_idx)
+                if end_idx != -1:
+                    return response[start_idx:end_idx].strip()
+            elif "```" in response:
+                # 일반적인 코드 블록
+                start_idx = response.find("```") + 3
+                end_idx = response.find("```", start_idx)
+                if end_idx != -1:
+                    return response[start_idx:end_idx].strip()
+            
+            # 코드 블록이 없으면 전체 응답 반환
+            return response
+            
+        except Exception as e:
+            self.logger.warning(f"코드 블록 추출 실패: {e}")
+            return response
+    
+    # C++ ROS 노드 템플릿 메서드들 추가
+    def _get_cpp_basic_node_template(self) -> str:
+        return '''#include <rclcpp/rclcpp.hpp>
+#include <std_msgs/msg/string.hpp>
+
+class GenericNode : public rclcpp::Node
+{
+public:
+    GenericNode() : Node("generic_node")
+    {
+        // Create publisher
+        publisher_ = this->create_publisher<std_msgs::msg::String>("generic_topic", 10);
+        
+        // Create timer
+        timer_ = this->create_wall_timer(
+            std::chrono::seconds(1),
+            std::bind(&GenericNode::timer_callback, this));
+        
+        RCLCPP_INFO(this->get_logger(), "Generic node has been started");
+    }
+
+private:
+    void timer_callback()
+    {
+        auto message = std_msgs::msg::String();
+        message.data = "Hello World";
+        publisher_->publish(message);
+        RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
+    }
+
+    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
+    rclcpp::TimerBase::SharedPtr timer_;
+};
+
+int main(int argc, char** argv)
+{
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<GenericNode>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}'''
+    
+    def _get_cpp_publisher_template(self) -> str:
+        return '''#include <rclcpp/rclcpp.hpp>
+#include <std_msgs/msg/string.hpp>
+
+class PublisherNode : public rclcpp::Node
+{
+public:
+    PublisherNode() : Node("publisher_node")
+    {
+        // Create publisher
+        publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
+        
+        // Create timer
+        timer_ = this->create_wall_timer(
+            std::chrono::seconds(1),
+            std::bind(&PublisherNode::timer_callback, this));
+        
+        RCLCPP_INFO(this->get_logger(), "Publisher node has been started");
+    }
+
+private:
+    void timer_callback()
+    {
+        auto message = std_msgs::msg::String();
+        message.data = "Published message";
+        publisher_->publish(message);
+        RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
+    }
+
+    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
+    rclcpp::TimerBase::SharedPtr timer_;
+};
+
+int main(int argc, char** argv)
+{
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<PublisherNode>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}'''
+    
+    def _get_cpp_subscriber_template(self) -> str:
+        return '''#include <rclcpp/rclcpp.hpp>
+#include <std_msgs/msg/string.hpp>
+
+class SubscriberNode : public rclcpp::Node
+{
+public:
+    SubscriberNode() : Node("subscriber_node")
+    {
+        // Create subscription
+        subscription_ = this->create_subscription<std_msgs::msg::String>(
+            "topic", 10, std::bind(&SubscriberNode::listener_callback, this, std::placeholders::_1));
+        
+        RCLCPP_INFO(this->get_logger(), "Subscriber node has been started");
+    }
+
+private:
+    void listener_callback(const std_msgs::msg::String::SharedPtr msg)
+    {
+        RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
+    }
+
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
+};
+
+int main(int argc, char** argv)
+{
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<SubscriberNode>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}'''
+    
+    def _get_cpp_service_template(self) -> str:
+        return '''#include <rclcpp/rclcpp.hpp>
+#include <std_srvs/srv/trigger.hpp>
+
+class ServiceNode : public rclcpp::Node
+{
+public:
+    ServiceNode() : Node("service_node")
+    {
+        // Create service
+        service_ = this->create_service<std_srvs::srv::Trigger>(
+            "trigger_service", std::bind(&ServiceNode::trigger_callback, this, std::placeholders::_1, std::placeholders::_2));
+        
+        RCLCPP_INFO(this->get_logger(), "Service node has been started");
+    }
+
+private:
+    void trigger_callback(
+        const std_srvs::srv::Trigger::Request::SharedPtr request,
+        std_srvs::srv::Trigger::Response::SharedPtr response)
+    {
+        RCLCPP_INFO(this->get_logger(), "Service called");
+        response->success = true;
+        response->message = "Service executed successfully";
+    }
+
+    rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr service_;
+};
+
+int main(int argc, char** argv)
+{
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<ServiceNode>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}'''
+    
+    def _get_cpp_parameter_template(self) -> str:
+        return '''#include <rclcpp/rclcpp.hpp>
+
+class ParameterNode : public rclcpp::Node
+{
+public:
+    ParameterNode() : Node("parameter_node")
+    {
+        // Declare parameter
+        this->declare_parameter("my_parameter", "default_value");
+        
+        // Get parameter value
+        std::string parameter_value = this->get_parameter("my_parameter").as_string();
+        RCLCPP_INFO(this->get_logger(), "Parameter value: %s", parameter_value.c_str());
+        
+        RCLCPP_INFO(this->get_logger(), "Parameter node has been started");
+    }
+
+    std::string get_parameter_value()
+    {
+        return this->get_parameter("my_parameter").as_string();
+    }
+};
+
+int main(int argc, char** argv)
+{
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<ParameterNode>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}'''
+    
+    # === 통합된 보안 패턴 시스템 ===
+    
+    def _get_python_security_pattern(self, pattern_type: str) -> str:
+        """Python 보안 패턴 반환"""
+        patterns = {
+            'input_validation': '''
+    def validate_input(self, input_data: str) -> str:
+        """Input data validation"""
+        if not input_data:
+            raise ValueError("Input data is empty")
+        
+        # Type validation
+        if not isinstance(input_data, str):
+            raise TypeError("Input data must be a string")
+        
+        # Length validation
+        if len(input_data) > 1000:
+            raise ValueError("Input data is too long")
+        
+        # Special character filtering
+        import re
+        if re.search(r'[<>"\']', input_data):
+            raise ValueError("Input data contains disallowed special characters")
+        
+        return input_data.strip()''',
+            
+            'error_handling': '''
+    def safe_execute(self, operation, *args, **kwargs):
+        """Safe operation execution"""
+        try:
+            result = operation(*args, **kwargs)
+            return result
+        except Exception as e:
+            self.get_logger().error(f"Operation execution failed: {e}")
+            return None
+    
+    def handle_critical_error(self, error):
+        """Critical error handling"""
+        self.get_logger().error(f"Critical error occurred: {error}")
+        # Transition to system safe state
+        self.emergency_shutdown()''',
+            
+            'secure_logging': r'''
+    def secure_log(self, message: str, level: str = 'info') -> None:
+        """Secure logging (sensitive information masking)"""
+        # Mask sensitive information
+        import re
+        masked_message = re.sub(r'password[=:]\s*\S+', 'password=***', message)
+        masked_message = re.sub(r'api_key[=:]\s*\S+', 'api_key=***', message)
+        
+        if level == 'info':
+            self.get_logger().info(masked_message)
+        elif level == 'warn':
+            self.get_logger().warn(masked_message)
+        elif level == 'error':
+            self.get_logger().error(masked_message)''',
+            
+            'authentication': '''
+    def authenticate_user(self, credentials):
+        """User authentication"""
+        # TODO: Add authentication
+        if not credentials:
+            return False
+        return True
+    
+    def check_permission(self, user, resource):
+        """Permission check"""
+        # TODO: Add permission check
+        return True''',
+            
+            'encryption': '''
+    def encrypt_data(self, data):
+        """Data encryption"""
+        # TODO: Add encryption
+        import hashlib
+        return hashlib.sha256(data.encode()).hexdigest()
+    
+    def decrypt_data(self, encrypted_data):
+        """Data decryption"""
+        # TODO: Add decryption
+        return encrypted_data'''
+        }
+        return patterns.get(pattern_type, '')
+    
+    def _get_cpp_security_pattern(self, pattern_type: str) -> str:
+        """C++ 보안 패턴 반환"""
+        patterns = {
+            'input_validation': '''
+    // Input validation for C++
+    bool validateInput(const std::string& input_data) {
+        if (input_data.empty()) {
+            RCLCPP_ERROR(this->get_logger(), "Input data is empty");
+            return false;
+        }
+        
+        // Length validation
+        if (input_data.length() > 1000) {
+            RCLCPP_ERROR(this->get_logger(), "Input data is too long");
+            return false;
+        }
+        
+        // Special character filtering
+        if (input_data.find('<') != std::string::npos || 
+            input_data.find('>') != std::string::npos ||
+            input_data.find('"') != std::string::npos ||
+            input_data.find('\'') != std::string::npos) {
+            RCLCPP_ERROR(this->get_logger(), "Input data contains disallowed special characters");
+            return false;
+        }
+        
+        return true;
+    }''',
+            
+            'error_handling': '''
+    // Error handling for C++
+    template<typename T>
+    T safeExecute(std::function<T()> operation, T default_value = T{}) {
+        try {
+            return operation();
+        } catch (const std::exception& e) {
+            RCLCPP_ERROR(this->get_logger(), "Operation execution failed: %s", e.what());
+            return default_value;
+        }
+    }
+    
+    void handleCriticalError(const std::string& error) {
+        RCLCPP_ERROR(this->get_logger(), "Critical error occurred: %s", error.c_str());
+        // Transition to system safe state
+        emergencyShutdown();
+    }''',
+            
+            'secure_logging': '''
+    // Secure logging for C++
+    void secureLog(const std::string& message, const std::string& level = "info") {
+        // Mask sensitive information
+        std::string masked_message = message;
+        
+        // Mask passwords
+        size_t pos = masked_message.find("password=");
+        if (pos != std::string::npos) {
+            size_t end_pos = masked_message.find_first_of(" \n", pos);
+            if (end_pos != std::string::npos) {
+                masked_message.replace(pos + 9, end_pos - pos - 9, "***");
+            }
+        }
+        
+        // Mask API keys
+        pos = masked_message.find("api_key=");
+        if (pos != std::string::npos) {
+            size_t end_pos = masked_message.find_first_of(" \n", pos);
+            if (end_pos != std::string::npos) {
+                masked_message.replace(pos + 8, end_pos - pos - 8, "***");
+            }
+        }
+        
+        if (level == "info") {
+            RCLCPP_INFO(this->get_logger(), "%s", masked_message.c_str());
+        } else if (level == "warn") {
+            RCLCPP_WARN(this->get_logger(), "%s", masked_message.c_str());
+        } else if (level == "error") {
+            RCLCPP_ERROR(this->get_logger(), "%s", masked_message.c_str());
+        }
+    }''',
+            
+            'authentication': '''
+    // Authentication for C++
+    bool authenticateUser(const std::string& credentials) {
+        // TODO: Add authentication
+        if (credentials.empty()) {
+            return false;
+        }
+        return true;
+    }
+    
+    bool checkPermission(const std::string& user, const std::string& resource) {
+        // TODO: Add permission check
+        return true;
+    }''',
+            
+            'encryption': '''
+    // Encryption for C++
+    std::string encryptData(const std::string& data) {
+        // TODO: Add encryption
+        // Simple hash for demonstration
+        std::hash<std::string> hasher;
+        return std::to_string(hasher(data));
+    }
+    
+    std::string decryptData(const std::string& encrypted_data) {
+        // TODO: Add decryption
+        return encrypted_data;
+    }'''
+        }
+        return patterns.get(pattern_type, '')
+    
+    def _get_python_template(self, template_type: str) -> str:
+        """Python 템플릿 반환"""
+        templates = {
+            'basic_node': '''#!/usr/bin/env python3
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String
+
+class GenericNode(Node):
+    def __init__(self):
+        super().__init__('generic_node')
+        self.publisher = self.create_publisher(String, 'generic_topic', 10)
+        self.timer = self.create_timer(1.0, self.timer_callback)
+        self.get_logger().info('Generic node has been started')
+    
+    def timer_callback(self):
+        msg = String()
+        msg.data = 'Hello World'
+        self.publisher.publish(msg)
+        self.get_logger().info('Publishing: "%s"' % msg.data)
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = GenericNode()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()''',
+            
+            'publisher': '''#!/usr/bin/env python3
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String
+
+class PublisherNode(Node):
+    def __init__(self):
+        super().__init__('publisher_node')
+        self.publisher = self.create_publisher(String, 'topic', 10)
+        self.timer = self.create_timer(1.0, self.timer_callback)
+        self.get_logger().info('Publisher node has been started')
+    
+    def timer_callback(self):
+        msg = String()
+        msg.data = 'Published message'
+        self.publisher.publish(msg)
+        self.get_logger().info('Publishing: "%s"' % msg.data)
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = PublisherNode()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()''',
+            
+            'subscriber': '''#!/usr/bin/env python3
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String
+
+class SubscriberNode(Node):
+    def __init__(self):
+        super().__init__('subscriber_node')
+        self.subscription = self.create_subscription(
+            String, 'topic', self.listener_callback, 10)
+        self.get_logger().info('Subscriber node has been started')
+    
+    def listener_callback(self, msg):
+        self.get_logger().info('I heard: "%s"' % msg.data)
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = SubscriberNode()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()''',
+            
+            'service': '''#!/usr/bin/env python3
+import rclpy
+from rclpy.node import Node
+from std_srvs.srv import Trigger
+
+class ServiceNode(Node):
+    def __init__(self):
+        super().__init__('service_node')
+        self.srv = self.create_service(Trigger, 'trigger_service', self.trigger_callback)
+        self.get_logger().info('Service node has been started')
+    
+    def trigger_callback(self, request, response):
+        self.get_logger().info('Service called')
+        response.success = True
+        response.message = 'Service executed successfully'
+        return response
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = ServiceNode()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()''',
+            
+            'action': '''#!/usr/bin/env python3
+import rclpy
+from rclpy.node import Node
+from rclpy.action import ActionServer
+from example_interfaces.action import Fibonacci
+
+class ActionNode(Node):
+    def __init__(self):
+        super().__init__('action_node')
+        self._action_server = ActionServer(
+            self, Fibonacci, 'fibonacci', self.execute_callback)
+        self.get_logger().info('Action node has been started')
+    
+    def execute_callback(self, goal_handle):
+        self.get_logger().info('Executing goal...')
+        goal_handle.succeed()
+        result = Fibonacci.Result()
+        return result
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = ActionNode()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()''',
+            
+            'parameter': '''#!/usr/bin/env python3
+import rclpy
+from rclpy.node import Node
+
+class ParameterNode(Node):
+    def __init__(self):
+        super().__init__('parameter_node')
+        self.declare_parameter('my_parameter', 'default_value')
+        self.parameter_value = self.get_parameter('my_parameter').value
+        self.get_logger().info(f'Parameter value: {self.parameter_value}')
+        self.get_logger().info('Parameter node has been started')
+    
+    def get_parameter_value(self):
+        return self.parameter_value
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = ParameterNode()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()'''
+        }
+        return templates.get(template_type, templates['basic_node'])
+    
+    def _get_cpp_template(self, template_type: str) -> str:
+        """C++ 템플릿 반환"""
+        templates = {
+            'basic_node': '''#include <rclcpp/rclcpp.hpp>
+#include <std_msgs/msg/string.hpp>
+
+class GenericNode : public rclcpp::Node
+{
+public:
+    GenericNode() : Node("generic_node")
+    {
+        publisher_ = this->create_publisher<std_msgs::msg::String>("generic_topic", 10);
+        timer_ = this->create_wall_timer(
+            std::chrono::seconds(1),
+            std::bind(&GenericNode::timer_callback, this));
+        RCLCPP_INFO(this->get_logger(), "Generic node has been started");
+    }
+
+private:
+    void timer_callback()
+    {
+        auto message = std_msgs::msg::String();
+        message.data = "Hello World";
+        publisher_->publish(message);
+        RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
+    }
+
+    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
+    rclcpp::TimerBase::SharedPtr timer_;
+};
+
+int main(int argc, char** argv)
+{
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<GenericNode>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}''',
+            
+            'publisher': '''#include <rclcpp/rclcpp.hpp>
+#include <std_msgs/msg/string.hpp>
+
+class PublisherNode : public rclcpp::Node
+{
+public:
+    PublisherNode() : Node("publisher_node")
+    {
+        publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
+        timer_ = this->create_wall_timer(
+            std::chrono::seconds(1),
+            std::bind(&PublisherNode::timer_callback, this));
+        RCLCPP_INFO(this->get_logger(), "Publisher node has been started");
+    }
+
+private:
+    void timer_callback()
+    {
+        auto message = std_msgs::msg::String();
+        message.data = "Published message";
+        publisher_->publish(message);
+        RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
+    }
+
+    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
+    rclcpp::TimerBase::SharedPtr timer_;
+};
+
+int main(int argc, char** argv)
+{
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<PublisherNode>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}''',
+            
+            'subscriber': '''#include <rclcpp/rclcpp.hpp>
+#include <std_msgs/msg/string.hpp>
+
+class SubscriberNode : public rclcpp::Node
+{
+public:
+    SubscriberNode() : Node("subscriber_node")
+    {
+        subscription_ = this->create_subscription<std_msgs::msg::String>(
+            "topic", 10, std::bind(&SubscriberNode::listener_callback, this, std::placeholders::_1));
+        RCLCPP_INFO(this->get_logger(), "Subscriber node has been started");
+    }
+
+private:
+    void listener_callback(const std_msgs::msg::String::SharedPtr msg)
+    {
+        RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
+    }
+
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
+};
+
+int main(int argc, char** argv)
+{
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<SubscriberNode>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}''',
+            
+            'service': '''#include <rclcpp/rclcpp.hpp>
+#include <std_srvs/srv/trigger.hpp>
+
+class ServiceNode : public rclcpp::Node
+{
+public:
+    ServiceNode() : Node("service_node")
+    {
+        service_ = this->create_service<std_srvs::srv::Trigger>(
+            "trigger_service", std::bind(&ServiceNode::trigger_callback, this, std::placeholders::_1, std::placeholders::_2));
+        RCLCPP_INFO(this->get_logger(), "Service node has been started");
+    }
+
+private:
+    void trigger_callback(
+        const std_srvs::srv::Trigger::Request::SharedPtr request,
+        std_srvs::srv::Trigger::Response::SharedPtr response)
+    {
+        RCLCPP_INFO(this->get_logger(), "Service called");
+        response->success = true;
+        response->message = "Service executed successfully";
+    }
+
+    rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr service_;
+};
+
+int main(int argc, char** argv)
+{
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<ServiceNode>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}''',
+            
+            'parameter': '''#include <rclcpp/rclcpp.hpp>
+
+class ParameterNode : public rclcpp::Node
+{
+public:
+    ParameterNode() : Node("parameter_node")
+    {
+        this->declare_parameter("my_parameter", "default_value");
+        std::string parameter_value = this->get_parameter("my_parameter").as_string();
+        RCLCPP_INFO(this->get_logger(), "Parameter value: %s", parameter_value.c_str());
+        RCLCPP_INFO(this->get_logger(), "Parameter node has been started");
+    }
+
+    std::string get_parameter_value()
+    {
+        return this->get_parameter("my_parameter").as_string();
+    }
+};
+
+int main(int argc, char** argv)
+{
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<ParameterNode>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}'''
+        }
+        return templates.get(template_type, templates['basic_node'])
