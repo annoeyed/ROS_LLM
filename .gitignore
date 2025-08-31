@@ -158,3 +158,5 @@ Thumbs.db
 results/
 results/
 utils/
+data/cwe_database_backup_*/
+results/

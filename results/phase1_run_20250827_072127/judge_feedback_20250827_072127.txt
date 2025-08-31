@@ -1,9 +1,0 @@
-Judge Agent Feedback - 20250827_072127
-==================================================
-
-Instruction: Create a ROS 2 node in Python that subscribes to a 'std_msgs/String' topic named 'chatter' and prints the received messages to the console. The node should be named 'listener_node'.
-
-Verification Status: Success
-
-Feedback:
-Code is secure
