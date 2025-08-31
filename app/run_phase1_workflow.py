@@ -112,9 +112,8 @@ class Phase1_GenerationWorkflow:
       raise ValueError(f"Unsupported client type: {client_type}. Please use 'openai' or 'anthropic'.")
     
     self.llm_client = AIClientFactory.create_client(
-        client_name=client_type,
-        config=ai_config,
-        model_name=model_name)
+        client_type=client_type,
+        model=model_name)
 
     if not self.llm_client:
       raise ValueError(
@@ -125,6 +124,15 @@ class Phase1_GenerationWorkflow:
     self.security_guide = SecurityGuideAgent(self.llm_client)
     self.coder = CoderAgent(self.llm_client)
     self.judge = JudgeAgent(self.llm_client)
+    
+    # AI 클라이언트를 모든 에이전트에 설정
+    for agent_name, agent in [("Planner", self.planner), ("SecurityGuide", self.security_guide), 
+                              ("Coder", self.coder), ("Judge", self.judge)]:
+        if hasattr(agent, 'set_ai_client'):
+            agent.set_ai_client(self.llm_client)
+            print(f"AI 클라이언트가 {agent_name} 에이전트에 설정되었습니다: {type(self.llm_client).__name__}")
+        else:
+            print(f"경고: {agent_name} 에이전트에 set_ai_client 메서드가 없습니다.")
 
   def run(self, instruction: str, language: str = "python") -> Dict[str, Any]:
     """Runs the Phase 1 workflow.
@@ -645,7 +653,7 @@ def _validate_cpp_compilation(run_dir: str, node_name: str):
   import subprocess
   
   try:
-    print(f"\\nPhase 1 code generation review completed: {node_name}")
+    print(f"\nPhase 1 code generation review completed: {node_name}")
     
     # Check if ROS 2 is available (Windows compatible)
     try:
@@ -687,11 +695,11 @@ def _validate_cpp_compilation(run_dir: str, node_name: str):
       # Save compilation errors to file
       error_filename = os.path.join(run_dir, f"compilation_errors_{node_name}.txt")
       with open(error_filename, "w", encoding="utf-8") as f:
-        f.write("Compilation Error Log\\n")
-        f.write("="*50 + "\\n\\n")
-        f.write("STDOUT:\\n")
+        f.write("Compilation Error Log\n")
+        f.write("="*50 + "\n\n")
+        f.write("STDOUT:\n")
         f.write(build_result.stdout)
-        f.write("\\n\\nSTDERR:\\n")
+        f.write("\n\nSTDERR:\n")
         f.write(build_result.stderr)
       print(f"Compilation errors saved to {error_filename}")
       
@@ -708,7 +716,7 @@ def _validate_c_compilation(run_dir: str, node_name: str):
   import subprocess
   
   try:
-    print(f"\\nValidating C compilation for {node_name}...")
+    print(f"\nValidating C compilation for {node_name}...")
     
     # Check if ROS 2 is available (Windows compatible)
     try:
@@ -750,11 +758,11 @@ def _validate_c_compilation(run_dir: str, node_name: str):
       # Save compilation errors to file
       error_filename = os.path.join(run_dir, f"compilation_errors_{node_name}.txt")
       with open(error_filename, "w", encoding="utf-8") as f:
-        f.write("Compilation Error Log\\n")
-        f.write("="*50 + "\\n\\n")
-        f.write("STDOUT:\\n")
+        f.write("Compilation Error Log\n")
+        f.write("="*50 + "\n\n")
+        f.write("STDOUT:\n")
         f.write(build_result.stdout)
-        f.write("\\n\\nSTDERR:\\n")
+        f.write("\n\nSTDERR:\n")
         f.write(build_result.stderr)
       print(f"Compilation errors saved to {error_filename}")
       
@@ -769,9 +777,9 @@ def _validate_c_compilation(run_dir: str, node_name: str):
 if __name__ == "__main__":
   # Example instructions with language specification
   # pylint: disable=line-too-long
-  user_instruction_python = "Create a ROS 2 node in Python that subscribes to a 'std_msgs/String' topic named 'chatter' and prints the received messages to the console. The node should be named 'listener_node'."
-  user_instruction_cpp = "Create a ROS 2 node in C++ that subscribes to a 'std_msgs/String' topic named 'chatter' and prints the received messages to the console. The node should be named 'listener_node'."
-  user_instruction_c = "Create a ROS 2 node in C that subscribes to a 'std_msgs/String' topic named 'chatter' and prints the received messages to the console. The node should be named 'listener_node'."
+  user_instruction_python = "속도 제어 노드를 생성해주세요. 입력 토픽은 속도 명령, 출력 토픽은 제어 명령, 안전한 속도 제한과 에러 처리를 포함하고, 주기적인 상태 업데이트를 위한 타이머를 포함해주세요."
+  user_instruction_cpp = "속도 제어 노드를 생성해주세요. 입력 토픽은 속도 명령, 출력 토픽은 제어 명령, 안전한 속도 제한과 에러 처리를 포함하고, 주기적인 상태 업데이트를 위한 타이머를 포함해주세요."
+  user_instruction_c = "속도 제어 노드를 생성해주세요. 입력 토픽은 속도 명령, 출력 토픽은 제어 명령, 안전한 속도 제한과 에러 처리를 포함하고, 주기적인 상태 업데이트를 위한 타이머를 포함해주세요."
   
   # Choose language (python, cpp, or c)
   language = "cpp"  # Change this to "cpp", "c", or "python" for code generation

@@ -285,12 +285,15 @@ class SecurityGuidelineGenerator:
         high_risk_count = 0
         total_count = len(cwe_ids)
         
+        if total_count == 0:
+            return 'Low'
+        
         for cwe_id in cwe_ids:
             cwe_info = self._get_cwe_info(cwe_id)
             if cwe_info and self._assess_cwe_risk(cwe_info) == 'High':
                 high_risk_count += 1
         
-        risk_ratio = high_risk_count / total_count if total_count > 0 else 0
+        risk_ratio = high_risk_count / total_count
         
         if risk_ratio > 0.6:
             return 'High'

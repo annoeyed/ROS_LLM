@@ -143,11 +143,21 @@ class ROSCWECollector:
         category_stats = {}
         for cwe in unique_cwes:
             category = cwe.get('category', 'uncategorized')
+            if category is None:
+                category = 'uncategorized'
             category_stats[category] = category_stats.get(category, 0) + 1
         
         print("\n=== 카테고리별 분류 통계 ===")
-        for category, count in sorted(category_stats.items()):
-            print(f"{category}: {count}개")
+        if category_stats:
+            # None 값이 있는지 확인하고 제거
+            safe_stats = {k: v for k, v in category_stats.items() if k is not None}
+            if safe_stats:
+                for category, count in sorted(safe_stats.items()):
+                    print(f"{category}: {count}개")
+            else:
+                print("유효한 카테고리 정보가 없습니다.")
+        else:
+            print("카테고리 정보가 없습니다.")
         
         return unique_cwes
     

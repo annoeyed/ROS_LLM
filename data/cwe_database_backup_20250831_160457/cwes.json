@@ -7,8 +7,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.192968",
+    "last_modified": "2025-08-16T11:44:05.193082",
     "raw_data": {
       "cweId": "1051",
       "name": "Initialization with Hard-Coded Network Resource Configuration Data",
@@ -18,8 +18,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "network_security",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -31,8 +29,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193196",
+    "last_modified": "2025-08-16T11:44:05.193202",
     "raw_data": {
       "cweId": "1066",
       "name": "Missing Serialization Control Element",
@@ -42,8 +40,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": null,
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -55,8 +51,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193210",
+    "last_modified": "2025-08-16T11:44:05.193213",
     "raw_data": {
       "cweId": "1080",
       "name": "Source Code File with Excessive Number of Lines of Code",
@@ -66,8 +62,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -79,8 +73,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193219",
+    "last_modified": "2025-08-16T11:44:05.193222",
     "raw_data": {
       "cweId": "1084",
       "name": "Invokable Control Element with Excessive File or Data Access Operations",
@@ -90,8 +84,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -103,8 +95,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193228",
+    "last_modified": "2025-08-16T11:44:05.193231",
     "raw_data": {
       "cweId": "1118",
       "name": "Insufficient Documentation of Error Handling Techniques",
@@ -114,8 +106,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "error_handling",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -127,8 +117,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Stable",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193238",
+    "last_modified": "2025-08-16T11:44:05.193241",
     "raw_data": {
       "cweId": "119",
       "name": "Improper Restriction of Operations within the Bounds of a Memory Buffer",
@@ -167,8 +157,6 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -180,8 +168,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193247",
+    "last_modified": "2025-08-16T11:44:05.193249",
     "raw_data": {
       "cweId": "120",
       "name": "Buffer Copy without Checking Size of Input ('Classic Buffer Overflow')",
@@ -244,8 +232,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -257,8 +243,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193257",
+    "last_modified": "2025-08-16T11:44:05.193261",
     "raw_data": {
       "cweId": "121",
       "name": "Stack-based Buffer Overflow",
@@ -289,8 +275,6 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -302,8 +286,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193270",
+    "last_modified": "2025-08-16T11:44:05.193275",
     "raw_data": {
       "cweId": "122",
       "name": "Heap-based Buffer Overflow",
@@ -342,8 +326,6 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -355,8 +337,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193284",
+    "last_modified": "2025-08-16T11:44:05.193288",
     "raw_data": {
       "cweId": "1223",
       "name": "Race Condition for Write-Once Attributes",
@@ -375,8 +357,6 @@
         }
       ],
       "examples": [],
-      "category": "race_conditions",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -388,8 +368,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193298",
+    "last_modified": "2025-08-16T11:44:05.193303",
     "raw_data": {
       "cweId": "1236",
       "name": "Improper Neutralization of Formula Elements in a CSV File",
@@ -412,8 +392,6 @@
         }
       ],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -425,8 +403,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193313",
+    "last_modified": "2025-08-16T11:44:05.193319",
     "raw_data": {
       "cweId": "124",
       "name": "Buffer Underwrite ('Buffer Underflow')",
@@ -445,8 +423,6 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -458,8 +434,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193326",
+    "last_modified": "2025-08-16T11:44:05.193328",
     "raw_data": {
       "cweId": "126",
       "name": "Buffer Over-read",
@@ -469,8 +445,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -482,8 +456,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193335",
+    "last_modified": "2025-08-16T11:44:05.193338",
     "raw_data": {
       "cweId": "1268",
       "name": "Policy Privileges are not Assigned Consistently Between Control and Data Agents",
@@ -498,8 +472,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -511,8 +483,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193344",
+    "last_modified": "2025-08-16T11:44:05.193346",
     "raw_data": {
       "cweId": "127",
       "name": "Buffer Under-read",
@@ -522,8 +494,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -535,8 +505,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193353",
+    "last_modified": "2025-08-16T11:44:05.193355",
     "raw_data": {
       "cweId": "1298",
       "name": "Hardware Logic Contains Race Conditions",
@@ -555,8 +525,6 @@
         }
       ],
       "examples": [],
-      "category": "race_conditions",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -568,8 +536,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193361",
+    "last_modified": "2025-08-16T11:44:05.193364",
     "raw_data": {
       "cweId": "13",
       "name": "ASP.NET Misconfiguration: Password in Configuration File",
@@ -584,8 +552,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -597,8 +563,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193371",
+    "last_modified": "2025-08-16T11:44:05.193374",
     "raw_data": {
       "cweId": "131",
       "name": "Incorrect Calculation of Buffer Size",
@@ -673,8 +639,6 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -686,8 +650,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193380",
+    "last_modified": "2025-08-16T11:44:05.193383",
     "raw_data": {
       "cweId": "1319",
       "name": "Improper Protection against Electromagnetic Fault Injection (EM-FI)",
@@ -702,8 +666,6 @@
         }
       ],
       "examples": [],
-      "category": null,
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -715,8 +677,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Stable",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193389",
+    "last_modified": "2025-08-16T11:44:05.193392",
     "raw_data": {
       "cweId": "1331",
       "name": "Improper Isolation of Shared Resources in Network On Chip (NoC)",
@@ -731,8 +693,6 @@
         }
       ],
       "examples": [],
-      "category": "network_security",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -744,8 +704,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193398",
+    "last_modified": "2025-08-16T11:44:05.193401",
     "raw_data": {
       "cweId": "1334",
       "name": "Unauthorized Error Injection Can Degrade Hardware Redundancy",
@@ -768,8 +728,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -781,8 +739,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193407",
+    "last_modified": "2025-08-16T11:44:05.193410",
     "raw_data": {
       "cweId": "1390",
       "name": "Weak Authentication",
@@ -792,8 +750,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -805,8 +761,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193417",
+    "last_modified": "2025-08-16T11:44:05.193419",
     "raw_data": {
       "cweId": "14",
       "name": "Compiler Removal of Code to Clear Buffers",
@@ -829,8 +785,6 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -842,8 +796,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Stable",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193426",
+    "last_modified": "2025-08-16T11:44:05.193429",
     "raw_data": {
       "cweId": "190",
       "name": "Integer Overflow or Wraparound",
@@ -882,8 +836,6 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -895,8 +847,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Stable",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193436",
+    "last_modified": "2025-08-16T11:44:05.193438",
     "raw_data": {
       "cweId": "20",
       "name": "Improper Input Validation",
@@ -947,8 +899,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -960,8 +910,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193446",
+    "last_modified": "2025-08-16T11:44:05.193449",
     "raw_data": {
       "cweId": "219",
       "name": "Storage of File with Sensitive Data Under Web Root",
@@ -980,8 +930,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -993,8 +941,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193456",
+    "last_modified": "2025-08-16T11:44:05.193458",
     "raw_data": {
       "cweId": "220",
       "name": "Storage of File With Sensitive Data Under FTP Root",
@@ -1013,8 +961,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1026,8 +972,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193465",
+    "last_modified": "2025-08-16T11:44:05.193467",
     "raw_data": {
       "cweId": "24",
       "name": "Path Traversal: '../filedir'",
@@ -1046,8 +992,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1059,8 +1003,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193474",
+    "last_modified": "2025-08-16T11:44:05.193477",
     "raw_data": {
       "cweId": "25",
       "name": "Path Traversal: '/../filedir'",
@@ -1079,8 +1023,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1092,8 +1034,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193483",
+    "last_modified": "2025-08-16T11:44:05.193486",
     "raw_data": {
       "cweId": "250",
       "name": "Execution with Unnecessary Privileges",
@@ -1132,8 +1074,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1145,8 +1085,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193493",
+    "last_modified": "2025-08-16T11:44:05.193495",
     "raw_data": {
       "cweId": "258",
       "name": "Empty Password in Configuration File",
@@ -1161,8 +1101,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1174,8 +1112,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193503",
+    "last_modified": "2025-08-16T11:44:05.193505",
     "raw_data": {
       "cweId": "26",
       "name": "Path Traversal: '/dir/../filename'",
@@ -1194,8 +1132,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1207,8 +1143,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193512",
+    "last_modified": "2025-08-16T11:44:05.193515",
     "raw_data": {
       "cweId": "260",
       "name": "Password in Configuration File",
@@ -1227,8 +1163,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1240,8 +1174,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193523",
+    "last_modified": "2025-08-16T11:44:05.193525",
     "raw_data": {
       "cweId": "266",
       "name": "Incorrect Privilege Assignment",
@@ -1260,8 +1194,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1273,8 +1205,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193533",
+    "last_modified": "2025-08-16T11:44:05.193535",
     "raw_data": {
       "cweId": "267",
       "name": "Privilege Defined With Unsafe Actions",
@@ -1293,8 +1225,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1306,8 +1236,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193542",
+    "last_modified": "2025-08-16T11:44:05.193545",
     "raw_data": {
       "cweId": "268",
       "name": "Privilege Chaining",
@@ -1330,8 +1260,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1343,8 +1271,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193552",
+    "last_modified": "2025-08-16T11:44:05.193555",
     "raw_data": {
       "cweId": "269",
       "name": "Improper Privilege Management",
@@ -1367,8 +1295,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1380,8 +1306,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193562",
+    "last_modified": "2025-08-16T11:44:05.193565",
     "raw_data": {
       "cweId": "27",
       "name": "Path Traversal: 'dir/../../filename'",
@@ -1400,8 +1326,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1413,8 +1337,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193572",
+    "last_modified": "2025-08-16T11:44:05.193574",
     "raw_data": {
       "cweId": "270",
       "name": "Privilege Context Switching Error",
@@ -1437,8 +1361,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1450,8 +1372,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193582",
+    "last_modified": "2025-08-16T11:44:05.193585",
     "raw_data": {
       "cweId": "271",
       "name": "Privilege Dropping / Lowering Errors",
@@ -1474,8 +1396,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1487,8 +1407,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193592",
+    "last_modified": "2025-08-16T11:44:05.193594",
     "raw_data": {
       "cweId": "272",
       "name": "Least Privilege Violation",
@@ -1511,8 +1431,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1524,8 +1442,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193602",
+    "last_modified": "2025-08-16T11:44:05.193605",
     "raw_data": {
       "cweId": "273",
       "name": "Improper Check for Dropped Privileges",
@@ -1548,8 +1466,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1561,8 +1477,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193612",
+    "last_modified": "2025-08-16T11:44:05.193615",
     "raw_data": {
       "cweId": "274",
       "name": "Improper Handling of Insufficient Privileges",
@@ -1572,8 +1488,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1585,8 +1499,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193622",
+    "last_modified": "2025-08-16T11:44:05.193625",
     "raw_data": {
       "cweId": "28",
       "name": "Path Traversal: '..\\filedir'",
@@ -1605,8 +1519,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1618,8 +1530,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193633",
+    "last_modified": "2025-08-16T11:44:05.193635",
     "raw_data": {
       "cweId": "280",
       "name": "Improper Handling of Insufficient Permissions or Privileges ",
@@ -1638,8 +1550,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1651,8 +1561,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193643",
+    "last_modified": "2025-08-16T11:44:05.193646",
     "raw_data": {
       "cweId": "285",
       "name": "Improper Authorization",
@@ -1683,8 +1593,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1696,8 +1604,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645358",
-    "last_modified": "2025-08-31T17:56:44.645358",
+    "created_date": "2025-08-16T11:44:05.193653",
+    "last_modified": "2025-08-16T11:44:05.193656",
     "raw_data": {
       "cweId": "287",
       "name": "Improper Authentication",
@@ -1712,8 +1620,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1725,8 +1631,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193664",
+    "last_modified": "2025-08-16T11:44:05.193666",
     "raw_data": {
       "cweId": "288",
       "name": "Authentication Bypass Using an Alternate Path or Channel",
@@ -1741,8 +1647,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1754,8 +1658,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193674",
+    "last_modified": "2025-08-16T11:44:05.193677",
     "raw_data": {
       "cweId": "289",
       "name": "Authentication Bypass by Alternate Name",
@@ -1778,8 +1682,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1791,8 +1693,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193685",
+    "last_modified": "2025-08-16T11:44:05.193687",
     "raw_data": {
       "cweId": "29",
       "name": "Path Traversal: '\\..\\filename'",
@@ -1811,8 +1713,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1824,8 +1724,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193696",
+    "last_modified": "2025-08-16T11:44:05.193698",
     "raw_data": {
       "cweId": "290",
       "name": "Authentication Bypass by Spoofing",
@@ -1835,8 +1735,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1848,8 +1746,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193706",
+    "last_modified": "2025-08-16T11:44:05.193709",
     "raw_data": {
       "cweId": "291",
       "name": "Reliance on IP Address for Authentication",
@@ -1864,8 +1762,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1877,8 +1773,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193717",
+    "last_modified": "2025-08-16T11:44:05.193719",
     "raw_data": {
       "cweId": "293",
       "name": "Using Referer Field for Authentication",
@@ -1893,8 +1789,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1906,8 +1800,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193728",
+    "last_modified": "2025-08-16T11:44:05.193731",
     "raw_data": {
       "cweId": "294",
       "name": "Authentication Bypass by Capture-replay",
@@ -1926,8 +1820,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1939,8 +1831,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193739",
+    "last_modified": "2025-08-16T11:44:05.193741",
     "raw_data": {
       "cweId": "30",
       "name": "Path Traversal: '\\dir\\..\\filename'",
@@ -1959,8 +1851,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -1972,8 +1862,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193750",
+    "last_modified": "2025-08-16T11:44:05.193752",
     "raw_data": {
       "cweId": "301",
       "name": "Reflection Attack in an Authentication Protocol",
@@ -1992,8 +1882,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2005,8 +1893,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193761",
+    "last_modified": "2025-08-16T11:44:05.193764",
     "raw_data": {
       "cweId": "302",
       "name": "Authentication Bypass by Assumed-Immutable Data",
@@ -2021,8 +1909,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2034,8 +1920,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193772",
+    "last_modified": "2025-08-16T11:44:05.193775",
     "raw_data": {
       "cweId": "303",
       "name": "Incorrect Implementation of Authentication Algorithm",
@@ -2045,8 +1931,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2058,8 +1942,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193783",
+    "last_modified": "2025-08-16T11:44:05.193786",
     "raw_data": {
       "cweId": "304",
       "name": "Missing Critical Step in Authentication",
@@ -2069,8 +1953,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2082,8 +1964,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193794",
+    "last_modified": "2025-08-16T11:44:05.193797",
     "raw_data": {
       "cweId": "305",
       "name": "Authentication Bypass by Primary Weakness",
@@ -2093,8 +1975,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2106,8 +1986,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193805",
+    "last_modified": "2025-08-16T11:44:05.193808",
     "raw_data": {
       "cweId": "306",
       "name": "Missing Authentication for Critical Function",
@@ -2138,8 +2018,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2151,8 +2029,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193817",
+    "last_modified": "2025-08-16T11:44:05.193819",
     "raw_data": {
       "cweId": "307",
       "name": "Improper Restriction of Excessive Authentication Attempts",
@@ -2171,8 +2049,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2184,8 +2060,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193828",
+    "last_modified": "2025-08-16T11:44:05.193831",
     "raw_data": {
       "cweId": "308",
       "name": "Use of Single-factor Authentication",
@@ -2200,8 +2076,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2213,8 +2087,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193840",
+    "last_modified": "2025-08-16T11:44:05.193843",
     "raw_data": {
       "cweId": "309",
       "name": "Use of Password System for Primary Authentication",
@@ -2249,8 +2123,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2262,8 +2134,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193852",
+    "last_modified": "2025-08-16T11:44:05.193854",
     "raw_data": {
       "cweId": "31",
       "name": "Path Traversal: 'dir\\..\\..\\filename'",
@@ -2282,8 +2154,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2295,8 +2165,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193865",
+    "last_modified": "2025-08-16T11:44:05.193867",
     "raw_data": {
       "cweId": "313",
       "name": "Cleartext Storage in a File or on Disk",
@@ -2306,8 +2176,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2319,8 +2187,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193877",
+    "last_modified": "2025-08-16T11:44:05.193880",
     "raw_data": {
       "cweId": "322",
       "name": "Key Exchange without Entity Authentication",
@@ -2339,8 +2207,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2352,8 +2218,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Stable",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193889",
+    "last_modified": "2025-08-16T11:44:05.193892",
     "raw_data": {
       "cweId": "352",
       "name": "Cross-Site Request Forgery (CSRF)",
@@ -2392,8 +2258,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2405,8 +2269,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193902",
+    "last_modified": "2025-08-16T11:44:05.193904",
     "raw_data": {
       "cweId": "362",
       "name": "Concurrent Execution using Shared Resource with Improper Synchronization ('Race Condition')",
@@ -2457,8 +2321,6 @@
         }
       ],
       "examples": [],
-      "category": "race_conditions",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2470,8 +2332,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193914",
+    "last_modified": "2025-08-16T11:44:05.193917",
     "raw_data": {
       "cweId": "363",
       "name": "Race Condition Enabling Link Following",
@@ -2481,8 +2343,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2494,8 +2354,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193926",
+    "last_modified": "2025-08-16T11:44:05.193929",
     "raw_data": {
       "cweId": "364",
       "name": "Signal Handler Race Condition",
@@ -2518,8 +2378,6 @@
         }
       ],
       "examples": [],
-      "category": "race_conditions",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2531,8 +2389,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Deprecated",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193939",
+    "last_modified": "2025-08-16T11:44:05.193941",
     "raw_data": {
       "cweId": "365",
       "name": "DEPRECATED: Race Condition in Switch",
@@ -2542,8 +2400,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "race_conditions",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2555,8 +2411,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193951",
+    "last_modified": "2025-08-16T11:44:05.193954",
     "raw_data": {
       "cweId": "366",
       "name": "Race Condition within a Thread",
@@ -2575,8 +2431,6 @@
         }
       ],
       "examples": [],
-      "category": "race_conditions",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2588,8 +2442,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193964",
+    "last_modified": "2025-08-16T11:44:05.193966",
     "raw_data": {
       "cweId": "367",
       "name": "Time-of-check Time-of-use (TOCTOU) Race Condition",
@@ -2628,8 +2482,6 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2641,8 +2493,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193976",
+    "last_modified": "2025-08-16T11:44:05.193979",
     "raw_data": {
       "cweId": "368",
       "name": "Context Switching Race Condition",
@@ -2652,8 +2504,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2665,8 +2515,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.193989",
+    "last_modified": "2025-08-16T11:44:05.193991",
     "raw_data": {
       "cweId": "377",
       "name": "Insecure Temporary File",
@@ -2676,8 +2526,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2689,8 +2537,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194001",
+    "last_modified": "2025-08-16T11:44:05.194004",
     "raw_data": {
       "cweId": "378",
       "name": "Creation of Temporary File With Insecure Permissions",
@@ -2713,8 +2561,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2726,8 +2572,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194015",
+    "last_modified": "2025-08-16T11:44:05.194018",
     "raw_data": {
       "cweId": "379",
       "name": "Creation of Temporary File in Directory with Insecure Permissions",
@@ -2750,8 +2596,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2763,8 +2607,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194028",
+    "last_modified": "2025-08-16T11:44:05.194030",
     "raw_data": {
       "cweId": "403",
       "name": "Exposure of File Descriptor to Unintended Control Sphere ('File Descriptor Leak')",
@@ -2774,8 +2618,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2787,8 +2629,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194040",
+    "last_modified": "2025-08-16T11:44:05.194042",
     "raw_data": {
       "cweId": "406",
       "name": "Insufficient Control of Network Message Volume (Network Amplification)",
@@ -2811,8 +2653,6 @@
         }
       ],
       "examples": [],
-      "category": "network_security",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2824,8 +2664,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194052",
+    "last_modified": "2025-08-16T11:44:05.194055",
     "raw_data": {
       "cweId": "42",
       "name": "Path Equivalence: 'filename.' (Trailing Dot)",
@@ -2835,8 +2675,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2848,8 +2686,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194066",
+    "last_modified": "2025-08-16T11:44:05.194068",
     "raw_data": {
       "cweId": "421",
       "name": "Race Condition During Access to Alternate Channel",
@@ -2859,8 +2697,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2872,8 +2708,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194079",
+    "last_modified": "2025-08-16T11:44:05.194081",
     "raw_data": {
       "cweId": "43",
       "name": "Path Equivalence: 'filename....' (Multiple Trailing Dot)",
@@ -2883,8 +2719,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2896,8 +2730,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194092",
+    "last_modified": "2025-08-16T11:44:05.194095",
     "raw_data": {
       "cweId": "434",
       "name": "Unrestricted Upload of File with Dangerous Type",
@@ -2956,8 +2790,6 @@
         }
       ],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2969,8 +2801,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194106",
+    "last_modified": "2025-08-16T11:44:05.194108",
     "raw_data": {
       "cweId": "44",
       "name": "Path Equivalence: 'file.name' (Internal Dot)",
@@ -2980,8 +2812,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -2993,8 +2823,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194138",
+    "last_modified": "2025-08-16T11:44:05.194145",
     "raw_data": {
       "cweId": "45",
       "name": "Path Equivalence: 'file...name' (Multiple Internal Dot)",
@@ -3004,8 +2834,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3017,8 +2845,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194159",
+    "last_modified": "2025-08-16T11:44:05.194162",
     "raw_data": {
       "cweId": "46",
       "name": "Path Equivalence: 'filename ' (Trailing Space)",
@@ -3028,8 +2856,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3041,8 +2867,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194174",
+    "last_modified": "2025-08-16T11:44:05.194176",
     "raw_data": {
       "cweId": "47",
       "name": "Path Equivalence: ' filename' (Leading Space)",
@@ -3052,8 +2878,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3065,8 +2889,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194187",
+    "last_modified": "2025-08-16T11:44:05.194190",
     "raw_data": {
       "cweId": "48",
       "name": "Path Equivalence: 'file name' (Internal Whitespace)",
@@ -3076,8 +2900,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3089,8 +2911,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194201",
+    "last_modified": "2025-08-16T11:44:05.194204",
     "raw_data": {
       "cweId": "49",
       "name": "Path Equivalence: 'filename/' (Trailing Slash)",
@@ -3100,8 +2922,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3113,8 +2933,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194217",
+    "last_modified": "2025-08-16T11:44:05.194219",
     "raw_data": {
       "cweId": "502",
       "name": "Deserialization of Untrusted Data",
@@ -3149,8 +2969,6 @@
         }
       ],
       "examples": [],
-      "category": null,
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3162,8 +2980,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194231",
+    "last_modified": "2025-08-16T11:44:05.194234",
     "raw_data": {
       "cweId": "506",
       "name": "Embedded Malicious Code",
@@ -3178,8 +2996,6 @@
         }
       ],
       "examples": [],
-      "category": "logging",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3191,8 +3007,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194246",
+    "last_modified": "2025-08-16T11:44:05.194248",
     "raw_data": {
       "cweId": "528",
       "name": "Exposure of Core Dump File to an Unauthorized Control Sphere",
@@ -3207,8 +3023,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3220,8 +3034,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.645871",
-    "last_modified": "2025-08-31T17:56:44.645871",
+    "created_date": "2025-08-16T11:44:05.194261",
+    "last_modified": "2025-08-16T11:44:05.194264",
     "raw_data": {
       "cweId": "529",
       "name": "Exposure of Access Control List Files to an Unauthorized Control Sphere",
@@ -3236,8 +3050,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3249,8 +3061,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194275",
+    "last_modified": "2025-08-16T11:44:05.194278",
     "raw_data": {
       "cweId": "530",
       "name": "Exposure of Backup File to an Unauthorized Control Sphere",
@@ -3265,8 +3077,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3278,8 +3088,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194289",
+    "last_modified": "2025-08-16T11:44:05.194292",
     "raw_data": {
       "cweId": "532",
       "name": "Insertion of Sensitive Information into Log File",
@@ -3306,8 +3116,6 @@
         }
       ],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3319,8 +3127,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Deprecated",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194303",
+    "last_modified": "2025-08-16T11:44:05.194306",
     "raw_data": {
       "cweId": "533",
       "name": "DEPRECATED: Information Exposure Through Server Log Files",
@@ -3330,8 +3138,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3343,8 +3149,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Deprecated",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194317",
+    "last_modified": "2025-08-16T11:44:05.194320",
     "raw_data": {
       "cweId": "534",
       "name": "DEPRECATED: Information Exposure Through Debug Log Files",
@@ -3354,8 +3160,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3367,8 +3171,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194332",
+    "last_modified": "2025-08-16T11:44:05.194334",
     "raw_data": {
       "cweId": "538",
       "name": "Insertion of Sensitive Information into Externally-Accessible File or Directory",
@@ -3383,8 +3187,6 @@
         }
       ],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3396,8 +3198,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194346",
+    "last_modified": "2025-08-16T11:44:05.194348",
     "raw_data": {
       "cweId": "54",
       "name": "Path Equivalence: 'filedir\\' (Trailing Backslash)",
@@ -3412,8 +3214,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3425,8 +3225,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194361",
+    "last_modified": "2025-08-16T11:44:05.194363",
     "raw_data": {
       "cweId": "541",
       "name": "Inclusion of Sensitive Information in an Include File",
@@ -3445,8 +3245,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3458,8 +3256,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Deprecated",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194375",
+    "last_modified": "2025-08-16T11:44:05.194379",
     "raw_data": {
       "cweId": "542",
       "name": "DEPRECATED: Information Exposure Through Cleanup Log Files",
@@ -3469,8 +3267,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3482,8 +3278,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194391",
+    "last_modified": "2025-08-16T11:44:05.194394",
     "raw_data": {
       "cweId": "544",
       "name": "Missing Standardized Error Handling Mechanism",
@@ -3498,8 +3294,6 @@
         }
       ],
       "examples": [],
-      "category": "error_handling",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3511,8 +3305,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194407",
+    "last_modified": "2025-08-16T11:44:05.194410",
     "raw_data": {
       "cweId": "551",
       "name": "Incorrect Behavior Order: Authorization Before Parsing and Canonicalization",
@@ -3527,8 +3321,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3540,8 +3332,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194422",
+    "last_modified": "2025-08-16T11:44:05.194425",
     "raw_data": {
       "cweId": "552",
       "name": "Files or Directories Accessible to External Parties",
@@ -3556,8 +3348,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3569,8 +3359,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194437",
+    "last_modified": "2025-08-16T11:44:05.194440",
     "raw_data": {
       "cweId": "554",
       "name": "ASP.NET Misconfiguration: Not Using Input Validation Framework",
@@ -3585,8 +3375,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3598,8 +3386,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194452",
+    "last_modified": "2025-08-16T11:44:05.194455",
     "raw_data": {
       "cweId": "555",
       "name": "J2EE Misconfiguration: Plaintext Password in Configuration File",
@@ -3618,8 +3406,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3631,8 +3417,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194466",
+    "last_modified": "2025-08-16T11:44:05.194469",
     "raw_data": {
       "cweId": "56",
       "name": "Path Equivalence: 'filedir*' (Wildcard)",
@@ -3647,8 +3433,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3660,8 +3444,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194481",
+    "last_modified": "2025-08-16T11:44:05.194484",
     "raw_data": {
       "cweId": "564",
       "name": "SQL Injection: Hibernate",
@@ -3692,8 +3476,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3705,8 +3487,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194542",
+    "last_modified": "2025-08-16T11:44:05.194549",
     "raw_data": {
       "cweId": "566",
       "name": "Authorization Bypass Through User-Controlled SQL Primary Key",
@@ -3725,8 +3507,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3738,8 +3518,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194566",
+    "last_modified": "2025-08-16T11:44:05.194570",
     "raw_data": {
       "cweId": "57",
       "name": "Path Equivalence: 'fakedir/../realdir/filename'",
@@ -3754,8 +3534,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3767,8 +3545,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194585",
+    "last_modified": "2025-08-16T11:44:05.194588",
     "raw_data": {
       "cweId": "58",
       "name": "Path Equivalence: Windows 8.3 Filename",
@@ -3783,8 +3561,6 @@
         }
       ],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3796,8 +3572,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194601",
+    "last_modified": "2025-08-16T11:44:05.194604",
     "raw_data": {
       "cweId": "59",
       "name": "Improper Link Resolution Before File Access ('Link Following')",
@@ -3812,8 +3588,6 @@
         }
       ],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3825,8 +3599,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Deprecated",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194618",
+    "last_modified": "2025-08-16T11:44:05.194620",
     "raw_data": {
       "cweId": "592",
       "name": "DEPRECATED: Authentication Bypass Issues",
@@ -3836,8 +3610,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3849,8 +3621,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194634",
+    "last_modified": "2025-08-16T11:44:05.194637",
     "raw_data": {
       "cweId": "593",
       "name": "Authentication Bypass: OpenSSL CTX Object Modified after SSL Objects are Created",
@@ -3873,8 +3645,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3886,8 +3656,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194650",
+    "last_modified": "2025-08-16T11:44:05.194653",
     "raw_data": {
       "cweId": "603",
       "name": "Use of Client-Side Authentication",
@@ -3902,8 +3672,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3915,8 +3683,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194666",
+    "last_modified": "2025-08-16T11:44:05.194669",
     "raw_data": {
       "cweId": "612",
       "name": "Improper Authorization of Index Containing Sensitive Information",
@@ -3926,8 +3694,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3939,8 +3705,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194682",
+    "last_modified": "2025-08-16T11:44:05.194685",
     "raw_data": {
       "cweId": "616",
       "name": "Incomplete Identification of Uploaded File Variables (PHP)",
@@ -3963,8 +3729,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -3976,8 +3740,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194698",
+    "last_modified": "2025-08-16T11:44:05.194701",
     "raw_data": {
       "cweId": "619",
       "name": "Dangling Database Cursor ('Cursor Injection')",
@@ -3992,8 +3756,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4005,8 +3767,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194714",
+    "last_modified": "2025-08-16T11:44:05.194716",
     "raw_data": {
       "cweId": "639",
       "name": "Authorization Bypass Through User-Controlled Key",
@@ -4029,8 +3791,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4042,8 +3802,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194729",
+    "last_modified": "2025-08-16T11:44:05.194732",
     "raw_data": {
       "cweId": "641",
       "name": "Improper Restriction of Names for Files and Other Resources",
@@ -4066,8 +3826,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4079,8 +3837,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194745",
+    "last_modified": "2025-08-16T11:44:05.194748",
     "raw_data": {
       "cweId": "643",
       "name": "Improper Neutralization of Data within XPath Expressions ('XPath Injection')",
@@ -4099,8 +3857,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4112,8 +3868,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194762",
+    "last_modified": "2025-08-16T11:44:05.194764",
     "raw_data": {
       "cweId": "646",
       "name": "Reliance on File Name or Extension of Externally-Supplied File",
@@ -4128,8 +3884,6 @@
         }
       ],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4141,8 +3895,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194777",
+    "last_modified": "2025-08-16T11:44:05.194780",
     "raw_data": {
       "cweId": "647",
       "name": "Use of Non-Canonical URL Paths for Authorization Decisions",
@@ -4161,8 +3915,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4174,8 +3926,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194794",
+    "last_modified": "2025-08-16T11:44:05.194796",
     "raw_data": {
       "cweId": "648",
       "name": "Incorrect Use of Privileged APIs",
@@ -4210,8 +3962,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4223,8 +3973,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194810",
+    "last_modified": "2025-08-16T11:44:05.194812",
     "raw_data": {
       "cweId": "651",
       "name": "Exposure of WSDL File Containing Sensitive Information",
@@ -4247,8 +3997,6 @@
         }
       ],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4260,8 +4008,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194826",
+    "last_modified": "2025-08-16T11:44:05.194828",
     "raw_data": {
       "cweId": "652",
       "name": "Improper Neutralization of Data within XQuery Expressions ('XQuery Injection')",
@@ -4280,8 +4028,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4293,8 +4039,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194843",
+    "last_modified": "2025-08-16T11:44:05.194845",
     "raw_data": {
       "cweId": "66",
       "name": "Improper Handling of File Names that Identify Virtual Resources",
@@ -4304,8 +4050,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4317,8 +4061,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194859",
+    "last_modified": "2025-08-16T11:44:05.194862",
     "raw_data": {
       "cweId": "680",
       "name": "Integer Overflow to Buffer Overflow",
@@ -4328,8 +4072,6 @@
       "structure": "Chain",
       "mitigations": [],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4341,8 +4083,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194879",
+    "last_modified": "2025-08-16T11:44:05.194882",
     "raw_data": {
       "cweId": "689",
       "name": "Permission Race Condition During Resource Copy",
@@ -4352,8 +4094,6 @@
       "structure": "Composite",
       "mitigations": [],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4365,8 +4105,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194896",
+    "last_modified": "2025-08-16T11:44:05.194899",
     "raw_data": {
       "cweId": "73",
       "name": "External Control of File Name or Path",
@@ -4409,8 +4149,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4422,8 +4160,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194912",
+    "last_modified": "2025-08-16T11:44:05.194915",
     "raw_data": {
       "cweId": "74",
       "name": "Improper Neutralization of Special Elements in Output Used by a Downstream Component ('Injection')",
@@ -4442,8 +4180,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4455,8 +4191,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194928",
+    "last_modified": "2025-08-16T11:44:05.194931",
     "raw_data": {
       "cweId": "75",
       "name": "Failure to Sanitize Special Elements into a Different Plane (Special Element Injection)",
@@ -4475,8 +4211,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4488,8 +4222,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194945",
+    "last_modified": "2025-08-16T11:44:05.194948",
     "raw_data": {
       "cweId": "761",
       "name": "Free of Pointer not at Start of Buffer",
@@ -4520,8 +4254,6 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4533,8 +4265,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194962",
+    "last_modified": "2025-08-16T11:44:05.194965",
     "raw_data": {
       "cweId": "762",
       "name": "Mismatched Memory Management Routines",
@@ -4565,8 +4297,6 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4578,8 +4308,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Deprecated",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194979",
+    "last_modified": "2025-08-16T11:44:05.194982",
     "raw_data": {
       "cweId": "769",
       "name": "DEPRECATED: Uncontrolled File Descriptor Consumption",
@@ -4589,8 +4319,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4602,8 +4330,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.194996",
+    "last_modified": "2025-08-16T11:44:05.194999",
     "raw_data": {
       "cweId": "77",
       "name": "Improper Neutralization of Special Elements used in a Command ('Command Injection')",
@@ -4634,8 +4362,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4647,8 +4373,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195014",
+    "last_modified": "2025-08-16T11:44:05.195016",
     "raw_data": {
       "cweId": "773",
       "name": "Missing Reference to Active File Descriptor or Handle",
@@ -4663,8 +4389,6 @@
         }
       ],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4676,8 +4400,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195031",
+    "last_modified": "2025-08-16T11:44:05.195034",
     "raw_data": {
       "cweId": "774",
       "name": "Allocation of File Descriptors or Handles Without Limits or Throttling",
@@ -4692,8 +4416,6 @@
         }
       ],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4705,8 +4427,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195048",
+    "last_modified": "2025-08-16T11:44:05.195051",
     "raw_data": {
       "cweId": "775",
       "name": "Missing Release of File Descriptor or Handle after Effective Lifetime",
@@ -4721,8 +4443,6 @@
         }
       ],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4734,8 +4454,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195066",
+    "last_modified": "2025-08-16T11:44:05.195068",
     "raw_data": {
       "cweId": "778",
       "name": "Insufficient Logging",
@@ -4762,8 +4482,6 @@
         }
       ],
       "examples": [],
-      "category": "logging",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4775,8 +4493,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195084",
+    "last_modified": "2025-08-16T11:44:05.195086",
     "raw_data": {
       "cweId": "779",
       "name": "Logging of Excessive Data",
@@ -4799,8 +4517,6 @@
         }
       ],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4812,8 +4528,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Stable",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195101",
+    "last_modified": "2025-08-16T11:44:05.195104",
     "raw_data": {
       "cweId": "78",
       "name": "Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
@@ -4892,8 +4608,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4905,8 +4619,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195118",
+    "last_modified": "2025-08-16T11:44:05.195121",
     "raw_data": {
       "cweId": "785",
       "name": "Use of Path Manipulation Function without Maximum-sized Buffer",
@@ -4921,8 +4635,6 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4934,8 +4646,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195136",
+    "last_modified": "2025-08-16T11:44:05.195138",
     "raw_data": {
       "cweId": "786",
       "name": "Access of Memory Location Before Start of Buffer",
@@ -4945,8 +4657,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4958,8 +4668,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195154",
+    "last_modified": "2025-08-16T11:44:05.195156",
     "raw_data": {
       "cweId": "788",
       "name": "Access of Memory Location After End of Buffer",
@@ -4969,8 +4679,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -4982,8 +4690,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195171",
+    "last_modified": "2025-08-16T11:44:05.195174",
     "raw_data": {
       "cweId": "80",
       "name": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
@@ -5010,8 +4718,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5023,8 +4729,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195189",
+    "last_modified": "2025-08-16T11:44:05.195191",
     "raw_data": {
       "cweId": "805",
       "name": "Buffer Access with Incorrect Length Value",
@@ -5071,8 +4777,6 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5084,8 +4788,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195207",
+    "last_modified": "2025-08-16T11:44:05.195209",
     "raw_data": {
       "cweId": "806",
       "name": "Buffer Access Using Size of Source Buffer",
@@ -5120,8 +4824,6 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5133,8 +4835,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195226",
+    "last_modified": "2025-08-16T11:44:05.195229",
     "raw_data": {
       "cweId": "836",
       "name": "Use of Password Hash Instead of Password for Authentication",
@@ -5144,8 +4846,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5157,8 +4857,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195245",
+    "last_modified": "2025-08-16T11:44:05.195248",
     "raw_data": {
       "cweId": "85",
       "name": "Doubled Character XSS Manipulations",
@@ -5189,8 +4889,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5202,8 +4900,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195264",
+    "last_modified": "2025-08-16T11:44:05.195267",
     "raw_data": {
       "cweId": "862",
       "name": "Missing Authorization",
@@ -5234,8 +4932,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5247,8 +4943,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195282",
+    "last_modified": "2025-08-16T11:44:05.195285",
     "raw_data": {
       "cweId": "863",
       "name": "Incorrect Authorization",
@@ -5279,8 +4975,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5292,8 +4986,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195301",
+    "last_modified": "2025-08-16T11:44:05.195304",
     "raw_data": {
       "cweId": "87",
       "name": "Improper Neutralization of Alternate XSS Syntax",
@@ -5324,8 +5018,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5337,8 +5029,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195320",
+    "last_modified": "2025-08-16T11:44:05.195322",
     "raw_data": {
       "cweId": "88",
       "name": "Improper Neutralization of Argument Delimiters in a Command ('Argument Injection')",
@@ -5385,8 +5077,6 @@
         }
       ],
       "examples": [],
-      "category": null,
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5398,8 +5088,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Stable",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195338",
+    "last_modified": "2025-08-16T11:44:05.195341",
     "raw_data": {
       "cweId": "89",
       "name": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
@@ -5450,8 +5140,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5463,8 +5151,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195357",
+    "last_modified": "2025-08-16T11:44:05.195359",
     "raw_data": {
       "cweId": "90",
       "name": "Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection')",
@@ -5479,8 +5167,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5492,8 +5178,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195375",
+    "last_modified": "2025-08-16T11:44:05.195377",
     "raw_data": {
       "cweId": "91",
       "name": "XML Injection (aka Blind XPath Injection)",
@@ -5508,8 +5194,6 @@
         }
       ],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5521,8 +5205,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195394",
+    "last_modified": "2025-08-16T11:44:05.195396",
     "raw_data": {
       "cweId": "910",
       "name": "Use of Expired File Descriptor",
@@ -5532,8 +5216,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "file_operations",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5545,8 +5227,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195413",
+    "last_modified": "2025-08-16T11:44:05.195415",
     "raw_data": {
       "cweId": "917",
       "name": "Improper Neutralization of Special Elements used in an Expression Language Statement ('Expression Language Injection')",
@@ -5569,8 +5251,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5582,8 +5262,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195432",
+    "last_modified": "2025-08-16T11:44:05.195434",
     "raw_data": {
       "cweId": "923",
       "name": "Improper Restriction of Communication Channel to Intended Endpoints",
@@ -5593,8 +5273,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5606,8 +5284,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195451",
+    "last_modified": "2025-08-16T11:44:05.195454",
     "raw_data": {
       "cweId": "924",
       "name": "Improper Enforcement of Message Integrity During Transmission in a Communication Channel",
@@ -5617,8 +5295,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "network_security",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5630,8 +5306,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195470",
+    "last_modified": "2025-08-16T11:44:05.195473",
     "raw_data": {
       "cweId": "927",
       "name": "Use of Implicit Intent for Sensitive Communication",
@@ -5646,8 +5322,6 @@
         }
       ],
       "examples": [],
-      "category": "network_security",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5659,8 +5333,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195489",
+    "last_modified": "2025-08-16T11:44:05.195492",
     "raw_data": {
       "cweId": "93",
       "name": "Improper Neutralization of CRLF Sequences ('CRLF Injection')",
@@ -5679,8 +5353,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5692,8 +5364,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195509",
+    "last_modified": "2025-08-16T11:44:05.195512",
     "raw_data": {
       "cweId": "939",
       "name": "Improper Authorization in Handler for Custom URL Scheme",
@@ -5708,8 +5380,6 @@
         }
       ],
       "examples": [],
-      "category": "authentication",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5721,8 +5391,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195531",
+    "last_modified": "2025-08-16T11:44:05.195535",
     "raw_data": {
       "cweId": "94",
       "name": "Improper Control of Generation of Code ('Code Injection')",
@@ -5765,8 +5435,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5778,8 +5446,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195562",
+    "last_modified": "2025-08-16T11:44:05.195566",
     "raw_data": {
       "cweId": "940",
       "name": "Improper Verification of Source of a Communication Channel",
@@ -5794,8 +5462,6 @@
         }
       ],
       "examples": [],
-      "category": "authorization",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5807,8 +5473,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195592",
+    "last_modified": "2025-08-16T11:44:05.195597",
     "raw_data": {
       "cweId": "941",
       "name": "Incorrectly Specified Destination in a Communication Channel",
@@ -5818,8 +5484,6 @@
       "structure": "Simple",
       "mitigations": [],
       "examples": [],
-      "category": "network_security",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5831,8 +5495,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Incomplete",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195621",
+    "last_modified": "2025-08-16T11:44:05.195626",
     "raw_data": {
       "cweId": "95",
       "name": "Improper Neutralization of Directives in Dynamically Evaluated Code ('Eval Injection')",
@@ -5859,8 +5523,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5872,8 +5534,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195651",
+    "last_modified": "2025-08-16T11:44:05.195655",
     "raw_data": {
       "cweId": "96",
       "name": "Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection')",
@@ -5892,8 +5554,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5905,8 +5565,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195680",
+    "last_modified": "2025-08-16T11:44:05.195684",
     "raw_data": {
       "cweId": "98",
       "name": "Improper Control of Filename for Include/Require Statement in PHP Program ('PHP Remote File Inclusion')",
@@ -5965,8 +5625,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -5978,8 +5636,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195710",
+    "last_modified": "2025-08-16T11:44:05.195714",
     "raw_data": {
       "cweId": "99",
       "name": "Improper Control of Resource Identifiers ('Resource Injection')",
@@ -5994,8 +5652,6 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null,
       "source": "ROS_CWE_IDS"
     }
   },
@@ -6007,8 +5663,8 @@
     "ros_component": null,
     "likelihood": null,
     "status": "Stable",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195739",
+    "last_modified": "2025-08-16T11:44:05.195743",
     "raw_data": {
       "cweId": "79",
       "name": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
@@ -6067,20 +5723,19 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null
+      "category": "input_validation"
     }
   },
   {
     "cwe_id": "125",
     "name": "Out-of-bounds Read",
     "description": "The product reads data past the end, or before the beginning, of the intended buffer.",
-    "category": "memory_management",
+    "category": "input_validation",
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195772",
+    "last_modified": "2025-08-16T11:44:05.195776",
     "raw_data": {
       "cweId": "125",
       "name": "Out-of-bounds Read",
@@ -6099,20 +5754,19 @@
         }
       ],
       "examples": [],
-      "category": "memory_management",
-      "ros_component": null
+      "category": "input_validation"
     }
   },
   {
     "cwe_id": "22",
     "name": "Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
     "description": "The product uses external input to construct a pathname that is intended to identify a file or directory that is located underneath a restricted parent directory, but the product does not properly neutralize special elements within the pathname that can cause the pathname to resolve to a location that is outside of the restricted directory.\n\n\n            ",
-    "category": "input_validation",
+    "category": "file_operations",
     "ros_component": null,
     "likelihood": null,
     "status": "Stable",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195803",
+    "last_modified": "2025-08-16T11:44:05.195807",
     "raw_data": {
       "cweId": "22",
       "name": "Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
@@ -6167,20 +5821,19 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null
+      "category": "file_operations"
     }
   },
   {
     "cwe_id": "23",
     "name": "Relative Path Traversal",
     "description": "The product uses external input to construct a pathname that should be within a restricted directory, but it does not properly neutralize sequences such as \"..\" that can resolve to a location that is outside of that directory.\n\nThis allows attackers to traverse the file system to access files or directories that are outside of the restricted directory.",
-    "category": "input_validation",
+    "category": "file_operations",
     "ros_component": null,
     "likelihood": null,
     "status": "Draft",
-    "created_date": "2025-08-31T17:56:44.646381",
-    "last_modified": "2025-08-31T17:56:44.646381",
+    "created_date": "2025-08-16T11:44:05.195833",
+    "last_modified": "2025-08-16T11:44:05.195837",
     "raw_data": {
       "cweId": "23",
       "name": "Relative Path Traversal",
@@ -6199,8 +5852,7 @@
         }
       ],
       "examples": [],
-      "category": "input_validation",
-      "ros_component": null
+      "category": "file_operations"
     }
   }
 ]

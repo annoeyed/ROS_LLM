@@ -216,6 +216,13 @@ class CWEDatabase:
     
     def get_statistics(self) -> Dict[str, Any]:
         """통계 정보 반환"""
+        if "statistics" not in self.metadata or self.metadata["statistics"] is None:
+            # 통계가 없으면 기본값 반환
+            return {
+                "total_unique": len(self.cwes),
+                "by_category": {},
+                "by_component": {}
+            }
         return self.metadata["statistics"]
     
     def export_to_markdown(self, output_path: str = None):

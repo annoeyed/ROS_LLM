@@ -87,6 +87,26 @@ class PlannerAgent(BaseAgent):
         except Exception as e:
             self.logger.error(f"Error loading AI client: {e}")
             self.ai_client = None
+
+    def set_ai_client(self, ai_client):
+        """워크플로우에서 AI 클라이언트를 설정하는 메서드"""
+        self.ai_client = ai_client
+        self.logger.info(f"AI client set by workflow: {type(ai_client).__name__}")
+        
+    def get_ai_client_status(self):
+        """AI 클라이언트 상태 확인"""
+        if self.ai_client:
+            return {
+                'status': 'available',
+                'type': type(self.ai_client).__name__,
+                'configured': True
+            }
+        else:
+            return {
+                'status': 'unavailable',
+                'type': 'None',
+                'configured': False
+            }
     
     def analyze_request(self, user_request: str) -> Dict[str, Any]:
         """Analyze user request and establish code generation plan (for external calls)"""
@@ -96,8 +116,11 @@ class PlannerAgent(BaseAgent):
             # 1. 요청 분석
             analysis_result = self._analyze_user_request(user_request)
             
-            # 2. 계획 수립
-            planning_result = self._create_code_generation_plan(analysis_result)
+            # 2. 실행 명세 생성 (새로 추가)
+            execution_spec = self._generate_execution_specification(user_request)
+            
+            # 3. 계획 수립
+            planning_result = self._create_code_generation_plan(analysis_result, execution_spec)
             
             # 3. 보안 요구사항 도출
             security_requirements = self._extract_security_requirements(analysis_result)
@@ -168,14 +191,18 @@ class PlannerAgent(BaseAgent):
         # 요청 분석
         analysis = self._analyze_user_request(user_request)
         
+        # 실행 명세 생성 (새로 추가)
+        execution_spec = self._generate_execution_specification(user_request)
+        
         # 계획 수립
-        plan = self._create_code_generation_plan(analysis)
+        plan = self._create_code_generation_plan(analysis, execution_spec)
         
         return self.send_message(
             message.sender,
             'response',
             {
                 'analysis': analysis,
+                'execution_specification': execution_spec,  # 새로 추가
                 'plan': plan,
                 'status': 'success'
             }
@@ -272,12 +299,13 @@ class PlannerAgent(BaseAgent):
                 'patterns': []
             }
     
-    def _create_code_generation_plan(self, analysis: Dict[str, Any]) -> Dict[str, Any]:
+    def _create_code_generation_plan(self, analysis: Dict[str, Any], execution_spec: Dict[str, Any]) -> Dict[str, Any]:
         """코드 생성 계획 수립"""
         try:
             plan = {
                 'required_agents': ['planner', 'agent', 'security_guide', 'coder', 'simulation'],
                 'estimated_time': '30분',
+                'execution_specification': execution_spec,  # 실행 명세 포함
                 'phases': [
                     {
                         'phase': 1,
@@ -333,6 +361,17 @@ class PlannerAgent(BaseAgent):
                 plan['estimated_time'] = '45분'
                 plan['phases'][2]['duration'] = '15분'
                 plan['phases'][3]['duration'] = '15분'
+            
+            # 실행 명세에 따른 계획 조정
+            if execution_spec.get('node', {}).get('language') == 'python':
+                plan['required_agents'].append('python_validator')
+                plan['phases'][3]['description'] = '보안 가이드라인을 반영한 ROS Python 코드 생성'
+            
+            # 복잡도에 따른 시간 조정
+            node_count = len(execution_spec.get('topics', {}).get('input', [])) + len(execution_spec.get('topics', {}).get('output', []))
+            if node_count > 3:
+                plan['estimated_time'] = '60분'
+                plan['phases'][3]['duration'] = '20분'
         
             return plan
             
@@ -347,6 +386,265 @@ class PlannerAgent(BaseAgent):
                 'risk_assessment': 'medium',
                 'mitigation_strategies': []
             }
+
+    def _generate_execution_specification(self, user_request: str) -> Dict[str, Any]:
+        """사용자 요청을 바탕으로 실행 명세 생성"""
+        try:
+            if not self.ai_client:
+                self.logger.warning("AI client not available, using template-based generation")
+                return self._generate_template_specification(user_request)
+            
+            # AI 기반 실행 명세 생성
+            return self._generate_ai_based_specification(user_request)
+            
+        except Exception as e:
+            self.logger.error(f"실행 명세 생성 실패: {e}")
+            return self._generate_template_specification(user_request)
+
+    def _generate_ai_based_specification(self, user_request: str) -> Dict[str, Any]:
+        """AI를 활용하여 실행 명세 생성"""
+        try:
+            prompt = f"""
+사용자의 ROS 노드 생성 요청을 분석하여 구체적인 실행 명세를 생성해주세요.
+
+사용자 요청: {user_request}
+
+다음 형식으로 JSON 응답을 제공해주세요:
+{{
+    "node": {{
+        "name": "노드_이름",
+        "type": "노드_타입",
+        "language": "cpp 또는 python",
+        "description": "노드_설명"
+    }},
+    "topics": {{
+        "input": [
+            {{
+                "name": "입력_토픽_이름",
+                "type": "메시지_타입",
+                "direction": "subscribe",
+                "qos": "reliable 또는 best_effort"
+            }}
+        ],
+        "output": [
+            {{
+                "name": "출력_토픽_이름",
+                "type": "메시지_타입",
+                "direction": "publish",
+                "qos": "reliable 또는 best_effort"
+            }}
+        ]
+    }},
+    "parameters": {{
+        "parameter_name": {{
+            "min": 최소값,
+            "max": 최대값,
+            "unit": "단위",
+            "default": 기본값,
+            "description": "파라미터_설명"
+        }}
+    }},
+    "timer": {{
+        "frequency": 주기_Hz,
+        "callback": "콜백_함수_이름",
+        "description": "타이머_설명"
+    }},
+    "error_handling": [
+        "에러_처리_방식1",
+        "에러_처리_방식2"
+    ],
+    "dependencies": [
+        "필요한_패키지1",
+        "필요한_패키지2"
+    ]
+}}
+
+사용자 요청이 불분명한 경우, 일반적인 ROS 노드 패턴을 기반으로 합리적인 기본값을 제시해주세요.
+"""
+
+            response = self.ai_client.generate_response(prompt)
+            
+            # JSON 응답 파싱
+            import json
+            spec = json.loads(response)
+            
+            self.logger.info("AI 기반 실행 명세 생성 완료")
+            return spec
+            
+        except Exception as e:
+            self.logger.error(f"AI 기반 실행 명세 생성 실패: {e}")
+            return self._generate_template_specification(user_request)
+
+    def _generate_template_specification(self, user_request: str) -> Dict[str, Any]:
+        """템플릿 기반 실행 명세 생성"""
+        try:
+            # 기본 템플릿
+            spec = {
+                "node": {
+                    "name": "ros_node",
+                    "type": "basic_node",
+                    "language": "cpp",
+                    "description": "기본 ROS 노드"
+                },
+                "topics": {
+                    "input": [
+                        {
+                            "name": "input_topic",
+                            "type": "std_msgs/String",
+                            "direction": "subscribe",
+                            "qos": "reliable"
+                        }
+                    ],
+                    "output": [
+                        {
+                            "name": "output_topic",
+                            "type": "std_msgs/String",
+                            "direction": "publish",
+                            "qos": "reliable"
+                        }
+                    ]
+                },
+                "parameters": {
+                    "update_rate": {
+                        "min": 1.0,
+                        "max": 100.0,
+                        "unit": "Hz",
+                        "default": 10.0,
+                        "description": "노드 업데이트 주기"
+                    }
+                },
+                "timer": {
+                    "frequency": 10.0,
+                    "callback": "timer_callback",
+                    "description": "주기적 상태 업데이트"
+                },
+                "error_handling": [
+                    "입력 검증",
+                    "예외 처리",
+                    "로깅"
+                ],
+                "dependencies": [
+                    "rclcpp",
+                    "std_msgs"
+                ]
+            }
+            
+            # 사용자 요청에 따른 상세한 조정
+            if "속도" in user_request or "velocity" in user_request.lower():
+                spec["node"]["name"] = "velocity_controller"
+                spec["node"]["type"] = "control_node"
+                spec["node"]["description"] = "안전한 속도 제어를 위한 ROS 노드"
+                
+                # 토픽 설정
+                spec["topics"]["input"][0]["name"] = "cmd_vel"
+                spec["topics"]["input"][0]["type"] = "geometry_msgs/Twist"
+                spec["topics"]["input"][0]["description"] = "속도 명령 입력"
+                
+                spec["topics"]["output"][0]["name"] = "safe_cmd_vel"
+                spec["topics"]["output"][0]["type"] = "geometry_msgs/Twist"
+                spec["topics"]["output"][0]["description"] = "안전 검증된 속도 명령 출력"
+                
+                # 추가 출력 토픽
+                spec["topics"]["output"].append({
+                    "name": "velocity_status",
+                    "type": "std_msgs/String",
+                    "direction": "publish",
+                    "qos": "reliable",
+                    "description": "속도 제어 상태 정보"
+                })
+                
+                # 파라미터 설정
+                spec["parameters"] = {
+                    "max_linear_velocity": {
+                        "min": 0.0,
+                        "max": 5.0,
+                        "unit": "m/s",
+                        "default": 2.0,
+                        "description": "최대 선형 속도"
+                    },
+                    "max_angular_velocity": {
+                        "min": 0.0,
+                        "max": 2.0,
+                        "unit": "rad/s",
+                        "default": 1.0,
+                        "description": "최대 각속도"
+                    },
+                    "safety_margin": {
+                        "min": 0.1,
+                        "max": 0.5,
+                        "unit": "ratio",
+                        "default": 0.2,
+                        "description": "안전 마진 비율"
+                    },
+                    "update_rate": {
+                        "min": 10.0,
+                        "max": 100.0,
+                        "unit": "Hz",
+                        "default": 50.0,
+                        "description": "제어 루프 업데이트 주기"
+                    }
+                }
+                
+                # 타이머 설정
+                spec["timer"] = {
+                    "frequency": 50.0,
+                    "callback": "control_loop_callback",
+                    "description": "속도 제어 루프 실행"
+                }
+                
+                # 에러 처리
+                spec["error_handling"] = [
+                    "속도 명령 입력 검증",
+                    "속도 한계 검사",
+                    "비상 정지 기능",
+                    "상태 모니터링",
+                    "로깅 및 알림"
+                ]
+                
+                # 의존성
+                spec["dependencies"] = [
+                    "rclcpp",
+                    "geometry_msgs",
+                    "std_msgs"
+                ]
+                
+            elif "안전" in user_request or "safety" in user_request.lower():
+                spec["node"]["name"] = "safety_monitor"
+                spec["node"]["type"] = "monitoring_node"
+                spec["node"]["description"] = "시스템 안전 상태를 모니터링하는 노드"
+                spec["error_handling"].extend(["안전 상태 검증", "비상 정지", "경고 시스템"])
+                
+            elif "제어" in user_request or "control" in user_request.lower():
+                spec["node"]["name"] = "control_node"
+                spec["node"]["type"] = "control_node"
+                spec["node"]["description"] = "시스템 제어를 담당하는 노드"
+                spec["error_handling"].extend(["제어 명령 검증", "피드백 루프", "안전 장치 연동"])
+                
+            self.logger.info(f"템플릿 기반 실행 명세 생성 완료: {spec['node']['name']}")
+            return spec
+            
+        except Exception as e:
+            self.logger.error(f"템플릿 기반 실행 명세 생성 실패: {e}")
+            return self._get_default_specification()
+
+    def _get_default_specification(self) -> Dict[str, Any]:
+        """기본 실행 명세 반환"""
+        return {
+            "node": {
+                "name": "default_node",
+                "type": "basic_node",
+                "language": "cpp",
+                "description": "기본 ROS 노드"
+            },
+            "topics": {
+                "input": [],
+                "output": []
+            },
+            "parameters": {},
+            "timer": {},
+            "error_handling": ["기본 예외 처리"],
+            "dependencies": ["rclcpp"]
+        }
     
     def _extract_security_requirements(self, analysis: Dict[str, Any]) -> List[str]:
         """보안 요구사항 도출"""
@@ -500,7 +798,7 @@ class PlannerAgent(BaseAgent):
     def _ai_create_code_generation_plan(self, analysis: Dict[str, Any], user_request: str) -> Dict[str, Any]:
         """AI 기반 코드 생성 계획 수립"""
         if not self.ai_client:
-            return self._create_code_generation_plan(analysis)
+            return self._create_code_generation_plan(analysis, {})
         
         try:
             # AI 프롬프트 구성
@@ -537,11 +835,11 @@ class PlannerAgent(BaseAgent):
                 return ai_response
             else:
                 # AI 응답 파싱 실패 시 기본 계획 사용
-                return self._create_code_generation_plan(analysis)
+                return self._create_code_generation_plan(analysis, {})
                 
         except Exception as e:
             self.logger.error(f"AI 기반 계획 수립 실패: {e}")
-            return self._create_code_generation_plan(analysis)
+            return self._create_code_generation_plan(analysis, {})
     
     def plan_ros_code_generation(self, user_request: str) -> Dict[str, Any]:
         """AI 기반 ROS 코드 생성 계획 수립 (외부 호출용)"""
@@ -549,12 +847,20 @@ class PlannerAgent(BaseAgent):
             # AI 기반 요청 분석
             analysis = self._ai_analyze_user_request(user_request)
             
+            # 실행 명세 생성
+            execution_spec = self._generate_execution_specification(user_request)
+            
             # AI 기반 계획 수립
             plan = self._ai_create_code_generation_plan(analysis, user_request)
+            
+            # 실행 명세를 계획에 포함
+            if isinstance(plan, dict):
+                plan['execution_specification'] = execution_spec
             
             return {
                 'analysis': analysis,
                 'plan': plan,
+                'execution_specification': execution_spec,  # 별도로도 포함
                 'status': 'success',
                 'ai_enhanced': self.ai_client is not None
             }
@@ -564,10 +870,12 @@ class PlannerAgent(BaseAgent):
             # AI 실패 시 기본 분석 사용
             try:
                 analysis = self._analyze_user_request(user_request)
-                plan = self._create_code_generation_plan(analysis)
+                execution_spec = self._generate_execution_specification(user_request)
+                plan = self._create_code_generation_plan(analysis, execution_spec)
                 return {
                     'analysis': analysis,
                     'plan': plan,
+                    'execution_specification': execution_spec,
                     'status': 'success',
                     'ai_enhanced': False,
                     'fallback': True
@@ -583,7 +891,9 @@ class PlannerAgent(BaseAgent):
         result = self.plan_ros_code_generation(instruction)
         if result.get('status') == 'success':
             plan_dict = result.get('plan', {})
-            # Convert plan dictionary to string format
+            execution_spec = plan_dict.get('execution_specification', {})
+            
+            # Convert plan dictionary to string format with execution specification
             plan_str = f"""
 ## ROS Code Generation Plan
 
@@ -595,6 +905,60 @@ class PlannerAgent(BaseAgent):
             steps = plan_dict.get('implementation_steps', [])
             for i, step in enumerate(steps, 1):
                 plan_str += f"{i}. {step}\n"
+            
+            # 실행 명세 포함
+            if execution_spec:
+                plan_str += f"""
+### Execution Specification:
+
+#### Node Configuration:
+- Name: {execution_spec.get('node', {}).get('name', 'N/A')}
+- Type: {execution_spec.get('node', {}).get('type', 'N/A')}
+- Language: {execution_spec.get('node', {}).get('language', 'N/A')}
+- Description: {execution_spec.get('node', {}).get('description', 'N/A')}
+
+#### Topics:
+"""
+                # Input topics
+                input_topics = execution_spec.get('topics', {}).get('input', [])
+                if input_topics:
+                    plan_str += "**Input Topics:**\n"
+                    for topic in input_topics:
+                        plan_str += f"- {topic.get('name', 'N/A')} ({topic.get('type', 'N/A')}) - {topic.get('description', 'N/A')}\n"
+                
+                # Output topics
+                output_topics = execution_spec.get('topics', {}).get('output', [])
+                if output_topics:
+                    plan_str += "**Output Topics:**\n"
+                    for topic in output_topics:
+                        plan_str += f"- {topic.get('name', 'N/A')} ({topic.get('type', 'N/A')}) - {topic.get('description', 'N/A')}\n"
+                
+                # Parameters
+                parameters = execution_spec.get('parameters', {})
+                if parameters:
+                    plan_str += "\n**Parameters:**\n"
+                    for param_name, param_info in parameters.items():
+                        plan_str += f"- {param_name}: {param_info.get('min', 'N/A')} ~ {param_info.get('max', 'N/A')} {param_info.get('unit', 'N/A')} (default: {param_info.get('default', 'N/A')})\n"
+                        plan_str += f"  - {param_info.get('description', 'N/A')}\n"
+                
+                # Timer
+                timer = execution_spec.get('timer', {})
+                if timer:
+                    plan_str += f"\n**Timer:**\n- Frequency: {timer.get('frequency', 'N/A')} Hz\n- Callback: {timer.get('callback', 'N/A')}\n- Description: {timer.get('description', 'N/A')}\n"
+                
+                # Error handling
+                error_handling = execution_spec.get('error_handling', [])
+                if error_handling:
+                    plan_str += f"\n**Error Handling:**\n"
+                    for error in error_handling:
+                        plan_str += f"- {error}\n"
+                
+                # Dependencies
+                dependencies = execution_spec.get('dependencies', [])
+                if dependencies:
+                    plan_str += f"\n**Dependencies:**\n"
+                    for dep in dependencies:
+                        plan_str += f"- {dep}\n"
             
             plan_str += f"""
 ### ROS Components:

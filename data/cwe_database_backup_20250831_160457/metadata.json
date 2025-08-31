@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-08-31T17:56:44.646381",
+  "last_updated": "2025-08-16T11:44:05.195843",
   "total_cwes": 176,
   "sources": [
     "NVD CWE API (재구축)",
@@ -8,10 +8,10 @@
   "statistics": {
     "by_category": {
       "network_security": 6,
-      "file_operations": 23,
+      "file_operations": 25,
       "error_handling": 2,
-      "memory_management": 20,
-      "input_validation": 43,
+      "memory_management": 19,
+      "input_validation": 42,
       "race_conditions": 6,
       "authorization": 22,
       "authentication": 48,
