@@ -445,8 +445,9 @@ class PlannerAgent(BaseAgent):
         }}
     }},
     "timer": {{
-        "frequency": 주기_Hz,
-        "callback": "콜백_함수_이름",
+        "publish_rate": 10,  # Hz (토픽 발행 주기)
+        "callback_frequency": 100,  # Hz (콜백 실행 주기)
+        "callback": "timer_callback",
         "description": "타이머_설명"
     }},
     "error_handling": [
@@ -514,7 +515,8 @@ class PlannerAgent(BaseAgent):
                     }
                 },
                 "timer": {
-                    "frequency": 10.0,
+                    "publish_rate": 10.0,  # Hz (토픽 발행 주기)
+                    "callback_frequency": 100.0,  # Hz (콜백 실행 주기)
                     "callback": "timer_callback",
                     "description": "주기적 상태 업데이트"
                 },

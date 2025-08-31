@@ -81,6 +81,11 @@ class SimulationAgent(BaseAgent):
         except Exception as e:
             self.logger.error(f"Error loading AI client: {e}")
             self.ai_client = None
+
+    def set_ai_client(self, ai_client):
+        """AI 클라이언트 설정"""
+        self.ai_client = ai_client
+        self.logger.info(f"AI 클라이언트가 설정되었습니다: {type(ai_client).__name__}")
     
     def process_message(self, message: AgentMessage) -> AgentMessage:
         """Process messages - handle simulation and test requests"""
